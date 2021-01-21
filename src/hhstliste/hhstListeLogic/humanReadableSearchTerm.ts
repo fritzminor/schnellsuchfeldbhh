@@ -22,13 +22,13 @@ function _humanReadableSearchTerm(searchNode: SearchNode): string {
         switch (searchNode.subtype) {
           case "and":
           case "or":
-            const term1 = _humanReadableSearchTerm(searchNode.node1);
-            const term2 = _humanReadableSearchTerm(searchNode.node2);
+            const term1 = _humanReadableSearchTerm(searchNode.node1); // eslint-disable-line no-case-declarations
+            const term2 = _humanReadableSearchTerm(searchNode.node2); // eslint-disable-line no-case-declarations
             return `(${term1}${
               searchNode.subtype === "and" ? " " : ", "
             }${term2})`;
           case "not":
-            const subterm = _humanReadableSearchTerm(searchNode.node);
+            const subterm = _humanReadableSearchTerm(searchNode.node); // eslint-disable-line no-case-declarations
             return `-${subterm}`;
           case "true":
             return "alles";

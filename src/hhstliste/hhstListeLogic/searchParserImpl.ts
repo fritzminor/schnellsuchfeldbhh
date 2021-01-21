@@ -63,7 +63,7 @@ export function parser(tokens: Tokens): SearchNode {
   let parsedTree: SearchNode | null = null;
   let nToken = 0;
   do {
-    let { searchNode, nextToken } = _parseLeftFirst(
+    const { searchNode, nextToken } = _parseLeftFirst(
       // eslint-disable-line @typescript-eslint/no-use-before-define
       parsedTree,
       tokens,
@@ -85,7 +85,7 @@ function _parserLoop(
   let nToken = currentToken;
   let closingBracket = false;
   do {
-    let { searchNode, nextToken } = _parseLeftFirst(
+    const { searchNode, nextToken } = _parseLeftFirst(
       // eslint-disable-line @typescript-eslint/no-use-before-define
       parsedTree,
       tokens,
@@ -341,7 +341,7 @@ function _parseLeftFirst(
     const nodeType = pseudonumeric
       ? "pseudonumeric"
       : "numeric";
-    const valueRegex: RegExp = new RegExp(
+    const valueRegex = new RegExp(
       `^\\d{${minDigits},${maxDigits}}$`
     );
     console.log("valueRegex:", valueRegex);
@@ -528,7 +528,7 @@ function _parseLeftFirst(
     //TODO: check other keywords
     case "-":
       currentToken++;
-      const negatedResult = _parseLeftFirst(
+      const negatedResult = _parseLeftFirst( // eslint-disable-line no-case-declarations
         null,
         tokens,
         currentToken,
@@ -544,7 +544,7 @@ function _parseLeftFirst(
       break;
     case "(":
       currentToken++;
-      const parsedBrackets = _parserLoop(
+      const parsedBrackets = _parserLoop( // eslint-disable-line no-case-declarations
         tokens,
         currentToken,
         currentDepth + 1

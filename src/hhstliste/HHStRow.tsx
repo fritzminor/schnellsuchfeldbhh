@@ -33,5 +33,5 @@ export function formatBetrag(betrag:number):string {
   ? "-"
   : betrag.toLocaleString("de-DE", {
       minimumFractionDigits: 1
-    });;
+    });
 }

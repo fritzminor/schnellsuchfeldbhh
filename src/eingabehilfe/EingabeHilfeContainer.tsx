@@ -20,7 +20,7 @@ export function EingabeHilfeContainer({
   const [focusState, setFocusState] = useState<boolean>(false);
   const [cursorPosState, setCursorPosState] = useState<number>(0);
   const [limitOnState, setLimitOnState] = useState<boolean>(true);
-  let hilfen = focusState
+  const hilfen = focusState
     ? eingabehilfen({
         searchexpression,
         cursorPos: cursorPosState

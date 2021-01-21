@@ -1,2 +1,0 @@
-import { FullMatchDescriptor } from "./EingabeHilfeData";
-

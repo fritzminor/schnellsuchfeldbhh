@@ -11,7 +11,7 @@
       "dom",
       "es2015"
     ],
-    "jsx": "react",
+    "jsx": "react-jsx",
     "target": "es5",
     "allowJs": true,
     "skipLibCheck": true,
@@ -20,6 +20,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true
   }
 }
