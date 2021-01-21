@@ -1,0 +1,38 @@
+{
+  "name": "schnellsuchfeldbhh",
+  "version": "0.1.0",
+  "description": "Schnellsuchfeld Prototyp",
+  "keywords": [],
+  "main": "src/index.tsx",
+  "eslintConfig": {
+    "rules": {
+      "no-use-before-define": 0
+    }
+  },
+  "dependencies": {
+    "@carbon/icons-react": "10.22.0",
+    "@types/history": "4.7.8",
+    "bulma": "0.9.1",
+    "history": "5.0.0",
+    "react": "17.0.0",
+    "react-dom": "17.0.0",
+    "react-scripts": "3.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "16.9.19",
+    "@types/react-dom": "16.9.5",
+    "typescript": "3.7.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
