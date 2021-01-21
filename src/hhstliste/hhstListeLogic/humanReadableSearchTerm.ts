@@ -15,7 +15,7 @@ function _humanReadableSearchTerm(searchNode: SearchNode): string {
           case "single":
             return `${searchNode.keyword}:${searchNode.value}`;
           case "fulltext":
-            return `VOLLTEXT:${searchNode.value}`;
+            return `Volltext:${searchNode.value}`;
         }
         // fall through
       case "logical":
