@@ -16,7 +16,7 @@ import { SearchNode } from "./hhstliste/hhstListeLogic/searchTreeTypes";
 //           https://github.com/fmoo/react-typeahead
 //           https://github.com/moroshko/react-autosuggest
 
-export default function App() {
+export default function App():JSX.Element {
   const [state, setState] = useState<AppState>({
     searchexpression:
       new URLSearchParams(history.location.search).get(

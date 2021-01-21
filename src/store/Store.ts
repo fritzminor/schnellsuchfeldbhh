@@ -2,7 +2,7 @@ import { History } from "history";
 import * as React from "react";
 import { AppState } from "./AppState";
 
-export function createStore(
+export function createStore(  // eslint-disable-line  @typescript-eslint/explicit-module-boundary-types
   setState: React.Dispatch<React.SetStateAction<AppState>>,
   history: History
 ) {

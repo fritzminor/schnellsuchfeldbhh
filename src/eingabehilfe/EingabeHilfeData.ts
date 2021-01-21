@@ -60,19 +60,18 @@ export const keywords: Keyword[] = [
   {
     name: "Epl",
     description:
-      "Alle Haushaltsstellen eines Einzelplans, z.B. Epl:02 für Einzelplan der Staatskanzlei",
+      "Alle Haushaltsstellen eines Einzelplans, z.B. Epl:01 für Einzelplan des Bundespräsidenten",
     minDigits: 1,
     maxDigits: 2,
-    fullMatchDescriptor: (curToken: string) => {
+    fullMatchDescriptor: (curToken: string): string | null => {
       const regExRes = /^Epl:(\d{1,2})?$/i.exec(curToken);
       if (!regExRes) return null; //TODO: handle minus sign
-      return `Suche in Einzelplan  ${
-        regExRes && regExRes[1].length === 1
+      return `Suche in Einzelplan  ${regExRes && regExRes[1].length === 1
           ? "0" + regExRes[1]
           : regExRes
-          ? regExRes[1]
-          : ""
-      }.`;
+            ? regExRes[1]
+            : ""
+        }.`;
     }
   },
   {
@@ -81,25 +80,22 @@ export const keywords: Keyword[] = [
       "Alle Haushaltsstellen eines Kapitels, z.B. Kap:02 für alle Sammelkapitel oder Kap:1319 für Kapitel 19 im Einzelplan 13",
     minDigits: 1,
     maxDigits: 4,
-    fullMatchDescriptor: (curToken: string) => {
+    fullMatchDescriptor: (curToken: string): string | null => {
       const regExRes = /^Kap:(\d{1,2})(\d{1,2})?$/i.exec(
         curToken
       );
       if (!regExRes) return null; //TODO: handle minus sign
       if (regExRes && regExRes[2])
-        return `Suche in Einzelplan ${
-          regExRes[1]
-        } Kapitel ${
-          regExRes && regExRes[2].length === 1
+        return `Suche in Einzelplan ${regExRes[1]
+          } Kapitel ${regExRes && regExRes[2].length === 1
             ? "0" + regExRes[2]
             : regExRes[2]
-        }.`;
+          }.`;
       else
-        return `Suche in Kapitel ${
-          regExRes && regExRes[1].length === 1
+        return `Suche in Kapitel ${regExRes && regExRes[1].length === 1
             ? "0" + regExRes[1]
             : (regExRes && regExRes[1]) || ""
-        }.`;
+          }.`;
     }
   },
 
@@ -129,12 +125,12 @@ export const keywords: Keyword[] = [
     description: `Suche nach Haushaltsbetrag/Haushaltsansatz für das erste Aufstellungsjahr`,
     minDigits: 1
   },
-/*
-  {
-    name: "Soll2",
-    description: `Suche nach Haushaltsbetrag/Haushaltsansatz für das zweite Aufstellungsjahr`,
-    minDigits: 1
-  },*/
+  /*
+    {
+      name: "Soll2",
+      description: `Suche nach Haushaltsbetrag/Haushaltsansatz für das zweite Aufstellungsjahr`,
+      minDigits: 1
+    },*/
   {
     name: "Zweck",
     description: `Suche in Zweckbestimmung, z.B. Zweck:Verwaltungsaufwand`
@@ -245,7 +241,7 @@ export const proposalsForEmptyField: EingabeHilfeItem[] = [
     description: `Haushaltsstellen mit dem Kennzeichen "freiwillig"
        für freiwillige Leistungen`
   },
-  
+
   {
     proposal: "Grp:4-8",
     description: `Hauptgruppen 4 bis 8`
@@ -260,7 +256,7 @@ export const otherProposals: EingabeHilfeItem[] = [
     proposal: "Grp:0",
     description:
       "Hauptgruppe 0 - Einnahmen aus Steuern und steuerähnlichen Abgaben sowie EU-Eigenmittel"
-  },{
+  }, {
     proposal: "Grp:01-08",
     description:
       "Obergruppe 01-08 - Steuereinnahmen"

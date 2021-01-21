@@ -25,7 +25,7 @@ export function HHStList({
   searchTree
 }: React.PropsWithChildren<{
   searchTree: SearchNode | null;
-}>) {
+}>):JSX.Element {
   try {
     const filteredHhstArray = hhstArray.filter((hhst) =>
       isSearched(hhst, searchTree)
@@ -107,7 +107,7 @@ export function HHStList({
   }
 }
 
-function data2hhst(data: any): HHSt {
+function data2hhst(data: any): HHSt {  // eslint-disable-line @typescript-eslint/no-explicit-any
   return {
     epl: data.einzelplan,
     kap: (data.kapitel as string).substr(2),

@@ -6,7 +6,7 @@ type HHStRowProps = {
   heading?: boolean;
 };
 
-export function HHStRow({ hhst, heading }: HHStRowProps) {
+export function HHStRow({ hhst, heading }: HHStRowProps): JSX.Element {
   const className = heading
     ? "container hhstRow is-size-6"
     : "container hhstRow is-size-7";
@@ -21,17 +21,17 @@ export function HHStRow({ hhst, heading }: HHStRowProps) {
       </div>
       <div className="zweck">{hhst.zweck}</div>
       <div className="soll1">
-        {heading?hhst.sollJahr1 : formatBetrag(hhst.sollJahr1)}
+        {heading ? hhst.sollJahr1 : formatBetrag(hhst.sollJahr1)}
       </div>
     </div>
   );
 }
 
 /** returns a number formatted with . as 000 separator and a comma 0 */
-export function formatBetrag(betrag:number):string {
-  return  betrag === 0
-  ? "-"
-  : betrag.toLocaleString("de-DE", {
+export function formatBetrag(betrag: number): string {
+  return betrag === 0
+    ? "-"
+    : betrag.toLocaleString("de-DE", {
       minimumFractionDigits: 1
     });
 }

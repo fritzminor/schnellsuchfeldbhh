@@ -14,7 +14,7 @@ export function EingabeHilfeContainer({
   searchexpression,
   setSearchExpression,
   defaultProposalLimit
-}: EingabeHilfeContainerProps) {
+}: EingabeHilfeContainerProps):JSX.Element {
   const proposalsLimit = defaultProposalLimit || 4;
   const inputfieldRef = useRef<HTMLInputElement>(null);
   const [focusState, setFocusState] = useState<boolean>(false);
@@ -65,7 +65,7 @@ export function EingabeHilfeContainer({
               (e.target as HTMLInputElement).selectionStart || 0
             );
           }}
-          onBlur={(ev) => {
+          onBlur={() => {
             /* setTimeout(() => {
               setFocusState(false);
             }, 100);*/
