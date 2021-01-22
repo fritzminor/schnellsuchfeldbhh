@@ -1,7 +1,7 @@
 {
-  "name": "schnellsuchfeldbhh-by-fritzminor",
+  "name": "schnellsuchfeld-bhh",
   "version": "0.1.1",
-  "description": "Schnellsuchfeld Prototyp",
+  "description": "Schnellsuchfeld - Prototyp",
   "keywords": [],
   "main": "src/index.tsx",
   "dependencies": {
