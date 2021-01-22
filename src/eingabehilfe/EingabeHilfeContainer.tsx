@@ -1,7 +1,5 @@
 import * as React from "react";
-import {
-  eingabehilfen
-} from "./EingabeHilfeLogic";
+import { eingabehilfen } from "./EingabeHilfeLogic";
 import { EingabeHilfenList } from "./EingabeHilfenList";
 import { useRef, useState } from "react";
 import { Search24 } from "@carbon/icons-react";
@@ -16,7 +14,8 @@ export function EingabeHilfeContainer({
   searchexpression,
   setSearchExpression,
   defaultProposalLimit
-}: EingabeHilfeContainerProps): JSX.Element { //eslint-disable-line no-undef
+}: EingabeHilfeContainerProps): JSX.Element {
+  //eslint-disable-line no-undef
   const proposalsLimit = defaultProposalLimit || 4;
   const inputfieldRef = useRef<HTMLInputElement>(null);
   const [focusState, setFocusState] = useState<boolean>(
@@ -27,6 +26,10 @@ export function EingabeHilfeContainer({
   >(0);
   const [limitOnState, setLimitOnState] = useState<boolean>(
     true
+  );
+
+  const [hilfenActive, setHilfenActive] = useState<boolean>(
+    false
   );
   const hilfen = focusState
     ? eingabehilfen({
@@ -98,27 +101,56 @@ export function EingabeHilfeContainer({
         </div>
       </div>
       <p className="panel-tabs">
-        <a href="#top">Suchfelder</a>
-        <a href="#top" className="is-active">
+        <a
+          href="#top"
+          className={hilfenActive ? "" : "is-active"}
+          onClick={() => setHilfenActive(false)}
+        >
+          Suchfelder
+        </a>
+        <a
+          href="#top"
+          className={hilfenActive ? "is-active" : ""}
+          onClick={() => setHilfenActive(true)}
+        >
           Hinweise
         </a>
-        
       </p>
-      {focusState && hilfen ? (
-        <EingabeHilfenList
-          searchexpression={searchexpression}
-          setSearchExpression={setSearchExpression}
-          cursorPosState={cursorPosState}
-          limited={limited}
-          proposalsLimit={proposalsLimit}
-          setLimitOnState={setLimitOnState}
-          hilfen={hilfen}
-          inputfieldRef={inputfieldRef}
-        />
+      {hilfenActive ? (
+        focusState && hilfen ? (
+          <EingabeHilfenList
+            searchexpression={searchexpression}
+            setSearchExpression={setSearchExpression}
+            cursorPosState={cursorPosState}
+            limited={limited}
+            proposalsLimit={proposalsLimit}
+            setLimitOnState={setLimitOnState}
+            hilfen={hilfen}
+            inputfieldRef={inputfieldRef}
+          />
+        ) : (
+          <p className="helptext">
+            Bitte Suchausdruck eingeben, z.B. Kap:1319.
+          </p>
+        )
       ) : (
-        <p className="helptext">
-          Bitte Suchausdruck eingeben, z.B. Kap:1319.
-        </p>
+        <div className="container searchfields">
+          <div className="field">
+            <label class="label">Epl</label>
+            <div className="control">
+              <input
+                className="input"
+                type="number"
+                placeholder="01"
+              />
+              <input
+                className="input"
+                type="number"
+                placeholder="01"
+              />
+            </div>
+          </div>
+        </div>
       )}
     </nav>
   );
