@@ -38,8 +38,22 @@
 
 ## TODO
 
+- Sachhaushaltseinfachmaske
+  * Volltextsuche
+  * Von bis-Felder
+    * Epl (1 wird zu Epl:01)
+    * Kapitel (1 wird zu Kap:01, 101 wird zu Epl:01 Kap:01, 0102 wird zu Kap:0102)
+    * Grp:
+    * Titelgruppe:
+    * Soll1:
+  * Ohne-Knopf: zusätzliches Feld mit gleicher Auswahl
+
+- Ausführlicher Hilfetext an einem Stück
 - Bei fullTextMatch sollte Token hervorgehoben werden (notfalls nur im helptext etwa so "'Epl:13' in 'Grp:5 Epl:13' führt zu Suche nach ...", wobei "Epl:13" beides Mal unterstrichen wird)
 - Weitere Suchvorschläge, wenn Grp:\d, nämlich Grp:$1\d und Grp:$1\d\d
 - A und E als Schnelleingrenzung auf Ausgaben oder Einnahmen
 - Kap:1004 als Epl:10 Kap:04 interpretieren
 - Ignoriere Leerzeichen vor schließender Klammer
+
+- Verweis auf Daten von bundeshaushalt.de in der App
+- Verweis auf Code-Repository auf GitHub

@@ -41,7 +41,7 @@ export default function App():JSX.Element {
       <section className="section hero">
         <div className="hero-body is-primary">
           <div className="container">
-            <h1 className="title">Schnellsuchfeld</h1>
+            <h1 className="title">Universalsuchfeld</h1>
             <h2 className="subtitle">
               Prototyp für Suchhilfen
             </h2>
