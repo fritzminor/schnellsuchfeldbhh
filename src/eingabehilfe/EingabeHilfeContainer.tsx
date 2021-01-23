@@ -3,8 +3,9 @@ import { eingabehilfen } from "./EingabeHilfeLogic";
 import { EingabeHilfenList } from "./EingabeHilfenList";
 import { useRef, useState } from "react";
 import { Search24 } from "@carbon/icons-react";
-import { SearchFieldsContainer } from 
-  "./einfachmaske/SearchFieldsContainer";
+import { SearchFieldsData } from "./searchfields/SearchFieldsTypes";
+import { initialFieldsData } from "./searchfields/SearchFieldsData";
+import { SearchFieldsContainer } from "./searchfields/SearchFieldsContainer";
 
 type EingabeHilfeContainerProps = {
   searchexpression: string;
@@ -33,6 +34,11 @@ export function EingabeHilfeContainer({
   const [hilfenActive, setHilfenActive] = useState<boolean>(
     false
   );
+
+  const [searchFieldsData,setSearchFieldsData] = useState<SearchFieldsData>(
+    initialFieldsData
+  );
+
   const hilfen = focusState
     ? eingabehilfen({
         searchexpression,
@@ -136,7 +142,10 @@ export function EingabeHilfeContainer({
           </p>
         )
       ) : (
-        <SearchFieldsContainer />
+        <SearchFieldsContainer
+          searchFieldsData={searchFieldsData}
+          setSearchExpression={setSearchExpression}
+        />
       )}
     </nav>
   );
