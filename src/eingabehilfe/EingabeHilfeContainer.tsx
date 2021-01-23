@@ -138,11 +138,13 @@ export function EingabeHilfeContainer({
           <div className="field">
             <label class="label">Epl</label>
             <div className="control">
+              <div className="fieldprefix">von</div>
               <input
                 className="input"
                 type="number"
                 placeholder="01"
               />
+              <div>bis</div>
               <input
                 className="input"
                 type="number"

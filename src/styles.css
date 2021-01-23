@@ -41,6 +41,15 @@ input {
   font-size: smaller;
 }
 
+/* -------- SearchFields = einfachmaske ------- */
+
+.searchfields .field .control {
+  display: flex;  
+  align-items: center;
+}
+
+
+/* -------- HHSt liste ---------- */
 .hhstListContainer {
   padding: 0.2em;
   min-height: 40em;
@@ -103,3 +112,4 @@ input {
 .sums .searchtree {
   font-size: smaller;
 }
+
