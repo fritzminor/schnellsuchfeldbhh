@@ -3,6 +3,8 @@ import { eingabehilfen } from "./EingabeHilfeLogic";
 import { EingabeHilfenList } from "./EingabeHilfenList";
 import { useRef, useState } from "react";
 import { Search24 } from "@carbon/icons-react";
+import { SearchFieldsContainer } from 
+  "./einfachmaske/SearchFieldsContainer";
 
 type EingabeHilfeContainerProps = {
   searchexpression: string;
@@ -134,25 +136,7 @@ export function EingabeHilfeContainer({
           </p>
         )
       ) : (
-        <div className="container searchfields">
-          <div className="field">
-            <label class="label">Epl</label>
-            <div className="control">
-              <div className="fieldprefix">von</div>
-              <input
-                className="input"
-                type="number"
-                placeholder="01"
-              />
-              <div>bis</div>
-              <input
-                className="input"
-                type="number"
-                placeholder="01"
-              />
-            </div>
-          </div>
-        </div>
+        <SearchFieldsContainer />
       )}
     </nav>
   );
