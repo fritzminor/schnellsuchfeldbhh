@@ -54,7 +54,7 @@ export function EingabeHilfeContainer({
   }
 
   return (
-    <nav class="panel">
+    <nav className="panel">
       <div className="container eingabeHilfeContainer">
         <div className="inputfieldcontainer  ">
           <Search24 className="searchIcon" />

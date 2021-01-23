@@ -10,46 +10,62 @@ type SearchFieldsContainerProps = {
 export function SearchFieldsContainer({
   setSearchExpression,
   searchFieldsData
-}: SearchFieldsContainerProps): JSX.Element {
-  //eslint-disable-line no-undef
-  const fieldKeys = searchFieldsData.positive;
+}: //eslint-disable-next-line no-undef
+SearchFieldsContainerProps): JSX.Element {
+  const fieldKeys: (keyof SearchFieldsData["positive"])[] = [
+    "epl",
+    "fulltext"
+  ];
   return (
     <div className="container searchfields">
-      <pre>
-        {JSON.stringify(fieldKeys, undefined, "  ")}
-      </pre>
-      <div className="field">
-        <label className="label">Volltextsuche</label>
-        <div className="control">
-          <input
-            className="input"
-            type="search"
-            placeholder="Suchwort"
-            onChange={(ev) => {
-              setSearchExpression(
-                fulltextExpression(ev.target.value)
-              );
-            }}
-          />
-        </div>
-      </div>
-      <div className="field">
-        <label className="label">Epl</label>
-        <div className="control">
-          <div className="fieldprefix">von</div>
-          <input
-            className="input"
-            type="number"
-            placeholder="01"
-          />
-          <div>bis</div>
-          <input
-            className="input"
-            type="number"
-            placeholder="01"
-          />
-        </div>
-      </div>
+      {fieldKeys.map((key) => {
+        const fieldData = searchFieldsData.positive[key];
+        if (fieldData) {
+          if (fieldData.type === "single")
+            return (
+              <div className="field" key={key}>
+                <label className="label">
+                  {fieldData.label}
+                </label>
+                <div className="control">
+                  <input
+                    className="input"
+                    type="search"
+                    placeholder="Suchwort"
+                    onChange={(ev) => {
+                      setSearchExpression(
+                        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+                        fulltextExpression(ev.target.value)
+                      );
+                    }}
+                  />
+                </div>
+              </div>
+            );
+          else
+            return (
+              <div key={key} className="field">
+                <label className="label">
+                  {fieldData.label}
+                </label>
+                <div className="control">
+                  <div className="fieldprefix">von</div>
+                  <input
+                    className="input"
+                    type="number"
+                    placeholder="01"
+                  />
+                  <div>bis</div>
+                  <input
+                    className="input"
+                    type="number"
+                    placeholder="01"
+                  />
+                </div>
+              </div>
+            );
+        } else return <></>;
+      })}
     </div>
   );
 }
