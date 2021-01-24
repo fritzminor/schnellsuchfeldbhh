@@ -1,21 +1,47 @@
 import * as React from "react";
 
 import { SearchFieldsData } from "./SearchFieldsTypes";
+import { initialFieldsData } from "./SearchFieldsData";
+import {
+  getSearchExpression,
+  getSearchFieldsData
+} from "./SearchFieldsLogic";
+import { getSearchTree } from "../../hhstliste/hhstListeLogic/searchParser";
 
 type SearchFieldsContainerProps = {
   setSearchExpression: (searchexpression: string) => void;
-  searchFieldsData: SearchFieldsData;
+  searchExpression: string;
+  searchExpressionSetBySearchFields: boolean;
 };
 
 export function SearchFieldsContainer({
   setSearchExpression,
-  searchFieldsData
+  searchExpression,
+  searchExpressionSetBySearchFields
 }: //eslint-disable-next-line no-undef
 SearchFieldsContainerProps): JSX.Element {
+  let [
+    searchFieldsData,
+    setSearchFieldsData
+  ] = React.useState<SearchFieldsData>(initialFieldsData);
+
   const fieldKeys: (keyof SearchFieldsData["positive"])[] = [
     "epl",
+    "kap",
     "fulltext"
   ];
+
+  if (!searchExpressionSetBySearchFields) {
+    try {
+      searchFieldsData = getSearchFieldsData(
+        getSearchTree(searchExpression)
+      );
+    } catch (e) {
+      console.log(
+        `Unversalausdruck "${searchExpression}" kann nicht ausgewertet werden.${e.message}`
+      );
+    }
+  }
   return (
     <div className="container searchfields">
       {fieldKeys.map((key) => {
@@ -33,9 +59,20 @@ SearchFieldsContainerProps): JSX.Element {
                     type="search"
                     placeholder="Suchwort"
                     onChange={(ev) => {
+                      const newFieldsData: SearchFieldsData = {
+                        ...searchFieldsData,
+                        positive: {
+                          ...searchFieldsData.positive,
+                          fulltext: {
+                            ...searchFieldsData.positive
+                              .fulltext,
+                            value: ev.target.value
+                          }
+                        }
+                      };
+                      setSearchFieldsData(newFieldsData);
                       setSearchExpression(
-                        // eslint-disable-next-line @typescript-eslint/no-use-before-define
-                        fulltextExpression(ev.target.value)
+                        getSearchExpression(newFieldsData)
                       );
                     }}
                   />
@@ -54,12 +91,48 @@ SearchFieldsContainerProps): JSX.Element {
                     className="input"
                     type="number"
                     placeholder="01"
+                    onChange={(ev) => {
+                      const newFieldsData: SearchFieldsData = {
+                        ...searchFieldsData,
+                        positive: {
+                          ...searchFieldsData.positive,
+                          [key]: {
+                            ...searchFieldsData.positive[
+                              key
+                            ],
+                            valueFrom: ev.target.value
+                          }
+                        }
+                      };
+                      setSearchFieldsData(newFieldsData);
+                      setSearchExpression(
+                        getSearchExpression(newFieldsData)
+                      );
+                    }}
                   />
                   <div>bis</div>
                   <input
                     className="input"
                     type="number"
-                    placeholder="01"
+                    placeholder="02"
+                    onChange={(ev) => {
+                      const newFieldsData: SearchFieldsData = {
+                        ...searchFieldsData,
+                        positive: {
+                          ...searchFieldsData.positive,
+                          [key]: {
+                            ...searchFieldsData.positive[
+                              key
+                            ],
+                            valueTo: ev.target.value
+                          }
+                        }
+                      };
+                      setSearchFieldsData(newFieldsData);
+                      setSearchExpression(
+                        getSearchExpression(newFieldsData)
+                      );
+                    }}
                   />
                 </div>
               </div>
@@ -68,16 +141,4 @@ SearchFieldsContainerProps): JSX.Element {
       })}
     </div>
   );
-}
-
-/** returns the expression for the universal search field, e.g.
- *  given "hello world" returns "volltext:hello volltext:world"
- */
-function fulltextExpression(fieldText: string): string {
-  if (fieldText) {
-    const snippets = fieldText.split(" ");
-    return snippets
-      .map((snippet) => "Volltext:" + snippet)
-      .join(" ");
-  } else return "";
 }

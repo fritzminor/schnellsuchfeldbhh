@@ -4,9 +4,9 @@ export type SearchFieldsData = {
 };
 
 type SearchFieldsSimpleRowsData = {
-  epl?: SearchFieldDataPseudoNumeric;
-  kap?: SearchFieldDataPseudoNumeric;
-  fulltext?: SearchFieldDataSingle;
+  epl: SearchFieldDataPseudoNumeric;
+  kap: SearchFieldDataPseudoNumeric;
+  fulltext: SearchFieldDataSingle;
 };
 export type SearchFieldData =
   | SearchFieldDataSingle
@@ -15,6 +15,7 @@ export type SearchFieldData =
 export type SearchFieldDataBase = {
   label: string;
   keyword: string;
+  hidden?: boolean;
 };
 export type SearchFieldDataSingle = SearchFieldDataBase & {
   type: "single";

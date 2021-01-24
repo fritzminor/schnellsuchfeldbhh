@@ -3,8 +3,6 @@ import { eingabehilfen } from "./EingabeHilfeLogic";
 import { EingabeHilfenList } from "./EingabeHilfenList";
 import { useRef, useState } from "react";
 import { Search24 } from "@carbon/icons-react";
-import { SearchFieldsData } from "./searchfields/SearchFieldsTypes";
-import { initialFieldsData } from "./searchfields/SearchFieldsData";
 import { SearchFieldsContainer } from "./searchfields/SearchFieldsContainer";
 
 type EingabeHilfeContainerProps = {
@@ -17,8 +15,9 @@ export function EingabeHilfeContainer({
   searchexpression,
   setSearchExpression,
   defaultProposalLimit
+  //eslint-disable-next-line no-undef
 }: EingabeHilfeContainerProps): JSX.Element {
-  //eslint-disable-line no-undef
+  
   const proposalsLimit = defaultProposalLimit || 4;
   const inputfieldRef = useRef<HTMLInputElement>(null);
   const [focusState, setFocusState] = useState<boolean>(
@@ -34,10 +33,10 @@ export function EingabeHilfeContainer({
   const [hilfenActive, setHilfenActive] = useState<boolean>(
     false
   );
-
-  const [searchFieldsData,setSearchFieldsData] = useState<SearchFieldsData>(
-    initialFieldsData
-  );
+  const [
+    searchExpressionSetBySearchFields,
+    setSearchExpressionSetBySearchFields
+  ] = useState<boolean>(false);
 
   const hilfen = focusState
     ? eingabehilfen({
@@ -69,12 +68,15 @@ export function EingabeHilfeContainer({
             ref={inputfieldRef}
             onChange={(e) => {
               setSearchExpression(e.target.value);
+              setSearchExpressionSetBySearchFields(false);
+
               setCursorPosState(
                 e.target.selectionStart || 0
               );
             }}
             onFocus={(e) => {
               setFocusState(true);
+              setHilfenActive(true);
               setCursorPosState(
                 e.target.selectionStart || 0
               );
@@ -128,7 +130,11 @@ export function EingabeHilfeContainer({
         focusState && hilfen ? (
           <EingabeHilfenList
             searchexpression={searchexpression}
-            setSearchExpression={setSearchExpression}
+            setSearchExpression={(searchexpression) => {
+              setSearchExpression(searchexpression);
+              setSearchExpressionSetBySearchFields(false);
+              setHilfenActive(true);
+            }}
             cursorPosState={cursorPosState}
             limited={limited}
             proposalsLimit={proposalsLimit}
@@ -143,8 +149,14 @@ export function EingabeHilfeContainer({
         )
       ) : (
         <SearchFieldsContainer
-          searchFieldsData={searchFieldsData}
-          setSearchExpression={setSearchExpression}
+          setSearchExpression={(searchexpression) => {
+            setSearchExpression(searchexpression);
+            setSearchExpressionSetBySearchFields(true);
+          }}
+          searchExpression={searchexpression}
+          searchExpressionSetBySearchFields={
+            searchExpressionSetBySearchFields
+          }
         />
       )}
     </nav>
