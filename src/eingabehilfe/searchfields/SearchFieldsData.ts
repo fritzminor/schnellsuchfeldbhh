@@ -1,6 +1,7 @@
 import { SearchFieldsData } from "./SearchFieldsTypes";
+import { cloneDeep } from "lodash";
 
-export const initialFieldsData: SearchFieldsData = {
+const _initialFieldsData: SearchFieldsData = {
   negative: {
     epl: {
       label: "Einzelplan",
@@ -13,10 +14,18 @@ export const initialFieldsData: SearchFieldsData = {
     },
     kap: {
       label: "Kapitel",
-      keyword: "Epl",
+      keyword: "Kap",
       type: "pseudonumeric",
       minDigits: 2,
       hidden: true,
+      valueFrom: "",
+      valueTo: ""
+    },
+    gruppe: {
+      label: "Gruppierungnummer",
+      keyword: "Grp",
+      type: "pseudonumeric",
+      minDigits: 1,
       valueFrom: "",
       valueTo: ""
     },
@@ -39,9 +48,17 @@ export const initialFieldsData: SearchFieldsData = {
     },
     kap: {
       label: "Kapitel",
-      keyword: "Epl",
+      keyword: "Kap",
       type: "pseudonumeric",
       minDigits: 2,
+      valueFrom: "",
+      valueTo: ""
+    },
+    gruppe: {
+      label: "Gruppierungsnummer",
+      keyword: "Grp",
+      type: "pseudonumeric",
+      minDigits: 1,
       valueFrom: "",
       valueTo: ""
     },
@@ -54,4 +71,21 @@ export const initialFieldsData: SearchFieldsData = {
   }
 };
 
-export const fieldsPseudoNumeric: (keyof SearchFieldsData["positive"])[] = ["epl"];
+export const fieldsPseudoNumeric: (keyof SearchFieldsData["positive"])[] = [
+  "epl",
+  "kap",
+  "gruppe"
+];
+
+export const parserKeywords2FieldKeys: {
+  [index: string]: "epl" | "kap" |"gruppe" //keyof SearchFieldsData["positive"];
+} = {
+  Epl: "epl",
+  Kap: "kap",
+  Grp: "gruppe"
+};
+
+export function initialFieldsData(): SearchFieldsData {
+  const cloneData = cloneDeep(_initialFieldsData);
+  return cloneData;
+}

@@ -76,7 +76,6 @@ export function EingabeHilfeContainer({
             }}
             onFocus={(e) => {
               setFocusState(true);
-              setHilfenActive(true);
               setCursorPosState(
                 e.target.selectionStart || 0
               );
@@ -123,7 +122,7 @@ export function EingabeHilfeContainer({
           className={hilfenActive ? "is-active" : ""}
           onClick={() => setHilfenActive(true)}
         >
-          Hinweise
+          Vorschläge
         </a>
       </p>
       {hilfenActive ? (

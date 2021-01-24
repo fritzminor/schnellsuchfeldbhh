@@ -6,6 +6,7 @@ export type SearchFieldsData = {
 type SearchFieldsSimpleRowsData = {
   epl: SearchFieldDataPseudoNumeric;
   kap: SearchFieldDataPseudoNumeric;
+  gruppe: SearchFieldDataPseudoNumeric;
   fulltext: SearchFieldDataSingle;
 };
 export type SearchFieldData =

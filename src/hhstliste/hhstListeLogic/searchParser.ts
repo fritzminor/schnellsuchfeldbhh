@@ -10,7 +10,7 @@ export function getSearchTree(
   if (searchExpression) {
     const tokens = tokenizer(searchExpression);
     const searchTree = parser(tokens);
-    console.log("SearchTree",searchTree);
+    
     return searchTree;
     // prototype cannot yet parse this expression
   } else {
