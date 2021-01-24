@@ -1,10 +1,9 @@
 import * as React from "react";
-import {
-  eingabehilfen
-} from "./EingabeHilfeLogic";
+import { eingabehilfen } from "./EingabeHilfeLogic";
 import { EingabeHilfenList } from "./EingabeHilfenList";
 import { useRef, useState } from "react";
 import { Search24 } from "@carbon/icons-react";
+import { SearchFieldsContainer } from "./searchfields/SearchFieldsContainer";
 
 type EingabeHilfeContainerProps = {
   searchexpression: string;
@@ -16,7 +15,9 @@ export function EingabeHilfeContainer({
   searchexpression,
   setSearchExpression,
   defaultProposalLimit
-}: EingabeHilfeContainerProps): JSX.Element { //eslint-disable-line no-undef
+  //eslint-disable-next-line no-undef
+}: EingabeHilfeContainerProps): JSX.Element {
+  
   const proposalsLimit = defaultProposalLimit || 4;
   const inputfieldRef = useRef<HTMLInputElement>(null);
   const [focusState, setFocusState] = useState<boolean>(
@@ -28,6 +29,15 @@ export function EingabeHilfeContainer({
   const [limitOnState, setLimitOnState] = useState<boolean>(
     true
   );
+
+  const [hilfenActive, setHilfenActive] = useState<boolean>(
+    false
+  );
+  const [
+    searchExpressionSetBySearchFields,
+    setSearchExpressionSetBySearchFields
+  ] = useState<boolean>(false);
+
   const hilfen = focusState
     ? eingabehilfen({
         searchexpression,
@@ -43,7 +53,7 @@ export function EingabeHilfeContainer({
   }
 
   return (
-    <nav class="panel">
+    <nav className="panel">
       <div className="container eingabeHilfeContainer">
         <div className="inputfieldcontainer  ">
           <Search24 className="searchIcon" />
@@ -58,6 +68,8 @@ export function EingabeHilfeContainer({
             ref={inputfieldRef}
             onChange={(e) => {
               setSearchExpression(e.target.value);
+              setSearchExpressionSetBySearchFields(false);
+
               setCursorPosState(
                 e.target.selectionStart || 0
               );
@@ -98,27 +110,53 @@ export function EingabeHilfeContainer({
         </div>
       </div>
       <p className="panel-tabs">
-        <a href="#top">Suchfelder</a>
-        <a href="#top" className="is-active">
-          Hinweise
+        <a
+          href="#top"
+          className={hilfenActive ? "" : "is-active"}
+          onClick={() => setHilfenActive(false)}
+        >
+          Suchfelder
         </a>
-        
+        <a
+          href="#top"
+          className={hilfenActive ? "is-active" : ""}
+          onClick={() => setHilfenActive(true)}
+        >
+          Vorschläge
+        </a>
       </p>
-      {focusState && hilfen ? (
-        <EingabeHilfenList
-          searchexpression={searchexpression}
-          setSearchExpression={setSearchExpression}
-          cursorPosState={cursorPosState}
-          limited={limited}
-          proposalsLimit={proposalsLimit}
-          setLimitOnState={setLimitOnState}
-          hilfen={hilfen}
-          inputfieldRef={inputfieldRef}
-        />
+      {hilfenActive ? (
+        focusState && hilfen ? (
+          <EingabeHilfenList
+            searchexpression={searchexpression}
+            setSearchExpression={(searchexpression) => {
+              setSearchExpression(searchexpression);
+              setSearchExpressionSetBySearchFields(false);
+              setHilfenActive(true);
+            }}
+            cursorPosState={cursorPosState}
+            limited={limited}
+            proposalsLimit={proposalsLimit}
+            setLimitOnState={setLimitOnState}
+            hilfen={hilfen}
+            inputfieldRef={inputfieldRef}
+          />
+        ) : (
+          <p className="helptext">
+            Bitte Suchausdruck eingeben, z.B. Kap:1319.
+          </p>
+        )
       ) : (
-        <p className="helptext">
-          Bitte Suchausdruck eingeben, z.B. Kap:1319.
-        </p>
+        <SearchFieldsContainer
+          setSearchExpression={(searchexpression) => {
+            setSearchExpression(searchexpression);
+            setSearchExpressionSetBySearchFields(true);
+          }}
+          searchExpression={searchexpression}
+          searchExpressionSetBySearchFields={
+            searchExpressionSetBySearchFields
+          }
+        />
       )}
     </nav>
   );

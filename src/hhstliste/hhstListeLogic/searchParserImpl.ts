@@ -30,11 +30,6 @@ export function tokenizer(query: string): Tokens {
       });
       pos += content.length;
     }
-    console.log({
-      query,
-      result,
-      singleTokens: result.singleTokens
-    });
   }
   return result;
 }
@@ -63,8 +58,8 @@ export function parser(tokens: Tokens): SearchNode {
   let parsedTree: SearchNode | null = null;
   let nToken = 0;
   do {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     const { searchNode, nextToken } = _parseLeftFirst(
-      // eslint-disable-line @typescript-eslint/no-use-before-define
       parsedTree,
       tokens,
       nToken,
@@ -157,7 +152,7 @@ function _parseLeftFirst(
         type: "pseudonumeric",
         subtype: "equal",
         columnName: "gruppe",
-        keyword: "GRP",
+        keyword: "Grp",
         value: content
       };
       return searchNode;
@@ -181,7 +176,7 @@ function _parseLeftFirst(
         type: "pseudonumeric",
         subtype: "equal",
         columnName: "gruppe",
-        keyword: "GRP",
+        keyword: "Grp",
         value: content
       };
       return searchNode;
@@ -344,7 +339,7 @@ function _parseLeftFirst(
     const valueRegex = new RegExp(
       `^\\d{${minDigits},${maxDigits}}$`
     );
-    console.log("valueRegex:", valueRegex);
+    
     currentToken += 2;
     const colonToken =
       tokens.singleTokens[currentToken - 1];
@@ -357,11 +352,11 @@ function _parseLeftFirst(
     const token2 = tokens.singleTokens[currentToken];
     const smaller = token2?.content === "-";
     if (smaller) currentToken++;
-    console.log("currentToken: ", currentToken);
+    //console.log("currentToken: ", currentToken);
     const numberToken = smaller
       ? tokens.singleTokens[currentToken]
       : token2;
-    console.log("numberToken: ", numberToken);
+    //console.log("numberToken: ", numberToken);
     const number = numberToken
       ? valueRegex.exec(numberToken.content)
       : null;

@@ -16,7 +16,8 @@ import { SearchNode } from "./hhstliste/hhstListeLogic/searchTreeTypes";
 //           https://github.com/fmoo/react-typeahead
 //           https://github.com/moroshko/react-autosuggest
 
-export default function App():JSX.Element {
+//eslint-disable-next-line no-undef
+export default function App(): JSX.Element {
   const [state, setState] = useState<AppState>({
     searchexpression:
       new URLSearchParams(history.location.search).get(
@@ -63,7 +64,7 @@ export default function App():JSX.Element {
               state.searchexpression ? (
                 <> </>
               ) : (
-                <p >
+                <p>
                   Hier werden alle Haushaltsstellen
                   angezeigt, für die der Benutzer berechtigt
                   ist.
@@ -72,8 +73,8 @@ export default function App():JSX.Element {
             ) : (
               <p className="title">
                 Der Prototyp kann den Suchausdruck "
-                {state.searchexpression}" leider (noch) nicht
-                verarbeiten.
+                {state.searchexpression}" leider (noch)
+                nicht verarbeiten.
               </p>
             )}
             {searchParseErrMessage ? (

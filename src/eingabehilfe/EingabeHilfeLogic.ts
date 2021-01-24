@@ -28,12 +28,7 @@ export function getCurrentTokenAtPos(
   if (tokenEndFromPos === -1)
     // not found?
     tokenEndFromPos = 0; // then: set to 0
-  console.log(
-    "tokenEndFromPos",
-    searchexpression,
-    cursorPos,
-    tokenEndFromPos
-  );
+
   const res = /([^ ,()-]+-?[^ ,()-]*)$/.exec(
     searchexpression.substr(0, cursorPos + tokenEndFromPos)
   );
@@ -326,9 +321,8 @@ export function eingabehilfen({
       })
   );
 
-
   /* ---------- other proposals -----------*/
-  
+
   if (curToken.length > 1)
     otherProposals
       .filter((proposal) =>
@@ -364,7 +358,6 @@ export function eingabehilfen({
       if (!curToken.includes(":")) addItem(keyword);
     }
   });
-
 
   /* ---------- RegExMatchers ----------- */
   regExMatchers.forEach((matcher) => {
