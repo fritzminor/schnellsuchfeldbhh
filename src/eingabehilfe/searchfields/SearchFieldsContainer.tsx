@@ -20,10 +20,9 @@ export function SearchFieldsContainer({
   searchExpressionSetBySearchFields
 }: //eslint-disable-next-line no-undef
 SearchFieldsContainerProps): JSX.Element {
-  let [
-    searchFieldsData,
-    setSearchFieldsData
-  ] = React.useState<SearchFieldsData>(initialFieldsData());
+  const fieldsDataArray =  React.useState<SearchFieldsData>(initialFieldsData());
+  let  searchFieldsData=fieldsDataArray[0];
+  const  setSearchFieldsData = fieldsDataArray[1];
 
   const [limited, setLimited] = React.useState(true);
 

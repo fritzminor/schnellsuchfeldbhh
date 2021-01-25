@@ -133,6 +133,7 @@ function fillSearchFieldsData(
         case "Epl":
         case "Kap":
         case "Grp":
+          //eslint-disable-next-line no-case-declarations
           const key =
             parserKeywords2FieldKeys[searchTree.keyword];
           switch (searchTree.subtype) {
