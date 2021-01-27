@@ -64,27 +64,34 @@ export default function App(): JSX.Element {
               state.searchexpression ? (
                 <> </>
               ) : (
-                <p>
-                  Hier werden alle Haushaltsstellen
-                  angezeigt, für die der Benutzer berechtigt
-                  ist.
-                </p>
-              )
+                  <p>
+                    Hier werden alle Haushaltsstellen
+                    angezeigt, für die der Benutzer berechtigt
+                    ist.
+                  </p>
+                )
             ) : (
-              <p className="title">
-                Der Prototyp kann den Suchausdruck "
-                {state.searchexpression}" leider (noch)
+                <p className="title">
+                  Der Prototyp kann den Suchausdruck "
+                  {state.searchexpression}" leider (noch)
                 nicht verarbeiten.
-              </p>
-            )}
+                </p>
+              )}
             {searchParseErrMessage ? (
               <p className="">{searchParseErrMessage}</p>
             ) : (
-              <p></p>
-            )}
+                <p></p>
+              )}
           </div>
         </HHStList>
       </section>
+      <footer className="footer">
+        <div className="content has-text-centered">
+          Daten von <a
+            href="https://www.bundeshaushalt.de/download">bundeshaushalt.de</a>.
+          Code auf <a href="https://github.com/fritzminor/schnellsuchfeldbhh">github</a> </div>
+      </footer>
+
     </>
   );
 }
