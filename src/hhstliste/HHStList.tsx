@@ -1,14 +1,15 @@
 import * as React from "react";
 
-//import hhstDataRows from "./material/bhh_short.json";
-import hhstDataRows from "./material/bhh_bpbt.json";
+import hhstData from "./material/bhh_long.json";
+//import hhstData from "./material/bhh_bpbt.json";
+//import hhstData from "./material/bhh_short.json";
 import { formatBetrag, HHStRow } from "./HHStRow";
 import { HHSt } from "./hhstListeLogic/HHStType";
 import { SearchNode } from "./hhstListeLogic/searchTreeTypes";
 import { isSearched } from "./hhstListeLogic/evalSearch4HHSt";
 import { humanReadableSearchTerm } from "./hhstListeLogic/humanReadableSearchTerm";
 
-const hhstArray: HHSt[] = hhstDataRows.map(data2hhst); // eslint-disable-line no-use-before-define
+const hhstArray: HHSt[] = hhstData.hhsts; // eslint-disable-line no-use-before-define
 
 const rowHeadings: HHSt = {
   epl: "Kapitel",
@@ -105,17 +106,4 @@ export function HHStList({
       </div>
     );
   }
-}
-
-function data2hhst(data: any): HHSt {  // eslint-disable-line @typescript-eslint/no-explicit-any
-  return {
-    epl: data.einzelplan,
-    kap: (data.kapitel as string).substr(2),
-    gruppe: data.titel.substr(0, 3),
-    suffix: data.titel.substr(3),
-    expense: data["einnahmen-ausgaben"] === "A",
-    zweck: data["titel-text"],
-    fkz: data.funktion,
-    sollJahr1: parseInt(data.soll, 10)
-  };
 }

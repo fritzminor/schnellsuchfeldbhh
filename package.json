@@ -1,6 +1,6 @@
 {
   "name": "schnellsuchfeld-bhh",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Schnellsuchfeld - Prototyp",
   "keywords": [],
   "main": "src/index.tsx",
