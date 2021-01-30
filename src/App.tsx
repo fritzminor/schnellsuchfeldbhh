@@ -11,6 +11,7 @@ import { useState } from "react";
 
 import history from "history/browser";
 import { SearchNode } from "./hhstliste/hhstListeLogic/searchTreeTypes";
+import { Navigation } from "./users/Navigation";
 
 // Check for https://medium.com/@svsh227/create-your-own-type-ahead-dropdown-in-react-599c96bebfa
 //           https://github.com/fmoo/react-typeahead
@@ -22,9 +23,10 @@ export default function App(): JSX.Element {
     searchexpression:
       new URLSearchParams(history.location.search).get(
         "q"
-      ) || ""
+      ) || "",
+      currentUser:"BearbeiterEpl01und02"
   });
-  const { setSearchExpression } = createStore(
+  const { setSearchExpression, setCurrentUser } = createStore(
     setState,
     history
   );
@@ -39,6 +41,7 @@ export default function App(): JSX.Element {
   }
   return (
     <>
+      <Navigation currentUser={state.currentUser} setCurrentUser={setCurrentUser}/>
       <section className="section hero">
         <div className="hero-body is-primary">
           <div className="container">

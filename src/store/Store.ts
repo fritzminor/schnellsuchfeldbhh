@@ -1,5 +1,6 @@
 import { History } from "history";
 import * as React from "react";
+import { UserName } from "../users/UsersTypes";
 import { AppState } from "./AppState";
 
 export function createStore( // eslint-disable-line  @typescript-eslint/explicit-module-boundary-types
@@ -18,6 +19,13 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
         ...prevState,
         searchexpression
       }));
+    },
+    setCurrentUser(newCurrentUser: UserName) {
+      setState((prevState) => ({
+
+        ...prevState,
+        currentUser: newCurrentUser
+      }))
     }
   };
 }
