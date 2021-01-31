@@ -6,10 +6,10 @@ const userNames: UserName[] = ["BearbeiterEpl01und02", "BearbeiterGesamtBHH"];
 
 export type NavigationProps = {
   currentUser: UserName;
-  setCurrentUser: (newCurrentUser:UserName) => void;
+  setCurrentUser: (newCurrentUser: UserName) => void;
 }
 
-export function Navigation({ currentUser,setCurrentUser }: NavigationProps): JSX.Element {
+export function Navigation({ currentUser, setCurrentUser }: NavigationProps): JSX.Element {
   const [usersSelectable, setUsersSelectable] = React.useState<boolean>(false);
   function toggleUsersSelectable() {
     setUsersSelectable(!usersSelectable);
@@ -50,8 +50,9 @@ export function Navigation({ currentUser,setCurrentUser }: NavigationProps): JSX
             <div className="dropdown-menu" id="dropdown-menu" role="menu">
               <div className="dropdown-content">
                 {userNames.map(userName => {
-                  return <a href="#" className="dropdown-item" key={userName} onClick={()=> {setCurrentUser(userName)}} >
-                    {userName}
+                  return <a href="#" className="dropdown-item" key={userName} onClick={() => { setCurrentUser(userName) }} >
+                    <span className="icon-text"> <span className="icon"><User24 /></span>
+                      <span>{userName}</span></span>
                   </a>;
                 })}
               </div>

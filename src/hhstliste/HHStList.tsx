@@ -1,15 +1,19 @@
 import * as React from "react";
 
-import hhstData from "./material/bhh_long.json";
-//import hhstData from "./material/bhh_bpbt.json";
+import hhstDataBHH from "./material/bhh_long.json";
+import hhstData01_02 from "./material/bhh_bpbt.json";
 //import hhstData from "./material/bhh_short.json";
 import { formatBetrag, HHStRow } from "./HHStRow";
 import { HHSt } from "./hhstListeLogic/HHStType";
 import { SearchNode } from "./hhstListeLogic/searchTreeTypes";
 import { isSearched } from "./hhstListeLogic/evalSearch4HHSt";
 import { humanReadableSearchTerm } from "./hhstListeLogic/humanReadableSearchTerm";
+import { UserName } from "../users/UsersTypes";
 
-const hhstArray: HHSt[] = hhstData.hhsts; // eslint-disable-line no-use-before-define
+const hhstDataArrays: { [index in UserName]: HHSt[] } = {
+  "BearbeiterGesamtBHH": hhstDataBHH.hhsts,
+  "BearbeiterEpl01und02": hhstData01_02.hhsts
+};
 
 const rowHeadings: HHSt = {
   epl: "Kapitel",
@@ -21,13 +25,18 @@ const rowHeadings: HHSt = {
   sollJahr1: 2021
 };
 
+
+
 export function HHStList({
   children,
-  searchTree
+  searchTree,
+  currentUser
 }: React.PropsWithChildren<{
   searchTree: SearchNode | null;
-}>):JSX.Element {
+  currentUser: UserName
+}>): JSX.Element {
   try {
+    const hhstArray=hhstDataArrays[currentUser];
     const filteredHhstArray = hhstArray.filter((hhst) =>
       isSearched(hhst, searchTree)
     );

@@ -61,20 +61,17 @@ export default function App(): JSX.Element {
         </div>
       </section>
       <section className="section">
-        <HHStList searchTree={searchTree}>
+        <HHStList searchTree={searchTree} currentUser={state.currentUser}>
           <div className="container haushaltsstellenOverlay">
             {searchTree ? (
               state.searchexpression ? (
                 <> </>
               ) : (
                   <p>
-                    Hier werden alle Haushaltsstellen
-                    angezeigt, für die der Benutzer berechtigt
-                    ist.
                   </p>
                 )
             ) : (
-                <p className="title">
+                <p className="subtitle">
                   Der Prototyp kann den Suchausdruck "
                   {state.searchexpression}" leider (noch)
                 nicht verarbeiten.
