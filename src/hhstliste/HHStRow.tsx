@@ -1,5 +1,5 @@
 import * as React from "react";
-import { HHSt } from "./hhstListeLogic/HHStType";
+import { HHSt } from "../store/HHStType";
 
 type HHStRowProps = {
   hhst: HHSt;

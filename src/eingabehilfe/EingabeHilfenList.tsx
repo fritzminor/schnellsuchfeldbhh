@@ -3,9 +3,10 @@ import * as React from "react";
 import { EingabeHilfeItem } from "./EingabeHilfeTypes";
 import { EingabeHilfeElement } from "./EingabeHilfeElement";
 import { replaceToken } from "./EingabeHilfeLogic";
+import { AppState } from "../store/AppState";
 
 export type EingabeHilfenListProps = {
-  searchexpression: string;
+  appState: AppState;
   setSearchExpression: (searchexpression: string) => void;
   cursorPosState: number;
   setLimitOnState: (limitOnState: boolean) => void;
@@ -24,7 +25,7 @@ export type HilfenType = {
 
 export function EingabeHilfenList({
   setSearchExpression,
-  searchexpression,
+  appState,
   cursorPosState,
   setLimitOnState,
   proposalsLimit,
@@ -48,7 +49,7 @@ export function EingabeHilfenList({
             key={item.proposal}
             setNewToken={(newToken: string) => {
               const newSE = replaceToken(
-                searchexpression,
+                appState.searchexpression,
                 cursorPosState,
                 newToken,
                 item.additional

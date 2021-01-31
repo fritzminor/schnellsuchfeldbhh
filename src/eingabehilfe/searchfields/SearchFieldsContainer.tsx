@@ -6,17 +6,17 @@ import {
   getSearchExpression,
   getSearchFieldsData
 } from "./SearchFieldsLogic";
-import { getSearchTree } from "../../hhstliste/hhstListeLogic/searchParser";
+import { AppState } from "../../store/AppState";
 
 type SearchFieldsContainerProps = {
   setSearchExpression: (searchexpression: string) => void;
-  searchExpression: string;
+  appState: AppState;
   searchExpressionSetBySearchFields: boolean;
 };
 
 export function SearchFieldsContainer({
   setSearchExpression,
-  searchExpression,
+  appState,
   searchExpressionSetBySearchFields
 }: //eslint-disable-next-line no-undef
 SearchFieldsContainerProps): JSX.Element {
@@ -33,13 +33,13 @@ SearchFieldsContainerProps): JSX.Element {
   if (!searchExpressionSetBySearchFields) {
     try {
       searchFieldsData = getSearchFieldsData(
-        getSearchTree(searchExpression)
+        appState.derived.searchTree
       );
 
-      console.log("new SearchFieldsData", searchFieldsData);
+      //console.log("new SearchFieldsData", searchFieldsData);
     } catch (e) {
       console.log(
-        `Unversalausdruck "${searchExpression}" kann nicht ausgewertet werden.${e.message}`
+        `Unversalausdruck "${appState.searchexpression}" kann nicht ausgewertet werden.${e.message}`
       );
     }
   }

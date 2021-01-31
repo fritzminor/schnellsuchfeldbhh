@@ -1,5 +1,5 @@
 
-import { HHSt } from "./HHStType";
+import { HHSt } from "../../store/HHStType";
 import {
   SearchNode,
   SearchNodeLogical,

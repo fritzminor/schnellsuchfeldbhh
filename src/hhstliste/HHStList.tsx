@@ -1,19 +1,11 @@
 import * as React from "react";
 
-import hhstDataBHH from "./material/bhh_long.json";
-import hhstData01_02 from "./material/bhh_bpbt.json";
-//import hhstData from "./material/bhh_short.json";
 import { formatBetrag, HHStRow } from "./HHStRow";
-import { HHSt } from "./hhstListeLogic/HHStType";
-import { SearchNode } from "./hhstListeLogic/searchTreeTypes";
+import { HHSt } from "../store/HHStType";
 import { isSearched } from "./hhstListeLogic/evalSearch4HHSt";
 import { humanReadableSearchTerm } from "./hhstListeLogic/humanReadableSearchTerm";
-import { UserName } from "../users/UsersTypes";
+import { AppState } from "../store/AppState";
 
-const hhstDataArrays: { [index in UserName]: HHSt[] } = {
-  "BearbeiterGesamtBHH": hhstDataBHH.hhsts,
-  "BearbeiterEpl01und02": hhstData01_02.hhsts
-};
 
 const rowHeadings: HHSt = {
   epl: "Kapitel",
@@ -29,16 +21,13 @@ const rowHeadings: HHSt = {
 
 export function HHStList({
   children,
-  searchTree,
-  currentUser
+  appState
 }: React.PropsWithChildren<{
-  searchTree: SearchNode | null;
-  currentUser: UserName
+  appState: AppState
 }>): JSX.Element {
   try {
-    const hhstArray=hhstDataArrays[currentUser];
-    const filteredHhstArray = hhstArray.filter((hhst) =>
-      isSearched(hhst, searchTree)
+    const filteredHhstArray = appState.derived.hhstArray.filter((hhst) =>
+      isSearched(hhst, appState.derived.searchTree)
     );
 
     const sums = filteredHhstArray.reduce(
@@ -91,8 +80,8 @@ export function HHStList({
             <div className="searchtree  is-flex is-justify-content-space-between">
               <span>Suche nach:</span>
               <span>
-                {searchTree
-                  ? humanReadableSearchTerm(searchTree)
+                {appState.derived.searchTree
+                  ? humanReadableSearchTerm(appState.derived.searchTree)
                   : "nichts"}
               </span>
             </div>

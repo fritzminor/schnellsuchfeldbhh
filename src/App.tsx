@@ -5,12 +5,10 @@ import "./styles.css";
 import { EingabeHilfeContainer } from "./eingabehilfe/EingabeHilfeContainer";
 import { HHStList } from "./hhstliste/HHStList";
 import { AppState } from "./store/AppState";
-import { createStore } from "./store/Store";
-import { getSearchTree } from "./hhstliste/hhstListeLogic/searchParser";
+import { createStore, getStateFrom } from "./store/Store";
 import { useState } from "react";
 
 import history from "history/browser";
-import { SearchNode } from "./hhstliste/hhstListeLogic/searchTreeTypes";
 import { Navigation } from "./users/Navigation";
 
 // Check for https://medium.com/@svsh227/create-your-own-type-ahead-dropdown-in-react-599c96bebfa
@@ -19,26 +17,17 @@ import { Navigation } from "./users/Navigation";
 
 //eslint-disable-next-line no-undef
 export default function App(): JSX.Element {
-  const [state, setState] = useState<AppState>({
-    searchexpression:
+  const [state, setState] = useState<AppState>(getStateFrom(
       new URLSearchParams(history.location.search).get(
         "q"
       ) || "",
-      currentUser:"BearbeiterEpl01und02"
-  });
+      "BearbeiterEpl01und02"
+  ));
   const { setSearchExpression, setCurrentUser } = createStore(
     setState,
     history
   );
-  let searchTree: SearchNode | null;
-  let searchParseErrMessage: undefined | string;
-  try {
-    searchTree = getSearchTree(state.searchexpression);
-  } catch (err) {
-    console.log(err);
-    searchTree = null;
-    searchParseErrMessage = err.message;
-  }
+  
   return (
     <>
       <Navigation currentUser={state.currentUser} setCurrentUser={setCurrentUser}/>
@@ -55,15 +44,15 @@ export default function App(): JSX.Element {
       <section className="section">
         <div className="container">
           <EingabeHilfeContainer
-            searchexpression={state.searchexpression}
+            appState={state}
             setSearchExpression={setSearchExpression}
           />
         </div>
       </section>
       <section className="section">
-        <HHStList searchTree={searchTree} currentUser={state.currentUser}>
+        <HHStList appState={state} >
           <div className="container haushaltsstellenOverlay">
-            {searchTree ? (
+            {state.derived.searchTree ? (
               state.searchexpression ? (
                 <> </>
               ) : (
@@ -77,8 +66,8 @@ export default function App(): JSX.Element {
                 nicht verarbeiten.
                 </p>
               )}
-            {searchParseErrMessage ? (
-              <p className="">{searchParseErrMessage}</p>
+            {state.derived.searchParseErrMessage ? (
+              <p className="">{state.derived.searchParseErrMessage}</p>
             ) : (
                 <p></p>
               )}

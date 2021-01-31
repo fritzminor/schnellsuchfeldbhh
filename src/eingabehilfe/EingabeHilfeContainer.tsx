@@ -4,20 +4,22 @@ import { EingabeHilfenList } from "./EingabeHilfenList";
 import { useRef, useState } from "react";
 import { Search24 } from "@carbon/icons-react";
 import { SearchFieldsContainer } from "./searchfields/SearchFieldsContainer";
+import { AppState } from "../store/AppState";
 
 type EingabeHilfeContainerProps = {
-  searchexpression: string;
+  appState:AppState;
   setSearchExpression: (searchexpression: string) => void;
   defaultProposalLimit?: number;
 };
 
 export function EingabeHilfeContainer({
-  searchexpression,
+  appState,
   setSearchExpression,
   defaultProposalLimit
   //eslint-disable-next-line no-undef
 }: EingabeHilfeContainerProps): JSX.Element {
   
+  const searchexpression=appState.searchexpression;
   const proposalsLimit = defaultProposalLimit || 4;
   const inputfieldRef = useRef<HTMLInputElement>(null);
   const [focusState, setFocusState] = useState<boolean>(
@@ -128,7 +130,7 @@ export function EingabeHilfeContainer({
       {hilfenActive ? (
         focusState && hilfen ? (
           <EingabeHilfenList
-            searchexpression={searchexpression}
+            appState={appState}
             setSearchExpression={(searchexpression) => {
               setSearchExpression(searchexpression);
               setSearchExpressionSetBySearchFields(false);
@@ -152,7 +154,7 @@ export function EingabeHilfeContainer({
             setSearchExpression(searchexpression);
             setSearchExpressionSetBySearchFields(true);
           }}
-          searchExpression={searchexpression}
+          appState={appState}
           searchExpressionSetBySearchFields={
             searchExpressionSetBySearchFields
           }

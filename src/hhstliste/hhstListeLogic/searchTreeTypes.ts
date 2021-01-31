@@ -1,4 +1,4 @@
-import { HHSt } from "./HHStType";
+import { HHSt } from "../../store/HHStType";
 
 export type Token = {
   pos: number;
