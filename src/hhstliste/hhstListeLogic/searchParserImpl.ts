@@ -339,7 +339,12 @@ function _parseLeftFirst(
     const valueRegex = new RegExp(
       `^\\d{${minDigits},${maxDigits}}$`
     );
-    
+
+    function numberedTokenContent(token: Token): string {
+      return (pseudonumeric && minDigits && token.content.length < minDigits) ?
+        token.content.padStart(minDigits, "0") : token.content;
+    }
+
     currentToken += 2;
     const colonToken =
       tokens.singleTokens[currentToken - 1];
@@ -356,32 +361,36 @@ function _parseLeftFirst(
     const numberToken = smaller
       ? tokens.singleTokens[currentToken]
       : token2;
-    //console.log("numberToken: ", numberToken);
+
+    // makes Epl:1 to Epl:01
+    const numberTokenContent = numberedTokenContent(numberToken);
+
     const number = numberToken
-      ? valueRegex.exec(numberToken.content)
+      ? valueRegex.exec(numberTokenContent)
       : null;
     if (!number)
       throw new SearchParserException(
-        `${minDigits || 0}-${
-          maxDigits || "10"
-        } Ziffern hinter ${token0.content}:${
-          smaller ? "-" : ""
+        `${minDigits || 0}-${maxDigits || "10"
+        } Ziffern hinter ${token0.content}:${smaller ? "-" : ""
         } erwartet`,
         tokens.singleTokens[currentToken - 1].pos + 1,
         tokens
       );
+
     const greater =
       !smaller &&
       tokens.singleTokens[currentToken + 1]?.content ===
-        "-";
+      "-";
 
     if (greater) {
       currentToken++;
 
+
+
       const number2 = tokens.singleTokens[currentToken + 1]
         ? valueRegex.exec(
-            tokens.singleTokens[currentToken + 1].content
-          )
+          numberedTokenContent(tokens.singleTokens[currentToken + 1])
+        )
         : null;
 
       if (number2) {
@@ -535,7 +544,7 @@ function _parseLeftFirst(
         subtype: "not",
         node: negatedResult.searchNode
       };
-      currentToken = negatedResult.nextToken-1;
+      currentToken = negatedResult.nextToken - 1;
       break;
     case "(":
       currentToken++;
@@ -545,7 +554,7 @@ function _parseLeftFirst(
         currentDepth + 1
       );
       parsedNode = parsedBrackets.searchNode;
-      currentToken = parsedBrackets.nextToken-1;
+      currentToken = parsedBrackets.nextToken - 1;
       break;
     case ")":
       if (currentDepth > 0) {
