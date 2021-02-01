@@ -5,12 +5,16 @@ import { useRef, useState } from "react";
 import { Search24 } from "@carbon/icons-react";
 import { SearchFieldsContainer } from "./searchfields/SearchFieldsContainer";
 import { AppState } from "../store/AppState";
+import { ClickSelectContainer } from "./clickSelect/ClickSelectContainer";
 
 type EingabeHilfeContainerProps = {
-  appState:AppState;
+  appState: AppState;
   setSearchExpression: (searchexpression: string) => void;
   defaultProposalLimit?: number;
 };
+
+
+type EingabeHilfeTabs = "searchfields" | "helpers" | "graphical";
 
 export function EingabeHilfeContainer({
   appState,
@@ -18,8 +22,8 @@ export function EingabeHilfeContainer({
   defaultProposalLimit
   //eslint-disable-next-line no-undef
 }: EingabeHilfeContainerProps): JSX.Element {
-  
-  const searchexpression=appState.searchexpression;
+
+  const searchexpression = appState.searchexpression;
   const proposalsLimit = defaultProposalLimit || 4;
   const inputfieldRef = useRef<HTMLInputElement>(null);
   const [focusState, setFocusState] = useState<boolean>(
@@ -32,9 +36,8 @@ export function EingabeHilfeContainer({
     true
   );
 
-  const [hilfenActive, setHilfenActive] = useState<boolean>(
-    false
-  );
+  const [activeTab, setActiveTab] = useState<EingabeHilfeTabs>("searchfields");
+
   const [
     searchExpressionSetBySearchFields,
     setSearchExpressionSetBySearchFields
@@ -42,9 +45,9 @@ export function EingabeHilfeContainer({
 
   const hilfen = focusState
     ? eingabehilfen({
-        searchexpression,
-        cursorPos: cursorPosState
-      })
+      searchexpression,
+      cursorPos: cursorPosState
+    })
     : null;
   let limited = false;
   if (hilfen && limitOnState) {
@@ -111,30 +114,39 @@ export function EingabeHilfeContainer({
           />
         </div>
       </div>
+
+      {/* ------------------ Tabs for different helpers  ---------------- */}
       <p className="panel-tabs">
         <a
           href="#top"
-          className={hilfenActive ? "" : "is-active"}
-          onClick={() => setHilfenActive(false)}
+          className={activeTab === "searchfields" ? "is-active" : ""}
+          onClick={() => setActiveTab("searchfields")}
         >
           Suchfelder
         </a>
         <a
           href="#top"
-          className={hilfenActive ? "is-active" : ""}
-          onClick={() => setHilfenActive(true)}
+          className={activeTab === "helpers" ? "is-active" : ""}
+          onClick={() => setActiveTab("helpers")}
         >
           Vorschläge
         </a>
+        <a
+          href="#top"
+          className={activeTab === "graphical" ? "is-active" : ""}
+          onClick={() => setActiveTab("graphical")}
+        >
+          Click & Select
+        </a>
       </p>
-      {hilfenActive ? (
+      {activeTab === "helpers" ? (
         focusState && hilfen ? (
           <EingabeHilfenList
             appState={appState}
             setSearchExpression={(searchexpression) => {
               setSearchExpression(searchexpression);
               setSearchExpressionSetBySearchFields(false);
-              setHilfenActive(true);
+              setActiveTab("helpers");
             }}
             cursorPosState={cursorPosState}
             limited={limited}
@@ -144,11 +156,11 @@ export function EingabeHilfeContainer({
             inputfieldRef={inputfieldRef}
           />
         ) : (
-          <p className="helptext">
-            Bitte Suchausdruck eingeben, z.B. Kap:1319.
-          </p>
-        )
-      ) : (
+            <p className="helptext">
+              Bitte Suchausdruck eingeben, z.B. Kap:1319.
+            </p>
+          )
+      ) : activeTab === "searchfields" ? (
         <SearchFieldsContainer
           setSearchExpression={(searchexpression) => {
             setSearchExpression(searchexpression);
@@ -159,7 +171,9 @@ export function EingabeHilfeContainer({
             searchExpressionSetBySearchFields
           }
         />
-      )}
+      ) : ( // activeTab==="graphical"
+            <ClickSelectContainer appState={appState} />
+          )}
     </nav>
   );
 }

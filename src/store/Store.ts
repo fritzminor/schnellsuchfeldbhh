@@ -28,19 +28,19 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
           : undefined
       });
 
- 
-
       setState((prevState: AppState) => ({
         ...prevState,
         searchexpression,
         derived: getDerivedFrom(searchexpression,prevState.currentUser)
       }));
     },
+
     setCurrentUser(newCurrentUser: UserName) {
       setState((prevState) => ({
 
         ...prevState,
-        currentUser: newCurrentUser
+        currentUser: newCurrentUser,
+        derived: getDerivedFrom(prevState.searchexpression,newCurrentUser)
       }))
     }
   };
