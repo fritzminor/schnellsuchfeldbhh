@@ -2,7 +2,6 @@ import * as React from "react";
 
 import { formatBetrag, HHStRow } from "./HHStRow";
 import { HHSt } from "../store/HHStType";
-import { isSearched } from "./hhstListeLogic/evalSearch4HHSt";
 import { humanReadableSearchTerm } from "./hhstListeLogic/humanReadableSearchTerm";
 import { AppState } from "../store/AppState";
 
@@ -26,9 +25,7 @@ export function HHStList({
   appState: AppState
 }>): JSX.Element {
   try {
-    const filteredHhstArray = appState.derived.hhstArray.filter((hhst) =>
-      isSearched(hhst, appState.derived.searchTree)
-    );
+    const filteredHhstArray = appState.derived.filteredHhstArray;
 
     const sums = filteredHhstArray.reduce(
       (previousSums, hhst) => {

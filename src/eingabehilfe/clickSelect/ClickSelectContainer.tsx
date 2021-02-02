@@ -7,6 +7,7 @@ import color from "color";
 
 type ClickSelectContainerProps = {
   appState: AppState;
+  setSearchExpression: (searchexpression:string) => void;
 };
 
 type EplMeta = {
@@ -16,10 +17,10 @@ type EplMeta = {
 };
 
 export function ClickSelectContainer({
-  appState
+  appState, setSearchExpression
 }: ClickSelectContainerProps): JSX.Element {
   const epls = new Map<string, EplMeta>();
-  appState.derived.hhstArray.forEach((hhst) => {
+  appState.derived.filteredHhstArray.forEach((hhst) => {
     const prev: EplMeta = epls.get(hhst.epl) || {
       count: 0,
       expAmount: 0,
@@ -78,9 +79,10 @@ export function ClickSelectContainer({
               labelStyle={{
                 fill: "#fff",
                 opacity: 0.75,
-                fontSize:"0.3em"
+                fontSize:"0.15em"
               }}
               labelPosition={100-lineWidth/2}
+              onClick={(_ev, index)=> setSearchExpression(`${eplPieData[index].title || ""} ${appState.searchexpression}`)}
             />
           </div>
         </div>

@@ -11,5 +11,8 @@ export type AppState = {
 
     /** contains all HHSt of the given user (not restricted to searchexpression / searchTree) */
     hhstArray: HHSt[];
+    
+    /** contains the HHSts filtered by searchTree */
+    filteredHhstArray: HHSt[];
   }
 }

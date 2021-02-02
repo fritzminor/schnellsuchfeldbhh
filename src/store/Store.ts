@@ -8,6 +8,7 @@ import { HHSt } from "./HHStType";
 
 import hhstDataBHH from "./material/bhh_long.json";
 import hhstData01_02 from "./material/bhh_bpbt.json";
+import { isSearched } from "../hhstliste/hhstListeLogic/evalSearch4HHSt";
 //import hhstData from "./material/bhh_short.json";
 
 const hhstDataArrays: { [index in UserName]: HHSt[] } = {
@@ -31,7 +32,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
       setState((prevState: AppState) => ({
         ...prevState,
         searchexpression,
-        derived: getDerivedFrom(searchexpression,prevState.currentUser)
+        derived: getDerivedFrom(searchexpression, prevState.currentUser)
       }));
     },
 
@@ -40,7 +41,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
 
         ...prevState,
         currentUser: newCurrentUser,
-        derived: getDerivedFrom(prevState.searchexpression,newCurrentUser)
+        derived: getDerivedFrom(prevState.searchexpression, newCurrentUser)
       }))
     }
   };
@@ -49,23 +50,33 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
 function getDerivedFrom(searchexpression: string, currentUser: UserName): AppState["derived"] {
   let searchTree: SearchNode | null;
   let searchParseErrMessage: string | undefined;
+  const hhstArray = hhstDataArrays[currentUser];
+  let filteredHhstArray: HHSt[];
 
   try {
     searchTree = getSearchTree(searchexpression);
+    filteredHhstArray = searchexpression.trim() ?
+      hhstArray.filter((hhst) =>
+        isSearched(hhst, searchTree)) :
+      hhstArray;
+
   } catch (err) {
     console.log(err);
     searchTree = null;
     searchParseErrMessage = err.message;
+    filteredHhstArray = [];
   }
   return {
     searchParseErrMessage,
     searchTree,
-    hhstArray: hhstDataArrays[currentUser]
-  
+    hhstArray,
+    filteredHhstArray
+
   }
 }
 
 
+/** can be used to initialize appState */
 export function getStateFrom(searchexpression: string, currentUser: UserName): AppState {
   return {
 

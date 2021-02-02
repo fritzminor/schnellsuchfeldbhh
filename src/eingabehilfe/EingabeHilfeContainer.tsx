@@ -172,7 +172,11 @@ export function EingabeHilfeContainer({
           }
         />
       ) : ( // activeTab==="graphical"
-            <ClickSelectContainer appState={appState} />
+            <ClickSelectContainer appState={appState} setSearchExpression={(searchexpression) => {
+              setSearchExpression(searchexpression);
+              if (searchExpressionSetBySearchFields)
+                setSearchExpressionSetBySearchFields(false);
+            }} />
           )}
     </nav>
   );
