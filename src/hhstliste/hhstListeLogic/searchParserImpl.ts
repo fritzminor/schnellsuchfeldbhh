@@ -305,11 +305,23 @@ function _parseLeftFirst(
       tokens.singleTokens[currentToken - 1];
     if (!colonToken || colonToken.content !== ":")
       throw new SearchParserException(
-        `Doppelpunkt hinter ${token0.content} fehlt.`, // eslint-disable-line @typescript-eslint/no-use-before-define
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        `Doppelpunkt hinter "${token0.content}" fehlt.`, 
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         token0.pos + token0.content.length,
         tokens
       );
     const token2 = tokens.singleTokens[currentToken];
+
+    if (!token2 || !token2.content)
+    throw new SearchParserException(
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      `Angabe hinter "${token0.content}:" fehlt.`, 
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      token0.pos + token0.content.length,
+      tokens
+    );
+  
     if (columnName === "Volltext")
       return {
         type: "text",

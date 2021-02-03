@@ -65,9 +65,14 @@ input {
 
   flex-shrink: 0;
 }
-
+/*
+.hhstRow:first-child {
+background-color: cyan
+}
+*/
 .hhstRow .hhstNr {
-  width: 12ch;
+  width: 5rem;
+
 }
 
 .hhstRow .fkz {
@@ -91,7 +96,7 @@ input {
 
 .haushaltsstellenOverlay {
   padding: 3em;
-  background-color: rgba(204, 24, 24, 0.279);
+  /*background-color: rgba(204, 24, 24, 0.279);*/
   width: 100%;
   height: 100%;
   position: absolute;
