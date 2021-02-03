@@ -45,7 +45,7 @@ export function HHStList({
     );
     return (
       <>
-        <div className="container hhstListContainer">
+        <div className="container box hhstListContainer">
           <HHStRow
             heading
             hhst={rowHeadings}

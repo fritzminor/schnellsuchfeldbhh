@@ -96,6 +96,7 @@ function fillSearchFieldsData(
   negated: boolean
 ) {
   const posNegKey = negated ? "negative" : "positive";
+
   switch (searchTree.type) {
     case "logical":
       switch (searchTree.subtype) {
@@ -136,6 +137,13 @@ function fillSearchFieldsData(
           //eslint-disable-next-line no-case-declarations
           const key =
             parserKeywords2FieldKeys[searchTree.keyword];
+          if (searchFieldsData[posNegKey][key].valueFrom ||
+            searchFieldsData[posNegKey][key].valueTo)
+            throw new Error(
+              `Angabe von ${searchTree.keyword} kann 
+                nur einmal in Suchfeldern dargestellt werden.`
+            );
+
           switch (searchTree.subtype) {
             case "equal":
               searchFieldsData[posNegKey][key].valueFrom =
@@ -166,8 +174,12 @@ function fillSearchFieldsData(
     case "text":
       switch (searchTree.subtype) {
         case "fulltext":
-          searchFieldsData[posNegKey].fulltext.value =
-            searchTree.value;
+          searchFieldsData[
+            posNegKey
+          ].fulltext.value = searchFieldsData[posNegKey]
+            .fulltext.value
+            ? `${searchFieldsData[posNegKey].fulltext.value} ${searchTree.value}`
+            : searchTree.value;
           break;
         default:
           throw new Error(

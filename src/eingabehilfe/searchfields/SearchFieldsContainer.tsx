@@ -38,6 +38,7 @@ SearchFieldsContainerProps): JSX.Element {
 
       //console.log("new SearchFieldsData", searchFieldsData);
     } catch (e) {
+      searchFieldsData=initialFieldsData();
       console.log(
         `Unversalausdruck "${appState.searchexpression}" kann nicht ausgewertet werden.${e.message}`
       );
