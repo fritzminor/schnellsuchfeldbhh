@@ -29,29 +29,78 @@ function addItems(
 ): void {
   const posNegKey = positive ? "positive" : "negative";
   const minusSign = positive ? "" : "-";
+
   fieldsPseudoNumeric.forEach((key) => {
     const fieldData = searchFieldsData[posNegKey][key];
 
     if (fieldData.type === "pseudonumeric") {
       const valueFrom = fieldData.valueFrom;
       const valueTo = fieldData.valueTo;
-      if (valueFrom && !valueTo)
-        // only one value => equal operator
+
+      function addItemPseudoNumericEqual() {
         items.push(
           `${minusSign}${
             fieldData.keyword
           }:${valueFrom.padStart(fieldData.minDigits, "0")}`
         );
+      }
+
+      if (valueFrom && !valueTo) {
+        // only one value => equal operator
+        switch (key) {
+          case "epl":
+            items.push(
+              `${minusSign}${valueFrom.padStart(2, "0")}`
+            );
+            break;
+          case "kap":
+            if (valueFrom.length === 4)
+              items.push(`${minusSign}${valueFrom}`);
+            else addItemPseudoNumericEqual();
+            break;
+
+          default:
+            addItemPseudoNumericEqual();
+        }
+      }
       // range or smaller
       else if (valueFrom || valueTo) {
-        console.log(fieldData, fieldData.keyword, key);
-        items.push(
-          `${minusSign}${fieldData.keyword}:${
-            valueFrom
-              ? valueFrom.padStart(fieldData.minDigits, "0")
-              : ""
-          }-${valueTo.padStart(fieldData.minDigits, "0")}`
-        );
+        function addItemPseudoNumericRangeOrSmaller() {
+          items.push(
+            `${minusSign}${fieldData.keyword}:${
+              valueFrom
+                ? valueFrom.padStart(
+                    fieldData.minDigits,
+                    "0"
+                  )
+                : ""
+            }-${valueTo.padStart(fieldData.minDigits, "0")}`
+          );
+        }
+        switch (key) {
+          case "kap":
+            if (
+              (!valueFrom || valueFrom.length === 4) &&
+              (!valueTo || valueTo.length === 4) &&
+              valueFrom &&
+              valueFrom.substr(0, 2) ===
+                valueTo.substr(0, 2)
+            ) {
+              items.push(
+                `${minusSign}(Epl:${valueFrom.substr(
+                  0,
+                  2
+                )} Kap:${valueFrom.substr(
+                  2,
+                  2
+                )}-${valueTo.substr(2, 2)})`
+              );
+              break;
+            } else addItemPseudoNumericRangeOrSmaller();
+            break;
+          default:
+            addItemPseudoNumericRangeOrSmaller();
+        }
       }
     }
   });
@@ -137,8 +186,10 @@ function fillSearchFieldsData(
           //eslint-disable-next-line no-case-declarations
           const key =
             parserKeywords2FieldKeys[searchTree.keyword];
-          if (searchFieldsData[posNegKey][key].valueFrom ||
-            searchFieldsData[posNegKey][key].valueTo)
+          if (
+            searchFieldsData[posNegKey][key].valueFrom ||
+            searchFieldsData[posNegKey][key].valueTo
+          )
             throw new Error(
               `Angabe von ${searchTree.keyword} kann 
                 nur einmal in Suchfeldern dargestellt werden.`
