@@ -20,19 +20,27 @@ export function ClickSelectContainer({
     <div className="message is-info">
       <div className="message-header">
         <p>
-        Kreisauswahl - durch Klicken auf Kuchenstücke Auswahl einschränken
+          Kreisauswahl - durch Klicken auf Kuchenstücke Auswahl einschränken
         </p>
+        {appState.searchexpression ? <button className="delete" onClick={() => { setSearchExpression(""); }}
+          title="Suche zurücksetzen" aria-label="delete"></button>
+          : <></>
+        }
       </div>
       <div className="message-body">
         {
-          clickSelectData.rootCategories.map(cat => {
-            const catData = clickSelectData.data[cat];
-            return (
-              catData ? <ClickSelectCategory key={catData.description} setSearchExpression={setSearchExpression} searchExpression={appState.searchexpression}
-                categoryData={catData} />
-                : <div className="notification is-danger">Interner Fehler: no data for category {cat}</div>
-            )
-          })
+          clickSelectData.rootCategories.length ?
+            clickSelectData.rootCategories.map(cat => {
+              const catData = clickSelectData.data[cat];
+              console.log("catData", cat, catData);
+              return (
+                catData ? <ClickSelectCategory key={cat} setSearchExpression={setSearchExpression} searchExpression={appState.searchexpression}
+                  categoryData={catData} />
+                  : <div className="notification is-danger">Interner Fehler: no data for category {cat}</div>
+              )
+            })
+            : <div><p>Keine weitere Einschränkung durch Kreisauswahl möglich, weil die Suche "{appState.searchexpression
+            }" kein Kuchenbuffet übrig lässt.</p> </div>
         }
       </div>
     </div>

@@ -105,23 +105,35 @@ export function getClickSelectData(appState: AppState): ClickSelectData {
     const catMeta = csCategoryMetaMap[category]!;
     console.log(catMeta);
     const parentCategory = catMeta.parentCategory;
+    let deleteCurrCat = false;
     if (parentCategory) {
       console.log("with parent", category, rootCategories);
-    
       // es-lint-disable-next-line @typescript-eslint/no-non-null-assertion
       if (data[parentCategory]!.itemsSorted.length <= 1) {
         // parent category has one or zero elements ==> delete parent category
         const parentIndex = rootCategories.indexOf(parentCategory);
         if (parentIndex >= 0)
-          rootCategories.splice(parentIndex,1);
-      } else {
-        const catIndex = rootCategories.indexOf(category);
-        if (catIndex >= 0)
-          rootCategories.splice(catIndex,1);
-      }
+          rootCategories.splice(parentIndex, 1);
+
+      } else
+      // delete current category because parent category is shown
+        deleteCurrCat = true;
+      
+      
+    }
+
+    if(data[category]!.itemsSorted.length<=1) {
+      // delete current category because not enough items in category
+      deleteCurrCat=true;
+    }
+
+    if (deleteCurrCat) {
+      const catIndex = rootCategories.indexOf(category);
+      if (catIndex >= 0)
+        rootCategories.splice(catIndex, 1);
     }
     console.log(category, rootCategories);
-    
+
   })
   console.log(rootCategories);
 

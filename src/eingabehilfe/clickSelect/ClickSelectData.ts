@@ -18,7 +18,7 @@ export const csCategoryMetaData: CSCategoryMetaData[] = [
   },
   {
     category: "grp1",
-    description: "Einschränken nach Hauptfunktion",
+    description: "Einschränken nach Hauptgruppe",
     prefixSearchTerm: "",
     digits: 1,
     hhstKey: "gruppe"
