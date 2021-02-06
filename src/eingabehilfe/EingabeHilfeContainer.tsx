@@ -136,7 +136,7 @@ export function EingabeHilfeContainer({
           className={activeTab === "graphical" ? "is-active" : ""}
           onClick={() => setActiveTab("graphical")}
         >
-          Click & Select
+          Kreisauswahl
         </a>
       </p>
       {activeTab === "helpers" ? (

@@ -3,7 +3,7 @@ import {
   initialFieldsData,
   parserKeywords2FieldKeys
 } from "./SearchFieldsData";
-import { SearchFieldsData } from "./SearchFieldsTypes";
+import { SearchFieldDataPseudoNumeric, SearchFieldsData } from "./SearchFieldsTypes";
 import { SearchNode } from "../../hhstliste/hhstListeLogic/searchTreeTypes";
 
 export function getSearchExpression(
@@ -37,7 +37,7 @@ function addItems(
       const valueFrom = fieldData.valueFrom;
       const valueTo = fieldData.valueTo;
 
-      function addItemPseudoNumericEqual() {
+      const addItemPseudoNumericEqual= () => {
         items.push(
           `${minusSign}${
             fieldData.keyword
@@ -65,12 +65,12 @@ function addItems(
       }
       // range or smaller
       else if (valueFrom || valueTo) {
-        function addItemPseudoNumericRangeOrSmaller() {
+        const addItemPseudoNumericRangeOrSmaller=() => {
           items.push(
             `${minusSign}${fieldData.keyword}:${
               valueFrom
                 ? valueFrom.padStart(
-                    fieldData.minDigits,
+                  (fieldData as SearchFieldDataPseudoNumeric).minDigits,
                     "0"
                   )
                 : ""

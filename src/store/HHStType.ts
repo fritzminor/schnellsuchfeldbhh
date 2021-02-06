@@ -17,3 +17,5 @@ export type HHSt = {
   /** Soll-Betrag */
   sollJahr1: number;
 };
+
+export type HHStFieldName= keyof HHSt;
