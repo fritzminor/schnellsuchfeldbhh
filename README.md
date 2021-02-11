@@ -1,9 +1,15 @@
 # Schnellsuchfeld - Prototyp
 
+Das SchnellsuchfeldBHH ist ein Prototyp für den Auswahlfilter für ein kamerales Haushaltsaufstellungsverfahren.
+
+Eine [lauffähige Version](https://schnellsuchfeldbhh.netlify.app/) wird via Netlify zur Verfügung gestellt.
+
+Eine [Anleitung](./docs/anleitung.md) findet sich im /docs-Unterverzeichnis.
+
 ## Demonstration
 
 * Beim leeren Suchfeld werden alle Haushaltsstellen des
-  Bearbeiters angezeigt (hier die Einzelpläne des Bundespräsidenten -Epl 01- und des Bundestags -Epl 02-).
+  Bearbeiters angezeigt (hier grundsätzlich die Einzelpläne des Bundespräsidenten -Epl 01- und des Bundestags -Epl 02-).
 * Man sieht 
   - Titel (mit FKZ) Zweck, Betrag 2021
   - Summe Einnahmen und Ausgaben
