@@ -33,7 +33,7 @@ export function ClickSelectCategory({
 
 
   const expensePieData = getPieData(true);
-  const revenuePieData = getPieData(true);
+  const revenuePieData = getPieData(false);
 
   const lineWidth = 45;
   return (
