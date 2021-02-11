@@ -1,10 +1,14 @@
 # Universalsuchfeld - Prototyp - Anleitung
 
-Die [Einstiegsseite](https://schnellsuchfeldbhh.netlify.app/) für den Haushaltsplan unterteilt sich in folgende Bereiche:
+Der Prototyp ist nicht für produktive Zwecke gedacht, sondern ermöglicht Feedback von künftigen Anwendern der Suche in einem [kameralen Haushaltsplan](http://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Oeffentliche_Finanzen/Bundeshaushalt/Haushaltsrecht_und_Haushaltssystematik/das-system-der-oeffentlichen-haushalte-anl.pdf?__blob=publicationFile&v=3) zu ermöglichen.
 
-- das Universalsuchfeld, das eher für erfahrenere Anwender gedacht ist
-- der Suchfelder-/Vorschläge-Bereich
+Die [Einstiegsseite](https://schnellsuchfeldbhh.netlify.app/) des Prototyps für den Haushaltsplan unterteilt sich in folgende Bereiche:
+
+- das [Universalsuchfeld](#universalsuchfeld), das eher für erfahrenere Anwender gedacht ist
+- der [Suchfelder](#suchfelder)-/[Vorschläge](#vorschlägebereich)-Bereich
 - die Anzeige der Haushaltsstellen - Diese verwendet Beispielsdaten von bundeshaushalt.de für die Einzelpläne 01 des Bundespräsidenten und 02 des Bundestags. Sie dient nur Demonstrationszwecken der anderen beiden Bereiche und ist nicht weiter interessant.
+
+
 
 ## Suchfelder
 
@@ -66,7 +70,7 @@ Im Universalsuchfeld können durch eine Syntax bestehend aus einem _Schlüsselwo
 | Epl:02               | Einzelplan 02                                                                                 | 02            |
 | Grp:1                | Hauptgruppe 1                                                                                 | 1             |
 | Grp:51-53            | Obergruppen 51,52,53                                                                          |               |
-| Zweck:Finanzen       | Zweckbestimmung, die "finanzen" oder "Finanzen" enthalten                                     |               |
+| Zweck:Finanzen       | Zweckbestimmung, die "finanzen" oder "Finanzen" enthalten                                     |     Finanzen          |
 | Volltext:Abgeordnete | Volltextsuche über Erläuterungen, Zweckbestimmung, Kapitelüberschrift etc. nach "Abgeordnete" | Abgeordnete   |
 | Kzn:budgetiert       | Haushaltsstellen mit dem Kennzeichen "Budgetiert"                                             |               |
 
@@ -89,8 +93,8 @@ Man kann aber auch das [Schlüsselwort](#schlüsselworte) "Volltext:" voranstell
 
 Beispiele:
 
-- "Bundespräsident"
-- "Volltext:gesetz"
+- *Bundespräsident*
+- *Volltext:gesetz*
 
 In beiden Fällen spielt die Groß- und Kleinschreibung keine Rolle.
 
@@ -127,7 +131,7 @@ Beispiele:
 
 ## Vorschlägebereich
 
-Der Vorschlägebereich gibt Vorschläge für die Eingabe an der aktuellen Position aus. Klickt man auf einen der Vorschläge wird er übernommen.
+Der Vorschlägebereich gibt Vorschläge für die Eingabe an der aktuellen Position des [Universalsuchfelds](#universalsuchfeld) aus. Klickt man auf einen der Vorschläge wird er übernommen.
 
 ## Daten
 
