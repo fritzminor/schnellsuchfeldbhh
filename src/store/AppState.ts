@@ -1,10 +1,12 @@
 import { SearchNode } from "../hhstliste/hhstListeLogic/searchTreeTypes";
-import { UserName } from "../users/UsersTypes";
+import { UserName } from "../navigation/UsersTypes";
 import { HHSt } from "./HHStType";
 
 export type AppState = {
   searchexpression:string;
   currentUser: UserName;
+
+
   derived: {
     searchTree: SearchNode | null;
     searchParseErrMessage?: string;
@@ -14,5 +16,8 @@ export type AppState = {
     
     /** contains the HHSts filtered by searchTree */
     filteredHhstArray: HHSt[];
+
+    /** the first budget year = SollJahr1 */
+    firstYear: number;
   }
 }

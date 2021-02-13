@@ -6,6 +6,7 @@ import { Search24 } from "@carbon/icons-react";
 import { SearchFieldsContainer } from "./searchfields/SearchFieldsContainer";
 import { AppState } from "../store/AppState";
 import { ClickSelectContainer } from "./clickSelect/ClickSelectContainer";
+import { DocReferrer } from "../othercomponents/DocReferrer";
 
 type EingabeHilfeContainerProps = {
   appState: AppState;
@@ -59,8 +60,8 @@ export function EingabeHilfeContainer({
 
   return (
     <nav className="panel">
-      <div className="container eingabeHilfeContainer">
-        <div className="inputfieldcontainer  ">
+      <div className="container is-flex is-flex-direction-row is-align-items-center eingabeHilfeContainer">
+        <div className="inputfieldcontainer  is-flex-grow-2">
           <Search24 className="searchIcon" />
           <input
             type="search"
@@ -113,6 +114,7 @@ export function EingabeHilfeContainer({
             }
           />
         </div>
+        <DocReferrer topic="Universalsuchfeld"/>
       </div>
 
       {/* ------------------ Tabs for different helpers  ---------------- */}

@@ -2,9 +2,9 @@
 
 Das SchnellsuchfeldBHH ist ein Prototyp für den Auswahlfilter für ein kamerales Haushaltsaufstellungsverfahren.
 
-Eine [lauffähige Version](https://schnellsuchfeldbhh.netlify.app/) wird via Netlify zur Verfügung gestellt.
+Eine https://schnellsuchfeldbhh.netlify.app/[lauffähige Version] wird via Netlify zur Verfügung gestellt.
 
-Eine [Anleitung](./docs/anleitung.md) findet sich im /docs-Unterverzeichnis.
+Eine <<docs/anleitung.adoc#,Anleitung>> findet sich im /docs-Unterverzeichnis.
 
 ## Demonstration
 
@@ -16,50 +16,46 @@ Eine [Anleitung](./docs/anleitung.md) findet sich im /docs-Unterverzeichnis.
   - Nach welchen Suchkriterien gefiltert wird.
   
 * Eingrenzen auf Epl 02 Bundestag mit 
-  - 02
-  - Epl:02
-  - Epl:2
+  - _02_
+  - _Epl:02_
+  - _Epl:2_
 * Suche nach Bezüge des Bundespräsidenten
-  - Präsident
-  - 4
-  - Grp:4
-* Kombination: nur im Epl 01
-  - 01 Grp:4
+  - _Präsident_
+  - _4_
+  - _Grp:4_
+* Kombination: nur im Epl 01 die Personalausgaben (Hauptgruppe 4)
+  - _01 Grp:4_
 * Suche nach Titeln mit Beträgen über 1 Mio. €
-  - 1000 => Vorschlag "Soll1:1000"
-  - Soll1:1000-
+  - _1000_ => Vorschlag "Soll1:1000"
+  - _Soll1:1000-_
 * Suche nach Titeln mit Beträgen zwischen 1 und 2 Mio. €
-  - Soll1:1000-2000
-
-* Einnahmen
-  - Einnahmen?
-  - "mehr" klicken, um weitere Vorschläge zu erhalten
-  - besser: Vorschlag "Grp:0-3" annehmen
+  - _Soll1:1000-2000_
 
 * Tipphilfe beim Stehenlassen des Mauszeigers auf Suchfeld
 
 * Suche nach Ausgaben im Epl:02, jedoch ohne Personalausgaben
+  - _02 -4_ - Beachte das Leerzeichen vor dem Minuszeichen.
 
 
 
-## TODO
 
-- Sachhaushaltseinfachmaske
-  * Volltextsuche
-  * Von bis-Felder
-    * Epl (1 wird zu Epl:01)
-    * Kapitel (1 wird zu Kap:01, 101 wird zu Epl:01 Kap:01, 0102 wird zu Kap:0102)
-    * Grp:
-    * Titelgruppe:
-    * Soll1:
-  * Ohne-Knopf: zusätzliches Feld mit gleicher Auswahl
+## Weitere mögliche Verbesserungen
 
-- Ausführlicher Hilfetext an einem Stück
+Das folgende sind Ideen. Da es sich aber nur um einen Prototyp handelt, kann es gut sein, dass es beim Ideenstand bleibt.
+
 - Bei fullTextMatch sollte Token hervorgehoben werden (notfalls nur im helptext etwa so "'Epl:13' in 'Grp:5 Epl:13' führt zu Suche nach ...", wobei "Epl:13" beides Mal unterstrichen wird)
 - Weitere Suchvorschläge, wenn Grp:\d, nämlich Grp:$1\d und Grp:$1\d\d
 - A und E als Schnelleingrenzung auf Ausgaben oder Einnahmen
-- Kap:1004 als Epl:10 Kap:04 interpretieren
 - Ignoriere Leerzeichen vor schließender Klammer
 
-- Verweis auf Daten von bundeshaushalt.de in der App
-- Verweis auf Code-Repository auf GitHub
+
+
+## Weiterentwicklung
+
+Der Prototyp kann frei unter der MIT-Lizenz genutzt werden. Verbesserungen sind willkommen. 
+
+Recht schnell kann man mit codesandbox.io sich im Code zurecht finden. Dazu kann man sich mit folgendem Link eine eigene Entwicklungsumgebung erzeugen:
+
+https://githubbox.com/fritzminor/schnellsuchfeldbhh
+
+Viel Spaß und Erfolg!

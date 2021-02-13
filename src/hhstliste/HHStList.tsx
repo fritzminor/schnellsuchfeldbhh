@@ -25,6 +25,7 @@ export function HHStList({
   appState: AppState
 }>): JSX.Element {
   try {
+    rowHeadings.sollJahr1=appState.derived.firstYear;
     const filteredHhstArray = appState.derived.filteredHhstArray;
 
     const sums = filteredHhstArray.reduce(

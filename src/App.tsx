@@ -9,7 +9,7 @@ import { createStore, getStateFrom } from "./store/Store";
 import { useState } from "react";
 
 import history from "history/browser";
-import { Navigation } from "./users/Navigation";
+import { Navigation } from "./navigation/Navigation";
 
 // Check for https://medium.com/@svsh227/create-your-own-type-ahead-dropdown-in-react-599c96bebfa
 //           https://github.com/fmoo/react-typeahead
@@ -18,19 +18,19 @@ import { Navigation } from "./users/Navigation";
 //eslint-disable-next-line no-undef
 export default function App(): JSX.Element {
   const [state, setState] = useState<AppState>(getStateFrom(
-      new URLSearchParams(history.location.search).get(
-        "q"
-      ) || "",
-      "BearbeiterEpl01und02"
+    new URLSearchParams(history.location.search).get(
+      "q"
+    ) || "",
+    "BearbeiterEpl01und02"
   ));
-  const { setSearchExpression, setCurrentUser } = createStore(
+  const { setSearchExpression, setCurrentUser, setLocalData } = createStore(
     setState,
     history
   );
-  
+
   return (
     <>
-      <Navigation currentUser={state.currentUser} setCurrentUser={setCurrentUser}/>
+      <Navigation currentUser={state.currentUser} setCurrentUser={setCurrentUser} setLocalData={setLocalData} />
       <section className="section hero">
         <div className="hero-body is-primary">
           <div className="container">

@@ -1,0 +1,153 @@
+# Universalsuchfeld - Prototyp - Anleitung
+:toc: preamble
+:toc-title: Übersicht
+
+Der Prototyp ist nicht für produktive Zwecke gedacht, sondern ermöglicht Feedback von künftigen Anwendern der Suche in einem http://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Oeffentliche_Finanzen/Bundeshaushalt/Haushaltsrecht_und_Haushaltssystematik/das-system-der-oeffentlichen-haushalte-anl.pdf?__blob=publicationFile&v=3[kameralen Haushaltsplan].
+
+Die https://schnellsuchfeldbhh.netlify.app/[Einstiegsseite] des Prototyps für den Haushaltsplan unterteilt sich in folgende Bereiche:
+
+- das <<Universalsuchfeld>>, das eher für erfahrenere Anwender gedacht ist
+- der <<Suchfelder>>-/<<Vorschlägebereich,Vorschläge>>-Bereich
+- die Anzeige der Haushaltsstellen - Diese verwendet Beispielsdaten von bundeshaushalt.de für die Einzelpläne 01 des Bundespräsidenten und 02 des Bundestags. Sie dient nur Demonstrationszwecken der anderen beiden Bereiche und ist nicht weiter interessant.
+
+
+
+## Suchfelder
+
+Lassen wir einmal das <<Universalsuchfeld>> außer Acht und wenden uns den darunter erscheinenden Suchfeldern zu. Falls diese nicht dargestellt werden, sollte man auf "Suchfelder" links neben "Vorschläge" klicken.
+
+Wenn in mehrere Suchfelder ein Kriterium eingetragen wird, werden nur Haushaltsstellen ausgeworfen, die alle eingetragenen Kriterien erfüllen.
+
+### Suchfeld Einzelplan
+
+Das erste Suchfeld betrifft die Suche nach Einzelplänen. Gibt man in das linke Feld, das mit "von" bezeichnet ist, einen Wert (wie z.B. "01") ein, werden im Anzeigebereich die Haushaltsstellen angezeigt, die zu diesem Einzelplan gehören.
+
+Gibt man zusätzlich in das rechte Feld, das mit "bis" bezeichnet wird, einen Wert (z.B. "03") ein, werden alle Einzelpläne des gesamten Bereich (einschließlich der angegebenen Randwerte) angezeigt.
+
+Beispiel: "von" ist _01_, "bis" ist _03_. Es werden die Haushaltsstellen der Epl. "01", "02" und "03" angezeigt (wobei im Prototyp - wie auch bei einer entsprechenden Einschränkung des Anwenders in einem realen Haushaltsaufstellungssystem - grundsätzlich nur die <<Daten>> für die Einzelpläne 01 und 02 verfügbar sind).
+
+### Suchfeld Kapitel
+
+Mit dem Suchfeld für Kapitel kann man nach der zweistelligen Kapitelnummer suchen, also nach den zwei Ziffern, die bei einer Haushaltsstelle nach den ersten zwei Ziffern für den Einzelplan stehen.
+
+In einigen Fällen kann der Prototyp auch vierstellige Kapitelnummern verarbeiten, also Kapitelnummern, die sich aus der Einzelplannummer und der Kapitelnummer zusammensetzen.
+
+Das Suchfeld Kapitel funktioniert analog dem <<Suchfeld Einzelplan>>.
+
+### Suchfeld Volltextsuche
+
+Das Suchfeld Volltextsuche ist wahrscheinlich das einfachste. Man gibt ein Wort oder ein Wortteil ein und die angezeigten Haushaltsstellen werden auf diejenigen beschränkt, die dieses Wort oder diesen Teil in Zweckbestimmung, Erläuterung, Kapitelüberschrift oder Einzelplanüberschrift enthalten - in Theorie. Denn im Prototyp ist die Suche noch auf die Zweckbestimmung begrenzt. Aber das ist ja auch schon etwas.
+
+Will man Haushaltsstellen finden, die das Wort nicht enthalten, muss man zu den <<Ohne-Suchfelder,Ohne-Suchfeldern>> gehen.
+
+### Suchfeld Gruppierungsnummer
+
+Das Suchfeld Gruppierungsnummer findet sich im "Suchfelder"-Bereich etwas versteckt. Denn es wird erst angezeigt, wenn man im unteren Suchfelder-Bereich (unterhalb des Suchfelds Volltextsuche) auf "mehr" drückt.
+
+Das Suchfeld Gruppierungsnummer versteht Eingaben für
+
+- Hauptgruppen (einstellig, z.B. "5" für sächliche Verwaltungsausgaben)
+- Obergruppten (zweistellig)
+- eigentliche Gruppierungsnummern.
+
+Wird nur in das linke Feld (bezeichnet mit "von") eine Nummer eingegeben, wird nach Haushaltsstellen gesucht, die exakt dieser Haupt-/Ober-/Untergruppe zuzuordnen sind. Wird rechts ebenfalls etwas eingegeben, wird nach den Haushaltsstellen in dem mit "von" und "bis" gekennzeichneten Bereich gesucht.
+
+### Ohne-Suchfelder
+
+Die "Ohne"-Suchfelder werden angezeigt, wenn unten bei den Suchfeldern auf "Mehr" geklickt wird. Die Suchfelder im Kasten "Ohne" verhalten sich wie die darüber angezeigten einfachen Suchfelder; lediglich werden die Haushaltsstellen aufgelistet, die das Kriterium der "Ohne"-Suchfelder **nicht** erfüllen.
+
+## Universalsuchfeld
+
+Mit dem Universalsuchfeld kann man einerseits einfache Suchanfragen in sehr kurzer Form schreiben, andererseits bietet es auch die Möglichkeit für komplexe Filter. So können z.B. Schnittmengen aus verschiedenen Filtern gebildet werden.
+
+Sinnvoll ist - jedenfalls für den Anfänger - bei der Eingabe in das Universalsuchfeld den <<Vorschlägebereich>> offen zu halten, indem man auf "Vorschläge" klickt. Dort werden Vorschläge gemacht, die bei der Eingabe helfen können.
+
+### Schlüsselworte
+
+Im Universalsuchfeld können durch eine Syntax bestehend aus einem _Schlüsselwort_, einem Doppelpunkt sowie einem Suchwort oder Suchbereich komplexe Suchen gemacht werden:
+
+
+[cols="1,1,1"]
+|===
+| Beispieleingabe      | Suchergebnisse                                                                                | Kurzform für Eingabe 
+
+| _Epl:02_               | Einzelplan 02                                                                                 | _02_            
+| _Epl:02_               | Einzelplan 02                                                                                 | _02_            
+| _Grp:1_                | Hauptgruppe 1                                                                                 | _1_             
+| _Grp:51-53_            | Obergruppen 51,52,53                                                                          |               
+| _Zweck:Finanzen_       | Haushaltsstellen mit einer Zweckbestimmung, die "finanzen" oder "Finanzen" enthalten          |     _Finanzen_  
+| _Volltext:Abgeordnete_ | Volltextsuche über Erläuterungen, Zweckbestimmung, Kapitelüberschrift etc. nach "Abgeordnete" | _Abgeordnete_   
+| _Kzn:budgetiert_       | Haushaltsstellen mit dem Kennzeichen "Budgetiert"                                             |               
+|===
+
+### Suchbereich
+
+Ein Suchbereich wird mit einem Bindestrich gekennzeichnet:
+
+|===
+| Beispiel        | findet                                                                                           
+
+| _Grp:51-53_       | Obergruppen 51,52,53                                                                             
+| _Epl:02-_         | Alle Einzelpläne ab Epl 02                                                                       
+| _FKZ:-2_          | Hauptfunktionen 1,2                                                                              
+| _Soll1:1000-2000_ | Haushaltsansätze im ersten Aufstellungsjahr zwischen 1 Mio. € (=1000 T€) und 2 Mio. € (=2000 T€) 
+|===
+
+### Volltextsuche
+
+Für die Volltextsuche gibt man die zu suchenden Begriffe (oder Wortteile) in das Universalsuchfeld ein.
+
+Man kann aber auch das <<Schlüsselworte,Schlüsselwort>> _Volltext:_ voranstellen:
+
+Beispiele:
+
+- _Bundespräsident_
+- _Volltext:gesetz_
+
+In beiden Fällen spielt die Groß- und Kleinschreibung keine Rolle.
+
+### Mehrere Suchausdrücke
+
+Um das Suchergebnis weiter einzuschränken, gibt man weitere Suchausdrücke mit einem _Leerzeichen_ getrennt ein.
+
+Beispiel: _Bundespräsident Bezüge_ liefert den Titel "01 01/ 421 01 _Bezüge_ des _Bundespräsident_ en", nicht aber den Titel "01 12 / 532 04 011 Entschädigung der Mitglieder der Bundesversammlung gem. § 12 des Gesetzes über die Wahl des _Bundespräsident_en vom 25. April 1959"
+
+### Anfängliches Minuszeichen zum Ausschluss
+
+Mit einem Minuszeichen (-) **vermeiden** Sie, dass Haushaltsstellen im Suchergebnis enthalten sind, die den Suchausdruck erfüllen.
+
+Beispiele:
+
+- _-4_ schließt aus, dass Personalausgaben (Hauptgruppe 4) im Suchergebnis enthalten sind.
+- _Grp:0 -Grp:09_ gibt die Steuereinnahmen aus (Hauptgruppe 0 "Steuern und Abgaben", jedoch ohne Obergruppe 09 "Abgaben"). Das gleiche Ergebnis erhält man mit _Grp:00-09_
+
+### Komma zur Ergänzung um weitere Haushaltsstellen
+
+Wenn man die ausgegebenen Haushaltsstellen nicht einschränken, sondern noch zusätzliche finden will, setzt man zwischen die Suchausdrücke ein Komma (,).
+
+Beispiel:
+
+_Präsident, Bundestag_ findet alle Haushaltsstellen, deren Zweckbestimmung, Erläuterung etc. entweder einen der beiden Begriffe, Präsident oder Bundestag, oder beide Begriffe enthalten.
+
+### Klammersetzung
+
+Wenn man mehr als zwei Suchausdrücke benutzt und sie sowohl mit <<Mehrere Suchausdrücke,Leerzeichen>> als auch mit <<Komma zur Ergänzung um weitere Haushaltsstellen,Komma>> verbindet, muss es eine Vorrangregel geben. Der Prototyp wertet den Ausdruck von links nach rechts aus. Wenn einem das nicht passt, kann man Klammern setzen.
+
+Beispiele:
+
+- _01, 02 Grp:4_ gibt die Personalausgaben (Hauptgruppe 4) der Einzelpläne 01 und 02 aus. Der Ausdruck entspricht _(01, 02) Grp:4_.
+- _01, (02 Grp:4)_ gibt alle Haushaltsstellen des Epl 01 aus sowie zusätzlich die Personalausgaben (Hauptgruppe 4) des Einzelplans 02 aus.
+
+## Vorschlägebereich
+
+Der Vorschlägebereich gibt Vorschläge für die Eingabe an der aktuellen Position des <<Universalsuchfeld>>s aus. Klickt man auf einen der Vorschläge wird er übernommen.
+
+## Daten
+
+Die Daten des Prototyps stammen von https://www.bundeshaushalt.de/download[bundeshaushalt.de]. Beim Aufruf wird so getan, als sei der Bearbeiter, der sich um die Einzelpläne 01 (Bundespräsident) und 02 (Bundestag) eingeloggt.
+
+Man kann aber auch den Bearbeiter wechseln, indem man rechts oben das Pulldown-Menü benützt. Hier wird noch ein Bearbeiter ermöglicht, der den gesamten Bundeshaushalt bearbeiten darf. Ggf. muss das Pulldown-Menü mit dem "Burger"-Menü (drei waagrechte Striche übereinander) erst angezeigt werden.
+
+## Entwicklung
+
+Die weitere Entwicklung des Prototyps findet auf https://github.com/fritzminor/schnellsuchfeldbhh[github] statt. Der Prototyp und die Quelldateien sind unter der MIT-Lizenz frei verfügbar.

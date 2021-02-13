@@ -1,3 +1,4 @@
 node_modules/
 .eslintcache
 build/
+public/docs/anleitung.html

@@ -2,7 +2,7 @@ import { History } from "history";
 import * as React from "react";
 import { getSearchTree } from "../hhstliste/hhstListeLogic/searchParser";
 import { SearchNode } from "../hhstliste/hhstListeLogic/searchTreeTypes";
-import { UserName } from "../users/UsersTypes";
+import { UserName } from "../navigation/UsersTypes";
 import { AppState } from "./AppState";
 import { HHSt } from "./HHStType";
 
@@ -13,9 +13,16 @@ import { isSearched } from "../hhstliste/hhstListeLogic/evalSearch4HHSt";
 
 const hhstDataArrays: { [index in UserName]: HHSt[] } = {
   "BearbeiterGesamtBHH": hhstDataBHH.hhsts,
-  "BearbeiterEpl01und02": hhstData01_02.hhsts
+  "BearbeiterEpl01und02": hhstData01_02.hhsts,
+  "LokaleDaten": []
 };
 
+
+const hhstFirstYears: { [index in UserName]: number } = {
+  "BearbeiterGesamtBHH": 2021,
+  "BearbeiterEpl01und02": 2021,
+  "LokaleDaten": 0
+};
 
 export function createStore( // eslint-disable-line  @typescript-eslint/explicit-module-boundary-types
   setState: React.Dispatch<React.SetStateAction<AppState>>,
@@ -43,6 +50,11 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
         currentUser: newCurrentUser,
         derived: getDerivedFrom(prevState.searchexpression, newCurrentUser)
       }))
+    },
+
+    setLocalData(hhsts: HHSt[], firstYear:number) {
+      hhstDataArrays.LokaleDaten = hhsts;
+      hhstFirstYears.LokaleDaten = firstYear;
     }
   };
 }
@@ -70,7 +82,8 @@ function getDerivedFrom(searchexpression: string, currentUser: UserName): AppSta
     searchParseErrMessage,
     searchTree,
     hhstArray,
-    filteredHhstArray
+    filteredHhstArray,
+    firstYear: hhstFirstYears[currentUser]
 
   }
 }
