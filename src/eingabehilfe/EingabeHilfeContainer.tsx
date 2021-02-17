@@ -61,60 +61,72 @@ export function EingabeHilfeContainer({
   return (
     <nav className="panel">
       <div className="container is-flex is-flex-direction-row is-align-items-center eingabeHilfeContainer">
-        <div className="inputfieldcontainer  is-flex-grow-2">
-          <Search24 className="searchIcon" />
-          <input
-            type="search"
-            name="suche"
-            id="suche"
-            placeholder="Suchwort"
-            autoComplete="off"
-            spellCheck="false"
-            value={searchexpression}
-            ref={inputfieldRef}
-            onChange={(e) => {
-              setSearchExpression(e.target.value);
-              setSearchExpressionSetBySearchFields(false);
+        <div className="field is-flex-grow-2">
+          <label className="label">
+            Universalsuche
+            <DocReferrer topic="Universalsuchfeld" />
+          </label>
 
-              setCursorPosState(
-                e.target.selectionStart || 0
-              );
-            }}
-            onFocus={(e) => {
-              setFocusState(true);
-              setCursorPosState(
-                e.target.selectionStart || 0
-              );
-            }}
-            onKeyUp={(e) => {
-              setCursorPosState(
-                (e.target as HTMLInputElement)
-                  .selectionStart || 0
-              );
-            }}
-            onClick={(e) => {
-              setCursorPosState(
-                (e.target as HTMLInputElement)
-                  .selectionStart || 0
-              );
-            }}
-            onBlur={() => {
-              /* setTimeout(() => {
-              setFocusState(false);
-            }, 100);*/
-            }}
-            title={
-              "Tipp: Geben Sie mal Ziffern ein. \n\nUm " +
-              "die Suche einzuengen, bitte weitere Suchausdrücke mit Leerstelle " +
-              "getrennt angeben: Epl:13 Grp:0.\n\nUm die Suche zu erweitern, bitte weitere " +
-              "Suchausdrücke mit Komma (,) getrennt angeben: Epl:06, Epl:13.\n\nEs können auch Klammern benutzt werden, " +
-              "um Suchausdrücke zu gruppieren: \nEPl:13, (Epl:06 Grp:422) liefert alle Haushaltsstellen" +
-              " des Epl 13 und vom Epl. 06 diejenigen mit der Gruppe 422. \n\nMit einem Minuszeichen (-) erhält man alle Suchergebnisse" +
-              " ohne diejenigen, die dem Suchausdruck hinter dem Minuszeichen entsprechen: \n-Grp:4 klammert die Personalausgaben aus."
-            }
-          />
+          <div className="control has-icons-left">
+
+            <input
+              type="search"
+              name="suche"
+              id="suche"
+              placeholder="Suchwort"
+              autoComplete="off"
+              spellCheck="false"
+              className="input is-rounded"
+              value={searchexpression}
+              ref={inputfieldRef}
+              onChange={(e) => {
+                setSearchExpression(e.target.value);
+                setSearchExpressionSetBySearchFields(false);
+
+                setCursorPosState(
+                  e.target.selectionStart || 0
+                );
+              }}
+              onFocus={(e) => {
+                setFocusState(true);
+                setCursorPosState(
+                  e.target.selectionStart || 0
+                );
+              }}
+              onKeyUp={(e) => {
+                setCursorPosState(
+                  (e.target as HTMLInputElement)
+                    .selectionStart || 0
+                );
+              }}
+              onClick={(e) => {
+                setCursorPosState(
+                  (e.target as HTMLInputElement)
+                    .selectionStart || 0
+                );
+              }}
+              onBlur={() => {
+                /* setTimeout(() => {
+                setFocusState(false);
+              }, 100);*/
+              }}
+              title={
+                "Tipp: Geben Sie mal Ziffern ein. \n\nUm " +
+                "die Suche einzuengen, bitte weitere Suchausdrücke mit Leerstelle " +
+                "getrennt angeben: Epl:13 Grp:0.\n\nUm die Suche zu erweitern, bitte weitere " +
+                "Suchausdrücke mit Komma (,) getrennt angeben: Epl:06, Epl:13.\n\nEs können auch Klammern benutzt werden, " +
+                "um Suchausdrücke zu gruppieren: \nEPl:13, (Epl:06 Grp:422) liefert alle Haushaltsstellen" +
+                " des Epl 13 und vom Epl. 06 diejenigen mit der Gruppe 422. \n\nMit einem Minuszeichen (-) erhält man alle Suchergebnisse" +
+                " ohne diejenigen, die dem Suchausdruck hinter dem Minuszeichen entsprechen: \n-Grp:4 klammert die Personalausgaben aus."
+              }
+            />
+            <span className="icon is-small is-left">
+              <Search24 className="searchIcon" />
+            </span>
+
+          </div>
+
         </div>
-        <DocReferrer topic="Universalsuchfeld"/>
       </div>
 
       {/* ------------------ Tabs for different helpers  ---------------- */}
@@ -163,7 +175,7 @@ export function EingabeHilfeContainer({
             </p>
           )
       ) : activeTab === "searchfields" ? (
-        <SearchFieldsContainer
+        <SearchFieldsContainer key="searchFieldsContainer"
           setSearchExpression={(searchexpression) => {
             setSearchExpression(searchexpression);
             setSearchExpressionSetBySearchFields(true);

@@ -10,6 +10,7 @@ import { useState } from "react";
 
 import history from "history/browser";
 import { Navigation } from "./navigation/Navigation";
+import { HHStOverview } from "./hhstliste/HHStOverview";
 
 // Check for https://medium.com/@svsh227/create-your-own-type-ahead-dropdown-in-react-599c96bebfa
 //           https://github.com/fmoo/react-typeahead
@@ -31,47 +32,41 @@ export default function App(): JSX.Element {
   return (
     <>
       <Navigation currentUser={state.currentUser} setCurrentUser={setCurrentUser} setLocalData={setLocalData} />
-      <section className="section hero">
-        <div className="hero-body is-primary">
-          <div className="container">
-            <h1 className="title">Universalsuchfeld</h1>
-            <h2 className="subtitle">
-              Prototyp für Suchhilfen
-            </h2>
-          </div>
-        </div>
-      </section>
       <section className="section">
         <div className="container">
           <EingabeHilfeContainer
+            key="eingabeHilfeContainer"
             appState={state}
             setSearchExpression={setSearchExpression}
           />
         </div>
       </section>
+
+      <section className="section">
+        <HHStOverview appState={state} />
+      </section>
       <section className="section">
         <HHStList appState={state} >
-          <div className="container haushaltsstellenOverlay">
-            {state.derived.searchTree ? (
-              state.searchexpression ? (
-                <> </>
-              ) : (
-                  <p>
-                  </p>
-                )
-            ) : (
+          {!state.derived.searchTree && state.searchexpression ?
+            (
+              <div className="container haushaltsstellenOverlay">
                 <p className="subtitle">
                   Der Prototyp kann den Suchausdruck "
                   {state.searchexpression}" leider (noch)
                 nicht verarbeiten.
                 </p>
-              )}
-            {state.derived.searchParseErrMessage ? (
-              <p className="">{state.derived.searchParseErrMessage}</p>
-            ) : (
-                <p></p>
-              )}
-          </div>
+
+                {
+                  state.derived.searchParseErrMessage ? (
+                    <p className="">{state.derived.searchParseErrMessage}</p>
+                  ) : (
+                      <></>
+                    )
+                }
+              </div>
+            ) :
+            <></>
+          }
         </HHStList>
       </section>
       <footer className="footer">

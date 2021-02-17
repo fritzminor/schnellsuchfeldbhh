@@ -32,18 +32,21 @@ function addItems(
 
   fieldsPseudoNumeric.forEach((key) => {
     const fieldData = searchFieldsData[posNegKey][key];
+    if(!fieldData) {
+      console.log("No field data for key",key,searchFieldsData);
+      throw new Error(`FATAL: no field data for key ${key}`);
+    }
 
     if (fieldData.type === "pseudonumeric") {
       const valueFrom = fieldData.valueFrom;
       const valueTo = fieldData.valueTo;
 
-      const addItemPseudoNumericEqual= () => {
+      const addItemPseudoNumericEqual = () => {
         items.push(
-          `${minusSign}${
-            fieldData.keyword
+          `${minusSign}${fieldData.keyword
           }:${valueFrom.padStart(fieldData.minDigits, "0")}`
         );
-      }
+      };
 
       if (valueFrom && !valueTo) {
         // only one value => equal operator
@@ -65,18 +68,17 @@ function addItems(
       }
       // range or smaller
       else if (valueFrom || valueTo) {
-        const addItemPseudoNumericRangeOrSmaller=() => {
+        const addItemPseudoNumericRangeOrSmaller = () => {
           items.push(
-            `${minusSign}${fieldData.keyword}:${
-              valueFrom
-                ? valueFrom.padStart(
-                  (fieldData as SearchFieldDataPseudoNumeric).minDigits,
-                    "0"
-                  )
-                : ""
+            `${minusSign}${fieldData.keyword}:${valueFrom
+              ? valueFrom.padStart(
+                (fieldData as SearchFieldDataPseudoNumeric).minDigits,
+                "0"
+              )
+              : ""
             }-${valueTo.padStart(fieldData.minDigits, "0")}`
           );
-        }
+        };
         switch (key) {
           case "kap":
             if (
@@ -84,7 +86,7 @@ function addItems(
               (!valueTo || valueTo.length === 4) &&
               valueFrom &&
               valueFrom.substr(0, 2) ===
-                valueTo.substr(0, 2)
+              valueTo.substr(0, 2)
             ) {
               items.push(
                 `${minusSign}(Epl:${valueFrom.substr(
@@ -172,6 +174,14 @@ function fillSearchFieldsData(
             true
           );
           break;
+        case "true":
+
+          if (negated)
+            throw new Error(
+              "Suchfelder können ein Ohne Alles nicht abbilden."
+            );
+          // do nothing, because no restriction
+          break;
         default:
           throw new Error(
             `Logical subtype "${searchTree.subtype}" unknown to searchfields prototype.`
@@ -229,8 +239,8 @@ function fillSearchFieldsData(
             posNegKey
           ].fulltext.value = searchFieldsData[posNegKey]
             .fulltext.value
-            ? `${searchFieldsData[posNegKey].fulltext.value} ${searchTree.value}`
-            : searchTree.value;
+              ? `${searchFieldsData[posNegKey].fulltext.value} ${searchTree.value}`
+              : searchTree.value;
           break;
         default:
           throw new Error(

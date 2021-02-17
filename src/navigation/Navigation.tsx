@@ -1,5 +1,5 @@
 import * as React from "react";
-import { User24, CaretDown24, Upload24 } from "@carbon/icons-react";
+import { User24, CaretDown24, Upload24, CertificateCheck32 } from "@carbon/icons-react";
 import { Workbook } from "exceljs";
 
 import { UserName } from "./UsersTypes";
@@ -14,7 +14,7 @@ export type NavigationProps = {
   currentUser: UserName;
   setCurrentUser: (newCurrentUser: UserName) => void;
   setLocalData: (hhsts: HHSt[], firstYear: number) => void;
-}
+};
 
 export function Navigation({ currentUser, setCurrentUser, setLocalData }: NavigationProps): JSX.Element {
   const [usersSelectable, setUsersSelectable] = React.useState<boolean>(false);
@@ -27,10 +27,19 @@ export function Navigation({ currentUser, setCurrentUser, setLocalData }: Naviga
   function toggleBurgerActiveClassName() {
     setBurgerActiveClassName(burgerActiveClassName ? "" : "is-active");
   }
-  return <nav className="navbar">
+  return <nav className="navbar has-background-info" key="Navbar">
 
     <div className="navbar-brand">
+      <div className="navbar-item has-text-light" >
+        <div className="media">
+          <div className="media-left"><CertificateCheck32 /></div>
+          <div className="media-content">
 
+            <p className="title has-text-light">Universalsuche</p>
+            <p className="subtitle has-text-light">Prototyp für die Suche im kameralen Haushalt</p>
+          </div>
+        </div>
+      </div>
       <a role="button" className={`navbar-burger ${burgerActiveClassName}`} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={toggleBurgerActiveClassName}>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -42,16 +51,16 @@ export function Navigation({ currentUser, setCurrentUser, setLocalData }: Naviga
 
       <div className="navbar-end">
 
-        <div className="navbar-item"><DocReferrer /></div>
+        <div className="navbar-item"><DocReferrer>Anleitung</DocReferrer></div>
         {/* ------------ user selection ------------------*/}
         <div className="navbar-item">
 
 
-          <div className={`dropdown ${usersSelectable ? "is-active" : ""}`} onClick={toggleUsersSelectable}>
+          <div className={`dropdown  ${usersSelectable ? "is-active " : ""}`} onClick={toggleUsersSelectable}>
             <div className="dropdown-trigger">
-              <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+              <button className="button has-background-info" aria-haspopup="true" aria-controls="dropdown-menu">
                 <span className="icon-text"> <span className="icon"><User24 /></span>
-                  <span>{currentUser}</span></span>
+                  <span className="has-text-light">{currentUser}</span></span>
                 <span className="icon is-small">
                   <CaretDown24 />
                 </span>
@@ -84,5 +93,5 @@ export function Navigation({ currentUser, setCurrentUser, setLocalData }: Naviga
 
       </div>
     </div>
-  </nav>
+  </nav>;
 }

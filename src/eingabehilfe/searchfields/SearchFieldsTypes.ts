@@ -7,19 +7,25 @@ type SearchFieldsSimpleRowsData = {
   epl: SearchFieldDataPseudoNumeric;
   kap: SearchFieldDataPseudoNumeric;
   gruppe: SearchFieldDataPseudoNumeric;
+  fkz: SearchFieldDataPseudoNumeric;
   fulltext: SearchFieldDataSingle;
 };
+
 export type SearchFieldData =
   | SearchFieldDataSingle
   | SearchFieldDataPseudoNumeric;
 
 export type SearchFieldDataBase = {
+  /** name displayed in UI searchfields */
   label: string;
+
+  /** keyword used in Universalsuche */
   keyword: string;
-  hidden?: boolean;
+  
 };
 export type SearchFieldDataSingle = SearchFieldDataBase & {
   type: "single";
+  /** Suchbegriff oder Suchbegriffe mit Leerzeichen oder Komma getrennt */
   value: string;
 };
 

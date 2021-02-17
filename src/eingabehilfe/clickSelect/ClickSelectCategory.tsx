@@ -63,7 +63,7 @@ export function ClickSelectCategory({
 
                   onClick={(_ev, index) => setSearchExpression(`${expensePieData[index].searchTerm || ""} ${searchExpression}`)}
                 />
-                <div>nach Einnahmen</div>
+                <p className="heading">nach Einnahmen</p>
               </div>
             </div>
             <div className="column">
@@ -81,7 +81,7 @@ export function ClickSelectCategory({
 
                   onClick={(_ev, index) => setSearchExpression(`${expensePieData[index].searchTerm || ""} ${searchExpression}`)}
                 />
-                <div>nach Ausgaben</div>
+                <p className="heading">nach Ausgaben</p>
               </div>
             </div>
           </div>

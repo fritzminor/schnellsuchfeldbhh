@@ -7,15 +7,6 @@
   flex-direction: column;
 }
 
-.inputfieldcontainer {
-  display: flex;
-  flex-direction: column;
-}
-
-.inputfieldcontainer > .searchIcon {
-  position: absolute;
-  margin: 0.8em;
-}
 
 button {
   padding: 0.2em;
@@ -25,15 +16,6 @@ button {
   font-size: 0.8em;
 }
 
-input {
-  padding: 0.4em;
-  padding-left: 3em;
-  margin: 0.2em;
-  border-radius: 0.6em;
-  font-size: 1.2em;
-  width: 100%;
-  background-color: lightyellow;
-}
 
 .helptext {
   padding: 0.2em;
@@ -48,6 +30,9 @@ input {
   align-items: center;
 }
 
+.searchfields .input.fromTo {
+  max-width:6em;
+}
 
 /* -------- HHSt liste ---------- */
 .hhstListContainer {
@@ -102,18 +87,3 @@ background-color: cyan
   position: absolute;
   top: 0;
 }
-
-.sums {
-  position: fixed;
-  margin: 2em;
-  padding: 1em;
-  border-radius: 0.5em;
-  bottom: 0;
-  width: 65%;
-  background-color: rgba(24, 204, 84, 0.774);
-}
-
-.sums .searchtree {
-  font-size: smaller;
-}
-
