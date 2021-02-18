@@ -11,13 +11,14 @@ export type EingabeHilfenListProps = {
   setSearchExpression: (searchexpression: string) => void;
   cursorPosState: number;
   setLimitOnState: (limitOnState: boolean) => void;
-  proposalsLimit: number;
-  hilfen: HilfenType;
+
+  moreHelpersThanLimitAvailable: boolean;
+  helpers: HelpersType;
   limited: boolean;
   inputfieldRef: React.RefObject<HTMLInputElement>;
 };
 
-export type HilfenType = {
+export type HelpersType = {
   items: EingabeHilfeItem[];
   fullMatch: string | null;
   helpText: string | null;
@@ -29,8 +30,8 @@ export function EingabeHilfenList({
   appState,
   cursorPosState,
   setLimitOnState,
-  proposalsLimit,
-  hilfen,
+  moreHelpersThanLimitAvailable,
+  helpers: hilfen,
   inputfieldRef,
   limited
 }: EingabeHilfenListProps): JSX.Element {
@@ -72,8 +73,10 @@ export function EingabeHilfenList({
             }}
           />
         ))}
-      <div>
-        <MoreLessButton limited={limited} setLimited={setLimitOnState} />
+      <div> {moreHelpersThanLimitAvailable
+        ? <MoreLessButton limited={limited} setLimited={setLimitOnState} />
+        : <></>
+      }
       </div>
     </>
   );

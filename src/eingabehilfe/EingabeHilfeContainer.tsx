@@ -56,6 +56,7 @@ export function EingabeHilfeContainer({
     })
     : null;
   let limited = false;
+  const moreHelpersThanLimitAvailable=!!(hilfen && hilfen.items.length>proposalsLimit);
   if (hilfen && limitOnState) {
     if (hilfen.items.length > proposalsLimit) {
       hilfen.items = hilfen.items.slice(0, proposalsLimit);
@@ -170,9 +171,9 @@ export function EingabeHilfeContainer({
             }}
             cursorPosState={cursorPosState}
             limited={limited}
-            proposalsLimit={proposalsLimit}
+            moreHelpersThanLimitAvailable={moreHelpersThanLimitAvailable}
             setLimitOnState={setLimitOnState}
-            hilfen={hilfen}
+            helpers={hilfen}
             inputfieldRef={inputfieldRef}
           />
         ) : (
