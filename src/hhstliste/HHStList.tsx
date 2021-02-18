@@ -3,6 +3,7 @@ import * as React from "react";
 import { HHStRow } from "./HHStRow";
 import { HHSt } from "../store/HHStType";
 import { AppState } from "../store/AppState";
+import { MoreLessButton } from "../othercomponents/MoreLessButton";
 
 
 
@@ -25,8 +26,12 @@ export function HHStList({
   appState: AppState;
 }>): JSX.Element {
   try {
+    const [limited, setLimited] = React.useState<boolean>(true);
+    const hhstLimit = 500;
     rowHeadings.sollJahr1 = appState.derived.firstYear;
-    const filteredHhstArray = appState.derived.filteredHhstArray;
+    const hhsts = limited
+      ? appState.derived.filteredHhstArray.slice(0, hhstLimit)
+      : appState.derived.filteredHhstArray;
 
     return (
       <>
@@ -36,7 +41,7 @@ export function HHStList({
             hhst={rowHeadings}
             key="heading"
           />
-          {filteredHhstArray.map((hhst) => (
+          {hhsts.map((hhst) => (
             <HHStRow
               hhst={hhst}
               key={
@@ -47,6 +52,9 @@ export function HHStList({
               }
             />
           ))}
+          {hhstLimit < appState.derived.filteredHhstArray.length
+            ? <MoreLessButton limited={limited} setLimited={setLimited} />
+            : <></>}
 
           {
             children // for hhstOverlay
