@@ -72,7 +72,8 @@ export const fieldsExtended: (keyof SearchFieldsData["positive"])[] = [
 ];
 
 export const parserKeywords2FieldKeys: {
-  [index: string]: "epl" | "kap" | "gruppe" | "fkz" //  keyof SearchFieldsData["positive"];
+  [index: string]: //"epl" | "kap" | "gruppe" | "fkz" 
+    Exclude<keyof SearchFieldsData["positive"],"fulltext">;
 } = {
   Epl: "epl",
   Kap: "kap",
