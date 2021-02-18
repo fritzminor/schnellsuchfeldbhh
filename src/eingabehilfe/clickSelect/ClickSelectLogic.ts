@@ -98,16 +98,13 @@ export function getClickSelectData(appState: AppState): ClickSelectData {
 
 
   const rootCategories = [...categories];
-  console.log(rootCategories);
+  
   categories.forEach((category) => {
-    console.log(category, rootCategories);
     // es-lint-disable-next-line @typescript-eslint/no-non-null-assertion
     const catMeta = csCategoryMetaMap[category]!;
-    console.log(catMeta);
     const parentCategory = catMeta.parentCategory;
     let deleteCurrCat = false;
     if (parentCategory) {
-      console.log("with parent", category, rootCategories);
       // es-lint-disable-next-line @typescript-eslint/no-non-null-assertion
       if (data[parentCategory]!.itemsSorted.length <= 1) {
         // parent category has one or zero elements ==> delete parent category

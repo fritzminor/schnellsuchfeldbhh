@@ -121,8 +121,6 @@ export function getSearchFieldsData(
   searchTree: SearchNode | null
 ): SearchFieldsData {
   const searchFieldsData: SearchFieldsData = initialFieldsData();
-  //console.log("empty fields data", searchFieldsData.positive.epl.valueFrom);
-  //console.log("clone fields data", initialFieldsData().positive.epl.valueFrom);
   try {
     if (searchTree)
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -193,6 +191,7 @@ function fillSearchFieldsData(
         case "Epl":
         case "Kap":
         case "Grp":
+        case "FKZ":
           //eslint-disable-next-line no-case-declarations
           const key =
             parserKeywords2FieldKeys[searchTree.keyword];
