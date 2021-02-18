@@ -4,6 +4,7 @@ import { EingabeHilfeItem } from "./EingabeHilfeTypes";
 import { EingabeHilfeElement } from "./EingabeHilfeElement";
 import { replaceToken } from "./EingabeHilfeLogic";
 import { AppState } from "../store/AppState";
+import { MoreLessButton } from "../othercomponents/MoreLessButton";
 
 export type EingabeHilfenListProps = {
   appState: AppState;
@@ -71,25 +72,9 @@ export function EingabeHilfenList({
             }}
           />
         ))}
-      {limited ? (
-        <button
-          onClick={() => {
-            setLimitOnState(false);
-          }}
-        >
-          mehr...
-        </button>
-      ) : hilfen && hilfen.items.length > proposalsLimit ? (
-        <button
-          onClick={() => {
-            setLimitOnState(true);
-          }}
-        >
-          weniger...
-        </button>
-      ) : (
-        <></>
-      )}
+      <div>
+        <MoreLessButton limited={limited} setLimited={setLimitOnState} />
+      </div>
     </>
   );
 }
