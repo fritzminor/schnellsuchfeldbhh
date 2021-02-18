@@ -1,4 +1,3 @@
-import { History } from "history";
 import * as React from "react";
 import { getSearchTree } from "../hhstliste/hhstListeLogic/searchParser";
 import { SearchNode } from "../hhstliste/hhstListeLogic/searchTreeTypes";
@@ -26,15 +25,25 @@ const hhstFirstYears: { [index in UserName]: number } = {
 
 export function createStore( // eslint-disable-line  @typescript-eslint/explicit-module-boundary-types
   setState: React.Dispatch<React.SetStateAction<AppState>>,
-  history: History
+
 ) {
+  const history = {
+    push: ({ search }: { search: string; }) => {
+      const location = window.location;
+      const url = new URL(window.location.toString());
+      url.search = search;
+      console.log("url", url, url.toString());
+      window.history.pushState(null, "", url.toString());
+    }
+  };
   return {
-    setSearchExpression(searchexpression: string) {
-      history.push({
-        search: searchexpression
-          ? "?q=" + encodeURIComponent(searchexpression)
-          : undefined
-      });
+    setSearchExpression(searchexpression: string, noUpdate?: boolean) {
+      if (!noUpdate)
+        history.push({
+          search: searchexpression
+            ? "?q=" + encodeURIComponent(searchexpression)
+            : ""
+        });
 
       setState((prevState: AppState) => ({
         ...prevState,
@@ -49,10 +58,10 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
         ...prevState,
         currentUser: newCurrentUser,
         derived: getDerivedFrom(prevState.searchexpression, newCurrentUser)
-      }))
+      }));
     },
 
-    setLocalData(hhsts: HHSt[], firstYear:number) {
+    setLocalData(hhsts: HHSt[], firstYear: number) {
       hhstDataArrays.LokaleDaten = hhsts;
       hhstFirstYears.LokaleDaten = firstYear;
     }
@@ -85,7 +94,7 @@ function getDerivedFrom(searchexpression: string, currentUser: UserName): AppSta
     filteredHhstArray,
     firstYear: hhstFirstYears[currentUser]
 
-  }
+  };
 }
 
 
@@ -97,5 +106,5 @@ export function getStateFrom(searchexpression: string, currentUser: UserName): A
     currentUser,
     derived: getDerivedFrom(searchexpression, currentUser)
 
-  }
+  };
 }

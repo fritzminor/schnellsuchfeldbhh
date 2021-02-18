@@ -8,26 +8,45 @@ import { AppState } from "./store/AppState";
 import { createStore, getStateFrom } from "./store/Store";
 import { useState } from "react";
 
-import history from "history/browser";
 import { Navigation } from "./navigation/Navigation";
 import { HHStOverview } from "./hhstliste/HHStOverview";
+
 
 // Check for https://medium.com/@svsh227/create-your-own-type-ahead-dropdown-in-react-599c96bebfa
 //           https://github.com/fmoo/react-typeahead
 //           https://github.com/moroshko/react-autosuggest
 
+function getQ(urlSearch: string) {
+  return new URLSearchParams(urlSearch).get(
+    "q"
+  ) || "";
+}
+
 //eslint-disable-next-line no-undef
 export default function App(): JSX.Element {
+  
   const [state, setState] = useState<AppState>(getStateFrom(
-    new URLSearchParams(history.location.search).get(
-      "q"
-    ) || "",
+    getQ(window.location.search),
     "BearbeiterEpl01und02"
   ));
   const { setSearchExpression, setCurrentUser, setLocalData } = createStore(
     setState,
-    history
   );
+
+  const [historyListened, setHistoryListened] = useState<boolean>(false);
+  console.log("listende", historyListened, window.history.length);
+  if (!historyListened) {
+
+    setHistoryListened(true);
+    window.onpopstate = (ev: PopStateEvent) => {
+      console.log("popstate",window.location.search, window.history.length);
+      setTimeout(() => {
+        setSearchExpression(getQ(window.location.search),true);
+        console.log("ev", ev, window.location.search, window.history.length);
+      }
+      );
+    };
+  }
 
   return (
     <>
