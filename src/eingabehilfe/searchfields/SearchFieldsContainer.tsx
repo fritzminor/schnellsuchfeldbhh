@@ -9,6 +9,7 @@ import {
 import { AppState } from "../../store/AppState";
 import { DocReferrer } from "../../othercomponents/DocReferrer";
 import { RealInputField } from "../../othercomponents/RealInputField";
+import { MoreLessButton } from "../../othercomponents/MoreLessButton";
 
 type SearchFieldsContainerProps = {
   setSearchExpression: (searchexpression: string) => void;
@@ -258,23 +259,7 @@ export function SearchFieldsContainer({
 
           </div>
         )}
-      {limited ? (
-        <button className="button is-small"
-          onClick={() => {
-            setLimited(false);
-          }}
-        >
-          mehr...
-        </button>
-      ) : (
-          <button className="button is-small"
-            onClick={() => {
-              setLimited(true);
-            }}
-          >
-            weniger...
-          </button>
-        )}
+        <MoreLessButton limited={limited} setLimited={setLimited} />
     </div>
   );
 }
