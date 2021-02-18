@@ -44,6 +44,11 @@ export function EingabeHilfeContainer({
     setSearchExpressionSetBySearchFields
   ] = useState<boolean>(false);
 
+  const   /** Zeigt den Vorschlägebereich an. */
+    showHelpers: () => void = () => {
+      setActiveTab("helpers");
+    };
+
   const hilfen = focusState
     ? eingabehilfen({
       searchexpression,
@@ -98,6 +103,7 @@ export function EingabeHilfeContainer({
                   (e.target as HTMLInputElement)
                     .selectionStart || 0
                 );
+                showHelpers();
               }}
               onClick={(e) => {
                 setCursorPosState(
