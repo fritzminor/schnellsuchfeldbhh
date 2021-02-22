@@ -151,3 +151,5 @@ Man kann aber auch den Bearbeiter wechseln, indem man rechts oben das Pulldown-M
 ## Entwicklung
 
 Die weitere Entwicklung des Prototyps findet auf https://github.com/fritzminor/schnellsuchfeldbhh[github] statt. Der Prototyp und die Quelldateien sind unter der MIT-Lizenz frei verfügbar.
+
+Der Prototyp dient der Gewinnung von Rückmeldung, wie eine optimale Suchmaske für eine Anwendung zur Aufstellung eines kameralen Haushaltplans aussehen soll. Daher bitte auf https://github.com/fritzminor/schnellsuchfeldbhh/issues[github] mittels eines "New Issue" mitteilen, was gut ist, was besser werden könnte, was weggelassen werden kann, was schlecht ist.

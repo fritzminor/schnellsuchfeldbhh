@@ -1,4 +1,7 @@
 # Schnellsuchfeld - Prototyp
+:toc: preamble
+:toc-title: Übersicht
+
 
 Das SchnellsuchfeldBHH ist ein Prototyp für den Auswahlfilter für ein kamerales Haushaltsaufstellungsverfahren.
 
@@ -6,8 +9,53 @@ Eine https://schnellsuchfeldbhh.netlify.app/[lauffähige Version] wird via Netli
 
 Eine <<docs/anleitung.adoc#,Anleitung>> findet sich im /docs-Unterverzeichnis.
 
+## Alternative 1: Installation auf eigenem Rechner
+
+### Voraussetzungen
+
+Der Prototyp läuft auf https://nodejs.org/de/[Node.js]. Node.js muss installiert sein.
+
+Um den Quellcode herunterzuladen, braucht man https://git-scm.com/[git]. Auch das muss installiert sein.
+
+### Herunterladen
+
+In einer Terminal/Shell/Kommandozeilenumgebung gibt man zum Herunterladen Folgendes ein:
+
+  git clone https://github.com/fritzminor/schnellsuchfeldbhh.git
+
+
+### Installation der Bibliotheken, von dem der Prototyp abhängt
+
+  cd schnellsuchfeldbhh/
+  npm install 
+
+### Alternative 1.a) Starten des Entwicklungsservers
+  
+  cd schnellsuchfeldbhh/
+  npm run start
+
+### Alternative 1.b) Produktiv bauen
+
+Alternativ zum langsameren Entwicklungsserver kann man den Prototyp auch folgendermaßen bauen:
+
+  cd schnellsuchfeldbhh/
+  npm run build
+
+Das Ergebnis kann man mit einem beliebigen Webserver wie Apache oder Nginx ausliefern oder aber folgendermaßen:
+
+  cd schnellsuchfeldbhh/
+  npx serve -s build/
+
+## Alternative 2: Einrichten einer Entwicklungsumgebung auf codesandbox.io
+
+Alternativ zur Installation auf einem eigenen Rechner kann man sich einen ersten Eindruck vom Quellcode in einer Online-Entwicklungsumgebung verschaffen. Dazu kann man unter https://codesandbox.io/ sich ein Benutzerkonto anlegen und dann mit "New Sandbox" -> "Import Project" -> "Import from Github" das Projekt "https://github.com/fritzminor/schnellsuchfeldbhh" importieren.
+
+Noch schneller geht das mit 
+https://githubbox.com/fritzminor/schnellsuchfeldbhh .
+
 ## Demonstration
 
+* Aufrufen von https://schnellsuchfeldbhh.netlify.app/
 * Beim leeren Suchfeld werden alle Haushaltsstellen des
   Bearbeiters angezeigt (hier grundsätzlich die Einzelpläne des Bundespräsidenten -Epl 01- und des Bundestags -Epl 02-).
 * Man sieht 
@@ -43,6 +91,7 @@ Eine <<docs/anleitung.adoc#,Anleitung>> findet sich im /docs-Unterverzeichnis.
 
 Das folgende sind Ideen. Da es sich aber nur um einen Prototyp handelt, kann es gut sein, dass es beim Ideenstand bleibt.
 
+- Ausfüllen einer Excel-Datei: Die Zellen mit Universalsuchausdrücken werden durch die jeweiligen Einnahmen bzw. Ausgaben ersetzt.
 - Bei fullTextMatch sollte Token hervorgehoben werden (notfalls nur im helptext etwa so "'Epl:13' in 'Grp:5 Epl:13' führt zu Suche nach ...", wobei "Epl:13" beides Mal unterstrichen wird)
 - Weitere Suchvorschläge, wenn Grp:\d, nämlich Grp:$1\d und Grp:$1\d\d
 - A und E als Schnelleingrenzung auf Ausgaben oder Einnahmen
@@ -52,10 +101,7 @@ Das folgende sind Ideen. Da es sich aber nur um einen Prototyp handelt, kann es 
 
 ## Weiterentwicklung
 
-Der Prototyp kann frei unter der MIT-Lizenz genutzt werden. Verbesserungen sind willkommen. 
+Der Prototyp kann frei unter der MIT-Lizenz genutzt werden. Verbesserungen sind willkommen. Feedback bitte via https://github.com/fritzminor/schnellsuchfeldbhh/issues[GitHub-Issue].
 
-Recht schnell kann man mit codesandbox.io sich im Code zurecht finden. Dazu kann man sich mit folgendem Link eine eigene Entwicklungsumgebung erzeugen:
-
-https://githubbox.com/fritzminor/schnellsuchfeldbhh
 
 Viel Spaß und Erfolg!
