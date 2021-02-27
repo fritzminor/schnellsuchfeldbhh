@@ -3,20 +3,28 @@ import { User24, CaretDown24, Upload24, CertificateCheck32 } from "@carbon/icons
 import { Workbook } from "exceljs";
 
 import { UserName } from "./UsersTypes";
-import { UploadButton } from "../upload/UploadButton";
+import { ImportButton } from "../import/ImportButton";
 import { DocReferrer } from "../othercomponents/DocReferrer";
 import { HHSt } from "../store/HHStType";
+import { AnalyzeResults } from "../import/importAnalyseSheet";
+import { Store } from "../store/Store";
+import { AppState } from "../store/AppState";
 
 
 const userNames: UserName[] = ["BearbeiterEpl01und02", "BearbeiterGesamtBHH"];
 
 export type NavigationProps = {
-  currentUser: UserName;
-  setCurrentUser: (newCurrentUser: UserName) => void;
-  setLocalData: (hhsts: HHSt[], firstYear: number) => void;
+  appState: AppState;
+  store: Store;
 };
 
-export function Navigation({ currentUser, setCurrentUser, setLocalData }: NavigationProps): JSX.Element {
+export function Navigation({ appState, store
+}: NavigationProps): JSX.Element {
+  const { currentUser } = appState;
+  const { setCurrentUser, setLocalData,
+    setModalInfo,
+    showUserMessage
+  } = store;
   const [usersSelectable, setUsersSelectable] = React.useState<boolean>(false);
   function toggleUsersSelectable() {
     setUsersSelectable(!usersSelectable);
@@ -79,11 +87,22 @@ export function Navigation({ currentUser, setCurrentUser, setLocalData }: Naviga
                 })}
                 <hr className="dropdown-divider" />
                 <div className="dropdown-item">
-                  <UploadButton setCurrentUser={(newCurrentUser) => {
-                    setCurrentUser(newCurrentUser);
-                    setUsersSelectable(false);
-                  }}
-                    setLocalData={setLocalData} />
+                  <ImportButton
+                    store={
+                      {
+                        ...store,
+                        setCurrentUser: (newCurrentUser) => {
+                          setCurrentUser(newCurrentUser);
+                          setUsersSelectable(false);
+                        }
+                      }
+                    }
+
+                    appState={
+                      appState
+                    }
+                  />
+
                 </div>
               </div>
             </div>

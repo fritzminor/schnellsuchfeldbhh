@@ -5,11 +5,13 @@ import "./styles.css";
 import { EingabeHilfeContainer } from "./eingabehilfe/EingabeHilfeContainer";
 import { HHStList } from "./hhstliste/HHStList";
 import { AppState } from "./store/AppState";
-import { createStore, getStateFrom } from "./store/Store";
+import { createStore, getStateFrom, Store } from "./store/Store";
 import { useState } from "react";
 
 import { Navigation } from "./navigation/Navigation";
 import { HHStOverview } from "./hhstliste/HHStOverview";
+import { ModalMessage } from "./modal/ModalMessage";
+import { ModalInfo } from "./modal/ModalInfo";
 
 
 // Check for https://medium.com/@svsh227/create-your-own-type-ahead-dropdown-in-react-599c96bebfa
@@ -24,14 +26,16 @@ function getQ(urlSearch: string) {
 
 //eslint-disable-next-line no-undef
 export default function App(): JSX.Element {
-  
+
   const [state, setState] = useState<AppState>(getStateFrom(
     getQ(window.location.search),
     "BearbeiterEpl01und02"
   ));
-  const { setSearchExpression, setCurrentUser, setLocalData } = createStore(
+  const store: Store = createStore(
     setState,
   );
+  const { setSearchExpression, hideUserMessage,
+  } = store;
 
   const [historyListened, setHistoryListened] = useState<boolean>(false);
   console.log("listende", historyListened, window.history.length);
@@ -39,9 +43,9 @@ export default function App(): JSX.Element {
 
     setHistoryListened(true);
     window.onpopstate = (ev: PopStateEvent) => {
-      console.log("popstate",window.location.search, window.history.length);
+      console.log("popstate", window.location.search, window.history.length);
       setTimeout(() => {
-        setSearchExpression(getQ(window.location.search),true);
+        setSearchExpression(getQ(window.location.search), true);
         console.log("ev", ev, window.location.search, window.history.length);
       }
       );
@@ -50,7 +54,9 @@ export default function App(): JSX.Element {
 
   return (
     <>
-      <Navigation currentUser={state.currentUser} setCurrentUser={setCurrentUser} setLocalData={setLocalData} />
+      <Navigation appState={state}
+        store={store}
+      />
       <section className="section">
         <div className="container">
           <EingabeHilfeContainer
@@ -94,7 +100,7 @@ export default function App(): JSX.Element {
             href="https://www.bundeshaushalt.de/download">bundeshaushalt.de</a>.
           Code auf <a href="https://github.com/fritzminor/schnellsuchfeldbhh">github</a> </div>
       </footer>
-
+      <ModalInfo modalInfo={state.modalInfo} hideUserMessage={store.hideUserMessage} />
     </>
   );
 }

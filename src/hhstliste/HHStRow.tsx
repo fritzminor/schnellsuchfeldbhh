@@ -1,4 +1,5 @@
 import * as React from "react";
+import { formatBetrag } from "../store/AppState";
 import { HHSt } from "../store/HHStType";
 
 type HHStRowProps = {
@@ -25,13 +26,4 @@ export function HHStRow({ hhst, heading }: HHStRowProps): JSX.Element {
       </div>
     </div>
   );
-}
-
-/** returns a number formatted with . as 000 separator and a comma 0 */
-export function formatBetrag(betrag: number): string {
-  return betrag === 0
-    ? "-"
-    : betrag.toLocaleString("de-DE", {
-      minimumFractionDigits: 1
-    });
 }

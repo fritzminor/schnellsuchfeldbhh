@@ -1,6 +1,5 @@
-import { formatBetrag, HHStRow } from "./HHStRow";
 import { humanReadableSearchTerm } from "./hhstListeLogic/humanReadableSearchTerm";
-import { AppState } from "../store/AppState";
+import { AppState, formatBetrag, getSums } from "../store/AppState";
 import { NextOutline32, PreviousOutline32, Query32 } from "@carbon/icons-react";
 import { PropsWithChildren } from "react";
 
@@ -22,22 +21,7 @@ export function HHStOverview(
 ): JSX.Element {
   const filteredHhstArray = appState.derived.filteredHhstArray;
 
-  const sums = filteredHhstArray.reduce(
-    (previousSums, hhst) => {
-      if (hhst.expense)
-        return {
-          expenses:
-            previousSums.expenses + hhst.sollJahr1,
-          revenues: previousSums.revenues
-        };
-      else
-        return {
-          expenses: previousSums.expenses,
-          revenues: previousSums.revenues + hhst.sollJahr1
-        };
-    },
-    { expenses: 0, revenues: 0 }
-  );
+  const sums = getSums(filteredHhstArray);
 
   return (
     <div className="container">
