@@ -4,6 +4,7 @@ import { AppState } from "../store/AppState";
 import { HHSt } from "../store/HHStType";
 import { AnalyzeResults, importAnalyzeSheet } from "./importAnalyseSheet";
 import { importHOLXSLX } from "./importHOLXSLX";
+import { importSN_XSLX } from "./importSN_XLSX";
 
 
 
@@ -30,13 +31,17 @@ export const loadFile = (evt: React.ChangeEvent<HTMLInputElement>,
             } catch (reasonHOLXLSX) {
               console.log("Kein Format für importHOLXSLX.", reasonHOLXLSX, file);
               try {
+                importSN_XSLX(file, workbook, setCurrentUser, setLocalData);
+              } catch (reasonSN_XLSX) {
+                console.log("Kein Format für importSN_XSLX.", reasonSN_XLSX, file);
+                try {
 
-                const analyzeResults = await importAnalyzeSheet(file, workbook,appState);
-                setModalInfo(analyzeResults);
-              } catch (reasonAnalyzeSheet) {
-                console.log("Kein Auswerte-Tabellenblatt", reasonAnalyzeSheet, file);
-                throw reasonHOLXLSX; // throw former Error
-
+                  const analyzeResults = await importAnalyzeSheet(file, workbook, appState);
+                  setModalInfo(analyzeResults);
+                } catch (reasonAnalyzeSheet) {
+                  console.log("Kein Auswerte-Tabellenblatt", reasonAnalyzeSheet, file);
+                  throw reasonSN_XLSX; // throw former Error
+                }
               }
             }
           })

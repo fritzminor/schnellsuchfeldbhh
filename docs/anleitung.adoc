@@ -148,6 +148,19 @@ Die Daten des Prototyps stammen von https://www.bundeshaushalt.de/download[bunde
 
 Man kann aber auch den Bearbeiter wechseln, indem man rechts oben das Pulldown-Menü benützt. Hier wird noch ein Bearbeiter ermöglicht, der den gesamten Bundeshaushalt bearbeiten darf. Ggf. muss das Pulldown-Menü mit dem "Burger"-Menü (drei waagrechte Striche übereinander) erst angezeigt werden.
 
+In einer produktiven Anwendung müsste an dieser Stelle ein Login-Dialog aufgehen. Oder die Anwendung ist an ein Single-Sign-On-Verfahren angeschlossen.
+
+### Lokale Daten
+
+Statt die Testdaten zu nutzen, kann man auch eigene Daten hochladen. Z.B. kann man die Daten, die der Freistaat Sachsen als Excel-Daten auf https://www.finanzen.sachsen.de/entwurf-doppelhaushalt-2021-2022-6436.html zur Verfügung stellt (ganz unten auf der Seite bei "maschinenlesbare Daten"), in den Prototyp importieren. Die Daten bleiben rein lokal im Browser. Die Daten werden auf keinen Server hochgeladen. 
+
+Um die Daten hochzuladen, klickt man rechts oben auf das Bearbeiter-Menü, wo _BearbeiterEpl01und02_ steht. 
+Im aufgehenden Dropdown-Menü wählt man _Excel-Import_. Dann wird man gebeten, die entsprechende Excel-Datei 
+auszuwählen. Diese sollte man zuvor z.B. 
+von https://www.finanzen.sachsen.de/entwurf-doppelhaushalt-2021-2022-6436.html[sachsen.de] heruntergeladen haben.
+
+Man kann auch andere Daten hochladen, wenn sie im selben Format vorliegen. Bei anderen Formaten hilft evtl. ein <<Entwicklung,Issue>> auf https://github.com/fritzminor/schnellsuchfeldbhh/issues[github] einzustellen.
+
 ## Entwicklung
 
 Die weitere Entwicklung des Prototyps findet auf https://github.com/fritzminor/schnellsuchfeldbhh[github] statt. Der Prototyp und die Quelldateien sind unter der MIT-Lizenz frei verfügbar.

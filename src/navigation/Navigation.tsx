@@ -86,7 +86,7 @@ export function Navigation({ appState, store
                   </a>;
                 })}
                 <hr className="dropdown-divider" />
-                <div className="dropdown-item">
+                <div className="dropdown-item is-flex is-flex-direction-row">
                   <ImportButton
                     store={
                       {
@@ -102,6 +102,7 @@ export function Navigation({ appState, store
                       appState
                     }
                   />
+                  <DocReferrer topic="Lokale Daten" />
 
                 </div>
               </div>
