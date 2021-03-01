@@ -22,7 +22,7 @@ export function ImportButton({ store, appState }: ImportButtonProps): JSX.Elemen
     showUserMessage(msg);
   }
 
-  return <div className="file">
+  return <div className="file is-info">
     <label className="file-label">
       <input className="file-input" type="file" name="resume" onChange={
         (evt) => { loadFile(evt, appState, setCurrentUser, setLocalData, setModalInfo, showError); }
