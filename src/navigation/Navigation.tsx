@@ -46,7 +46,7 @@ export function Navigation({
       burgerActiveClassName ? "" : "is-active"
     );
   }
-  
+
   return (
     <nav
       className="navbar has-background-info"
@@ -86,17 +86,20 @@ export function Navigation({
       >
         <div className="navbar-end">
 
-          <ShareMenu showUserMessage={showUserMessage} />
-          
+          <ShareMenu
+            appState={appState}
+            showUserMessage={showUserMessage}
+            setModalInfo={store.setModalInfo}
+          />
+
           <div className="navbar-item">
             <DocReferrer>Anleitung</DocReferrer>
           </div>
           {/* ------------ user selection ------------------*/}
           <div className="navbar-item">
             <div
-              className={`dropdown  ${
-                usersSelectable ? "is-active " : ""
-              }`}
+              className={`dropdown  ${usersSelectable ? "is-active " : ""
+                }`}
               onClick={toggleUsersSelectable}
             >
               <div className="dropdown-trigger">

@@ -47,7 +47,7 @@ Das Suchfeld Gruppierungsnummer findet sich im "Suchfelder"-Bereich etwas verste
 Das Suchfeld Gruppierungsnummer versteht Eingaben für
 
 - Hauptgruppen (einstellig, z.B. "5" für sächliche Verwaltungsausgaben)
-- Obergruppten (zweistellig)
+- Obergruppen (zweistellig)
 - eigentliche Gruppierungsnummern.
 
 Wird nur in das linke Feld (bezeichnet mit "von") eine Nummer eingegeben, wird nach Haushaltsstellen gesucht, die exakt dieser Haupt-/Ober-/Untergruppe zuzuordnen sind. Wird rechts ebenfalls etwas eingegeben, wird nach den Haushaltsstellen in dem mit "von" und "bis" gekennzeichneten Bereich gesucht.
@@ -144,10 +144,32 @@ Der Vorschlägebereich gibt Vorschläge für die Eingabe an der aktuellen Positi
 
 ## Teilen
 
-Die Suchauswahl kann auch weitergegeben werden (Smartphone-Deutsch: Teilen).
+Die Suchauswahl kann auch weitergegeben werden (Smartphone-Deutsch: Teilen). Den entsprechend
+bezeicheneten Knopf findet man in der oberen Navigationsleiste.
 
-Dazu kann man einen Link mit der aktuellen Suchauswahl kopieren oder
+Dort kann man einen Link mit der aktuellen Suchauswahl kopieren oder
 eine Mail schreiben, der automatisch ein Link beigefügt wird.
+
+### Excel-Analyse
+
+In einer Excel-Datei (.XLSX) kann man auch Ausgaben- oder Einnahmen-Formeln  eintragen. Mit der _Excel-Analyse_ im _Teilen_-Menü kann man die 
+Excel-Datei dann analysieren lassen und erhält eine Excel-Datei zurück, in der die Ausgaben- und Einnahmen-Formeln durch die jeweilige Summe 
+der Ausgaben bzw. Einnahmen der Haushaltsstellen mit dem entsprechenden Suchausdruck (entspricht den Eintragungen im <<Universalsuchfeld>>) 
+ersetzt werden. So können schnell mehrere Suchen hintereinander ausgeführt werden.
+
+Die Ausgabe-Formel sieht so aus "A=_Suchausdruck_", wobei Suchausdruck dem Suchfilter im Universalsuchfeld entspricht. Beispiele:
+- _A=Grp:4_ wird durch die Summe der Personalausgaben ersetzt.
+- _A=02_ wird durch Summe der Ausgaben im Einzelplan 02 ersetzt.
+- _A=Epl:02 Grp:6_ wird durch die Summe der Zuweisungen (mit Ausnahme für Investitonen) im Einzelplan 02 ersetzt.
+
+Die Einnahmen-Formel entspricht der Ausgabe-Formel, nur beginnt sie statt mit _A=_ mit _E=_.
+
+Man kann zunächst eine entsprechende Suche in den Suchfeldern, im Universalsuchfeld etc. ausführen und dann mit Hilfe des _Teilen_-Menüs die
+passende Einnahme- bzw. Ausgabe-Formel in die Zwischenablage kopieren. Von der Zwischenablage kann man die Formel in eine Excel-Zelle einfügen.
+
+Die Auswertung der Excel-Analyse-Datei erfolgt lokal im Browser. Die auszuwertende Excel-Datei wird auf keinen Server hochgeladen.
+Datengrundlage für die Auswertung ist der aktuell ausgewählte Benutzer bzw. andere <<Lokale Daten>>.
+
 
 
 ## Daten

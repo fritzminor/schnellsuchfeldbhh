@@ -4,17 +4,25 @@ import {
   Email32
 } from "@carbon/icons-react";
 import React, { FC, useState } from "react";
+import { AnalyzeSheetButton } from "../import/AnalyzeSheetButton";
+import { AnalyzeResults } from "../import/importAnalyseSheet";
+import { Copy2Clipboard } from "../othercomponents/Copy2Clipboard";
 import { DocReferrer } from "../othercomponents/DocReferrer";
+import { AppState } from "../store/AppState";
 
 export type ShareMenuProps = {
+  appState: AppState;
   showUserMessage: (
     userMessage: string,
     timeout?: number
   ) => void;
+  setModalInfo: (modalInfo: string | AnalyzeResults | null) => void;
 };
 
+
 export const ShareMenu: FC<ShareMenuProps> = ({
-  showUserMessage
+  appState,
+  showUserMessage, setModalInfo
 }) => {
   const [droppedDown, setDroppedDown] = useState<boolean>(
     false
@@ -24,12 +32,17 @@ export const ShareMenu: FC<ShareMenuProps> = ({
     setDroppedDown(!droppedDown);
   };
 
+  const closeDropDownMenu = () => {
+    setDroppedDown(false);
+  };
+
+  const additionalMessage = " Bitte Formel in Excel-Tabelle einfügen und dann Excel-Analyse starten.";
+
   return (
     <div className="navbar-item">
       <div
-        className={`dropdown  ${
-          droppedDown ? "is-active " : ""
-        }`}
+        className={`dropdown  ${droppedDown ? "is-active " : ""
+          }`}
         onClick={toggleDroppedDown}
       >
         <div className="dropdown-trigger">
@@ -43,32 +56,14 @@ export const ShareMenu: FC<ShareMenuProps> = ({
           role="menu"
         >
           <div className="dropdown-content">
-            <a
-              href="#"
-              className="dropdown-item"
-              onClick={async () => {
-                try {
-                  const clipboardText = window.location.toString();
-                  await navigator.clipboard.writeText(
-                    clipboardText
-                  );
-                  showUserMessage(
-                    clipboardText +
-                      " wurde in die Zwischenablage eingefügt."
-                  );
-                } catch (e) {
-                  alert("No Clipboard:" + e);
-                }
-                setDroppedDown(false);
-              }}
-            >
-              <span className="icon-text">
-                <span className="icon">
-                  <Copy32 />
-                </span>
-                <span>Link in die Zwischenablage</span>
-              </span>
-            </a>
+            <Copy2Clipboard
+              className={"dropdown-item"}
+              text2copy={window.location.toString()}
+              afterCopy={
+                closeDropDownMenu
+              }
+              showUserMessage={showUserMessage}
+            >Link in die Zwischenablage</Copy2Clipboard>
 
             <a
               href={`mailto:?to=&subject=${encodeURIComponent(
@@ -89,9 +84,35 @@ export const ShareMenu: FC<ShareMenuProps> = ({
                 <span>Link per Email</span>
               </span>
             </a>
+
             <hr className="dropdown-divider" />
+
+            <Copy2Clipboard
+              className={"dropdown-item"}
+              text2copy={"A=" + appState.searchexpression}
+              afterCopy={
+                closeDropDownMenu
+              }
+              additionalMessage={additionalMessage}
+              showUserMessage={showUserMessage}
+            >Ausgaben-Formel in die Zwischenablage</Copy2Clipboard>
+
+            <Copy2Clipboard
+              className={"dropdown-item"}
+              text2copy={"E=" + appState.searchexpression}
+              afterCopy={closeDropDownMenu}
+              additionalMessage={additionalMessage}
+              showUserMessage={showUserMessage}
+            >Einnahmen-Formel in die Zwischenablage</Copy2Clipboard>
+
+
             <div className="dropdown-item is-flex is-flex-direction-row">
-              <DocReferrer topic="Teilen" />
+              <AnalyzeSheetButton
+                appState={appState}
+                setModalInfo={setModalInfo}
+                afterAnalysis={ closeDropDownMenu }
+              />
+              <DocReferrer topic="Excel-Analyse" />
             </div>
           </div>
         </div>
