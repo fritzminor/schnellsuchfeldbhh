@@ -79,6 +79,9 @@ export async function importAnalyzeSheet(file: File, workbook: Workbook, appStat
   }
   );
   if (foundExpression) {
+    // Force workbook calculation on load
+    workbook.calcProperties.fullCalcOnLoad = true;
+    
     const xlsxDownloadBuffer = await workbook.xlsx.writeBuffer();
     return {
       type: "AnalyzeResults",
