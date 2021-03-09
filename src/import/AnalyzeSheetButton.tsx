@@ -17,6 +17,11 @@ const loadAnalyzeSheet = (evt: React.ChangeEvent<HTMLInputElement>,
   if (files) {
     const file = files[0];
     console.log("filesSelected", files[0]);
+
+    // this is necessary, because Chrome/Chromium/Edge does not fire 
+    // onchange, if the same file is selected again.
+    evt.target.value="";
+    
     const r = new FileReader();
     r.onload = (evt) => {
       const wb = new Workbook();
