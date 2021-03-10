@@ -27,28 +27,35 @@ export type AppState = {
 };
 
 /** helper method to get filteredHhstList from given searchexpression */
-export function getFilteredHhstArray(hhstArray: HHSt[], searchexpression: string): {
-  searchTree: SearchNode | null,
+export function getFilteredHhstArray(
+  hhstArray: HHSt[],
+  searchexpression: string
+): {
+  searchTree: SearchNode | null;
   filteredHhstArray: HHSt[];
 } {
   const searchTree = getSearchTree(searchexpression);
-  const filteredHhstArray = searchexpression.trim() ?
-    hhstArray.filter((hhst) =>
-      isSearched(hhst, searchTree)) :
-    hhstArray;
+  const filteredHhstArray = searchexpression.trim()
+    ? hhstArray.filter((hhst) =>
+        isSearched(hhst, searchTree)
+      )
+    : hhstArray;
 
   return { searchTree, filteredHhstArray };
 }
 
 /** helper method to get sums from given hhstArray */
-export function getSums(hhstArray: HHSt[]) {
-
+export function getSums(
+  hhstArray: HHSt[]
+): {
+  expenses: number;
+  revenues: number;
+} {
   const sums = hhstArray.reduce(
     (previousSums, hhst) => {
       if (hhst.expense)
         return {
-          expenses:
-            previousSums.expenses + hhst.sollJahr1,
+          expenses: previousSums.expenses + hhst.sollJahr1,
           revenues: previousSums.revenues
         };
       else
@@ -62,14 +69,13 @@ export function getSums(hhstArray: HHSt[]) {
   return sums;
 }
 
-
-/** helper method. 
- * returns a number formatted with . as 000 separator and a comma 0 
+/** helper method.
+ * returns a number formatted with . as 000 separator and a comma 0
  */
 export function formatBetrag(betrag: number): string {
   return betrag === 0
     ? "-"
     : betrag.toLocaleString("de-DE", {
-      minimumFractionDigits: 1
-    });
+        minimumFractionDigits: 1
+      });
 }

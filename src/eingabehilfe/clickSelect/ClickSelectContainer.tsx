@@ -1,7 +1,6 @@
 import * as React from "react";
 import { ClickSelectCategory } from "./ClickSelectCategory";
 import { AppState } from "../../store/AppState";
-import color from "color";
 import { getClickSelectData } from "./ClickSelectLogic";
 
 type ClickSelectContainerProps = {

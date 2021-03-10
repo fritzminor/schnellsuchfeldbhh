@@ -24,7 +24,7 @@ export function importSN_XSLX(file: File, workbook: Workbook,
     // 2 numbered column headers - irrelevant
     // 3 actual HHSt rows
     let firstYear = -1;
-    worksheet.eachRow((row, rowNumber) => {
+    worksheet.eachRow((row) => {
       switch (status) {
         case 1: // 1 - column headers 
 

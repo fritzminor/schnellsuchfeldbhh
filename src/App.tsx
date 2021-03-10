@@ -10,7 +10,6 @@ import { useState } from "react";
 
 import { Navigation } from "./navigation/Navigation";
 import { HHStOverview } from "./hhstliste/HHStOverview";
-import { ModalMessage } from "./modal/ModalMessage";
 import { ModalInfo } from "./modal/ModalInfo";
 
 
@@ -34,7 +33,7 @@ export default function App(): JSX.Element {
   const store: Store = createStore(
     setState,
   );
-  const { setSearchExpression, hideUserMessage,
+  const { setSearchExpression, 
   } = store;
 
   const [historyListened, setHistoryListened] = useState<boolean>(false);

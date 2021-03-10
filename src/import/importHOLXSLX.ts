@@ -19,7 +19,7 @@ export function importHOLXSLX(file: File, workbook: Workbook,
     // 2 numbered column headers
     // 3 actual HHSt rows
     let firstYear = -1;
-    worksheet.eachRow((row, rowNumber) => {
+    worksheet.eachRow((row) => {
       switch (status) {
         case 0:
           if (!row.getCell(1).text.startsWith("Übersicht"))

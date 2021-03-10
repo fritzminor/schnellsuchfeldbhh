@@ -32,11 +32,13 @@
     "asciidoctor": "^2.2.1",
     "eslint": "^7.21.0",
     "node-sass": "^4.14.1",
+    "rimraf": "^3.0.2",
     "typescript": "^4.2.3"
   },
   "scripts": {
+    "clear": "rimraf build/",
     "start": "react-scripts start",
-    "build": "npm run build:docs && react-scripts build",
+    "build": "npm run clear && npm run build:docs && react-scripts build",
     "build:docs": "asciidoctor -D public/docs docs/anleitung.adoc",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

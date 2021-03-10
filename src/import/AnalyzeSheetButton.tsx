@@ -1,17 +1,15 @@
 import * as React from "react";
 
 import { ExamMode24 } from "@carbon/icons-react";
-import { Store } from "../store/Store";
 import { AppState } from "../store/AppState";
 import { Workbook } from "exceljs";
 import { AnalyzeResults, importAnalyzeSheet } from "./importAnalyseSheet";
-import { after } from "lodash";
 
 
 const loadAnalyzeSheet = (evt: React.ChangeEvent<HTMLInputElement>,
   appState: AppState,
   setModalInfo: (modalInfo: string | AnalyzeResults | null) => void,
-  showError: (msg: string, error: any) => void
+  showError: (msg: string, error: string) => void
 ) => {
   const files = evt.target.files;
   if (files) {
@@ -67,7 +65,7 @@ export function AnalyzeSheetButton({
   appState, setModalInfo,
   afterAnalysis
 }: AnalyzeSheetButtonProps): JSX.Element {
-  function showError(msg: string, error: any) {
+  function showError(msg: string, error: string) {
     console.log("Showing error ", msg, error);
     setModalInfo(msg);
   }

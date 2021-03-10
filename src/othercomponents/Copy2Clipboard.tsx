@@ -1,5 +1,4 @@
 import { Copy32 } from "@carbon/icons-react";
-import { add } from "lodash";
 import React, { FC, PropsWithChildren } from "react";
 import { Store } from "../store/Store";
 

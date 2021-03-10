@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { AppState, formatBetrag } from "../store/AppState";
+import { formatBetrag } from "../store/AppState";
 import { AnalyzeResults } from "../import/importAnalyseSheet";
 
 export type ModalAnalysisProps = {

@@ -17,7 +17,7 @@ export function ImportButton({ store, appState }: ImportButtonProps): JSX.Elemen
     setCurrentUser, setLocalData, showUserMessage,
     setModalInfo
   } = store;
-  function showError(msg: string, error: any) {
+  function showError(msg: string, error: string) {
     console.log("Showing error ", msg, error);
     showUserMessage(msg);
   }

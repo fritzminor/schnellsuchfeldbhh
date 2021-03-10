@@ -1,6 +1,5 @@
 import {
   Share32,
-  Copy32,
   Email32
 } from "@carbon/icons-react";
 import React, { FC, useState } from "react";

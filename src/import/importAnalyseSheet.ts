@@ -1,5 +1,4 @@
 import { Workbook } from "exceljs";
-import { getSearchTree } from "../hhstliste/hhstListeLogic/searchParser";
 import { AppState, getFilteredHhstArray, getSums } from "../store/AppState";
 
 
@@ -29,8 +28,8 @@ export async function importAnalyzeSheet(file: File, workbook: Workbook, appStat
   const analyzeRegEx = /^([aAbBeElLzZ])=(.*)$/;
 
   workbook.eachSheet((worksheet, worksheetId) => {
-    worksheet.eachRow((row, rowNumber) => {
-      row.eachCell((cell, colNumber) => {
+    worksheet.eachRow((row) => {
+      row.eachCell((cell) => {
         const analyzeExpression = cell.result || cell.value;
         if (typeof analyzeExpression === "string") {
           const regExArr = analyzeRegEx.exec(analyzeExpression);

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { getSearchTree } from "../hhstliste/hhstListeLogic/searchParser";
 import { SearchNode } from "../hhstliste/hhstListeLogic/searchTreeTypes";
 import { UserName } from "../navigation/UsersTypes";
 import { AppState, getFilteredHhstArray } from "./AppState";
@@ -7,7 +6,6 @@ import { HHSt } from "./HHStType";
 
 import hhstDataBHH from "./material/bhh_long.json";
 import hhstData01_02 from "./material/bhh_bpbt.json";
-import { isSearched } from "../hhstliste/hhstListeLogic/evalSearch4HHSt";
 import { AnalyzeResults } from "../import/importAnalyseSheet";
 //import hhstData from "./material/bhh_short.json";
 
@@ -31,7 +29,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
   const history = {
     push: ({ search }: { search: string; }) => {
       const location = window.location;
-      const url = new URL(window.location.toString());
+      const url = new URL(location.toString());
       url.search = search;
       console.log("url", url, url.toString());
       window.history.pushState(null, "", url.toString());

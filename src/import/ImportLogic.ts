@@ -13,8 +13,8 @@ export const loadFile = (evt: React.ChangeEvent<HTMLInputElement>,
   setCurrentUser: (newCurrentUser: UserName) => void,
   setLocalData: (hhsts: HHSt[], firstYear: number) => void,
   setModalInfo: (modalInfo: string | AnalyzeResults | null) => void,
-  showError: (msg: string, error: any) => void
-) => {
+  showError: (msg: string, error: string) => void
+):void => {
   const files = evt.target.files;
   if (files) {
     const file = files[0];
