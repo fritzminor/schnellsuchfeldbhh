@@ -49,20 +49,25 @@ export function Navigation({
 
   return (
     <nav
-      className="navbar has-background-info"
+      className="navbar has-background-info is-fixed-top"
       key="Navbar"
     >
       <div className="navbar-brand">
         <div className="navbar-item has-text-light">
           <div className="media">
             <div className="media-left">
-              <CertificateCheck32 />
+              <a
+                className="button is-info "
+                href="#"
+              >
+                <CertificateCheck32 />
+              </a>
             </div>
             <div className="media-content">
               <p className="title has-text-light">
                 Universalsuche
               </p>
-              <p className="subtitle has-text-light">
+              <p className="subtitle has-text-light is-hidden-mobile">
                 Prototyp für die Suche im kameralen Haushalt
               </p>
             </div>
@@ -85,7 +90,6 @@ export function Navigation({
         className={`navbar-menu  ${burgerActiveClassName}`}
       >
         <div className="navbar-end">
-
           <ShareMenu
             appState={appState}
             showUserMessage={showUserMessage}
@@ -98,8 +102,9 @@ export function Navigation({
           {/* ------------ user selection ------------------*/}
           <div className="navbar-item">
             <div
-              className={`dropdown  ${usersSelectable ? "is-active " : ""
-                }`}
+              className={`dropdown  ${
+                usersSelectable ? "is-active " : ""
+              }`}
               onClick={toggleUsersSelectable}
             >
               <div className="dropdown-trigger">
