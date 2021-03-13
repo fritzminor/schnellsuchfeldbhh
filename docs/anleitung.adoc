@@ -69,15 +69,17 @@ Im Universalsuchfeld können durch eine Syntax bestehend aus einem _Schlüsselwo
 
 [cols="1,1,1"]
 |===
-| Beispieleingabe      | Suchergebnisse                                                                                | Kurzform für Eingabe 
+| Beispieleingabe      | Suchergebnisse                                                                                | <<Kurzformen,Kurzform>> für Eingabe 
 
 | _Epl:02_               | Einzelplan 02                                                                                 | _02_            
-| _Epl:02_               | Einzelplan 02                                                                                 | _02_            
+| _Epl:01,Epl:02_        | Einzelplan 01 und Einzelplan 02                                                               | _01, 02_            
 | _Grp:1_                | Hauptgruppe 1                                                                                 | _1_             
-| _Grp:51-53_            | Obergruppen 51,52,53                                                                          |               
-| _Zweck:Finanzen_       | Haushaltsstellen mit einer Zweckbestimmung, die "finanzen" oder "Finanzen" enthalten          |     _Finanzen_  
+| _Grp:51-53_            | Obergruppen 51,52,53                                                                          |                 
+| _Grp:428_              | Gruppierungsnummer 428                                                                        | _428_
+| _Zweck:Finanzen_       | Haushaltsstellen mit einer Zweckbestimmung, die "finanzen" oder "Finanzen" enthalten          |       
 | _Volltext:Abgeordnete_ | Volltextsuche über Erläuterungen, Zweckbestimmung, Kapitelüberschrift etc. nach "Abgeordnete" | _Abgeordnete_   
-| _Kzn:budgetiert_       | Haushaltsstellen mit dem Kennzeichen "Budgetiert"                                             |               
+| _Kzn:budgetiert_       | Haushaltsstellen mit dem Kennzeichen "Budgetiert"                                             |   
+
 |===
 
 ### Suchbereich
@@ -137,6 +139,25 @@ Beispiele:
 
 - _01, 02 Grp:4_ gibt die Personalausgaben (Hauptgruppe 4) der Einzelpläne 01 und 02 aus. Der Ausdruck entspricht _(01, 02) Grp:4_.
 - _01, (02 Grp:4)_ gibt alle Haushaltsstellen des Epl 01 aus sowie zusätzlich die Personalausgaben (Hauptgruppe 4) des Einzelplans 02 aus.
+
+### Kurzformen
+
+Wie schon oben in der Tabelle bei den <<Schlüsselworte,Schlüsselworten>> gezeigt, gibt es auch Kurzformen für die Eingabe. Die braucht man nicht auswendig zu lernen. Am besten man merkt sich, dass man einfach Ziffern eingeben kann. Je nach Anzahl der Ziffern wird nach unterschiedlichen Kriterien gesucht:
+
+|===
+| Ziffernanzahl | Beispiel | findet
+| 1             | _4_      | Hauptgruppe, z.B. hier 4 für Personalausgaben
+| 2             | _02_     | Einzelplan, z.B. hier Einzelplan 02
+| 3             | _428_    | Gruppierungsnummer
+| 4             | _0211_   | Einzelplan und Kapitel, hier Epl 02 Kap 11
+| 5             | _02115_  oder  _0211/5_| Einzelplan, Kapitel und Hauptgruppe
+| 6             | _021152_ oder  _0211/52_ | Einzelplan, Kapitel und Obergruppe
+| 7             | _0211526_ oder  _0211/526_| Einzelplan, Kapitel und Gruppe
+| 8             | _02115260_  oder  _0211/5260_| Einzelplan, Kapitel, Gruppe und erste Endziffer des Titels
+| 9             | _021152602_ oder  _0211/52602_| Einzelplan, Kapitel, Titel
+|===
+
+Für die <<Volltextsuche>> ist die Kurzform schlicht die Eingabe des Suchbegriffs.
 
 ## Vorschlägebereich
 
