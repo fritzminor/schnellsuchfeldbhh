@@ -5,16 +5,19 @@ import { loadFile } from "./ImportLogic";
 import { Store } from "../store/Store";
 import { AppState } from "../store/AppState";
 
-
 export type ImportButtonProps = {
   store: Store;
   appState: AppState;
 };
 
-
-export function ImportButton({ store, appState }: ImportButtonProps): JSX.Element {
+export function ImportButton({
+  store,
+  appState
+}: ImportButtonProps): JSX.Element {
   const {
-    setCurrentUser, setLocalData, showUserMessage,
+    setCurrentUser,
+    setLocalData,
+    showUserMessage,
     setModalInfo
   } = store;
   function showError(msg: string, error: string) {
@@ -22,20 +25,31 @@ export function ImportButton({ store, appState }: ImportButtonProps): JSX.Elemen
     showUserMessage(msg);
   }
 
-  return <div className="file is-info">
-    <label className="file-label">
-      <input className="file-input" type="file" name="resume" onChange={
-        (evt) => { loadFile(evt, appState, setCurrentUser, setLocalData, setModalInfo, showError); }
-      } />
-      <span className="file-cta">
-        <span className="file-icon">
-          <Upload24 />
+  return (
+    <div className="file is-info">
+      <label className="file-label">
+        <input
+          className="file-input"
+          type="file"
+          name="resume"
+          onChange={(evt) => {
+            loadFile(
+              evt,
+              appState,
+              setCurrentUser,
+              setLocalData,
+              setModalInfo,
+              showError
+            );
+          }}
+        />
+        <span className="file-cta">
+          <span className="file-icon">
+            <Upload24 />
+          </span>
+          <span className="file-label">Daten-Import</span>
         </span>
-        <span className="file-label">
-          Excel-Import
-        </span>
-      </span>
-    </label>
-  </div>;
-
+      </label>
+    </div>
+  );
 }

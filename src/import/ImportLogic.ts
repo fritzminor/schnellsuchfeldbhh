@@ -2,53 +2,82 @@ import { Workbook } from "exceljs";
 import { UserName } from "../navigation/UsersTypes";
 import { AppState } from "../store/AppState";
 import { HHSt } from "../store/HHStType";
-import { AnalyzeResults, importAnalyzeSheet } from "./importAnalyseSheet";
+import {
+  AnalyzeResults
+} from "./importAnalyseSheet";
+import { importBHH_CSV } from "./importBHH";
 import { importHOLXSLX } from "./importHOLXSLX";
 import { importSN_XSLX } from "./importSN_XLSX";
 
-
-
-export const loadFile = (evt: React.ChangeEvent<HTMLInputElement>,
+export const loadFile = (
+  evt: React.ChangeEvent<HTMLInputElement>,
   appState: AppState,
   setCurrentUser: (newCurrentUser: UserName) => void,
   setLocalData: (hhsts: HHSt[], firstYear: number) => void,
-  setModalInfo: (modalInfo: string | AnalyzeResults | null) => void,
+  setModalInfo: (
+    modalInfo: string | AnalyzeResults | null
+  ) => void,
   showError: (msg: string, error: string) => void
-):void => {
+): void => {
   const files = evt.target.files;
   if (files) {
     const file = files[0];
+    
+    // this is necessary, because Chrome/Chromium/Edge does not fire 
+    // onchange, if the same file is selected again.
+    evt.target.value="";
+
     console.log("filesSelected", files[0]);
     const r = new FileReader();
-    r.onload = (evt) => {
+    r.onload = async (evt) => {
       const wb = new Workbook();
-      if (evt.target && evt.target.result && evt.target.result instanceof ArrayBuffer) {
-        console.log("in medias res");
-        wb.xlsx.load(evt.target.result)
-          .then(async (workbook) => {
+      if (
+        evt.target &&
+        evt.target.result &&
+        evt.target.result instanceof ArrayBuffer
+      ) {
+        try {
+          try {
+            console.log("Trying to read XLSX...");
+            const workbook = await wb.xlsx.load(
+              evt.target.result
+            );
             try {
-              importHOLXSLX(file, workbook, setCurrentUser, setLocalData);
+              importHOLXSLX(
+                file,
+                workbook,
+                setCurrentUser,
+                setLocalData
+              );
             } catch (reasonHOLXLSX) {
-              console.log("Kein Format für importHOLXSLX.", reasonHOLXLSX, file);
-              try {
-                importSN_XSLX(file, workbook, setCurrentUser, setLocalData);
-              } catch (reasonSN_XLSX) {
-                console.log("Kein Format für importSN_XSLX.", reasonSN_XLSX, file);
-                try {
-
-                  const analyzeResults = await importAnalyzeSheet(file, workbook, appState);
-                  setModalInfo(analyzeResults);
-                } catch (reasonAnalyzeSheet) {
-                  console.log("Kein Auswerte-Tabellenblatt", reasonAnalyzeSheet, file);
-                  throw reasonSN_XLSX; // throw former Error
-                }
-              }
+              console.log(
+                "Kein Format für importHOLXSLX.",
+                reasonHOLXLSX,
+                file
+              );
+              importSN_XSLX(
+                file,
+                workbook,
+                setCurrentUser,
+                setLocalData
+              );
             }
-          })
-          .catch((reason) => {
-            showError("Fehler beim Laden der Excel-Datei: " + reason, file.name);
+          } catch (xlsxReason) {
+            console.log("Trying to read CSV ...");
+            
+            importBHH_CSV(
+              file,
+              setCurrentUser,
+              setLocalData,
+              setModalInfo
+            );
           }
+        } catch (reason) {
+          showError(
+            "Fehler beim Laden der Datei: " + reason,
+            file.name
           );
+        }
       }
     };
     r.readAsArrayBuffer(file);
