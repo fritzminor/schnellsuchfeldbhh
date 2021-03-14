@@ -62,30 +62,6 @@ export function getFilteredHhstArray(
   return { searchTree, filteredHhstArray,totals };
 }
 
-/** helper method to get sums from given hhstArray */
-export function getSums(
-  hhstArray: HHSt[]
-): {
-  expenses: number;
-  revenues: number;
-} {
-  const sums = hhstArray.reduce(
-    (previousSums, hhst) => {
-      if (hhst.expense)
-        return {
-          expenses: previousSums.expenses + hhst.sollJahr1,
-          revenues: previousSums.revenues
-        };
-      else
-        return {
-          expenses: previousSums.expenses,
-          revenues: previousSums.revenues + hhst.sollJahr1
-        };
-    },
-    { expenses: 0, revenues: 0 }
-  );
-  return sums;
-}
 
 /** helper method.
  * returns a number formatted with . as 000 separator and a comma 0
