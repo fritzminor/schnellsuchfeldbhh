@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SearchNode } from "../hhstliste/hhstListeLogic/searchTreeTypes";
 import { UserName } from "../navigation/UsersTypes";
-import { AppState, getFilteredHhstArray, getSums } from "./AppState";
+import { AppState, getFilteredHhstArray, Totals } from "./AppState";
 import { HHSt } from "./HHStType";
 
 import hhstDataBHH from "./material/bhh_long.json";
@@ -110,19 +110,23 @@ function getDerivedFrom(
   let searchParseErrMessage: string | undefined;
   const hhstArray = hhstDataArrays[currentUser];
   let filteredHhstArray: HHSt[];
+  let totals:Totals;
 
   try {
     const {
       searchTree: _searchTree,
-      filteredHhstArray: _filteredHhstArray
+      filteredHhstArray: _filteredHhstArray,
+      totals: _totals
     } = getFilteredHhstArray(hhstArray, searchexpression);
     searchTree = _searchTree;
     filteredHhstArray = _filteredHhstArray;
+    totals=_totals;
   } catch (err) {
     console.log(err);
     searchTree = null;
     searchParseErrMessage = err.message;
     filteredHhstArray = [];
+    totals = {revenues:0, expenses:0};
   }
   return {
     searchParseErrMessage,
@@ -130,7 +134,7 @@ function getDerivedFrom(
     hhstArray,
     filteredHhstArray,
     firstYear: hhstFirstYears[currentUser],
-    totals: getSums(filteredHhstArray)
+    totals
   };
 }
 
