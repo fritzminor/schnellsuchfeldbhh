@@ -21,6 +21,11 @@ export type AppState = {
     /** contains the HHSts filtered by searchTree */
     filteredHhstArray: HHSt[];
 
+    totals: {
+      revenues: number;
+      expenses: number;
+    };
+
     /** the first budget year = SollJahr1 */
     firstYear: number;
   };
