@@ -1,5 +1,5 @@
 import { humanReadableSearchTerm } from "./hhstListeLogic/humanReadableSearchTerm";
-import { AppState, formatBetrag, getSums } from "../store/AppState";
+import { AppState, formatBetrag } from "../store/AppState";
 import { NextOutline32, PreviousOutline32, Query32 } from "@carbon/icons-react";
 import { PropsWithChildren } from "react";
 
@@ -21,7 +21,7 @@ export function HHStOverview(
 ): JSX.Element {
   const filteredHhstArray = appState.derived.filteredHhstArray;
 
-  const sums = getSums(filteredHhstArray);
+  const sums = appState.derived.totals;
 
   return (
     <div className="container">
