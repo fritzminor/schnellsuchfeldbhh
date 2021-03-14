@@ -19,7 +19,6 @@ function SingleItem({ icon, title, value, children }: PropsWithChildren<{ icon: 
 export function HHStOverview(
   { appState }: { appState: AppState; }
 ): JSX.Element {
-  const filteredHhstArray = appState.derived.filteredHhstArray;
 
   const sums = appState.derived.totals;
 

@@ -5,6 +5,11 @@ import { HHSt } from "./HHStType";
 import { getSearchTree } from "../hhstliste/hhstListeLogic/searchParser";
 import { isSearched } from "../hhstliste/hhstListeLogic/evalSearch4HHSt";
 
+export type Totals = {
+  revenues: number;
+  expenses: number;
+};
+
 export type AppState = {
   searchexpression: string;
   currentUser: UserName;
@@ -21,10 +26,7 @@ export type AppState = {
     /** contains the HHSts filtered by searchTree */
     filteredHhstArray: HHSt[];
 
-    totals: {
-      revenues: number;
-      expenses: number;
-    };
+    totals: Totals;
 
     /** the first budget year = SollJahr1 */
     firstYear: number;
@@ -38,15 +40,26 @@ export function getFilteredHhstArray(
 ): {
   searchTree: SearchNode | null;
   filteredHhstArray: HHSt[];
+  totals: Totals;
 } {
+  const totals: Totals = {
+    revenues: 0,
+    expenses: 0
+  };
   const searchTree = getSearchTree(searchexpression);
-  const filteredHhstArray = searchexpression.trim()
-    ? hhstArray.filter((hhst) =>
-        isSearched(hhst, searchTree)
-      )
-    : hhstArray;
-
-  return { searchTree, filteredHhstArray };
+  const filteredHhstArray: HHSt[] = [];
+ 
+  hhstArray.forEach((hhst) => {
+    if (isSearched(hhst, searchTree)) {
+      filteredHhstArray.push(hhst);
+      if (hhst.expense) {
+        totals.expenses += hhst.sollJahr1;
+      } else {
+        totals.revenues += hhst.sollJahr1;
+      }
+    }
+  });
+  return { searchTree, filteredHhstArray,totals };
 }
 
 /** helper method to get sums from given hhstArray */
