@@ -1,5 +1,5 @@
 import { Workbook } from "exceljs";
-import { AppState, getFilteredHhstArray, getSums } from "../store/AppState";
+import { AppState, getFilteredHhstArray } from "../store/AppState";
 
 
 export type SingleAnalyze = {
@@ -55,12 +55,11 @@ export async function importAnalyzeSheet(file: File, workbook: Workbook, appStat
               case "A": // Ausgaben => expenses
                 {
                   try {
-                    const { filteredHhstArray } = getFilteredHhstArray(appState.derived.hhstArray, regExArr[2]);
-                    const sums = getSums(filteredHhstArray);
+                    const { totals } = getFilteredHhstArray(appState.derived.hhstArray, regExArr[2]);
                     if (upperCharacter == "A")
-                      pushResult(sums.expenses);
+                      pushResult(totals.expenses);
                     else
-                      pushResult(sums.revenues);
+                      pushResult(totals.revenues);
                   } catch (err) {
                     console.log(err);
                     pushResult(err.message);
