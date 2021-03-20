@@ -37,15 +37,12 @@ export default function App(): JSX.Element {
   } = store;
 
   const [historyListened, setHistoryListened] = useState<boolean>(false);
-  console.log("listende", historyListened, window.history.length);
   if (!historyListened) {
 
     setHistoryListened(true);
     window.onpopstate = (ev: PopStateEvent) => {
-      console.log("popstate", window.location.search, window.history.length);
       setTimeout(() => {
         setSearchExpression(getQ(window.location.search), true);
-        console.log("ev", ev, window.location.search, window.history.length);
       }
       );
     };

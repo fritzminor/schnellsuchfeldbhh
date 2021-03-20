@@ -5,8 +5,6 @@ import { HHSt } from "../store/HHStType";
 import { AppState } from "../store/AppState";
 import { MoreLessButton } from "../othercomponents/MoreLessButton";
 
-
-
 const rowHeadings: HHSt = {
   type: "hhst",
   epl: "Kapitel",
@@ -18,8 +16,6 @@ const rowHeadings: HHSt = {
   sollJahr1: 2021
 };
 
-
-
 export function HHStList({
   children,
   appState
@@ -27,11 +23,16 @@ export function HHStList({
   appState: AppState;
 }>): JSX.Element {
   try {
-    const [limited, setLimited] = React.useState<boolean>(true);
+    const [limited, setLimited] = React.useState<boolean>(
+      true
+    );
     const hhstLimit = 500;
     rowHeadings.sollJahr1 = appState.derived.firstYear;
     const hhsts = limited
-      ? appState.derived.filteredHhstArray.slice(0, hhstLimit)
+      ? appState.derived.filteredHhstArray.slice(
+          0,
+          hhstLimit
+        )
       : appState.derived.filteredHhstArray;
 
     return (
@@ -49,13 +50,22 @@ export function HHStList({
                 hhst.epl +
                 hhst.kap +
                 hhst.gruppe +
-                hhst.suffix
+                hhst.suffix +
+                (hhst.type == "block"
+                  ? "block" + hhst.blockstart + hhst.expense
+                  : "hhst")
               }
             />
           ))}
-          {hhstLimit < appState.derived.filteredHhstArray.length
-            ? <MoreLessButton limited={limited} setLimited={setLimited} />
-            : <></>}
+          {hhstLimit <
+          appState.derived.filteredHhstArray.length ? (
+            <MoreLessButton
+              limited={limited}
+              setLimited={setLimited}
+            />
+          ) : (
+            <></>
+          )}
 
           {
             children // for hhstOverlay

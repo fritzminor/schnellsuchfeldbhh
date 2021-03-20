@@ -1,7 +1,11 @@
 import { SearchNode } from "../hhstliste/hhstListeLogic/searchTreeTypes";
 import { UserName } from "../navigation/UsersTypes";
 import { AnalyzeResults } from "../import/importAnalyseSheet";
-import { HHSt, HHStOrBlock } from "./HHStType";
+import {
+  HHSt,
+  HHStBlockLimiter,
+  HHStOrBlock
+} from "./HHStType";
 import { getSearchTree } from "../hhstliste/hhstListeLogic/searchParser";
 import { isSearched } from "../hhstliste/hhstListeLogic/evalSearch4HHSt";
 
@@ -36,7 +40,8 @@ export type AppState = {
 /** helper method to get filteredHhstList from given searchexpression */
 export function getFilteredHhstArray(
   hhstArray: HHSt[],
-  searchexpression: string
+  searchexpression: string,
+  withBlocks = false
 ): {
   searchTree: SearchNode | null;
   filteredHhstArray: HHStOrBlock[];
@@ -47,8 +52,9 @@ export function getFilteredHhstArray(
     expenses: 0
   };
   const searchTree = getSearchTree(searchexpression);
-  const filteredHhstArray: HHSt[] = [];
- 
+  const filteredHhstArray: HHStOrBlock[] = [];
+
+
   hhstArray.forEach((hhst) => {
     if (isSearched(hhst, searchTree)) {
       filteredHhstArray.push(hhst);
@@ -59,9 +65,30 @@ export function getFilteredHhstArray(
       }
     }
   });
-  return { searchTree, filteredHhstArray,totals };
-}
 
+  if (withBlocks) {
+    const totalRevenues: HHStBlockLimiter = {
+      type: "block",
+      blockstart: false,
+      epl: "",
+      kap: "",
+      gruppe: "",
+      suffix: "",
+      fkz: "",
+      zweck: "Gesamteinnahmen",
+      sollJahr1: totals.revenues
+    };
+    filteredHhstArray.push(totalRevenues);
+    const totalExpenses: HHStBlockLimiter = {
+      ...totalRevenues,
+      zweck: "Gesamtausgaben",
+      expense:true,
+      sollJahr1: totals.expenses
+    };
+    filteredHhstArray.push(totalExpenses);
+  }
+  return { searchTree, filteredHhstArray, totals };
+}
 
 /** helper method.
  * returns a number formatted with . as 000 separator and a comma 0
