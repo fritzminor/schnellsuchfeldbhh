@@ -6,33 +6,39 @@ import {
   getFilteredHhstArray,
   Totals
 } from "./AppState";
-import { HHSt, HHStBlockLimiter, HHStOrBlock } from "./HHStType";
+import { HHSt, HHStOrBlock } from "./HHStType";
 
 import hhstDataBHH from "./material/bhh_long.json";
 import hhstData01_02 from "./material/bhh_bpbt.json";
 import { AnalyzeResults } from "../import/importAnalyseSheet";
 //import hhstData from "./material/bhh_short.json";
 
-function transformExampleData(exampleData:  {
-  expense: boolean;
-  epl: string;
-  kap: string;
-  gruppe: string;
-  suffix: string;
-  fkz: string;
-  zweck: string;
-  sollJahr1: number;
-  kennzeichen: string[];
-}[]): HHSt[] {
-  return exampleData.map((exampleRow)=> {
-    const hhst:HHSt={type:"hhst",...exampleRow};
+function transformExampleData(
+  exampleData: {
+    expense: boolean;
+    epl: string;
+    kap: string;
+    gruppe: string;
+    suffix: string;
+    fkz: string;
+    zweck: string;
+    sollJahr1: number;
+    kennzeichen: string[];
+  }[]
+): HHSt[] {
+  return exampleData.map((exampleRow) => {
+    const hhst: HHSt = { type: "hhst", ...exampleRow };
     return hhst;
-  })
+  });
 }
 
 const hhstDataArrays: { [index in UserName]: HHSt[] } = {
-  BearbeiterGesamtBHH: transformExampleData(hhstDataBHH.hhsts),
-  BearbeiterEpl01und02: transformExampleData(hhstData01_02.hhsts),
+  BearbeiterGesamtBHH: transformExampleData(
+    hhstDataBHH.hhsts
+  ),
+  BearbeiterEpl01und02: transformExampleData(
+    hhstData01_02.hhsts
+  ),
   LokaleDaten: []
 };
 
@@ -138,29 +144,14 @@ function getDerivedFrom(
       searchTree: _searchTree,
       filteredHhstArray: _filteredHhstArray,
       totals: _totals
-    } = getFilteredHhstArray(hhstArray, searchexpression);
+    } = getFilteredHhstArray(
+      hhstArray,
+      searchexpression,
+      true
+    );
     searchTree = _searchTree;
     filteredHhstArray = _filteredHhstArray;
     totals = _totals;
-    const totalRevenues: HHStBlockLimiter = {
-      type: "block",
-      blockstart: false,
-      epl: "",
-      kap: "",
-      gruppe: "",
-      suffix: "",
-      fkz: "",
-      zweck: "Gesamteinnahmen",
-      sollJahr1: totals.revenues
-    };
-    filteredHhstArray.push(totalRevenues);
-    const totalExpenses:HHStBlockLimiter = {
-      ...totalRevenues,
-      zweck:"Gesamtausgaben",
-      sollJahr1:totals.expenses,
-    }
-    filteredHhstArray.push(totalExpenses);
-
   } catch (err) {
     console.log(err);
     searchTree = null;
