@@ -1,4 +1,5 @@
 export type HHSt = {
+  type: "hhst";
   /** two digits Einzelplan */
   epl: string;
   /** two digits Kapitel */
@@ -19,3 +20,14 @@ export type HHSt = {
 };
 
 export type HHStFieldName= keyof HHSt;
+
+export type HHStBlockEnd = {
+  blockstart:false;
+
+} & Omit<HHSt,"type">;
+
+export type HHStBlockLimiter = {
+  type:"block"
+} & HHStBlockEnd;
+
+export type HHStOrBlock = HHStBlockLimiter | HHSt;

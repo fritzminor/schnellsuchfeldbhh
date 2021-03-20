@@ -75,6 +75,7 @@ export function importSN_XSLX(file: File, workbook: Workbook,
 
 
             const hhst: HHSt = {
+              type: "hhst",
               epl,
               kap: kapArray[2],
               gruppe,
