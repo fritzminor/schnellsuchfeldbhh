@@ -37,6 +37,12 @@ export type AppState = {
   };
 };
 
+const emptyBlockDesc = {
+  name: "",
+  totalExpenses: 0,
+  totalRevenues: 0
+};
+
 /** helper method to get filteredHhstList from given searchexpression */
 export function getFilteredHhstArray(
   hhstArray: HHSt[],
@@ -54,19 +60,54 @@ export function getFilteredHhstArray(
   const searchTree = getSearchTree(searchexpression);
   const filteredHhstArray: HHStOrBlock[] = [];
 
+  let currEpl = { ...emptyBlockDesc }; // clone emptyBlockDesc
+
+  const pushEplTotals = () => {
+    const totalRevenues: HHStBlockLimiter = {
+      type: "block",
+      blockstart: false,
+      epl: currEpl.name,
+      kap: "",
+      gruppe: "",
+      suffix: "",
+      fkz: "",
+      zweck: `Einnahmen Epl ${currEpl.name}`,
+      sollJahr1: currEpl.totalRevenues
+    };
+    filteredHhstArray.push(totalRevenues);
+    const totalExpenses: HHStBlockLimiter = {
+      ...totalRevenues,
+      zweck: `Ausgaben Epl ${currEpl.name}`,
+      expense: true,
+      sollJahr1: currEpl.totalExpenses
+    };
+    filteredHhstArray.push(totalExpenses);
+    currEpl = { ...emptyBlockDesc }; // reset to content of emptyBlockDesc
+  };
 
   hhstArray.forEach((hhst) => {
     if (isSearched(hhst, searchTree)) {
+      if (withBlocks && hhst.epl !== currEpl.name) {
+        if (currEpl.name)
+          // end of currEpl
+          pushEplTotals();
+        currEpl.name = hhst.epl;
+      }
       filteredHhstArray.push(hhst);
+
       if (hhst.expense) {
+        currEpl.totalExpenses += hhst.sollJahr1;
         totals.expenses += hhst.sollJahr1;
       } else {
+        currEpl.totalRevenues += hhst.sollJahr1;
         totals.revenues += hhst.sollJahr1;
       }
     }
   });
 
   if (withBlocks) {
+    console.log("currEpl", currEpl);
+    if (currEpl.name) pushEplTotals();
     const totalRevenues: HHStBlockLimiter = {
       type: "block",
       blockstart: false,
@@ -82,7 +123,7 @@ export function getFilteredHhstArray(
     const totalExpenses: HHStBlockLimiter = {
       ...totalRevenues,
       zweck: "Gesamtausgaben",
-      expense:true,
+      expense: true,
       sollJahr1: totals.expenses
     };
     filteredHhstArray.push(totalExpenses);
