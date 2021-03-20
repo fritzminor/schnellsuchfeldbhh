@@ -40,7 +40,7 @@ export default function App(): JSX.Element {
   if (!historyListened) {
 
     setHistoryListened(true);
-    window.onpopstate = (ev: PopStateEvent) => {
+    window.onpopstate = () => {
       setTimeout(() => {
         setSearchExpression(getQ(window.location.search), true);
       }

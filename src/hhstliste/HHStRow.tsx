@@ -9,7 +9,7 @@ type HHStRowProps = {
 
 export function HHStRow({ hhst, heading }: HHStRowProps): JSX.Element {
   
-  const className = heading || ( hhst.type=="block" &&  hhst.epl==="")
+  const className = heading || ( hhst.type=="block" )
     ? "container hhstRow is-size-6 has-background-primary"
     : "container hhstRow is-size-7";
   return (
