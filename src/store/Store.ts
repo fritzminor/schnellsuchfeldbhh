@@ -1,17 +1,38 @@
 import * as React from "react";
 import { SearchNode } from "../hhstliste/hhstListeLogic/searchTreeTypes";
 import { UserName } from "../navigation/UsersTypes";
-import { AppState, getFilteredHhstArray, Totals } from "./AppState";
-import { HHSt } from "./HHStType";
+import {
+  AppState,
+  getFilteredHhstArray,
+  Totals
+} from "./AppState";
+import { HHSt, HHStBlockLimiter, HHStOrBlock } from "./HHStType";
 
 import hhstDataBHH from "./material/bhh_long.json";
 import hhstData01_02 from "./material/bhh_bpbt.json";
 import { AnalyzeResults } from "../import/importAnalyseSheet";
 //import hhstData from "./material/bhh_short.json";
 
+function transformExampleData(exampleData:  {
+  expense: boolean;
+  epl: string;
+  kap: string;
+  gruppe: string;
+  suffix: string;
+  fkz: string;
+  zweck: string;
+  sollJahr1: number;
+  kennzeichen: string[];
+}[]): HHSt[] {
+  return exampleData.map((exampleRow)=> {
+    const hhst:HHSt={type:"hhst",...exampleRow};
+    return hhst;
+  })
+}
+
 const hhstDataArrays: { [index in UserName]: HHSt[] } = {
-  BearbeiterGesamtBHH: hhstDataBHH.hhsts,
-  BearbeiterEpl01und02: hhstData01_02.hhsts,
+  BearbeiterGesamtBHH: transformExampleData(hhstDataBHH.hhsts),
+  BearbeiterEpl01und02: transformExampleData(hhstData01_02.hhsts),
   LokaleDaten: []
 };
 
@@ -109,8 +130,8 @@ function getDerivedFrom(
   let searchTree: SearchNode | null;
   let searchParseErrMessage: string | undefined;
   const hhstArray = hhstDataArrays[currentUser];
-  let filteredHhstArray: HHSt[];
-  let totals:Totals;
+  let filteredHhstArray: HHStOrBlock[];
+  let totals: Totals;
 
   try {
     const {
@@ -120,13 +141,32 @@ function getDerivedFrom(
     } = getFilteredHhstArray(hhstArray, searchexpression);
     searchTree = _searchTree;
     filteredHhstArray = _filteredHhstArray;
-    totals=_totals;
+    totals = _totals;
+    const totalRevenues: HHStBlockLimiter = {
+      type: "block",
+      blockstart: false,
+      epl: "",
+      kap: "",
+      gruppe: "",
+      suffix: "",
+      fkz: "",
+      zweck: "Gesamteinnahmen",
+      sollJahr1: totals.revenues
+    };
+    filteredHhstArray.push(totalRevenues);
+    const totalExpenses:HHStBlockLimiter = {
+      ...totalRevenues,
+      zweck:"Gesamtausgaben",
+      sollJahr1:totals.expenses,
+    }
+    filteredHhstArray.push(totalExpenses);
+
   } catch (err) {
     console.log(err);
     searchTree = null;
     searchParseErrMessage = err.message;
     filteredHhstArray = [];
-    totals = {revenues:0, expenses:0};
+    totals = { revenues: 0, expenses: 0 };
   }
   return {
     searchParseErrMessage,

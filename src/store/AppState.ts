@@ -1,7 +1,7 @@
 import { SearchNode } from "../hhstliste/hhstListeLogic/searchTreeTypes";
 import { UserName } from "../navigation/UsersTypes";
 import { AnalyzeResults } from "../import/importAnalyseSheet";
-import { HHSt } from "./HHStType";
+import { HHSt, HHStOrBlock } from "./HHStType";
 import { getSearchTree } from "../hhstliste/hhstListeLogic/searchParser";
 import { isSearched } from "../hhstliste/hhstListeLogic/evalSearch4HHSt";
 
@@ -23,8 +23,8 @@ export type AppState = {
     /** contains all HHSt of the given user (not restricted to searchexpression / searchTree) */
     hhstArray: HHSt[];
 
-    /** contains the HHSts filtered by searchTree */
-    filteredHhstArray: HHSt[];
+    /** contains the HHSts filtered by searchTree plus block elements for (sub-)totals. */
+    filteredHhstArray: HHStOrBlock[];
 
     totals: Totals;
 
@@ -39,7 +39,7 @@ export function getFilteredHhstArray(
   searchexpression: string
 ): {
   searchTree: SearchNode | null;
-  filteredHhstArray: HHSt[];
+  filteredHhstArray: HHStOrBlock[];
   totals: Totals;
 } {
   const totals: Totals = {

@@ -8,6 +8,7 @@ import { MoreLessButton } from "../othercomponents/MoreLessButton";
 
 
 const rowHeadings: HHSt = {
+  type: "hhst",
   epl: "Kapitel",
   kap: "",
   gruppe: "Titel",

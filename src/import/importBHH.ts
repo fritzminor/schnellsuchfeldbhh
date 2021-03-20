@@ -70,6 +70,7 @@ export function importBHH_CSV(
       const zweck = data["titel-text"];
 
       const hhst: HHSt = {
+        type:"hhst",
         epl,
         kap,
         gruppe,

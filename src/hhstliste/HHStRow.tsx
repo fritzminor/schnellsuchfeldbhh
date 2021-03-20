@@ -1,14 +1,15 @@
 import * as React from "react";
 import { formatBetrag } from "../store/AppState";
-import { HHSt } from "../store/HHStType";
+import {  HHStOrBlock } from "../store/HHStType";
 
 type HHStRowProps = {
-  hhst: HHSt;
+  hhst: HHStOrBlock;
   heading?: boolean;
 };
 
 export function HHStRow({ hhst, heading }: HHStRowProps): JSX.Element {
-  const className = heading
+  
+  const className = heading || ( hhst.type=="block" &&  hhst.epl==="")
     ? "container hhstRow is-size-6 has-background-primary"
     : "container hhstRow is-size-7";
   return (
@@ -16,7 +17,7 @@ export function HHStRow({ hhst, heading }: HHStRowProps): JSX.Element {
       <div className="hhstNr">
         <span>{hhst.epl}</span>
         <span> {hhst.kap}</span>
-        <span> / {hhst.gruppe}</span>
+        <span>{hhst.gruppe?` / ${hhst.gruppe}`:""}</span>
         <span> {hhst.suffix} </span>
         <span className="fkz">{hhst.fkz}</span>
       </div>

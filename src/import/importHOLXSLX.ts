@@ -53,6 +53,7 @@ export function importHOLXSLX(file: File, workbook: Workbook,
               throw new Error(`Fehler in Zeile ${row.number}: Haushaltsstelle "${haushaltsstelle}" nicht erkannt.`);
             if (!haushaltsstelleArray[5]) { // ignore "apl" or "apl AR"
               const hhst: HHSt = {
+                type: "hhst",
                 epl: haushaltsstelleArray[1],
                 kap: haushaltsstelleArray[2],
                 gruppe: haushaltsstelleArray[3],
