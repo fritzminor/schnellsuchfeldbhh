@@ -79,6 +79,12 @@ background-color: cyan
   width: 14ch;
 }
 
+.blockEnd {
+  border-radius: 0 0 1em 1em;
+}
+
+/* ------- list Overlay -------- */
+
 .haushaltsstellenOverlay {
   padding: 3em;
   /*background-color: rgba(204, 24, 24, 0.279);*/
