@@ -85,20 +85,61 @@ export function getFilteredHhstArray(
     currEpl = { ...emptyBlockDesc }; // reset to content of emptyBlockDesc
   };
 
+  /** currKap.name=epl+kap */
+  let currKap = { ...emptyBlockDesc }; // clone emptyBlockDesc
+
+  const pushKapTotals = () => {
+    const zweckEnd = `Kap ${currKap.name.substr(
+      0,
+      2
+    )} ${currKap.name.substr(2, 2)}`;
+    const totalRevenues: HHStBlockLimiter = {
+      type: "block",
+      blockstart: false,
+      epl: currKap.name.substr(0, 2),
+      kap: currKap.name.substr(2, 2),
+      gruppe: "",
+      suffix: "",
+      fkz: "",
+      zweck: `Einnahmen ${zweckEnd}`,
+      sollJahr1: currKap.totalRevenues
+    };
+    filteredHhstArray.push(totalRevenues);
+    const totalExpenses: HHStBlockLimiter = {
+      ...totalRevenues,
+      zweck: `Ausgaben ${zweckEnd}`,
+      expense: true,
+      sollJahr1: currKap.totalExpenses
+    };
+    filteredHhstArray.push(totalExpenses);
+    currKap = { ...emptyBlockDesc }; // reset to content of emptyBlockDesc
+  };
+
   hhstArray.forEach((hhst) => {
     if (isSearched(hhst, searchTree)) {
+      const hhstKap4 = hhst.epl + hhst.kap;
+      if (withBlocks && hhstKap4 !== currKap.name) {
+        if (currKap.name)
+          // end of currEpl
+          pushKapTotals();
+        currKap.name = hhstKap4;
+      }
+
       if (withBlocks && hhst.epl !== currEpl.name) {
         if (currEpl.name)
           // end of currEpl
           pushEplTotals();
         currEpl.name = hhst.epl;
       }
+
       filteredHhstArray.push(hhst);
 
       if (hhst.expense) {
+        currKap.totalExpenses += hhst.sollJahr1;
         currEpl.totalExpenses += hhst.sollJahr1;
         totals.expenses += hhst.sollJahr1;
       } else {
+        currKap.totalRevenues += hhst.sollJahr1;
         currEpl.totalRevenues += hhst.sollJahr1;
         totals.revenues += hhst.sollJahr1;
       }
@@ -107,6 +148,7 @@ export function getFilteredHhstArray(
 
   if (withBlocks) {
     console.log("currEpl", currEpl);
+    if (currKap.name) pushKapTotals();
     if (currEpl.name) pushEplTotals();
     const totalRevenues: HHStBlockLimiter = {
       type: "block",
