@@ -159,6 +159,11 @@ export function EingabeHilfeContainer({
         >
           Kreisauswahl
         </a>
+        <a
+          href="#hhstList"
+        >
+          Liste
+        </a>
       </p>
       {activeTab === "helpers" ? (
         focusState && hilfen ? (
