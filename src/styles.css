@@ -83,8 +83,21 @@ background-color: cyan
   width: 14ch;
 }
 
+.blockEpl {
+  background-color: #00d1b1;
+}
+
+.blockKap {
+  background-color: #00eac7;
+}
+
+.blockTG {
+  background-color: #00fdd7;
+}
+
 .blockEnd {
   border-radius: 0 0 1em 1em;
+  margin-bottom: 2rem;
 }
 
 /* ------- list Overlay -------- */
