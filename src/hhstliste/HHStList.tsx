@@ -36,7 +36,6 @@ export function HHStList({
     return (
       <>
         <div 
-          id="hhstList"
           className="container box hhstListContainer">
           <HHStRow
             heading

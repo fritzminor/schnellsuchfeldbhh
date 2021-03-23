@@ -69,7 +69,8 @@ export default function App(): JSX.Element {
       <section className="section">
         <HHStOverview appState={state} />
       </section>
-      <section className="section">
+      <section className="section" 
+          id="hhstList">
         <HHStList appState={state} >
           {!state.derived.searchTree && state.searchexpression ?
             (
