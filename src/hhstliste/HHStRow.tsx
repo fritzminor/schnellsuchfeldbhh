@@ -17,7 +17,11 @@ export function HHStRow({
     if (heading || !hhst.epl)
       className += " has-background-info has-text-light";
     else {
-      className += " has-background-primary";
+      if(hhst.kap)
+        className+= " blockKap";
+      else
+        className+= " blockEpl";
+      //className += " has-background-primary";
     }
     if (
       hhst.type === "block" &&
