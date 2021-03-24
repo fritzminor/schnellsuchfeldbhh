@@ -1,6 +1,6 @@
 import { Workbook } from "exceljs";
 import { UserName } from "../navigation/UsersTypes";
-import { AppState } from "../store/AppState";
+import { AppState, TgMap } from "../store/AppState";
 import { HHSt } from "../store/HHStType";
 import {
   AnalyzeResults
@@ -13,7 +13,7 @@ export const loadFile = (
   evt: React.ChangeEvent<HTMLInputElement>,
   appState: AppState,
   setCurrentUser: (newCurrentUser: UserName) => void,
-  setLocalData: (hhsts: HHSt[], firstYear: number) => void,
+  setLocalData: (hhsts: HHSt[], tgMap: TgMap, firstYear: number) => void,
   setModalInfo: (
     modalInfo: string | AnalyzeResults | null
   ) => void,
