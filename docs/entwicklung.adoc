@@ -1,0 +1,242 @@
+= Universalsuchfeld - Prototyp - Anleitung
+:relfileprefix: ../
+:toc: preamble
+:toc-title: Übersicht
+
+
+Der Prototyp ist nicht für produktive Zwecke gedacht, 
+sondern um Feedback von Anwendern einer Suchmaske zu
+bekommen.
+
+Daher ist der Prototyp im Hintergrund auch nur auf das
+rasche Erstellen einer Benutzerschnittstelle ausgerichtet
+und kann nicht als Beispiel guter Softwarearchitektur
+dienen. 
+
+Dennoch gibt es ein paar Erkenntnisse, die mit Interessierten
+geteilt werden können.
+
+== Ordnerstruktur
+
+Der Quellcode des Projekts ist auf  https://github.com/fritzminor/schnellsuchfeldbhh[github] unter 
+der offenen MIT-Lizenz verfügbar.
+
+Die Ordnerstruktur entspricht einem üblichen 
+Projekt, das <<TypeScript>> und <<React>> verwendet. Eine 
+solche kann beispielsweise mit 
+https://reactjs.org/docs/create-a-new-react-app.html=create-react-app[create-react-app]
+erstellt werden.
+
+=== src/
+
+Der eigentliche Quellcode des Projekts findet sich im Ordner link:src/.
+
+==== Unterordner nach Funktionalitäten
+
+Abgesehen von zentralen Dateien wie link:src/App.tsx und link:src/index.tsx, die direkt im Ordner
+src/ zu finden sind, findet sich der übrige Quellcode *aufgeteilt nach Funktionalitäten*
+in Unterordnern.
+
+Innerhalb der Unterordner finden sich grundsätzlich
+- die zur Darstellung erforderlichen (<<React>>-)Komponenten der Benutzeroberfläche (Dateien mit .tsx-Endung)
+- die Programmlogik (Dateien mit ...Logic.ts)
+- die notwendigen (hartkodierten) Daten (Dateien mit ...Data.ts) und
+- die Form der Daten (DatenTypen - Dateien mit ....Types.ts)
+
+Ein recht konsequentes Beispiel für diese Struktur findet sich in src/eingabehilfe/searchfields . 
+
+==== Querschnittsaufgaben
+
+Eine Ausnahme dazu bilden die *Querschnittsaufgaben*, wie z.B. die zentrale 
+Haltung des "Zustands" der Anwendung. Dieser befindet sich im AppState und wird mittels
+der im Store verfügbaren Funktionen geändert. Siehe link:src/store.
+
+
+=== package.json
+
+Die Bibliotheken und Tools, von denen Projekt abhängt, sowie sonstige
+Meta-Daten des Projekts finden sich in der package.json.
+
+=== README.adoc
+
+Ein paar allgemeine Sätze zum Projekt finden sich in der README.adoc.
+
+
+== Konzepte
+
+=== Suchmaschine
+
+Zentraler Punkt der Suchmaschine auf der *Benutzeroberfläche* ist das Universalsuchfeld. Egal was mit 
+Hilfe anderer Suchhilfen ausgewählt wird oder mit Hilfe von Lesezeichen angesprochen wird, es erscheint
+im Universalsuchfeld.
+
+Dieses Feld findet sich in link:src/store/AppState.ts als _searchexpression_ wieder.
+
+
+==== Suchbaum
+
+Intern wird die _searchexpression_ als *Suchbaum* mit Hilfe von _SearchNodes_ dargestellt. Siehe 
+link:src/hhstliste/hhstListeLogic/searchTreeTypes.ts . Es gibt logische SearchNodes (UND, ODER, NICHT), textbezogene
+SeachNodes (Volltext, Erläuterungen, Zweckbestimmung), betragsbezogene (numerische, z.B. für den Haushaltsansatz)
+und ziffernbezogene (pseudonumerische, z.B. für Gruppierungsnummer und FKZ). 
+
+Mit Hilfe des so aufgebauten Suchbaums kann rasch auch eine große Datenmenge gefiltert werden. Außerdem ermöglicht 
+er die Befüllung der Suchfelder oder eine menschlich lesbare Darstellung, was der Suchparser denn wirklich 
+verstanden hat.
+
+Die tatsächliche Filterung erfolgt - auf Prototypenniveau - in einer einfachen Schleife, bei der zu jeder
+Haushaltsstelle gefragt wird, ob der Suchbaum darauf passt oder nicht. Die Schleife findet sich in der Funktion
+getFilteredHhstArray in link:src/store/AppState.ts, die Prüfroutine mit rekursiven Funktionen ist die isSearched-Funktion
+in link:src/hhstliste/hhstListeLogic/evalSearch4HHSt.ts .
+
+Eine textuelle Darstellung des Suchbaums findet sich in der Benutzeroberfläche oberhalb der Haushaltsstellenliste
+unter der Überschrift "Suche nach". Die dafür zuständige Funktion in 
+link:src/hhstliste/hhstListeLogic/humanReadableSearchTerm.ts ist ähnlich aufgebaut wie die genannte isSearched-Funktion.
+
+In einem produktiven System könnten mit einer ähnlichen Funktion aus dem Suchbaum eine SQL-WHERE-Klausel aufgebaut 
+werden.
+
+==== Parser
+
+Der Parser findet sich in link:src/hhstliste/hhstListeLogic/searchParserImpl.ts. Er arbeitet in zwei Schritten:
+Zunächst teilt er die _searchexpression_ in einzelne Unterabschnitte (tokens) und setzt dann den Suchbaum 
+zusammen, indem er die Tokens aus dem ersten Schritt analysiert.
+
+Ein ToDo ist noch den Parser für die Liste der Haushaltsstellen mit dem für die Eingabehilfen (Vorschläge fürs
+Universalsuchfeld - link:src/eingabehilfe/EingabehilfeLogic.ts) zusammen zu bringen. Hier scheint 
+teilweise der Quellcode redundant.
+
+
+=== Datenhaltung 
+
+Die interne Datenhaltung zeigt klar das Niveau eines Prototypen: Es sind simple JavaScript-Objekte
+ohne Einsatz einer Datenbank.
+
+Die Daten befinden sich alle lokal im Browser. Die mitgelieferten Beispielsdaten des Bundeshaushalts
+wurden in JSON-Daten umgewandelt (siehe Ordner link:src/store/material) und wie Quellcode miteinbezogen.
+
+Die Daten, die der Nutzer aus CSV- oder Excel-Dateien importiert, werden lediglich in den lokalen 
+Browserspeicher geladen (siehe die Funktion _setLocalData_ aus dem Store in link:src/store/Store). 
+Sie sind nach einem Neustart des Browsers wieder verloren.
+
+Ein mögliches ToDo, sofern man den Prototyp weiterentwickeln möchte, wäre 
+- das Nutzen des Local Storage / der IndexedDB für das dauerhafte Vorhalten der Daten im Browser oder
+- das Nutzen einer Datenbank wie  PouchDB, evtl. mit Anschluss an CouchDB oder Cloudant von IBM.
+
+
+== Was könnte besser sein?
+
+=== WebWorker
+Der Prototyp kann derzeit vollständig auf WebWorker verzichten. WebWorker sind aber ein wichtiges Hilfsmittel,
+damit die Anwendung immer sofort auf Benutzereingaben reagieren kann. WebWorker ist ein Instrument, um im Browser
+Nebenläufigkeit von Programmcode zu ermöglichen.
+
+Bisher scheint es aber selbst bei großen Haushaltsplänen (z.B. der gesamte Bundeshaushalt) kaum sprürbare 
+Verzögerungen zu geben, so dass man jedenfalls für den Prototyp auf WebWorker verzichten kann.
+
+=== Tests
+
+Es gibt zwar ein Test-Framework <<Jest>>. Aber die paar automatisierte Tests sind kaum der Rede wert. 
+
+Spätestens wenn man einzelne Teile des Prototyps in einem produktiven System nutzen möchte, müssen
+entsprechende Tests programmiert werden.
+
+=== Konsistenz
+
+Die einzelnen Teile könnten auch im Code zueinander finden. Die Funktionalität "Kennzeichen" beispielsweise 
+sollte nicht über viele Ordner verteilt sein.
+
+=== Viele Fehler und Unvollständigkeiten
+
+Der Prototyp wird immer Fehler und Unvollständigkeiten enthalten. Aber mit der Zeit könnten es ja weniger werden.
+Wenn welche gefunden werden, bitte  auf https://github.com/fritzminor/schnellsuchfeldbhh/issues[github] mittels 
+eines "New Issue" mitteilen, wo die Fehler sind.
+
+=== Weiterentwicklung
+
+Neben dem Ausbessern von Fehlern sind viele Themen denkbar, die dem Prototyp gut tun würden. 
+Wenn bestimmte Wünsche besonders drängen, hilft auch hier möglicherweise ein New Issue auf 
+ https://github.com/fritzminor/schnellsuchfeldbhh/issues[github] .
+
+
+
+== Eingesetzte Tools
+
+=== TypeScript
+
+Die Programmiersprache TypeScript ist eine Erweiterung von JavaScript. Sie 
+gibt Typensicherheit und vermeidet damit mehr Fehler bereits beim Codieren.
+
+Außerdem erlaubt sie schnelleres Programmieren durch bessere Code-Vervollständigung 
+als bei reinem JavaScript.
+
+=== Test-Framework Jest
+
+(Mindestens) ein Test-Framework ist ein Muss für jedes Projekt. Jest wurde gewählt, 
+weil es das Standard-Test-Framework für <<React>>-Anwendungen ist.
+
+=== Excel-Bibliothek exceljs
+
+Die JavaScript-Bibliothek exceljs erlaubt das Lesen und Erzeugen von XLSX-Dateien. 
+Siehe z.B. link:src/import/importAnalyseSheet.ts
+
+=== Benutzeroberfläche
+
+==== React
+
+Für die Benutzeroberfläche wurde das Oberflächenframework React gewählt, weil es anfangs schneller als 
+Angular zu lernen ist. Allerdings bedarf eine tiefere Nutzung auch erheblichen 
+Einarbeitungsaufwand. Die JSX-Sprache, die in den *.tsx-Dateien verwendet wird,
+ist für HTML-Kenner leicht zu lernen und zu lesen.
+
+Die Projektstruktur wurde mit create-react-app erstellt. Das ist nicht zwingend,
+erleichtert aber React-Programmierern, sich rasch im Projekt zurecht zu finden.
+
+==== Icons
+
+Die Icons stammen aus dem Carbon-Projekt von IBM. Genutzt wird das Package @carbon/icons-react.
+
+==== CSS-Framework
+
+Als CSS-Framework sorgt https://bulma.io/[bulma.io] für die angenehme Optik. Es wurde gewählt, weil es ein reines
+CSS-Framework ist und keine Abhängigkeiten von jQuery oder anderen JavaScript-Bibliotheken hat. Damit 
+ist es unproblematisch mit <<React>> zu nutzen.
+
+Ein mögliches ToDo für die Zukunft wäre eine Umstellung auf Bootstrap. In der Version 5 wurde
+die Abhängigkeit von Bootstrap von jQuery entfernt. Bootstrap hat einen deutlich größeren
+Funktionsumfang als bulma.io.
+
+
+=== AsciiDoc
+
+Die Anforderungen an das Dokumentationsformat waren 
+- leicht zu lernen
+- angenehmes Erscheinungsbild
+- automatisches Inhaltsverzeichnis
+- auf Github direkt angezeigt
+- fähig, in Quellcodeverwaltung versioniert zu werden.
+
+Neben https://asciidoc.org/[AsciiDoc] kam auch ein Markdown-Geschmack in Betracht. Problematisch 
+ist an Markdown jedoch, dass nicht immer klar ist, welches Produkt welchen 
+Markdown-Dialekt versteht. Siehe auch
+- https://de.wikipedia.org/wiki/AsciiDoc
+- https://asciidoctor.org/
+- https://github.com/asciidoctor/asciidoctor.js[Asciidoctor.js] - das hier genutzte Modul
+
+
+
+=== Programmierumgebungen
+
+Als Programmierumgebung werden codesandbox.io (eine Online-Entwicklungsumgebung)
+und auf dem Desktop VSCodium, der "freiere" Zweig von Visual Studio Code, eingesetzt.
+
+Das Deployment erfolgt automatisch beim Einpflegen der neuen Version in den "main"-Zweig
+des https://github.com/fritzminor/schnellsuchfeldbhh[github-Repository]. netlify.com 
+baut dann automatisch das Projekt und stellt es auf https://schnellsuchfeldbhh.netlify.app/
+dem Anwender zur Verfügung.
+
+== Feedback
+
+Für Fragen auch zum Quellcode, Anregungen, Wünsche etc. ist ein Issue auf Github 
+https://github.com/fritzminor/schnellsuchfeldbhh/issues der richtige Ort.
+
