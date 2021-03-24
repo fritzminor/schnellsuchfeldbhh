@@ -1,4 +1,4 @@
-= Universalsuchfeld - Prototyp - Anleitung
+= Universalsuchfeld - Hinweise zur Entwicklung
 :relfileprefix: ../
 :toc: preamble
 :toc-title: Übersicht
@@ -29,21 +29,22 @@ erstellt werden.
 
 === src/
 
-Der eigentliche Quellcode des Projekts findet sich im Ordner link:src/.
+Der eigentliche Quellcode des Projekts findet sich im Ordner link:src/[src/].
 
 ==== Unterordner nach Funktionalitäten
 
-Abgesehen von zentralen Dateien wie link:src/App.tsx und link:src/index.tsx, die direkt im Ordner
+Abgesehen von zentralen Dateien wie xref:src/App.tsx und link:src/index.tsx, die direkt im Ordner
 src/ zu finden sind, findet sich der übrige Quellcode *aufgeteilt nach Funktionalitäten*
 in Unterordnern.
 
 Innerhalb der Unterordner finden sich grundsätzlich
+
 - die zur Darstellung erforderlichen (<<React>>-)Komponenten der Benutzeroberfläche (Dateien mit .tsx-Endung)
 - die Programmlogik (Dateien mit ...Logic.ts)
 - die notwendigen (hartkodierten) Daten (Dateien mit ...Data.ts) und
 - die Form der Daten (DatenTypen - Dateien mit ....Types.ts)
 
-Ein recht konsequentes Beispiel für diese Struktur findet sich in src/eingabehilfe/searchfields . 
+Ein recht konsequentes Beispiel für diese Struktur findet sich in link:src/eingabehilfe/searchfields/ . 
 
 ==== Querschnittsaufgaben
 
@@ -59,7 +60,7 @@ Meta-Daten des Projekts finden sich in der package.json.
 
 === README.adoc
 
-Ein paar allgemeine Sätze zum Projekt finden sich in der README.adoc.
+Ein paar allgemeine Sätze zum Projekt finden sich in der link:README.adoc.
 
 
 == Konzepte
@@ -120,6 +121,7 @@ Browserspeicher geladen (siehe die Funktion _setLocalData_ aus dem Store in link
 Sie sind nach einem Neustart des Browsers wieder verloren.
 
 Ein mögliches ToDo, sofern man den Prototyp weiterentwickeln möchte, wäre 
+
 - das Nutzen des Local Storage / der IndexedDB für das dauerhafte Vorhalten der Daten im Browser oder
 - das Nutzen einer Datenbank wie  PouchDB, evtl. mit Anschluss an CouchDB oder Cloudant von IBM.
 
@@ -170,7 +172,7 @@ gibt Typensicherheit und vermeidet damit mehr Fehler bereits beim Codieren.
 Außerdem erlaubt sie schnelleres Programmieren durch bessere Code-Vervollständigung 
 als bei reinem JavaScript.
 
-=== Test-Framework Jest
+=== Jest
 
 (Mindestens) ein Test-Framework ist ein Muss für jedes Projekt. Jest wurde gewählt, 
 weil es das Standard-Test-Framework für <<React>>-Anwendungen ist.
@@ -210,6 +212,7 @@ Funktionsumfang als bulma.io.
 === AsciiDoc
 
 Die Anforderungen an das Dokumentationsformat waren 
+
 - leicht zu lernen
 - angenehmes Erscheinungsbild
 - automatisches Inhaltsverzeichnis
@@ -219,6 +222,7 @@ Die Anforderungen an das Dokumentationsformat waren
 Neben https://asciidoc.org/[AsciiDoc] kam auch ein Markdown-Geschmack in Betracht. Problematisch 
 ist an Markdown jedoch, dass nicht immer klar ist, welches Produkt welchen 
 Markdown-Dialekt versteht. Siehe auch
+
 - https://de.wikipedia.org/wiki/AsciiDoc
 - https://asciidoctor.org/
 - https://github.com/asciidoctor/asciidoctor.js[Asciidoctor.js] - das hier genutzte Modul
