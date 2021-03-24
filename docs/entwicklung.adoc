@@ -1,5 +1,5 @@
 = Universalsuchfeld - Hinweise zur Entwicklung
-:relfileprefix: ../
+:relfileprefix: '../'
 :toc: preamble
 :toc-title: Übersicht
 
@@ -33,7 +33,7 @@ Der eigentliche Quellcode des Projekts findet sich im Ordner link:src/[src/].
 
 ==== Unterordner nach Funktionalitäten
 
-Abgesehen von zentralen Dateien wie xref:src/App.tsx und link:src/index.tsx, die direkt im Ordner
+Abgesehen von zentralen Dateien wie xref:src/App.tsx[] und link:src/index.tsx[], die direkt im Ordner
 src/ zu finden sind, findet sich der übrige Quellcode *aufgeteilt nach Funktionalitäten*
 in Unterordnern.
 
@@ -71,7 +71,7 @@ Zentraler Punkt der Suchmaschine auf der *Benutzeroberfläche* ist das Universal
 Hilfe anderer Suchhilfen ausgewählt wird oder mit Hilfe von Lesezeichen angesprochen wird, es erscheint
 im Universalsuchfeld.
 
-Dieses Feld findet sich in link:src/store/AppState.ts als _searchexpression_ wieder.
+Dieses Feld findet sich in link:../src/store/AppState.ts als _searchexpression_ wieder.
 
 
 ==== Suchbaum
