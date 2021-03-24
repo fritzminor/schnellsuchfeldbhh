@@ -1,5 +1,5 @@
 = Universalsuchfeld - Hinweise zur Entwicklung
-:relfileprefix: '../'
+:relfileprefix: ../
 :toc: preamble
 :toc-title: Übersicht
 
@@ -29,11 +29,11 @@ erstellt werden.
 
 === src/
 
-Der eigentliche Quellcode des Projekts findet sich im Ordner link:src/[src/].
+Der eigentliche Quellcode des Projekts findet sich im Ordner xref:src/[].
 
 ==== Unterordner nach Funktionalitäten
 
-Abgesehen von zentralen Dateien wie xref:src/App.tsx[] und link:src/index.tsx[], die direkt im Ordner
+Abgesehen von zentralen Dateien wie xref:src/App.tsx[] und xref:src/index.tsx[], die direkt im Ordner
 src/ zu finden sind, findet sich der übrige Quellcode *aufgeteilt nach Funktionalitäten*
 in Unterordnern.
 
@@ -44,13 +44,13 @@ Innerhalb der Unterordner finden sich grundsätzlich
 - die notwendigen (hartkodierten) Daten (Dateien mit ...Data.ts) und
 - die Form der Daten (DatenTypen - Dateien mit ....Types.ts)
 
-Ein recht konsequentes Beispiel für diese Struktur findet sich in link:src/eingabehilfe/searchfields/ . 
+Ein recht konsequentes Beispiel für diese Struktur findet sich in xref:src/eingabehilfe/searchfields/[] . 
 
 ==== Querschnittsaufgaben
 
 Eine Ausnahme dazu bilden die *Querschnittsaufgaben*, wie z.B. die zentrale 
 Haltung des "Zustands" der Anwendung. Dieser befindet sich im AppState und wird mittels
-der im Store verfügbaren Funktionen geändert. Siehe link:src/store.
+der im Store verfügbaren Funktionen geändert. Siehe xref:src/store[].
 
 
 === package.json
@@ -60,7 +60,7 @@ Meta-Daten des Projekts finden sich in der package.json.
 
 === README.adoc
 
-Ein paar allgemeine Sätze zum Projekt finden sich in der link:README.adoc.
+Ein paar allgemeine Sätze zum Projekt finden sich in der xref:README.adoc[].
 
 
 == Konzepte
@@ -71,13 +71,13 @@ Zentraler Punkt der Suchmaschine auf der *Benutzeroberfläche* ist das Universal
 Hilfe anderer Suchhilfen ausgewählt wird oder mit Hilfe von Lesezeichen angesprochen wird, es erscheint
 im Universalsuchfeld.
 
-Dieses Feld findet sich in link:../src/store/AppState.ts als _searchexpression_ wieder.
+Dieses Feld findet sich in xref:../src/store/AppState.ts[] als _searchexpression_ wieder.
 
 
 ==== Suchbaum
 
 Intern wird die _searchexpression_ als *Suchbaum* mit Hilfe von _SearchNodes_ dargestellt. Siehe 
-link:src/hhstliste/hhstListeLogic/searchTreeTypes.ts . Es gibt logische SearchNodes (UND, ODER, NICHT), textbezogene
+xref:src/hhstliste/hhstListeLogic/searchTreeTypes.ts[] . Es gibt logische SearchNodes (UND, ODER, NICHT), textbezogene
 SeachNodes (Volltext, Erläuterungen, Zweckbestimmung), betragsbezogene (numerische, z.B. für den Haushaltsansatz)
 und ziffernbezogene (pseudonumerische, z.B. für Gruppierungsnummer und FKZ). 
 
@@ -87,24 +87,24 @@ verstanden hat.
 
 Die tatsächliche Filterung erfolgt - auf Prototypenniveau - in einer einfachen Schleife, bei der zu jeder
 Haushaltsstelle gefragt wird, ob der Suchbaum darauf passt oder nicht. Die Schleife findet sich in der Funktion
-getFilteredHhstArray in link:src/store/AppState.ts, die Prüfroutine mit rekursiven Funktionen ist die isSearched-Funktion
-in link:src/hhstliste/hhstListeLogic/evalSearch4HHSt.ts .
+getFilteredHhstArray in xref:src/store/AppState.ts[], die Prüfroutine mit rekursiven Funktionen ist die isSearched-Funktion
+in xref:src/hhstliste/hhstListeLogic/evalSearch4HHSt.ts[] .
 
 Eine textuelle Darstellung des Suchbaums findet sich in der Benutzeroberfläche oberhalb der Haushaltsstellenliste
 unter der Überschrift "Suche nach". Die dafür zuständige Funktion in 
-link:src/hhstliste/hhstListeLogic/humanReadableSearchTerm.ts ist ähnlich aufgebaut wie die genannte isSearched-Funktion.
+xref:src/hhstliste/hhstListeLogic/humanReadableSearchTerm.ts[] ist ähnlich aufgebaut wie die genannte isSearched-Funktion.
 
 In einem produktiven System könnten mit einer ähnlichen Funktion aus dem Suchbaum eine SQL-WHERE-Klausel aufgebaut 
 werden.
 
 ==== Parser
 
-Der Parser findet sich in link:src/hhstliste/hhstListeLogic/searchParserImpl.ts. Er arbeitet in zwei Schritten:
+Der Parser findet sich in xref:src/hhstliste/hhstListeLogic/searchParserImpl.ts[]. Er arbeitet in zwei Schritten:
 Zunächst teilt er die _searchexpression_ in einzelne Unterabschnitte (tokens) und setzt dann den Suchbaum 
 zusammen, indem er die Tokens aus dem ersten Schritt analysiert.
 
 Ein ToDo ist noch den Parser für die Liste der Haushaltsstellen mit dem für die Eingabehilfen (Vorschläge fürs
-Universalsuchfeld - link:src/eingabehilfe/EingabehilfeLogic.ts) zusammen zu bringen. Hier scheint 
+Universalsuchfeld - xref:src/eingabehilfe/EingabehilfeLogic.ts[]) zusammen zu bringen. Hier scheint 
 teilweise der Quellcode redundant.
 
 
@@ -114,10 +114,10 @@ Die interne Datenhaltung zeigt klar das Niveau eines Prototypen: Es sind simple 
 ohne Einsatz einer Datenbank.
 
 Die Daten befinden sich alle lokal im Browser. Die mitgelieferten Beispielsdaten des Bundeshaushalts
-wurden in JSON-Daten umgewandelt (siehe Ordner link:src/store/material) und wie Quellcode miteinbezogen.
+wurden in JSON-Daten umgewandelt (siehe Ordner xref:src/store/material[]) und wie Quellcode miteinbezogen.
 
 Die Daten, die der Nutzer aus CSV- oder Excel-Dateien importiert, werden lediglich in den lokalen 
-Browserspeicher geladen (siehe die Funktion _setLocalData_ aus dem Store in link:src/store/Store). 
+Browserspeicher geladen (siehe die Funktion _setLocalData_ aus dem Store in xref:src/store/Store[]). 
 Sie sind nach einem Neustart des Browsers wieder verloren.
 
 Ein mögliches ToDo, sofern man den Prototyp weiterentwickeln möchte, wäre 
@@ -180,7 +180,7 @@ weil es das Standard-Test-Framework für <<React>>-Anwendungen ist.
 === Excel-Bibliothek exceljs
 
 Die JavaScript-Bibliothek exceljs erlaubt das Lesen und Erzeugen von XLSX-Dateien. 
-Siehe z.B. link:src/import/importAnalyseSheet.ts
+Siehe z.B. xref:src/import/importAnalyseSheet.ts[]
 
 === Benutzeroberfläche
 
