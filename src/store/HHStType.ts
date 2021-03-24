@@ -9,6 +9,10 @@ export type HHSt = {
 
   /** two digits suffix/Titelgruppe */
   suffix: string;
+
+  /** Titelgruppe 8 characters key, e.g. "0102TG60" for Titelgruppe 60 in Epl 01 Kap 02 */
+  tgKey?:string;
+  
   expense?: boolean;
   /** three digits Funktionskennziffer */
   fkz: string;

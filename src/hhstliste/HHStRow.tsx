@@ -21,7 +21,7 @@ export function HHStRow({
         className+= " blockKap";
       else
         className+= " blockEpl";
-      //className += " has-background-primary";
+        
     }
     if (
       hhst.type === "block" &&

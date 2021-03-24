@@ -14,6 +14,17 @@ export type Totals = {
   expenses: number;
 };
 
+/** Titelgruppen description */
+export type TgMap = {
+  /** tgKey, e.g. "0102TG60" for TG 60 in Epl 01 Kap 02  */
+  [index: string]: {
+    /** e.g. "60" */
+    tgNr: string;
+    /** tg description used as tg caption */
+    name: string;
+  };
+};
+
 export type AppState = {
   searchexpression: string;
   currentUser: UserName;
@@ -26,6 +37,9 @@ export type AppState = {
 
     /** contains all HHSt of the given user (not restricted to searchexpression / searchTree) */
     hhstArray: HHSt[];
+
+    /** contains the tg-descriptions */
+    tgMap: TgMap;
 
     /** contains the HHSts filtered by searchTree plus block elements for (sub-)totals. */
     filteredHhstArray: HHStOrBlock[];

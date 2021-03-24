@@ -1,6 +1,7 @@
 import { UserName } from "../navigation/UsersTypes";
 import { HHSt } from "../store/HHStType";
 import Papa from "papaparse";
+import { TgMap } from "../store/AppState";
 
 type CsvRow = {
   einzelplan: string;
@@ -9,6 +10,8 @@ type CsvRow = {
   funktion: string;
   soll: string;
   "titel-text": string;
+  "titelgruppe":string;
+  "tgr-text":string;
 };
 
 /** imports data from files following the format of
@@ -18,10 +21,11 @@ type CsvRow = {
 export function importBHH_CSV(
   file: File,
   setCurrentUser: (newCurrentUser: UserName) => void,
-  setLocalData: (hhsts: HHSt[], firstYear: number) => void,
+  setLocalData: (hhsts: HHSt[],tgMap: TgMap, firstYear: number) => void,
   setModalInfo: (modalInfo: string) => void
 ): void {
   const hhsts: HHSt[] = [];
+  const tgMap: TgMap = {};
 
   const regExFileName = /hh_(\d{4})_.*csv$/.exec(file.name);
   if (!regExFileName)
@@ -69,13 +73,27 @@ export function importBHH_CSV(
       const sollJahr1 = parseInt(data.soll, 10);
       const zweck = data["titel-text"];
 
+      const tgNr= data["titelgruppe"];
+      const tgKey=tgNr?`${epl}${kap}TG${tgNr}`:undefined;
+      if(tgKey){
+        if(!tgMap[tgKey]){
+          const tgName=data["tgr-text"];
+          tgMap[tgKey]={
+            tgNr,
+            name:tgName
+          }
+        }
+
+      }
+
       const hhst: HHSt = {
-        type:"hhst",
+        type: "hhst",
         epl,
         kap,
         gruppe,
         suffix,
         fkz,
+        tgKey,
         zweck,
         expense: gruppe.charAt(0) >= "4",
         sollJahr1
@@ -105,7 +123,7 @@ export function importBHH_CSV(
           errMessage || "FEHLER: Ursache unbekannt."
         );
       else {
-        setLocalData(hhsts, firstYear);
+        setLocalData(hhsts, tgMap, firstYear);
         setCurrentUser("LokaleDaten");
       }
     }

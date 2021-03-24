@@ -4,6 +4,7 @@ import { UserName } from "../navigation/UsersTypes";
 import {
   AppState,
   getFilteredHhstArray,
+  TgMap,
   Totals
 } from "./AppState";
 import { HHSt, HHStOrBlock } from "./HHStType";
@@ -42,10 +43,16 @@ const hhstDataArrays: { [index in UserName]: HHSt[] } = {
   LokaleDaten: []
 };
 
-const hhstFirstYears: { [index in UserName]: number } = {
+const hhFirstYears: { [index in UserName]: number } = {
   BearbeiterGesamtBHH: 2021,
   BearbeiterEpl01und02: 2021,
   LokaleDaten: 0
+};
+
+const hhTgMaps: { [index in UserName]: TgMap } = {
+  BearbeiterGesamtBHH: {},
+  BearbeiterEpl01und02: {},
+  LokaleDaten: {}
 };
 
 export function createStore( // eslint-disable-line  @typescript-eslint/explicit-module-boundary-types
@@ -106,10 +113,13 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
       }));
     },
 
-    setLocalData(hhsts: HHSt[], firstYear: number) {
+    setLocalData(hhsts: HHSt[], tgMap: TgMap, firstYear: number) {
       hhstDataArrays.LokaleDaten = hhsts;
-      hhstFirstYears.LokaleDaten = firstYear;
+      hhTgMaps.LokaleDaten = tgMap;
+      hhFirstYears.LokaleDaten = firstYear;
     },
+
+
     setModalInfo,
     /** hides user message */
     hideUserMessage,
@@ -163,8 +173,9 @@ function getDerivedFrom(
     searchParseErrMessage,
     searchTree,
     hhstArray,
+    tgMap: {},
     filteredHhstArray,
-    firstYear: hhstFirstYears[currentUser],
+    firstYear: hhFirstYears[currentUser],
     totals
   };
 }
