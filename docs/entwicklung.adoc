@@ -29,7 +29,7 @@ erstellt werden.
 
 === src/
 
-Der eigentliche Quellcode des Projekts findet sich im Ordner xref:src/[].
+Der eigentliche Quellcode des Projekts findet sich im Ordner xref:src[src/].
 
 ==== Unterordner nach Funktionalitäten
 
@@ -44,7 +44,7 @@ Innerhalb der Unterordner finden sich grundsätzlich
 - die notwendigen (hartkodierten) Daten (Dateien mit ...Data.ts) und
 - die Form der Daten (DatenTypen - Dateien mit ....Types.ts)
 
-Ein recht konsequentes Beispiel für diese Struktur findet sich in xref:src/eingabehilfe/searchfields/[] . 
+Ein recht konsequentes Beispiel für diese Struktur findet sich in xref:src/eingabehilfe/searchfields[] . 
 
 ==== Querschnittsaufgaben
 
