@@ -1,6 +1,8 @@
 import { Workbook } from "exceljs";
-import { AppState, getFilteredHhstArray } from "../store/AppState";
-
+import {
+  AppState,
+  getFilteredHhstArray
+} from "../store/AppState";
 
 export type SingleAnalyze = {
   worksheetId: number;
@@ -21,8 +23,11 @@ export type AnalyzeResults = {
   xlsxDownloadBuffer: ArrayBuffer;
 };
 
-
-export async function importAnalyzeSheet(file: File, workbook: Workbook, appState: AppState): Promise<AnalyzeResults> {
+export async function importAnalyzeSheet(
+  file: File,
+  workbook: Workbook,
+  appState: AppState
+): Promise<AnalyzeResults> {
   let foundExpression = false;
   const analysis: SingleAnalyze[] = [];
   const analyzeRegEx = /^([aAbBeElLzZ])=(.*)$/;
@@ -32,9 +37,13 @@ export async function importAnalyzeSheet(file: File, workbook: Workbook, appStat
       row.eachCell((cell) => {
         const analyzeExpression = cell.result || cell.value;
         if (typeof analyzeExpression === "string") {
-          const regExArr = analyzeRegEx.exec(analyzeExpression);
+          const regExArr = analyzeRegEx.exec(
+            analyzeExpression
+          );
           if (regExArr) {
-            const pushResult = (analyzeResult: string | number) => {
+            const pushResult = (
+              analyzeResult: string | number
+            ) => {
               cell.value = analyzeResult;
               const cellAnalysis: SingleAnalyze = {
                 worksheetId,
@@ -44,7 +53,6 @@ export async function importAnalyzeSheet(file: File, workbook: Workbook, appStat
               };
               analysis.push(cellAnalysis);
               foundExpression = true;
-
             };
             const upperCharacter = regExArr[1].toUpperCase();
             switch (upperCharacter) {
@@ -55,31 +63,34 @@ export async function importAnalyzeSheet(file: File, workbook: Workbook, appStat
               case "A": // Ausgaben => expenses
                 {
                   try {
-                    const { totals } = getFilteredHhstArray(appState.derived.hhstArray, regExArr[2]);
+                    const { totals } = getFilteredHhstArray(
+                      appState.derived.hhstArray,
+                      appState.derived.tgMap,
+                      regExArr[2]
+                    );
                     if (upperCharacter == "A")
                       pushResult(totals.expenses);
-                    else
-                      pushResult(totals.revenues);
+                    else pushResult(totals.revenues);
                   } catch (err) {
                     console.log(err);
                     pushResult(err.message);
                   }
-
                 }
                 break;
               default:
-                console.log("No analyze term:" + analyzeExpression);
+                console.log(
+                  "No analyze term:" + analyzeExpression
+                );
             }
           }
         }
       });
     });
-  }
-  );
+  });
   if (foundExpression) {
     // Force workbook calculation on load
     workbook.calcProperties.fullCalcOnLoad = true;
-    
+
     const xlsxDownloadBuffer = await workbook.xlsx.writeBuffer();
     return {
       type: "AnalyzeResults",
@@ -87,7 +98,8 @@ export async function importAnalyzeSheet(file: File, workbook: Workbook, appStat
       analysis,
       xlsxDownloadBuffer
     };
-  }
-  else
-    throw new Error(`Kein Auswertungsausdruck in ${file.name}.`);
+  } else
+    throw new Error(
+      `Kein Auswertungsausdruck in ${file.name}.`
+    );
 }

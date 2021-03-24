@@ -17,16 +17,15 @@ export function HHStRow({
     if (heading || !hhst.epl)
       className += " has-background-info has-text-light";
     else {
-      if(hhst.kap)
-        className+= " blockKap";
-      else
-        className+= " blockEpl";
-        
+      if (hhst.kap)
+        if (hhst.gruppe) className += " blockTG";
+        else className += " blockKap";
+      else className += " blockEpl";
     }
     if (
       hhst.type === "block" &&
       !hhst.blockstart &&
-      hhst.expense
+      hhst.lastline
     )
       className += " blockEnd";
   } else className += " is-size-7";
@@ -37,7 +36,11 @@ export function HHStRow({
         <span>{hhst.epl}</span>
         <span> {hhst.kap}</span>
         <span>
-          {hhst.gruppe ? ` / ${hhst.gruppe}` : ""}
+          {hhst.gruppe
+            ? hhst.type === "block"
+              ? " " + hhst.gruppe
+              : ` / ${hhst.gruppe}`
+            : ""}
         </span>
         <span> {hhst.suffix} </span>
         <span className="fkz">{hhst.fkz}</span>

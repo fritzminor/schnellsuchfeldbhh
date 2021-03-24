@@ -146,6 +146,7 @@ function getDerivedFrom(
   let searchTree: SearchNode | null;
   let searchParseErrMessage: string | undefined;
   const hhstArray = hhstDataArrays[currentUser];
+  const tgMap = hhTgMaps[currentUser];
   let filteredHhstArray: HHStOrBlock[];
   let totals: Totals;
 
@@ -156,6 +157,7 @@ function getDerivedFrom(
       totals: _totals
     } = getFilteredHhstArray(
       hhstArray,
+      tgMap,
       searchexpression,
       true
     );

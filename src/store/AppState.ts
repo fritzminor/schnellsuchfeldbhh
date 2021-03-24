@@ -54,12 +54,15 @@ export type AppState = {
 const emptyBlockDesc = {
   name: "",
   totalExpenses: 0,
-  totalRevenues: 0
+  totalRevenues: 0,
+  anyExpense: false,
+  anyRevenue: false
 };
 
 /** helper method to get filteredHhstList from given searchexpression */
 export function getFilteredHhstArray(
   hhstArray: HHSt[],
+  tgMap: TgMap,
   searchexpression: string,
   withBlocks = false
 ): {
@@ -80,6 +83,7 @@ export function getFilteredHhstArray(
     const totalRevenues: HHStBlockLimiter = {
       type: "block",
       blockstart: false,
+      lastline: false,
       epl: currEpl.name,
       kap: "",
       gruppe: "",
@@ -88,9 +92,12 @@ export function getFilteredHhstArray(
       zweck: `Einnahmen Epl ${currEpl.name}`,
       sollJahr1: currEpl.totalRevenues
     };
+
     filteredHhstArray.push(totalRevenues);
+
     const totalExpenses: HHStBlockLimiter = {
       ...totalRevenues,
+      lastline: true,
       zweck: `Ausgaben Epl ${currEpl.name}`,
       expense: true,
       sollJahr1: currEpl.totalExpenses
@@ -110,6 +117,7 @@ export function getFilteredHhstArray(
     const totalRevenues: HHStBlockLimiter = {
       type: "block",
       blockstart: false,
+      lastline: false,
       epl: currKap.name.substr(0, 2),
       kap: currKap.name.substr(2, 2),
       gruppe: "",
@@ -121,6 +129,7 @@ export function getFilteredHhstArray(
     filteredHhstArray.push(totalRevenues);
     const totalExpenses: HHStBlockLimiter = {
       ...totalRevenues,
+      lastline: true,
       zweck: `Ausgaben ${zweckEnd}`,
       expense: true,
       sollJahr1: currKap.totalExpenses
@@ -129,30 +138,89 @@ export function getFilteredHhstArray(
     currKap = { ...emptyBlockDesc }; // reset to content of emptyBlockDesc
   };
 
+  /** currTG.name=epl+kap+"TG"+tgNr */
+  let currTG = { ...emptyBlockDesc }; // clone emptyBlockDesc
+
+  const pushTgTotals = () => {
+    const zweckEnd =
+      tgMap[currTG.name].name ||
+      `Epl ${currTG.name.substr(
+        0,
+        2
+      )} Kap ${currTG.name.substr(
+        2,
+        2
+      )} TG ${currTG.name.substr(6, 2)}`;
+    const totalRevenues: HHStBlockLimiter = {
+      type: "block",
+      blockstart: false,
+      lastline: !currTG.anyExpense,
+      epl: currTG.name.substr(0, 2),
+      kap: currTG.name.substr(2, 2),
+      gruppe: `TG ${currTG.name.substr(6, 2)}`,
+      suffix: "",
+      fkz: "",
+      zweck: `Einnahmen ${zweckEnd}`,
+      sollJahr1: currTG.totalRevenues
+    };
+
+    if (currTG.anyRevenue)
+      filteredHhstArray.push(totalRevenues);
+
+    if (currTG.anyExpense) {
+      const totalExpenses: HHStBlockLimiter = {
+        ...totalRevenues,
+        lastline: true,
+        zweck: `Ausgaben ${zweckEnd}`,
+        expense: true,
+        sollJahr1: currTG.totalExpenses
+      };
+      filteredHhstArray.push(totalExpenses);
+    }
+    currTG = { ...emptyBlockDesc }; // reset to content of emptyBlockDesc
+  };
+
   hhstArray.forEach((hhst) => {
     if (isSearched(hhst, searchTree)) {
-      const hhstKap4 = hhst.epl + hhst.kap;
-      if (withBlocks && hhstKap4 !== currKap.name) {
-        if (currKap.name)
-          // end of currEpl
-          pushKapTotals();
-        currKap.name = hhstKap4;
-      }
+      if (withBlocks) {
+        const hhstTgKey = hhst.tgKey;
+        if (
+          (hhstTgKey || currTG.name) &&
+          hhstTgKey !== currTG.name
+        ) {
+          if (currTG.name)
+            // end of currEpl
+            pushTgTotals();
+          else currTG = { ...emptyBlockDesc };
+          currTG.name = hhstTgKey || "";
+        }
+        const hhstKap4 = hhst.epl + hhst.kap;
+        if (hhstKap4 !== currKap.name) {
+          if (currKap.name)
+            // end of currEpl
+            pushKapTotals();
+          currKap.name = hhstKap4;
+        }
 
-      if (withBlocks && hhst.epl !== currEpl.name) {
-        if (currEpl.name)
-          // end of currEpl
-          pushEplTotals();
-        currEpl.name = hhst.epl;
+        if (hhst.epl !== currEpl.name) {
+          if (currEpl.name)
+            // end of currEpl
+            pushEplTotals();
+          currEpl.name = hhst.epl;
+        }
       }
 
       filteredHhstArray.push(hhst);
 
       if (hhst.expense) {
+        currTG.totalExpenses += hhst.sollJahr1;
+        currTG.anyExpense = true;
         currKap.totalExpenses += hhst.sollJahr1;
         currEpl.totalExpenses += hhst.sollJahr1;
         totals.expenses += hhst.sollJahr1;
       } else {
+        currTG.totalRevenues += hhst.sollJahr1;
+        currTG.anyRevenue = true;
         currKap.totalRevenues += hhst.sollJahr1;
         currEpl.totalRevenues += hhst.sollJahr1;
         totals.revenues += hhst.sollJahr1;
@@ -161,12 +229,13 @@ export function getFilteredHhstArray(
   });
 
   if (withBlocks) {
-    console.log("currEpl", currEpl);
+    if (currTG.name) pushTgTotals();
     if (currKap.name) pushKapTotals();
     if (currEpl.name) pushEplTotals();
     const totalRevenues: HHStBlockLimiter = {
       type: "block",
       blockstart: false,
+      lastline: false,
       epl: "",
       kap: "",
       gruppe: "",
@@ -178,6 +247,7 @@ export function getFilteredHhstArray(
     filteredHhstArray.push(totalRevenues);
     const totalExpenses: HHStBlockLimiter = {
       ...totalRevenues,
+      lastline: true,
       zweck: "Gesamtausgaben",
       expense: true,
       sollJahr1: totals.expenses

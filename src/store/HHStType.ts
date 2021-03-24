@@ -11,8 +11,8 @@ export type HHSt = {
   suffix: string;
 
   /** Titelgruppe 8 characters key, e.g. "0102TG60" for Titelgruppe 60 in Epl 01 Kap 02 */
-  tgKey?:string;
-  
+  tgKey?: string;
+
   expense?: boolean;
   /** three digits Funktionskennziffer */
   fkz: string;
@@ -23,15 +23,15 @@ export type HHSt = {
   sollJahr1: number;
 };
 
-export type HHStFieldName= keyof HHSt;
+export type HHStFieldName = keyof HHSt;
 
 export type HHStBlockEnd = {
-  blockstart:false;
-
-} & Omit<HHSt,"type">;
+  blockstart: false;
+  lastline: boolean;
+} & Omit<HHSt, "type">;
 
 export type HHStBlockLimiter = {
-  type:"block"
+  type: "block";
 } & HHStBlockEnd;
 
 export type HHStOrBlock = HHStBlockLimiter | HHSt;
