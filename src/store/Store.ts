@@ -175,7 +175,7 @@ function getDerivedFrom(
     searchParseErrMessage,
     searchTree,
     hhstArray,
-    tgMap: {},
+    tgMap,
     filteredHhstArray,
     firstYear: hhFirstYears[currentUser],
     totals
