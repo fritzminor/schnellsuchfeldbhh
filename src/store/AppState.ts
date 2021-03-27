@@ -8,6 +8,7 @@ import {
 } from "./HHStType";
 import { getSearchTree } from "../hhstliste/hhstListeLogic/searchParser";
 import { isSearched } from "../hhstliste/hhstListeLogic/evalSearch4HHSt";
+import { BaseData } from "./Store";
 
 export type Totals = {
   revenues: number;
@@ -37,10 +38,12 @@ export type AppState = {
     searchTree: SearchNode | null;
     searchParseErrMessage?: string;
 
-    /** contains all HHSt of the given user (not restricted to searchexpression / searchTree) */
+    baseData: BaseData;
+
+    /** contains all HHSt of the given user (not restricted to searchexpression / searchTree) 
     hhstArray: HHSt[];
 
-    /** contains the tg-descriptions */
+    /** contains the tg-descriptions 
     tgMap: SectionMap;
 
     /** contains the HHSts filtered by searchTree plus block elements for (sub-)totals. */
@@ -48,8 +51,8 @@ export type AppState = {
 
     totals: Totals;
 
-    /** the first budget year = SollJahr1 */
-    firstYear: number;
+    /** the first budget year = SollJahr1 
+    firstYear: number; */
   };
 };
 

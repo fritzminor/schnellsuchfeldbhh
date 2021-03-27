@@ -27,7 +27,8 @@ export function HHStList({
       true
     );
     const hhstLimit = 500;
-    rowHeadings.sollJahr1 = appState.derived.firstYear;
+    const baseData=appState.derived.baseData;
+    rowHeadings.sollJahr1 = baseData.firstYear;
     const hhsts = limited
       ? appState.derived.filteredHhstArray.slice(
           0,

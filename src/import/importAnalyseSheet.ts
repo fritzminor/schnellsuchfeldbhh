@@ -28,6 +28,7 @@ export async function importAnalyzeSheet(
   workbook: Workbook,
   appState: AppState
 ): Promise<AnalyzeResults> {
+  const baseData=appState.derived.baseData;
   let foundExpression = false;
   const analysis: SingleAnalyze[] = [];
   const analyzeRegEx = /^([aAbBeElLzZ])=(.*)$/;
@@ -64,8 +65,8 @@ export async function importAnalyzeSheet(
                 {
                   try {
                     const { totals } = getFilteredHhstArray(
-                      appState.derived.hhstArray,
-                      appState.derived.tgMap,
+                      baseData.hhsts,
+                      baseData.tgMap,
                       regExArr[2]
                     );
                     if (upperCharacter == "A")

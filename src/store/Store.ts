@@ -41,7 +41,8 @@ function transformExampleData(
     zweck: string;
     sollJahr1: number;
     kennzeichen: string[];
-  }[], firstYear=2021
+  }[],
+  firstYear = 2021
 ): BaseData {
   return {
     ...emptyBaseData,
@@ -60,7 +61,7 @@ const baseDataArrays: { [index in UserName]: BaseData } = {
   BearbeiterEpl01und02: transformExampleData(
     hhstData01_02.hhsts
   ),
-  LokaleDaten: {...emptyBaseData}
+  LokaleDaten: { ...emptyBaseData }
 };
 
 /*
@@ -135,8 +136,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
       }));
     },
 
-    setLocalData(localData:BaseData
-    ) {
+    setLocalData(localData: BaseData) {
       baseDataArrays.LokaleDaten = localData;
     },
 
@@ -165,7 +165,7 @@ function getDerivedFrom(
 ): AppState["derived"] {
   let searchTree: SearchNode | null;
   let searchParseErrMessage: string | undefined;
-  const baseData=baseDataArrays[currentUser];
+  const baseData = baseDataArrays[currentUser];
   const hhstArray = baseData.hhsts;
   const tgMap = baseData.tgMap;
   let filteredHhstArray: HHStOrBlock[];
@@ -195,10 +195,8 @@ function getDerivedFrom(
   return {
     searchParseErrMessage,
     searchTree,
-    hhstArray,
-    tgMap,
+    baseData,
     filteredHhstArray,
-    firstYear: baseData.firstYear,
     totals
   };
 }
