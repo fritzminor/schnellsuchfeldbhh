@@ -104,7 +104,7 @@ export default function App(): JSX.Element {
         </div>
       </footer>
       {process.env.NODE_ENV === "development" ? (
-        <pre>{JSON.stringify(state, undefined, "  ")}</pre>
+        <pre>{JSON.stringify(state.derived.baseData, undefined, "  ")}</pre>
       ) : (
         <></>
       )}

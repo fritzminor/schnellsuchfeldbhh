@@ -8,7 +8,6 @@ import {
 } from "./HHStType";
 import { getSearchTree } from "../hhstliste/hhstListeLogic/searchParser";
 import { isSearched } from "../hhstliste/hhstListeLogic/evalSearch4HHSt";
-import { BaseData } from "./Store";
 
 export type Totals = {
   revenues: number;
@@ -21,11 +20,30 @@ export type SectionMap = {
    * "0102TG60" for TG 60 in Epl 01 Kap 02 or
    * "0304" for Kap 04 in Epl 03 */
   [index: string]: {
-    /** e.g. "60" */
+    /** e.g. "60" for TG 60 or
+     * "04" for Kap 04
+     */
     short: string;
     /** epl/Kap/tg description used as epl/kap/tg caption */
     name: string;
   };
+};
+
+
+export type BaseData = {
+  firstYear: number;
+  hhsts: HHSt[];
+  eplMap: SectionMap;
+  kapMap: SectionMap;
+  tgMap: SectionMap;
+};
+
+export const emptyBaseData: BaseData = {
+  firstYear: 0,
+  hhsts: [],
+  eplMap: {},
+  kapMap: {},
+  tgMap: {}
 };
 
 export type AppState = {

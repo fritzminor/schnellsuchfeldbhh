@@ -1,18 +1,22 @@
 import { UserName } from "../navigation/UsersTypes";
 import { HHSt } from "../store/HHStType";
 import Papa from "papaparse";
-import { SectionMap } from "../store/AppState";
-import { emptyBaseData, Store } from "../store/Store";
+import {
+  emptyBaseData
+} from "../store/AppState";
+import { Store } from "../store/Store";
 
 type CsvRow = {
   einzelplan: string;
+  "einzelplan-text": string;
   kapitel: string;
+  "kapitel-text": string;
   titel: string;
   funktion: string;
   soll: string;
   "titel-text": string;
-  "titelgruppe":string;
-  "tgr-text":string;
+  titelgruppe: string;
+  "tgr-text": string;
 };
 
 /** imports data from files following the format of
@@ -25,15 +29,15 @@ export function importBHH_CSV(
   setLocalData: Store["setLocalData"],
   setModalInfo: (modalInfo: string) => void
 ): void {
-  const hhsts: HHSt[] = [];
-  const tgMap: SectionMap = {};
+  const importedData = { ...emptyBaseData };
+  const { eplMap, kapMap, tgMap, hhsts } = importedData;
 
   const regExFileName = /hh_(\d{4})_.*csv$/.exec(file.name);
   if (!regExFileName)
     throw new Error(
       `Dateinamen ${file.name} nicht erkannt`
     );
-  const firstYear = parseInt(regExFileName[1], 10);
+  importedData.firstYear = parseInt(regExFileName[1], 10);
 
   let rowNr = 0;
   let errMessage: string | null = null;
@@ -60,12 +64,21 @@ export function importBHH_CSV(
         );
       }
       const epl = data.einzelplan.padStart(2, "0");
+      eplMap[epl] = {
+        short: epl,
+        name: data["einzelplan-text"]
+      };
+
       const kapitel = data.kapitel.padStart(4, "0");
       if (kapitel.substr(0, 2) !== epl)
         throw new Error(
           `Fehler beim Lesen von ${file.name}: Kapitelnummer ${kapitel} passt nicht zu Einzelplan ${epl}. `
         );
       const kap = kapitel.substr(2);
+      kapMap[kapitel] = {
+        short: kap,
+        name: data["kapitel-text"]
+      };
 
       const titel = data.titel.padStart(5, "0");
       const gruppe = titel.substr(0, 3);
@@ -74,17 +87,18 @@ export function importBHH_CSV(
       const sollJahr1 = parseInt(data.soll, 10);
       const zweck = data["titel-text"];
 
-      const tgNr= data["titelgruppe"];
-      const tgKey=tgNr?`${epl}${kap}TG${tgNr}`:undefined;
-      if(tgKey){
-        if(!tgMap[tgKey]){
-          const tgName=data["tgr-text"];
-          tgMap[tgKey]={
+      const tgNr = data["titelgruppe"]?data["titelgruppe"].padStart(2, "0"):"";
+      const tgKey = tgNr
+        ? `${epl}${kap}TG${tgNr}`
+        : undefined;
+      if (tgKey) {
+        if (!tgMap[tgKey]) {
+          const tgName = data["tgr-text"];
+          tgMap[tgKey] = {
             short: tgNr,
-            name:tgName
-          }
+            name: tgName
+          };
         }
-
       }
 
       const hhst: HHSt = {
@@ -124,7 +138,7 @@ export function importBHH_CSV(
           errMessage || "FEHLER: Ursache unbekannt."
         );
       else {
-        setLocalData({...emptyBaseData, hhsts, tgMap, firstYear});
+        setLocalData(importedData);
         setCurrentUser("LokaleDaten");
       }
     }

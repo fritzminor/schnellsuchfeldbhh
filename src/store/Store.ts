@@ -4,79 +4,21 @@ import { UserName } from "../navigation/UsersTypes";
 import {
   AppState,
   getFilteredHhstArray,
-  SectionMap,
-  Totals
+  BaseData,
+  Totals,
+  emptyBaseData
 } from "./AppState";
-import { HHSt, HHStOrBlock } from "./HHStType";
+import { HHStOrBlock } from "./HHStType";
 
 import hhstDataBHH from "./material/bhh_long.json";
-import hhstData01_02 from "./material/bhh_bpbt.json";
+import hhstData01_02 from "./material/bhh_epl01_02.json";
 import { AnalyzeResults } from "../import/importAnalyseSheet";
-//import hhstData from "./material/bhh_short.json";
-
-export type BaseData = {
-  firstYear: number;
-  hhsts: HHSt[];
-  eplMap: SectionMap;
-  kapMap: SectionMap;
-  tgMap: SectionMap;
-};
-
-export const emptyBaseData: BaseData = {
-  firstYear: 0,
-  hhsts: [],
-  eplMap: {},
-  kapMap: {},
-  tgMap: {}
-};
-
-function transformExampleData(
-  exampleData: {
-    expense: boolean;
-    epl: string;
-    kap: string;
-    gruppe: string;
-    suffix: string;
-    fkz: string;
-    zweck: string;
-    sollJahr1: number;
-    kennzeichen: string[];
-  }[],
-  firstYear = 2021
-): BaseData {
-  return {
-    ...emptyBaseData,
-    firstYear,
-    hhsts: exampleData.map((exampleRow) => {
-      const hhst: HHSt = { type: "hhst", ...exampleRow };
-      return hhst;
-    })
-  };
-}
 
 const baseDataArrays: { [index in UserName]: BaseData } = {
-  BearbeiterGesamtBHH: transformExampleData(
-    hhstDataBHH.hhsts
-  ),
-  BearbeiterEpl01und02: transformExampleData(
-    hhstData01_02.hhsts
-  ),
+  BearbeiterGesamtBHH: hhstDataBHH as BaseData,
+  BearbeiterEpl01und02: hhstData01_02 as BaseData,
   LokaleDaten: { ...emptyBaseData }
 };
-
-/*
-const hhFirstYears: { [index in UserName]: number } = {
-  BearbeiterGesamtBHH: 2021,
-  BearbeiterEpl01und02: 2021,
-  LokaleDaten: 0
-};
-
-const hhTgMaps: { [index in UserName]: SectionMap } = {
-  BearbeiterGesamtBHH: {},
-  BearbeiterEpl01und02: {},
-  LokaleDaten: {}
-};
-*/
 
 export function createStore( // eslint-disable-line  @typescript-eslint/explicit-module-boundary-types
   setState: React.Dispatch<React.SetStateAction<AppState>>

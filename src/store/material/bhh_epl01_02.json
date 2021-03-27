@@ -1,2836 +1,2838 @@
 {
+  "firstYear": 2021,
   "hhsts": [
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "01",
       "kap": "01",
       "gruppe": "232",
       "suffix": "01",
       "fkz": "187",
       "zweck": "Beteiligung der Länder an der Deutschen Künstlerhilfe und sonstige ihr zugedachte Einnahmen",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "01",
       "kap": "01",
       "gruppe": "381",
       "suffix": "03",
       "fkz": "890",
-      "zweck": "Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "zweck": "Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7",
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "01",
       "gruppe": "529",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Außergewöhnlicher Aufwand aus dienstlicher Veranlassung in besonderen Fällen",
-      "sollJahr1": 1000,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 1000
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "01",
       "gruppe": "681",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Übernahme von Patenschaften, Ausgaben aus besonderer Veranlassung und besondere Bewilligungen.",
-      "sollJahr1": 1348,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 1348
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "01",
       "gruppe": "684",
       "suffix": "01",
       "fkz": "187",
       "zweck": "Deutsche Künstlerhilfe",
-      "sollJahr1": 2300,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 2300
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "01",
       "gruppe": "981",
       "suffix": "03",
       "fkz": "890",
-      "zweck": "Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "zweck": "Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7",
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "01",
       "gruppe": "421",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Bezüge des Bundespräsidenten",
-      "sollJahr1": 255,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 255
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "01",
       "gruppe": "421",
       "suffix": "02",
       "fkz": "011",
       "zweck": "Aufwandsgeld",
-      "sollJahr1": 78,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 78
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "01",
       "gruppe": "453",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "01",
       "gruppe": "545",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Konferenzen, Tagungen, Messen und Ausstellungen",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "282",
       "suffix": "09",
       "fkz": "011",
       "zweck": "Einnahmen aus Sponsoring, Spenden und ähnlichen freiwilligen Geldleistungen",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "381",
       "suffix": "03",
       "fkz": "890",
-      "zweck": "Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "zweck": "Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7",
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "119",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0111TG57",
       "zweck": "Vermischte Einnahmen",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "232",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0111TG57",
       "zweck": "Beteiligung an den Versorgungslasten des Bundes",
-      "sollJahr1": 190,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 190
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "542",
       "suffix": "01",
       "fkz": "013",
       "zweck": "Öffentlichkeitsarbeit",
-      "sollJahr1": 350,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 350
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "547",
       "suffix": "09",
       "fkz": "011",
       "zweck": "Ausgaben für Vorhaben, die aus Spenden, Sponsoring und ähnlichen freiwilligen Geldleistungen finanziert werden",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 0
     },
     {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "01",
+      "gruppe": "232",
+      "suffix": "01",
+      "fkz": "187",
+      "zweck": "Beteiligung der Länder an der Deutschen Künstlerhilfe und sonstige ihr zugedachte Einnahmen",
+      "expense": false,
+      "sollJahr1": 0
+    },
+    {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "01",
+      "gruppe": "381",
+      "suffix": "03",
+      "fkz": "890",
+      "zweck": "Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7",
+      "expense": false,
+      "sollJahr1": 0
+    },
+    {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "01",
+      "gruppe": "529",
+      "suffix": "01",
+      "fkz": "011",
+      "zweck": "Außergewöhnlicher Aufwand aus dienstlicher Veranlassung in besonderen Fällen",
       "expense": true,
+      "sollJahr1": 1000
+    },
+    {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "01",
+      "gruppe": "681",
+      "suffix": "01",
+      "fkz": "011",
+      "zweck": "Übernahme von Patenschaften, Ausgaben aus besonderer Veranlassung und besondere Bewilligungen.",
+      "expense": true,
+      "sollJahr1": 1348
+    },
+    {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "01",
+      "gruppe": "684",
+      "suffix": "01",
+      "fkz": "187",
+      "zweck": "Deutsche Künstlerhilfe",
+      "expense": true,
+      "sollJahr1": 2300
+    },
+    {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "01",
+      "gruppe": "981",
+      "suffix": "03",
+      "fkz": "890",
+      "zweck": "Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7",
+      "expense": true,
+      "sollJahr1": 0
+    },
+    {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "01",
+      "gruppe": "421",
+      "suffix": "01",
+      "fkz": "011",
+      "zweck": "Bezüge des Bundespräsidenten",
+      "expense": true,
+      "sollJahr1": 255
+    },
+    {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "01",
+      "gruppe": "421",
+      "suffix": "02",
+      "fkz": "011",
+      "zweck": "Aufwandsgeld",
+      "expense": true,
+      "sollJahr1": 78
+    },
+    {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "01",
+      "gruppe": "453",
+      "suffix": "01",
+      "fkz": "011",
+      "zweck": "Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen",
+      "expense": true,
+      "sollJahr1": 0
+    },
+    {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "01",
+      "gruppe": "545",
+      "suffix": "01",
+      "fkz": "011",
+      "zweck": "Konferenzen, Tagungen, Messen und Ausstellungen",
+      "expense": true,
+      "sollJahr1": 0
+    },
+    {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "11",
+      "gruppe": "282",
+      "suffix": "09",
+      "fkz": "011",
+      "zweck": "Einnahmen aus Sponsoring, Spenden und ähnlichen freiwilligen Geldleistungen",
+      "expense": false,
+      "sollJahr1": 0
+    },
+    {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "11",
+      "gruppe": "381",
+      "suffix": "03",
+      "fkz": "890",
+      "zweck": "Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7",
+      "expense": false,
+      "sollJahr1": 0
+    },
+    {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "11",
+      "gruppe": "119",
+      "suffix": "57",
+      "fkz": "018",
+      "tgKey": "0111TG57",
+      "zweck": "Vermischte Einnahmen",
+      "expense": false,
+      "sollJahr1": 0
+    },
+    {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "11",
+      "gruppe": "232",
+      "suffix": "57",
+      "fkz": "018",
+      "tgKey": "0111TG57",
+      "zweck": "Beteiligung an den Versorgungslasten des Bundes",
+      "expense": false,
+      "sollJahr1": 190
+    },
+    {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "11",
+      "gruppe": "542",
+      "suffix": "01",
+      "fkz": "013",
+      "zweck": "Öffentlichkeitsarbeit",
+      "expense": true,
+      "sollJahr1": 350
+    },
+    {
+      "type": "hhst",
+      "epl": "01",
+      "kap": "11",
+      "gruppe": "547",
+      "suffix": "09",
+      "fkz": "011",
+      "zweck": "Ausgaben für Vorhaben, die aus Spenden, Sponsoring und ähnlichen freiwilligen Geldleistungen finanziert werden",
+      "expense": true,
+      "sollJahr1": 0
+    },
+    {
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "981",
       "suffix": "03",
       "fkz": "890",
-      "zweck": "Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "zweck": "Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7",
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "431",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0111TG57",
       "zweck": "Versorgungsbezüge der Bundespräsidenten und deren Hinterbliebenen",
-      "sollJahr1": 1163,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 1163
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "432",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0111TG57",
       "zweck": "Versorgungsbezüge",
-      "sollJahr1": 3810,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 3810
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "434",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0111TG57",
       "zweck": "Zuführung an die Versorgungsrücklage",
-      "sollJahr1": 212,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 212
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "443",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0111TG57",
       "zweck": "Fürsorgeleistungen und Unterstützungen einschließlich Inanspruchnahme von besonderen Fachdiensten/-kräften",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "446",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0111TG57",
       "zweck": "Beihilfen aufgrund der Beihilfevorschriften",
-      "sollJahr1": 1094,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 1094
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "453",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0111TG57",
       "zweck": "Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "632",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0111TG57",
       "zweck": "Erstattungen des Bundes für Versorgungslasten",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "424",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Zuführung an die Versorgungsrücklage",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "441",
       "suffix": "01",
       "fkz": "840",
       "zweck": "Beihilfen aufgrund der Beihilfevorschriften",
-      "sollJahr1": 250,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 250
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "443",
       "suffix": "01",
       "fkz": "840",
       "zweck": "Fürsorgeleistungen und Unterstützungen einschließlich Inanspruchnahme von besonderen Fachdiensten/-kräften",
-      "sollJahr1": 40,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 40
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "452",
       "suffix": "02",
       "fkz": "223",
       "zweck": "Unfallversicherung Bund und Bahn",
-      "sollJahr1": 12,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 12
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "526",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Gerichts- und ähnliche Kosten",
-      "sollJahr1": 20,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 20
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "526",
       "suffix": "02",
       "fkz": "011",
       "zweck": "Sachverständige, Ausgaben für Mitglieder von Fachbeiräten und ähnlichen Ausschüssen",
-      "sollJahr1": 100,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 100
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "545",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Konferenzen, Tagungen, Messen und Ausstellungen",
-      "sollJahr1": 1600,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1600
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "11",
       "gruppe": "634",
       "suffix": "03",
       "fkz": "011",
       "zweck": "Zuweisungen an den Versorgungsfonds",
-      "sollJahr1": 550,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 550
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "119",
       "suffix": "99",
       "fkz": "011",
       "zweck": "Vermischte Einnahmen",
-      "sollJahr1": 2,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 2
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "124",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Einnahmen aus Vermietung, Verpachtung und Nutzung",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "132",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erlöse aus der Veräußerung von beweglichen Sachen",
-      "sollJahr1": 1,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 1
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "381",
       "suffix": "03",
       "fkz": "890",
-      "zweck": "Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "zweck": "Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7",
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "685",
       "suffix": "01",
       "fkz": "165",
       "zweck": "Forschungsprojekt: Das Bundespräsidialamt und der Nationalsozialismus",
-      "sollJahr1": 350,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 350
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "981",
       "suffix": "03",
       "fkz": "890",
-      "zweck": "Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "zweck": "Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7",
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "422",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Bezüge und Nebenleistungen der planmäßigen Beamtinnen und Beamten",
-      "sollJahr1": 8481,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 8481
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "422",
       "suffix": "02",
       "fkz": "011",
       "zweck": "Bezüge und Nebenleistungen der beamteten Hilfskräfte",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "427",
       "suffix": "09",
       "fkz": "011",
       "zweck": "Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige",
-      "sollJahr1": 582,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 582
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "428",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Entgelte der Arbeitnehmerinnen und Arbeitnehmer",
-      "sollJahr1": 7551,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 7551
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "453",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen",
-      "sollJahr1": 50,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 50
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "511",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Geschäftsbedarf und Kommunikation sowie Geräte, Ausstattungs- und Ausrüstungsgegenstände, sonstige Gebrauchsgegenstände, Software, Wartung",
-      "sollJahr1": 1175,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1175
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "514",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Verbrauchsmittel, Haltung von Fahrzeugen und dgl.",
-      "sollJahr1": 177,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 177
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "517",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Bewirtschaftung der Grundstücke, Gebäude und Räume",
-      "sollJahr1": 2436,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 2436
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "518",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Mieten und Pachten",
-      "sollJahr1": 324,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 324
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "519",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Unterhaltung der Grundstücke und baulichen Anlagen",
-      "sollJahr1": 1700,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1700
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "525",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Aus- und Fortbildung",
-      "sollJahr1": 150,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 150
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "526",
       "suffix": "04",
       "fkz": "011",
-      "zweck": "Kosten der Kommission unabhängiger Sachverständiger gemäß § 18 Abs. 6 Parteiengesetz",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "zweck": "Kosten der Kommission unabhängiger Sachverständiger gemäß § 18 Abs. 6 Parteiengesetz",
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "527",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Dienstreisen",
-      "sollJahr1": 300,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 300
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "532",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Aufträge und Dienstleistungen im Bereich Informationstechnik",
-      "sollJahr1": 432,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 432
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "532",
       "suffix": "04",
       "fkz": "011",
       "zweck": "Kosten aus Anlass von Staatsbesuchen und Reisen des Bundespräsidenten im Ausland",
-      "sollJahr1": 1600,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1600
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "532",
       "suffix": "05",
       "fkz": "011",
       "zweck": "Kosten für Orden und Ehrenzeichen",
-      "sollJahr1": 150,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 150
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "539",
       "suffix": "99",
       "fkz": "011",
       "zweck": "Vermischte Verwaltungsausgaben",
-      "sollJahr1": 121,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 121
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "711",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Kleine Neu-﻿, Um- und Erweiterungsbauten",
-      "sollJahr1": 600,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 600
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "712",
       "suffix": "01",
       "fkz": "011",
-      "zweck": "Baumaßnahmen von mehr als 6 000 000 € im Einzelfall",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "zweck": "Baumaßnahmen von mehr als 6 000 000 € im Einzelfall",
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "811",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erwerb von Fahrzeugen",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "812",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erwerb von Geräten, Ausstattungs- und Ausrüstungsgegenständen für Verwaltungszwecke (ohne IT)",
-      "sollJahr1": 350,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 350
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "12",
       "gruppe": "812",
       "suffix": "02",
       "fkz": "011",
       "zweck": "Erwerb von Anlagen, Geräten, Ausstattungs- und Ausrüstungsgegenständen sowie Software im Bereich Informationstechnik",
-      "sollJahr1": 811,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 811
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "119",
       "suffix": "99",
       "fkz": "011",
       "zweck": "Vermischte Einnahmen",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "132",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erlöse aus der Veräußerung von beweglichen Sachen",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "282",
       "suffix": "09",
       "fkz": "011",
       "zweck": "Einnahmen aus Sponsoring, Spenden und ähnlichen freiwilligen Geldleistungen",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "381",
       "suffix": "03",
       "fkz": "890",
-      "zweck": "Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "zweck": "Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7",
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "529",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Außergewöhnlicher Aufwand aus dienstlicher Veranlassung in besonderen Fällen",
-      "sollJahr1": 4,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 4
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "547",
       "suffix": "09",
       "fkz": "011",
       "zweck": "Ausgaben für Vorhaben, die aus Spenden, Sponsoring und ähnlichen freiwilligen Geldleistungen finanziert werden",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "981",
       "suffix": "01",
       "fkz": "890",
       "zweck": "Leistungen an Bundesbehörden zur Durchführung von Aufträgen",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "981",
       "suffix": "03",
       "fkz": "890",
-      "zweck": "Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "zweck": "Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7",
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "422",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Bezüge und Nebenleistungen der planmäßigen Beamtinnen und Beamten",
-      "sollJahr1": 619,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 619
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "427",
       "suffix": "09",
       "fkz": "011",
       "zweck": "Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige",
-      "sollJahr1": 30,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 30
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "428",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Entgelte der Arbeitnehmerinnen und Arbeitnehmer",
-      "sollJahr1": 933,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 933
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "441",
       "suffix": "01",
       "fkz": "840",
       "zweck": "Beihilfen aufgrund der Beihilfevorschriften",
-      "sollJahr1": 22,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 22
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "443",
       "suffix": "01",
       "fkz": "840",
       "zweck": "Fürsorgeleistungen und Unterstützungen einschließlich Inanspruchnahme von besonderen Fachdiensten/-kräften",
-      "sollJahr1": 1,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "452",
       "suffix": "02",
       "fkz": "223",
       "zweck": "Unfallversicherung Bund und Bahn",
-      "sollJahr1": 2,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 2
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "453",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "511",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Geschäftsbedarf und Kommunikation sowie Geräte, Ausstattungs- und Ausrüstungsgegenstände, sonstige Gebrauchsgegenstände, Software, Wartung",
-      "sollJahr1": 247,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 247
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "518",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Mieten und Pachten",
-      "sollJahr1": 571,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 571
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "532",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Aufträge und Dienstleistungen im Bereich Informationstechnik",
-      "sollJahr1": 58,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 58
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "539",
       "suffix": "99",
       "fkz": "011",
       "zweck": "Vermischte Verwaltungsausgaben",
-      "sollJahr1": 417,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 417
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "634",
       "suffix": "03",
       "fkz": "011",
       "zweck": "Zuweisungen an den Versorgungsfonds",
-      "sollJahr1": 104,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 104
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "711",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Kleine Neu-﻿, Um- und Erweiterungsbauten",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "811",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erwerb von Fahrzeugen",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "812",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erwerb von Geräten, Ausstattungs- und Ausrüstungsgegenständen für Verwaltungszwecke (ohne IT)",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "01",
       "kap": "13",
       "gruppe": "812",
       "suffix": "02",
       "fkz": "011",
       "zweck": "Erwerb von Anlagen, Geräten, Ausstattungs- und Ausrüstungsgegenständen sowie Software im Bereich Informationstechnik",
-      "sollJahr1": 120,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 120
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "282",
       "suffix": "09",
       "fkz": "011",
       "zweck": "Einnahmen aus Sponsoring, Spenden und ähnlichen freiwilligen Geldleistungen",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "381",
       "suffix": "01",
       "fkz": "890",
       "zweck": "Leistungen von Bundesbehörden zur Durchführung von Aufträgen",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "119",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0211TG57",
       "zweck": "Vermischte Einnahmen",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "232",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0211TG57",
       "zweck": "Beteiligung an den Versorgungslasten des Bundes",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "529",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Außergewöhnlicher Aufwand aus dienstlicher Veranlassung in besonderen Fällen",
-      "sollJahr1": 560,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 560
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "542",
       "suffix": "01",
       "fkz": "013",
       "zweck": "Öffentlichkeitsarbeit",
-      "sollJahr1": 12240,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 12240
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "547",
       "suffix": "09",
       "fkz": "011",
       "zweck": "Ausgaben für Vorhaben, die aus Spenden, Sponsoring und ähnlichen freiwilligen Geldleistungen finanziert werden",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "431",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0211TG57",
       "zweck": "Versorgungsbezüge sonstiger Amtsträger und deren Hinterbliebenen",
-      "sollJahr1": 350,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 350
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "432",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0211TG57",
       "zweck": "Versorgungsbezüge",
-      "sollJahr1": 28600,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 28600
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "434",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0211TG57",
       "zweck": "Zuführung an die Versorgungsrücklage",
-      "sollJahr1": 1260,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 1260
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "443",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0211TG57",
       "zweck": "Fürsorgeleistungen und Unterstützungen einschließlich Inanspruchnahme von besonderen Fachdiensten/-kräften",
-      "sollJahr1": 10,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 10
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "446",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0211TG57",
       "zweck": "Beihilfen aufgrund der Beihilfevorschriften",
-      "sollJahr1": 6500,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 6500
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "632",
       "suffix": "57",
       "fkz": "018",
+      "tgKey": "0211TG57",
       "zweck": "Erstattungen des Bundes für Versorgungslasten",
-      "sollJahr1": 620,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 620
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "424",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Zuführung an die Versorgungsrücklage",
-      "sollJahr1": 1823,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1823
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "441",
       "suffix": "01",
       "fkz": "840",
       "zweck": "Beihilfen aufgrund der Beihilfevorschriften",
-      "sollJahr1": 3500,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 3500
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "443",
       "suffix": "01",
       "fkz": "840",
       "zweck": "Fürsorgeleistungen und Unterstützungen einschließlich Inanspruchnahme von besonderen Fachdiensten/-kräften",
-      "sollJahr1": 158,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 158
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "452",
       "suffix": "02",
       "fkz": "223",
       "zweck": "Unfallversicherung Bund und Bahn",
-      "sollJahr1": 300,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 300
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "526",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Gerichts- und ähnliche Kosten",
-      "sollJahr1": 335,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 335
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "526",
       "suffix": "02",
       "fkz": "011",
       "zweck": "Sachverständige, Ausgaben für Mitglieder von Fachbeiräten und ähnlichen Ausschüssen",
-      "sollJahr1": 2422,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 2422
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "527",
       "suffix": "03",
       "fkz": "011",
       "zweck": "Reisen in Angelegenheiten der Personalvertretungen und der Gleichstellungsbeauftragten sowie in Vertretung der Interessen schwerbehinderter Menschen",
-      "sollJahr1": 8,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 8
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "11",
       "gruppe": "634",
       "suffix": "03",
       "fkz": "011",
       "zweck": "Zuweisungen an den Versorgungsfonds",
-      "sollJahr1": 10834,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 10834
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "111",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Gebühren, sonstige Entgelte",
-      "sollJahr1": 364,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 364
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "119",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Einnahmen aus Veröffentlichungen",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "119",
       "suffix": "99",
       "fkz": "011",
       "zweck": "Vermischte Einnahmen",
-      "sollJahr1": 83,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 83
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "124",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Einnahmen aus Vermietung, Verpachtung und Nutzung",
-      "sollJahr1": 1257,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 1257
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "132",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erlöse aus der Veräußerung von beweglichen Sachen",
-      "sollJahr1": 70,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 70
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "381",
       "suffix": "03",
       "fkz": "890",
-      "zweck": "Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "zweck": "Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7",
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "411",
       "suffix": "01",
       "fkz": "011",
-      "zweck": "Entschädigungen und Amtszulagen nach § 11 Abgeordnetengesetz",
-      "sollJahr1": 85048,
-      "kennzeichen": []
+      "zweck": "Entschädigungen und Amtszulagen nach § 11 Abgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 85048
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "411",
       "suffix": "02",
       "fkz": "011",
-      "zweck": "Aufwandsentschädigungen nach § 12 Abs. 2 und 5 Abgeordnetengesetz",
-      "sollJahr1": 39744,
-      "kennzeichen": []
+      "zweck": "Aufwandsentschädigungen nach § 12 Abs. 2 und 5 Abgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 39744
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "411",
       "suffix": "03",
       "fkz": "011",
-      "zweck": "Aufwendungen für die Beschäftigung von Mitarbeitern nach § 12 Abs. 3 Abgeordnetengesetz",
-      "sollJahr1": 261120,
-      "kennzeichen": []
+      "zweck": "Aufwendungen für die Beschäftigung von Mitarbeitern nach § 12 Abs. 3 Abgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 261120
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "411",
       "suffix": "04",
       "fkz": "011",
-      "zweck": "Zuschuss zu den Kosten in Krankheits-﻿, Pflege- und Geburtsfällen sowie Unterstützungen nach §§ 27 und 28 Abgeordnetengesetz",
-      "sollJahr1": 9110,
-      "kennzeichen": []
+      "zweck": "Zuschuss zu den Kosten in Krankheits-﻿, Pflege- und Geburtsfällen sowie Unterstützungen nach §§ 27 und 28 Abgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 9110
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "411",
       "suffix": "05",
       "fkz": "011",
-      "zweck": "Übergangsgeld für ausgeschiedene Mitglieder des Deutschen Bundestages nach § 18  Abgeordnetengesetz",
-      "sollJahr1": 4800,
-      "kennzeichen": []
+      "zweck": "Übergangsgeld für ausgeschiedene Mitglieder des Deutschen Bundestages nach § 18  Abgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 4800
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "411",
       "suffix": "11",
       "fkz": "011",
-      "zweck": "Überbrückungsgeld/Sterbegeld an Hinterbliebene sowie Versicherungen nach §§ 24, 26, 35a, 35b, 37, 38 und 41 Abgeordnetengesetz",
-      "sollJahr1": 750,
-      "kennzeichen": []
+      "zweck": "Überbrückungsgeld/Sterbegeld an Hinterbliebene sowie Versicherungen nach §§ 24, 26, 35a, 35b, 37, 38 und 41 Abgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 750
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "411",
       "suffix": "12",
       "fkz": "011",
-      "zweck": "Altersentschädigung an ausgeschiedene Mitglieder des Deutschen Bundestages sowie Hinterbliebenenversorgung nach §§ 19 bis 22, 25, 26, 35, 35a, 35b, 35c, 37 und 38 Abgeordnetengesetz",
-      "sollJahr1": 51100,
-      "kennzeichen": []
+      "zweck": "Altersentschädigung an ausgeschiedene Mitglieder des Deutschen Bundestages sowie Hinterbliebenenversorgung nach §§ 19 bis 22, 25, 26, 35, 35a, 35b, 35c, 37 und 38 Abgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 51100
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "411",
       "suffix": "13",
       "fkz": "011",
-      "zweck": "Versorgungsabfindung nach §§ 23 und 40 Abgeordnetengesetz",
-      "sollJahr1": 120,
-      "kennzeichen": []
+      "zweck": "Versorgungsabfindung nach §§ 23 und 40 Abgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 120
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "411",
       "suffix": "16",
       "fkz": "011",
-      "zweck": "Inlandsdienst- und Mandatsreisen der Abgeordneten nach §§ 16 und 17 Abgeordnetengesetz",
-      "sollJahr1": 8496,
-      "kennzeichen": []
+      "zweck": "Inlandsdienst- und Mandatsreisen der Abgeordneten nach §§ 16 und 17 Abgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 8496
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "411",
       "suffix": "17",
       "fkz": "011",
-      "zweck": "Auslandsdienstreisen der Abgeordneten nach § 17  Abgeordnetengesetz, ohne Reisen zu internationalen parlamentarischen Versammlungen",
-      "sollJahr1": 5200,
-      "kennzeichen": []
+      "zweck": "Auslandsdienstreisen der Abgeordneten nach § 17  Abgeordnetengesetz, ohne Reisen zu internationalen parlamentarischen Versammlungen",
+      "expense": true,
+      "sollJahr1": 5200
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "411",
       "suffix": "18",
       "fkz": "011",
       "zweck": "Reisen zu internationalen parlamentarischen Versammlungen",
-      "sollJahr1": 1194,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 1194
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "411",
       "suffix": "19",
       "fkz": "011",
-      "zweck": "Aufwendungen zur Nutzung des gemeinsamen Informations- und Kommunikationssystems des Deutschen Bundestages sowie für Geschäftsbedarf nach § 12  Abs. 4 Nrn. 1 und 4 Abgeordnetengesetz",
-      "sollJahr1": 8599,
-      "kennzeichen": []
+      "zweck": "Aufwendungen zur Nutzung des gemeinsamen Informations- und Kommunikationssystems des Deutschen Bundestages sowie für Geschäftsbedarf nach § 12  Abs. 4 Nrn. 1 und 4 Abgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 8599
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "411",
       "suffix": "20",
       "fkz": "011",
       "zweck": "Kostenerstattung für die Benutzung der Verkehrsmittel der Deutschen Bahn und der Berliner Verkehrsbetriebe durch die Mitglieder des Deutschen Bundestages",
-      "sollJahr1": 2486,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 2486
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "684",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Geldleistungen an die Fraktionen des Deutschen Bundestages",
-      "sollJahr1": 121474,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 121474
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "685",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Zuschuss an Institute zur Technikfolgenabschätzung",
-      "sollJahr1": 2635,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 2635
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "685",
       "suffix": "02",
       "fkz": "011",
       "zweck": "Förderung des Deutschen Instituts für Menschenrechte",
-      "sollJahr1": 3115,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 3115
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "685",
       "suffix": "12",
       "fkz": "011",
       "zweck": "Förderung von Einrichtungen für parlamentarische Zwecke",
-      "sollJahr1": 4203,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 4203
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "687",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Leistungen an internationale Organisationen/Leistungen im Zusammenhang mit internationalen Mitgliedschaften",
-      "sollJahr1": 1436,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 1436
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "687",
       "suffix": "02",
       "fkz": "144",
       "zweck": "Förderung des deutsch-amerikanischen Jugendaustausches",
-      "sollJahr1": 5820,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 5820
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "981",
       "suffix": "03",
       "fkz": "890",
-      "zweck": "Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "zweck": "Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7",
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "422",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Bezüge und Nebenleistungen der planmäßigen Beamtinnen und Beamten",
-      "sollJahr1": 74691,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 74691
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "422",
       "suffix": "02",
       "fkz": "011",
       "zweck": "Bezüge und Nebenleistungen der beamteten Hilfskräfte",
-      "sollJahr1": 380,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 380
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "422",
       "suffix": "03",
       "fkz": "011",
       "zweck": "Bezüge der Anwärterinnen und Anwärter sowie Nebenleistungen der Beamtinnen und Beamten auf Widerruf im Vorbereitungsdienst",
-      "sollJahr1": 312,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 312
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "427",
       "suffix": "09",
       "fkz": "011",
       "zweck": "Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige",
-      "sollJahr1": 10371,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 10371
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "428",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Entgelte der Arbeitnehmerinnen und Arbeitnehmer",
-      "sollJahr1": 88976,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 88976
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "429",
       "suffix": "02",
       "fkz": "011",
       "zweck": "Aufwendungen der Präsidentin oder des Präsidenten des Deutschen Bundestages für das Personal in ihrer/seiner Amtswohnung",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "453",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen",
-      "sollJahr1": 870,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 870
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "459",
       "suffix": "09",
       "fkz": "011",
       "zweck": "Vermischte Personalausgaben",
-      "sollJahr1": 10,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 10
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "511",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Geschäftsbedarf und Kommunikation sowie Geräte, Ausstattungs- und Ausrüstungsgegenstände, sonstige Gebrauchsgegenstände, Software, Wartung",
-      "sollJahr1": 10568,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 10568
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "514",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Verbrauchsmittel, Haltung von Fahrzeugen und dgl.",
-      "sollJahr1": 783,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 783
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "517",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Bewirtschaftung der Grundstücke, Gebäude und Räume",
-      "sollJahr1": 63034,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 63034
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "518",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Mieten und Pachten",
-      "sollJahr1": 21569,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 21569
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "519",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Unterhaltung der Grundstücke und baulichen Anlagen",
-      "sollJahr1": 14865,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 14865
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "525",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Aus- und Fortbildung",
-      "sollJahr1": 1252,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1252
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "526",
       "suffix": "03",
       "fkz": "011",
       "zweck": "Ausgaben für parlamentarische Gremien",
-      "sollJahr1": 1569,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1569
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "527",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Dienstreisen",
-      "sollJahr1": 1350,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1350
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "531",
       "suffix": "02",
       "fkz": "011",
       "zweck": "Besucherdienst",
-      "sollJahr1": 8181,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 8181
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "531",
       "suffix": "05",
       "fkz": "011",
       "zweck": "Ausgaben für die historische Ausstellung und weitere Ausstellungen",
-      "sollJahr1": 675,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 675
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "531",
       "suffix": "06",
       "fkz": "011",
       "zweck": "Ausgaben für Veranstaltungen im Parlamentsviertel",
-      "sollJahr1": 1381,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1381
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "532",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Aufträge und Dienstleistungen im Bereich Informationstechnik",
-      "sollJahr1": 3714,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 3714
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "532",
       "suffix": "04",
       "fkz": "011",
       "zweck": "Ausgaben für außeramtliche Übersetzungs- und Dolmetschertätigkeit",
-      "sollJahr1": 1360,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1360
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "532",
       "suffix": "05",
       "fkz": "011",
       "zweck": "Ausgaben für das zeitgeschichtliche Archiv des Deutschen Bundestages",
-      "sollJahr1": 1310,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1310
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "532",
       "suffix": "06",
       "fkz": "011",
       "zweck": "Ausgaben zur Förderung der zwischenstaatlichen Zusammenarbeit",
-      "sollJahr1": 3389,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 3389
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "539",
       "suffix": "99",
       "fkz": "011",
       "zweck": "Vermischte Verwaltungsausgaben",
-      "sollJahr1": 2044,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 2044
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "711",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Kleine Neu-﻿, Um- und Erweiterungsbauten",
-      "sollJahr1": 1995,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1995
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "712",
       "suffix": "01",
       "fkz": "011",
-      "zweck": "Baumaßnahmen von mehr als 6 000 000 € im Einzelfall",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "zweck": "Baumaßnahmen von mehr als 6 000 000 € im Einzelfall",
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "811",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erwerb von Fahrzeugen",
-      "sollJahr1": 205,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 205
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "812",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erwerb von Geräten, Ausstattungs- und Ausrüstungsgegenständen für Verwaltungszwecke (ohne IT)",
-      "sollJahr1": 2016,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 2016
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "812",
       "suffix": "02",
       "fkz": "011",
       "zweck": "Erwerb von Anlagen, Geräten, Ausstattungs- und Ausrüstungsgegenständen sowie Software im Bereich Informationstechnik",
-      "sollJahr1": 3227,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 3227
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "812",
       "suffix": "03",
       "fkz": "011",
       "zweck": "Erwerb von Geräten, Ausstattungs- und Ausrüstungsgegenständen zur Verbesserung der Arbeitsmöglichkeiten für Abgeordnete und Gremien des Deutschen Bundestages",
-      "sollJahr1": 7162,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 7162
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "812",
       "suffix": "04",
       "fkz": "011",
       "zweck": "Erwerb zeitgenössischer Kunstwerke",
-      "sollJahr1": 275,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 275
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "812",
       "suffix": "06",
       "fkz": "011",
       "zweck": "Beschaffung und Einrichtung von Fernmeldeanlagen u. Ä. für Abgeordnete, die Wehrbeauftragte des Deutschen Bundestages sowie den Ständigen Bevollmächtigten des Parlamentarischen Kontrollgremiums",
-      "sollJahr1": 650,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 650
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "428",
       "suffix": "91",
       "fkz": "011",
+      "tgKey": "0212TG09",
       "zweck": "Entgelte der Arbeitnehmerinnen und Arbeitnehmer",
-      "sollJahr1": 1688,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1688
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "517",
       "suffix": "91",
       "fkz": "011",
+      "tgKey": "0212TG09",
       "zweck": "Bewirtschaftung der Grundstücke, Gebäude und Räume",
-      "sollJahr1": 186,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 186
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "519",
       "suffix": "91",
       "fkz": "011",
+      "tgKey": "0212TG09",
       "zweck": "Unterhaltung der Grundstücke und baulichen Anlagen",
-      "sollJahr1": 70,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 70
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "547",
       "suffix": "91",
       "fkz": "011",
+      "tgKey": "0212TG09",
       "zweck": "Nicht aufteilbare sächliche Verwaltungsausgaben",
-      "sollJahr1": 260,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 260
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "427",
       "suffix": "59",
       "fkz": "011",
+      "tgKey": "0212TG56",
       "zweck": "Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige",
-      "sollJahr1": 211,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 211
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "511",
       "suffix": "56",
       "fkz": "011",
+      "tgKey": "0212TG56",
       "zweck": "Geschäftsbedarf und Datenübertragung sowie Geräte, Ausstattungs- und Ausrüstungsgegenstände, Software, Wartung",
-      "sollJahr1": 4441,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 4441
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "518",
       "suffix": "56",
       "fkz": "011",
+      "tgKey": "0212TG56",
       "zweck": "Miete für Datenverarbeitungsanlagen, Geräte, Ausstattungs- und Ausrüstungsgegenstände, Maschinen, Software",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "525",
       "suffix": "56",
       "fkz": "011",
+      "tgKey": "0212TG56",
       "zweck": "Aus- und Fortbildung",
-      "sollJahr1": 250,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 250
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "532",
       "suffix": "51",
       "fkz": "011",
+      "tgKey": "0212TG56",
       "zweck": "Aufträge und Dienstleistungen im Bereich Informationstechnik",
-      "sollJahr1": 15167,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 15167
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "711",
       "suffix": "56",
       "fkz": "011",
+      "tgKey": "0212TG56",
       "zweck": "Kleine Neu-﻿, Um- und Erweiterungsbauten",
-      "sollJahr1": 328,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 328
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "712",
       "suffix": "56",
       "fkz": "011",
-      "zweck": "Baumaßnahmen von mehr als 6 000 000 € im Einzelfall",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "tgKey": "0212TG56",
+      "zweck": "Baumaßnahmen von mehr als 6 000 000 € im Einzelfall",
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "12",
       "gruppe": "812",
       "suffix": "52",
       "fkz": "011",
+      "tgKey": "0212TG56",
       "zweck": "Erwerb von Anlagen, Geräten, Ausstattungs- und Ausrüstungsgegenständen sowie Software im Bereich Informationstechnik",
-      "sollJahr1": 7547,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 7547
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "13",
       "gruppe": "119",
       "suffix": "99",
       "fkz": "011",
       "zweck": "Vermischte Einnahmen",
-      "sollJahr1": 1,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 1
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "13",
       "gruppe": "132",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erlöse aus der Veräußerung von beweglichen Sachen",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "13",
       "gruppe": "421",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Bezüge der Wehrbeauftragten",
-      "sollJahr1": 194,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 194
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "13",
       "gruppe": "422",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Bezüge und Nebenleistungen der planmäßigen Beamtinnen und Beamten",
-      "sollJahr1": 2120,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 2120
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "13",
       "gruppe": "422",
       "suffix": "02",
       "fkz": "011",
       "zweck": "Bezüge und Nebenleistungen der beamteten Hilfskräfte",
-      "sollJahr1": 59,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 59
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "13",
       "gruppe": "427",
       "suffix": "09",
       "fkz": "011",
       "zweck": "Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "13",
       "gruppe": "428",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Entgelte der Arbeitnehmerinnen und Arbeitnehmer",
-      "sollJahr1": 1709,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1709
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "13",
       "gruppe": "453",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen",
-      "sollJahr1": 2,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 2
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "13",
       "gruppe": "517",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Bewirtschaftung der Grundstücke, Gebäude und Räume",
-      "sollJahr1": 223,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 223
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "13",
       "gruppe": "519",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Unterhaltung der Grundstücke und baulichen Anlagen",
-      "sollJahr1": 38,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 38
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "13",
       "gruppe": "527",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Dienstreisen",
-      "sollJahr1": 150,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 150
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "13",
       "gruppe": "539",
       "suffix": "99",
       "fkz": "011",
       "zweck": "Vermischte Verwaltungsausgaben",
-      "sollJahr1": 85,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 85
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "13",
       "gruppe": "545",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Konferenzen, Tagungen, Messen und Ausstellungen",
-      "sollJahr1": 15,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 15
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "13",
       "gruppe": "811",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erwerb von Fahrzeugen",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "13",
       "gruppe": "812",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erwerb von Geräten, Ausstattungs- und Ausrüstungsgegenständen für Verwaltungszwecke (ohne IT)",
-      "sollJahr1": 5,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 5
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "14",
       "gruppe": "411",
       "suffix": "01",
       "fkz": "011",
-      "zweck": "Entschädigung der Mitglieder der Bundesversammlung gem. § 12 des Gesetzes über die Wahl des Bundespräsidenten vom 25. April 1959",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "zweck": "Entschädigung der Mitglieder der Bundesversammlung gem. § 12 des Gesetzes über die Wahl des Bundespräsidenten vom 25. April 1959",
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "14",
       "gruppe": "427",
       "suffix": "09",
       "fkz": "011",
       "zweck": "Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "14",
       "gruppe": "539",
       "suffix": "99",
       "fkz": "011",
       "zweck": "Vermischte Verwaltungsausgaben",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "14",
       "gruppe": "542",
       "suffix": "01",
       "fkz": "013",
       "zweck": "Öffentlichkeitsarbeit",
-      "sollJahr1": 0,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "15",
       "gruppe": "411",
       "suffix": "01",
       "fkz": "011",
-      "zweck": "Entschädigung nach § 9 Europaabgeordnetengesetz",
-      "sollJahr1": 490,
-      "kennzeichen": []
+      "zweck": "Entschädigung nach § 9 Europaabgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 490
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "15",
       "gruppe": "411",
       "suffix": "04",
       "fkz": "011",
-      "zweck": "Zuschuss zu den Kosten in Krankheits-﻿, Pflege- und Geburtsfällen sowie Unterstützungen nach § 11 Europaabgeordnetengesetz",
-      "sollJahr1": 359,
-      "kennzeichen": []
+      "zweck": "Zuschuss zu den Kosten in Krankheits-﻿, Pflege- und Geburtsfällen sowie Unterstützungen nach § 11 Europaabgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 359
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "15",
       "gruppe": "411",
       "suffix": "05",
       "fkz": "011",
-      "zweck": "Übergangsgeld für ausgeschiedene Mitglieder des Europäischen Parlaments nach § 10 b Europaabgeordnetengesetz",
-      "sollJahr1": 100,
-      "kennzeichen": []
+      "zweck": "Übergangsgeld für ausgeschiedene Mitglieder des Europäischen Parlaments nach § 10 b Europaabgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 100
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "15",
       "gruppe": "411",
       "suffix": "11",
       "fkz": "011",
-      "zweck": "Überbrückungsgeld/Sterbegeld an Hinterbliebene nach § 10 b Europaabgeordnetengesetz",
-      "sollJahr1": 10,
-      "kennzeichen": []
+      "zweck": "Überbrückungsgeld/Sterbegeld an Hinterbliebene nach § 10 b Europaabgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 10
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "15",
       "gruppe": "411",
       "suffix": "12",
       "fkz": "011",
-      "zweck": "Altersentschädigung an ausgeschiedene Mitglieder des Europäischen Parlaments sowie Hinterbliebenenversorgung nach § 10 b Europaabgeordnetengesetz",
-      "sollJahr1": 5660,
-      "kennzeichen": []
+      "zweck": "Altersentschädigung an ausgeschiedene Mitglieder des Europäischen Parlaments sowie Hinterbliebenenversorgung nach § 10 b Europaabgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 5660
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "15",
       "gruppe": "411",
       "suffix": "13",
       "fkz": "011",
-      "zweck": "Versorgungsabfindung nach § 10 b Europaabgeordnetengesetz",
-      "sollJahr1": 50,
-      "kennzeichen": []
+      "zweck": "Versorgungsabfindung nach § 10 b Europaabgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 50
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "15",
       "gruppe": "411",
       "suffix": "16",
       "fkz": "011",
-      "zweck": "Reisekostenvergütungen für Mandatsreisen nach § 10 Europaabgeordnetengesetz",
-      "sollJahr1": 10,
-      "kennzeichen": []
+      "zweck": "Reisekostenvergütungen für Mandatsreisen nach § 10 Europaabgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 10
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "15",
       "gruppe": "411",
       "suffix": "17",
       "fkz": "011",
-      "zweck": "Inanspruchnahme von Leistungen des Deutschen Bundestages nach § 10 a Europaabgeordnetengesetz",
-      "sollJahr1": 100,
-      "kennzeichen": []
+      "zweck": "Inanspruchnahme von Leistungen des Deutschen Bundestages nach § 10 a Europaabgeordnetengesetz",
+      "expense": true,
+      "sollJahr1": 100
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "15",
       "gruppe": "411",
       "suffix": "20",
       "fkz": "011",
       "zweck": "Kostenerstattung an die Deutsche Bahn für die Benutzung ihrer Verkehrsmittel durch die deutschen Mitglieder des Europäischen Parlaments",
-      "sollJahr1": 325,
-      "kennzeichen": []
+      "expense": true,
+      "sollJahr1": 325
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "16",
       "gruppe": "119",
       "suffix": "99",
       "fkz": "011",
       "zweck": "Vermischte Einnahmen",
-      "sollJahr1": 1,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 1
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "16",
       "gruppe": "132",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erlöse aus der Veräußerung von beweglichen Sachen",
-      "sollJahr1": 1,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 1
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "16",
       "gruppe": "421",
       "suffix": "01",
       "fkz": "051",
       "zweck": "Bezüge der/des Ständigen Bevollmächtigten des Parlamentarischen Kontrollgremiums",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "16",
       "gruppe": "422",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Bezüge und Nebenleistungen der planmäßigen Beamtinnen und Beamten",
-      "sollJahr1": 1722,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 1722
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "16",
       "gruppe": "422",
       "suffix": "02",
       "fkz": "011",
       "zweck": "Bezüge und Nebenleistungen der beamteten Hilfskräfte",
-      "sollJahr1": 173,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 173
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "16",
       "gruppe": "427",
       "suffix": "09",
       "fkz": "011",
       "zweck": "Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "16",
       "gruppe": "428",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Entgelte der Arbeitnehmerinnen und Arbeitnehmer",
-      "sollJahr1": 563,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 563
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "16",
       "gruppe": "453",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen",
-      "sollJahr1": 100,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 100
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "16",
       "gruppe": "517",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Bewirtschaftung der Grundstücke, Gebäude und Räume",
-      "sollJahr1": 118,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 118
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "16",
       "gruppe": "526",
       "suffix": "05",
       "fkz": "011",
-      "zweck": "Ausgaben für die Kommission nach Art. 10 des Grundgesetzes und das Parlamentarische Kontrollgremium",
-      "sollJahr1": 264,
-      "kennzeichen": [
-        "flex"
-      ]
+      "zweck": "Ausgaben für die Kommission nach Art. 10 des Grundgesetzes und das Parlamentarische Kontrollgremium",
+      "expense": true,
+      "sollJahr1": 264
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "16",
       "gruppe": "527",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Dienstreisen",
-      "sollJahr1": 100,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 100
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "16",
       "gruppe": "539",
       "suffix": "99",
       "fkz": "011",
       "zweck": "Vermischte Verwaltungsausgaben",
-      "sollJahr1": 49,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 49
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "16",
       "gruppe": "711",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Kleine Neu-﻿, Um- und Erweiterungsbauten",
-      "sollJahr1": 60,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 60
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "16",
       "gruppe": "712",
       "suffix": "01",
       "fkz": "011",
-      "zweck": "Baumaßnahmen von mehr als 6 000 000 € im Einzelfall",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "zweck": "Baumaßnahmen von mehr als 6 000 000 € im Einzelfall",
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "16",
       "gruppe": "812",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erwerb von Geräten, Ausstattungs- und Ausrüstungsgegenständen für Verwaltungszwecke (ohne IT)",
-      "sollJahr1": 10,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 10
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "17",
       "gruppe": "119",
       "suffix": "99",
       "fkz": "011",
       "zweck": "Vermischte Einnahmen",
-      "sollJahr1": 1,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 1
     },
     {
-      "expense": false,
+      "type": "hhst",
       "epl": "02",
       "kap": "17",
       "gruppe": "132",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erlöse aus der Veräußerung von beweglichen Sachen",
-      "sollJahr1": 1,
-      "kennzeichen": []
+      "expense": false,
+      "sollJahr1": 1
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "17",
       "gruppe": "421",
       "suffix": "01",
       "fkz": "051",
       "zweck": "Bezüge der/des Bundesbeauftragten für die Opfer des SED-Diktatur beim Deutschen Bundestag",
-      "sollJahr1": 98,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 98
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "17",
       "gruppe": "422",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Bezüge und Nebenleistungen der planmäßigen Beamtinnen und Beamten",
-      "sollJahr1": 238,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 238
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "17",
       "gruppe": "422",
       "suffix": "02",
       "fkz": "011",
       "zweck": "Bezüge und Nebenleistungen der beamteten Hilfskräfte",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "17",
       "gruppe": "427",
       "suffix": "09",
       "fkz": "011",
       "zweck": "Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "17",
       "gruppe": "428",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Entgelte der Arbeitnehmerinnen und Arbeitnehmer",
-      "sollJahr1": 54,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 54
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "17",
       "gruppe": "453",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen",
-      "sollJahr1": 50,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 50
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "17",
       "gruppe": "517",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Bewirtschaftung der Grundstücke, Gebäude und Räume",
-      "sollJahr1": 50,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 50
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "17",
       "gruppe": "527",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Dienstreisen",
-      "sollJahr1": 20,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 20
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "17",
       "gruppe": "539",
       "suffix": "99",
       "fkz": "011",
       "zweck": "Vermischte Verwaltungsausgaben",
-      "sollJahr1": 50,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 50
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "17",
       "gruppe": "711",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Kleine Neu-﻿, Um- und Erweiterungsbauten",
-      "sollJahr1": 10,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 10
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "17",
       "gruppe": "712",
       "suffix": "01",
       "fkz": "011",
-      "zweck": "Baumaßnahmen von mehr als 6 000 000 € im Einzelfall",
-      "sollJahr1": 0,
-      "kennzeichen": [
-        "flex"
-      ]
+      "zweck": "Baumaßnahmen von mehr als 6 000 000 € im Einzelfall",
+      "expense": true,
+      "sollJahr1": 0
     },
     {
-      "expense": true,
+      "type": "hhst",
       "epl": "02",
       "kap": "17",
       "gruppe": "812",
       "suffix": "01",
       "fkz": "011",
       "zweck": "Erwerb von Geräten, Ausstattungs- und Ausrüstungsgegenständen für Verwaltungszwecke (ohne IT)",
-      "sollJahr1": 20,
-      "kennzeichen": [
-        "flex"
-      ]
+      "expense": true,
+      "sollJahr1": 20
     }
-  ]
+  ],
+  "eplMap": {
+    "01": {
+      "short": "01",
+      "name": "Bundespräsident und Bundespräsidialamt"
+    },
+    "02": {
+      "short": "02",
+      "name": "Deutscher Bundestag"
+    }
+  },
+  "kapMap": {
+    "0101": {
+      "short": "01",
+      "name": "Bundespräsident"
+    },
+    "0111": {
+      "short": "11",
+      "name": "Zentral veranschlagte Verwaltungseinnahmen und -ausgaben"
+    },
+    "0112": {
+      "short": "12",
+      "name": "Bundespräsidialamt"
+    },
+    "0113": {
+      "short": "13",
+      "name": "Büro der Gemeinsamen Wissenschaftskonferenz"
+    },
+    "0211": {
+      "short": "11",
+      "name": "Zentral veranschlagte Verwaltungseinnahmen und -ausgaben"
+    },
+    "0212": {
+      "short": "12",
+      "name": "Deutscher Bundestag"
+    },
+    "0213": {
+      "short": "13",
+      "name": "Die Wehrbeauftragte des Deutschen Bundestages"
+    },
+    "0214": {
+      "short": "14",
+      "name": "Bundesversammlung"
+    },
+    "0215": {
+      "short": "15",
+      "name": "Mitglieder des Europäischen Parlaments"
+    },
+    "0216": {
+      "short": "16",
+      "name": "Parlamentarische Kontrolle der Nachrichtendienste"
+    },
+    "0217": {
+      "short": "17",
+      "name": "Die/der Bundesbeauftragte für die Opfer der SED-Diktatur beim Deutschen Bundestag"
+    }
+  },
+  "tgMap": {
+    "0111TG57": {
+      "short": "57",
+      "name": "Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter"
+    },
+    "0211TG57": {
+      "short": "57",
+      "name": "Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter"
+    },
+    "0212TG09": {
+      "short": "09",
+      "name": "Kosten der Kindertagesstätte"
+    },
+    "0212TG56": {
+      "short": "56",
+      "name": "Ausgaben für die Informationstechnik der Mitglieder des Deutschen Bundestages"
+    }
+  }
 }

@@ -1,7 +1,8 @@
 import { Workbook } from "exceljs";
 import { UserName } from "../navigation/UsersTypes";
+import { emptyBaseData } from "../store/AppState";
 import { HHSt } from "../store/HHStType";
-import { emptyBaseData, Store } from "../store/Store";
+import { Store } from "../store/Store";
 
 
 /** imports data from files following the format of

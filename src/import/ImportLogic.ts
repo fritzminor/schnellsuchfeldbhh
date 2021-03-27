@@ -1,7 +1,7 @@
 import { Workbook } from "exceljs";
 import { UserName } from "../navigation/UsersTypes";
 import { AppState } from "../store/AppState";
-import { BaseData } from "../store/Store";
+import { BaseData } from "../store/AppState";
 import {
   AnalyzeResults
 } from "./importAnalyseSheet";
