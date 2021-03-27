@@ -14,13 +14,15 @@ export type Totals = {
   expenses: number;
 };
 
-/** Titelgruppen description */
-export type TgMap = {
-  /** tgKey, e.g. "0102TG60" for TG 60 in Epl 01 Kap 02  */
+/** Epl, Kapitel oder Titelgruppen Beschreibung */
+export type SectionMap = {
+  /** eplKey, kapKey, tgKey, e.g. 
+   * "0102TG60" for TG 60 in Epl 01 Kap 02 or
+   * "0304" for Kap 04 in Epl 03 */
   [index: string]: {
     /** e.g. "60" */
-    tgNr: string;
-    /** tg description used as tg caption */
+    short: string;
+    /** epl/Kap/tg description used as epl/kap/tg caption */
     name: string;
   };
 };
@@ -39,7 +41,7 @@ export type AppState = {
     hhstArray: HHSt[];
 
     /** contains the tg-descriptions */
-    tgMap: TgMap;
+    tgMap: SectionMap;
 
     /** contains the HHSts filtered by searchTree plus block elements for (sub-)totals. */
     filteredHhstArray: HHStOrBlock[];
@@ -62,7 +64,7 @@ const emptyBlockDesc = {
 /** helper method to get filteredHhstList from given searchexpression */
 export function getFilteredHhstArray(
   hhstArray: HHSt[],
-  tgMap: TgMap,
+  tgMap: SectionMap,
   searchexpression: string,
   withBlocks = false
 ): {

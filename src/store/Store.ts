@@ -4,7 +4,7 @@ import { UserName } from "../navigation/UsersTypes";
 import {
   AppState,
   getFilteredHhstArray,
-  TgMap,
+  SectionMap,
   Totals
 } from "./AppState";
 import { HHSt, HHStOrBlock } from "./HHStType";
@@ -13,6 +13,22 @@ import hhstDataBHH from "./material/bhh_long.json";
 import hhstData01_02 from "./material/bhh_bpbt.json";
 import { AnalyzeResults } from "../import/importAnalyseSheet";
 //import hhstData from "./material/bhh_short.json";
+
+export type BaseData = {
+  firstYear: number;
+  hhsts: HHSt[];
+  eplMap: SectionMap;
+  kapMap: SectionMap;
+  tgMap: SectionMap;
+};
+
+export const emptyBaseData: BaseData = {
+  firstYear: 0,
+  hhsts: [],
+  eplMap: {},
+  kapMap: {},
+  tgMap: {}
+};
 
 function transformExampleData(
   exampleData: {
@@ -25,35 +41,41 @@ function transformExampleData(
     zweck: string;
     sollJahr1: number;
     kennzeichen: string[];
-  }[]
-): HHSt[] {
-  return exampleData.map((exampleRow) => {
-    const hhst: HHSt = { type: "hhst", ...exampleRow };
-    return hhst;
-  });
+  }[], firstYear=2021
+): BaseData {
+  return {
+    ...emptyBaseData,
+    firstYear,
+    hhsts: exampleData.map((exampleRow) => {
+      const hhst: HHSt = { type: "hhst", ...exampleRow };
+      return hhst;
+    })
+  };
 }
 
-const hhstDataArrays: { [index in UserName]: HHSt[] } = {
+const baseDataArrays: { [index in UserName]: BaseData } = {
   BearbeiterGesamtBHH: transformExampleData(
     hhstDataBHH.hhsts
   ),
   BearbeiterEpl01und02: transformExampleData(
     hhstData01_02.hhsts
   ),
-  LokaleDaten: []
+  LokaleDaten: {...emptyBaseData}
 };
 
+/*
 const hhFirstYears: { [index in UserName]: number } = {
   BearbeiterGesamtBHH: 2021,
   BearbeiterEpl01und02: 2021,
   LokaleDaten: 0
 };
 
-const hhTgMaps: { [index in UserName]: TgMap } = {
+const hhTgMaps: { [index in UserName]: SectionMap } = {
   BearbeiterGesamtBHH: {},
   BearbeiterEpl01und02: {},
   LokaleDaten: {}
 };
+*/
 
 export function createStore( // eslint-disable-line  @typescript-eslint/explicit-module-boundary-types
   setState: React.Dispatch<React.SetStateAction<AppState>>
@@ -113,12 +135,10 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
       }));
     },
 
-    setLocalData(hhsts: HHSt[], tgMap: TgMap, firstYear: number) {
-      hhstDataArrays.LokaleDaten = hhsts;
-      hhTgMaps.LokaleDaten = tgMap;
-      hhFirstYears.LokaleDaten = firstYear;
+    setLocalData(localData:BaseData
+    ) {
+      baseDataArrays.LokaleDaten = localData;
     },
-
 
     setModalInfo,
     /** hides user message */
@@ -145,8 +165,9 @@ function getDerivedFrom(
 ): AppState["derived"] {
   let searchTree: SearchNode | null;
   let searchParseErrMessage: string | undefined;
-  const hhstArray = hhstDataArrays[currentUser];
-  const tgMap = hhTgMaps[currentUser];
+  const baseData=baseDataArrays[currentUser];
+  const hhstArray = baseData.hhsts;
+  const tgMap = baseData.tgMap;
   let filteredHhstArray: HHStOrBlock[];
   let totals: Totals;
 
@@ -177,7 +198,7 @@ function getDerivedFrom(
     hhstArray,
     tgMap,
     filteredHhstArray,
-    firstYear: hhFirstYears[currentUser],
+    firstYear: baseData.firstYear,
     totals
   };
 }

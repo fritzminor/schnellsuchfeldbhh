@@ -1,7 +1,8 @@
 import { UserName } from "../navigation/UsersTypes";
 import { HHSt } from "../store/HHStType";
 import Papa from "papaparse";
-import { TgMap } from "../store/AppState";
+import { SectionMap } from "../store/AppState";
+import { emptyBaseData, Store } from "../store/Store";
 
 type CsvRow = {
   einzelplan: string;
@@ -21,11 +22,11 @@ type CsvRow = {
 export function importBHH_CSV(
   file: File,
   setCurrentUser: (newCurrentUser: UserName) => void,
-  setLocalData: (hhsts: HHSt[],tgMap: TgMap, firstYear: number) => void,
+  setLocalData: Store["setLocalData"],
   setModalInfo: (modalInfo: string) => void
 ): void {
   const hhsts: HHSt[] = [];
-  const tgMap: TgMap = {};
+  const tgMap: SectionMap = {};
 
   const regExFileName = /hh_(\d{4})_.*csv$/.exec(file.name);
   if (!regExFileName)
@@ -79,7 +80,7 @@ export function importBHH_CSV(
         if(!tgMap[tgKey]){
           const tgName=data["tgr-text"];
           tgMap[tgKey]={
-            tgNr,
+            short: tgNr,
             name:tgName
           }
         }
@@ -123,7 +124,7 @@ export function importBHH_CSV(
           errMessage || "FEHLER: Ursache unbekannt."
         );
       else {
-        setLocalData(hhsts, tgMap, firstYear);
+        setLocalData({...emptyBaseData, hhsts, tgMap, firstYear});
         setCurrentUser("LokaleDaten");
       }
     }

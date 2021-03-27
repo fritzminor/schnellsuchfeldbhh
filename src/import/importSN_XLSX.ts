@@ -1,7 +1,7 @@
 import { Workbook } from "exceljs";
 import { UserName } from "../navigation/UsersTypes";
-import { TgMap } from "../store/AppState";
 import { HHSt } from "../store/HHStType";
+import { emptyBaseData, Store } from "../store/Store";
 
 
 /** imports data from files following the format of
@@ -10,7 +10,7 @@ import { HHSt } from "../store/HHStType";
  */
 export function importSN_XSLX(file: File, workbook: Workbook,
   setCurrentUser: (newCurrentUser: UserName) => void,
-  setLocalData: (hhsts: HHSt[], tgMap:TgMap, firstYear: number) => void): void {
+  setLocalData: Store["setLocalData"]): void {
   console.log("Loaded", workbook);
   const worksheet = workbook.worksheets[0];
   if (worksheet) {
@@ -91,7 +91,7 @@ export function importSN_XSLX(file: File, workbook: Workbook,
           }
       }
     });
-    setLocalData(hhsts, {}, firstYear);
+    setLocalData({...emptyBaseData, hhsts, firstYear});
     setCurrentUser("LokaleDaten");
   }
   else
