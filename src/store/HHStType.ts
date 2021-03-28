@@ -25,6 +25,11 @@ export type HHSt = {
 
 export type HHStFieldName = keyof HHSt;
 
+
+export type HHStBlockStart = {
+  blockstart: true;
+} & Omit<HHSt, "type">;
+
 export type HHStBlockEnd = {
   blockstart: false;
   lastline: boolean;
@@ -32,6 +37,6 @@ export type HHStBlockEnd = {
 
 export type HHStBlockLimiter = {
   type: "block";
-} & HHStBlockEnd;
+} & (HHStBlockEnd | HHStBlockStart);
 
 export type HHStOrBlock = HHStBlockLimiter | HHSt;

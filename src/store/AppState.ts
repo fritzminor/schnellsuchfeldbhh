@@ -9,6 +9,7 @@ import {
 import { getSearchTree } from "../hhstliste/hhstListeLogic/searchParser";
 import { isSearched } from "../hhstliste/hhstListeLogic/evalSearch4HHSt";
 
+
 export type Totals = {
   revenues: number;
   expenses: number;
@@ -16,7 +17,7 @@ export type Totals = {
 
 /** Epl, Kapitel oder Titelgruppen Beschreibung */
 export type SectionMap = {
-  /** eplKey, kapKey, tgKey, e.g. 
+  /** eplKey, kapKey, tgKey, e.g.
    * "0102TG60" for TG 60 in Epl 01 Kap 02 or
    * "0304" for Kap 04 in Epl 03 */
   [index: string]: {
@@ -28,7 +29,6 @@ export type SectionMap = {
     name: string;
   };
 };
-
 
 export type BaseData = {
   firstYear: number;
@@ -81,6 +81,22 @@ const emptyBlockDesc = {
   anyExpense: false,
   anyRevenue: false
 };
+
+function getTGDesc(
+  tgMap: SectionMap,
+  currTG: typeof emptyBlockDesc
+): string {
+  return (
+    tgMap[currTG.name].name ||
+    `Epl ${currTG.name.substr(
+      0,
+      2
+    )} Kap ${currTG.name.substr(
+      2,
+      2
+    )} TG ${currTG.name.substr(6, 2)}`
+  );
+}
 
 /** helper method to get filteredHhstList from given searchexpression */
 export function getFilteredHhstArray(
@@ -149,7 +165,9 @@ export function getFilteredHhstArray(
       zweck: `Einnahmen ${zweckEnd}`,
       sollJahr1: currKap.totalRevenues
     };
+
     filteredHhstArray.push(totalRevenues);
+
     const totalExpenses: HHStBlockLimiter = {
       ...totalRevenues,
       lastline: true,
@@ -165,15 +183,7 @@ export function getFilteredHhstArray(
   let currTG = { ...emptyBlockDesc }; // clone emptyBlockDesc
 
   const pushTgTotals = () => {
-    const zweckEnd =
-      tgMap[currTG.name].name ||
-      `Epl ${currTG.name.substr(
-        0,
-        2
-      )} Kap ${currTG.name.substr(
-        2,
-        2
-      )} TG ${currTG.name.substr(6, 2)}`;
+    const zweckEnd = getTGDesc(tgMap, currTG);
     const totalRevenues: HHStBlockLimiter = {
       type: "block",
       blockstart: false,
@@ -205,8 +215,9 @@ export function getFilteredHhstArray(
 
   hhstArray.forEach((hhst) => {
     if (isSearched(hhst, searchTree)) {
+      const hhstTgKey = hhst.tgKey;
+      const newTg = hhstTgKey && hhstTgKey !== currTG.name;
       if (withBlocks) {
-        const hhstTgKey = hhst.tgKey;
         if (
           (hhstTgKey || currTG.name) &&
           hhstTgKey !== currTG.name
@@ -233,6 +244,21 @@ export function getFilteredHhstArray(
         }
       }
 
+      if (withBlocks && newTg) {
+        const tgStart: HHStBlockLimiter = {
+          type: "block",
+          blockstart: true,
+          epl: currTG.name.substr(0, 2),
+          kap: currTG.name.substr(2, 2),
+          gruppe: `TG ${currTG.name.substr(6, 2)}`,
+          suffix: "",
+          fkz: "",
+          zweck: getTGDesc(tgMap, currTG),
+          sollJahr1: currTG.totalRevenues
+        };
+
+        filteredHhstArray.push(tgStart);
+      }
       filteredHhstArray.push(hhst);
 
       if (hhst.expense) {

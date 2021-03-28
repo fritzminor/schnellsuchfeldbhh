@@ -95,8 +95,13 @@ background-color: cyan
   background-color: #00fdd7;
 }
 
+.blockStart {
+  border-radius: 1.5rem 1.5rem 0 0;
+  margin-top: 2rem;
+}
+
 .blockEnd {
-  border-radius: 0 0 1em 1em;
+  border-radius: 0 0 1.5rem 1.5rem;
   margin-bottom: 2rem;
 }
 

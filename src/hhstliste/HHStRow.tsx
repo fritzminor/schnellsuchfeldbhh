@@ -22,13 +22,13 @@ export function HHStRow({
         else className += " blockKap";
       else className += " blockEpl";
     }
-    if (
-      hhst.type === "block" &&
-      !hhst.blockstart &&
-      hhst.lastline
-    )
-      className += " blockEnd";
-  } else className += " is-size-7";
+    if (hhst.type === "block") {
+      if (hhst.blockstart) className += " blockStart";
+      else if (hhst.lastline) className += " blockEnd";
+    }
+  } else
+    className +=
+      " is-size-7" + (hhst.tgKey ? " blockTG" : "");
 
   return (
     <div className={className}>
@@ -49,6 +49,8 @@ export function HHStRow({
       <div className="soll1">
         {heading
           ? hhst.sollJahr1
+          : hhst.type === "block" && hhst.blockstart
+          ? ""
           : formatBetrag(hhst.sollJahr1)}
       </div>
     </div>
