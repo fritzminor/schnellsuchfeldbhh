@@ -2,6 +2,7 @@
 :relfileprefix: ../
 :toc: preamble
 :toc-title: Übersicht
+::toclevels: 10
 
 
 Der Prototyp ist nicht für produktive Zwecke gedacht, 
@@ -29,7 +30,7 @@ erstellt werden.
 
 === src/
 
-Der eigentliche Quellcode des Projekts findet sich im Ordner xref:src[src/].
+Der eigentliche Quellcode des Projekts findet sich im Ordner src.
 
 ==== Unterordner nach Funktionalitäten
 
@@ -44,13 +45,13 @@ Innerhalb der Unterordner finden sich grundsätzlich
 - die notwendigen (hartkodierten) Daten (Dateien mit ...Data.ts) und
 - die Form der Daten (DatenTypen - Dateien mit ....Types.ts)
 
-Ein recht konsequentes Beispiel für diese Struktur findet sich in xref:src/eingabehilfe/searchfields[:relfilesuffix: /] . 
+Ein recht konsequentes Beispiel für diese Struktur findet sich in src/eingabehilfe/searchfields . 
 
 ==== Querschnittsaufgaben
 
 Eine Ausnahme dazu bilden die *Querschnittsaufgaben*, wie z.B. die zentrale 
 Haltung des "Zustands" der Anwendung. Dieser befindet sich im AppState und wird mittels
-der im Store verfügbaren Funktionen geändert. Siehe xref:src/store[].
+der im Store verfügbaren Funktionen geändert. Siehe src/store.
 
 
 === package.json
