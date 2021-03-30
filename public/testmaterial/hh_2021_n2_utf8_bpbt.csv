@@ -1,0 +1,233 @@
+einzelplan	einzelplan-text	einnahmen-ausgaben	einnahmen-ausgaben-art	kapitel	kapitel-text	titel	funktion	titel-text	flex	seite	soll	titelgruppe	tgr-text
+1	Bundespräsident und Bundespräsidialamt	E	Übrige Einnahmen	101	Bundespräsident	23201	187	Beteiligung der Länder an der Deutschen Künstlerhilfe und sonstige ihr zugedachte Einnahmen	 	6	0		
+1	Bundespräsident und Bundespräsidialamt	E	Übrige Einnahmen	101	Bundespräsident	38103	890	Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7	 	6	0		
+1	Bundespräsident und Bundespräsidialamt	A	Sächliche Verwaltungsausgaben	101	Bundespräsident	52901	11	Außergewöhnlicher Aufwand aus dienstlicher Veranlassung in besonderen Fällen	nein	6	1000		
+1	Bundespräsident und Bundespräsidialamt	A	Zuweisungen und Zuschüsse (ohne Investitionen)	101	Bundespräsident	68101	11	Übernahme von Patenschaften, Ausgaben aus besonderer Veranlassung und besondere Bewilligungen.	nein	6	1348		
+1	Bundespräsident und Bundespräsidialamt	A	Zuweisungen und Zuschüsse (ohne Investitionen)	101	Bundespräsident	68401	187	Deutsche Künstlerhilfe	nein	7	2300		
+1	Bundespräsident und Bundespräsidialamt	A	Besondere Finanzierungsausgaben	101	Bundespräsident	98103	890	Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7	nein	7	0		
+1	Bundespräsident und Bundespräsidialamt	A		101	Bundespräsident	42101	11	Bezüge des Bundespräsidenten	ja	7	255		
+1	Bundespräsident und Bundespräsidialamt	A		101	Bundespräsident	42102	11	Aufwandsgeld	ja	7	78		
+1	Bundespräsident und Bundespräsidialamt	A		101	Bundespräsident	45301	11	Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen	ja	7	0		
+1	Bundespräsident und Bundespräsidialamt	A		101	Bundespräsident	54501	11	Konferenzen, Tagungen, Messen und Ausstellungen	ja	8	0		
+1	Bundespräsident und Bundespräsidialamt	E	Übrige Einnahmen	111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	28209	11	Einnahmen aus Sponsoring, Spenden und ähnlichen freiwilligen Geldleistungen	 	10	0		
+1	Bundespräsident und Bundespräsidialamt	E	Übrige Einnahmen	111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	38103	890	Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7	 	10	0		
+1	Bundespräsident und Bundespräsidialamt	E	Übrige Einnahmen	111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	11957	18	Vermischte Einnahmen	 	10	0	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+1	Bundespräsident und Bundespräsidialamt	E	Übrige Einnahmen	111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	23257	18	Beteiligung an den Versorgungslasten des Bundes	 	10	190	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+1	Bundespräsident und Bundespräsidialamt	A	Sächliche Verwaltungsausgaben	111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	54201	13	Öffentlichkeitsarbeit	nein	10	350		
+1	Bundespräsident und Bundespräsidialamt	A	Sächliche Verwaltungsausgaben	111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	54709	11	Ausgaben für Vorhaben, die aus Spenden, Sponsoring und ähnlichen freiwilligen Geldleistungen finanziert werden	nein	11	0		
+1	Bundespräsident und Bundespräsidialamt	A	Besondere Finanzierungsausgaben	111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	98103	890	Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7	nein	11	0		
+1	Bundespräsident und Bundespräsidialamt	A	Besondere Finanzierungsausgaben	111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	43157	18	Versorgungsbezüge der Bundespräsidenten und deren Hinterbliebenen	nein	11	1163	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+1	Bundespräsident und Bundespräsidialamt	A	Besondere Finanzierungsausgaben	111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	43257	18	Versorgungsbezüge	nein	11	3810	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+1	Bundespräsident und Bundespräsidialamt	A	Besondere Finanzierungsausgaben	111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	43457	18	Zuführung an die Versorgungsrücklage	nein	11	212	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+1	Bundespräsident und Bundespräsidialamt	A	Besondere Finanzierungsausgaben	111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	44357	18	Fürsorgeleistungen und Unterstützungen einschließlich Inanspruchnahme von besonderen Fachdiensten/-kräften	nein	11	0	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+1	Bundespräsident und Bundespräsidialamt	A	Besondere Finanzierungsausgaben	111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	44657	18	Beihilfen aufgrund der Beihilfevorschriften	nein	11	1094	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+1	Bundespräsident und Bundespräsidialamt	A	Besondere Finanzierungsausgaben	111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	45357	18	Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen	nein	12	0	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+1	Bundespräsident und Bundespräsidialamt	A	Besondere Finanzierungsausgaben	111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	63257	18	Erstattungen des Bundes für Versorgungslasten	nein	12	0	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+1	Bundespräsident und Bundespräsidialamt	A		111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	42401	11	Zuführung an die Versorgungsrücklage	ja	12	0		
+1	Bundespräsident und Bundespräsidialamt	A		111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	44101	840	Beihilfen aufgrund der Beihilfevorschriften	ja	12	250		
+1	Bundespräsident und Bundespräsidialamt	A		111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	44301	840	Fürsorgeleistungen und Unterstützungen einschließlich Inanspruchnahme von besonderen Fachdiensten/-kräften	ja	12	40		
+1	Bundespräsident und Bundespräsidialamt	A		111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	45202	223	Unfallversicherung Bund und Bahn	ja	12	12		
+1	Bundespräsident und Bundespräsidialamt	A		111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	52601	11	Gerichts- und ähnliche Kosten	ja	12	20		
+1	Bundespräsident und Bundespräsidialamt	A		111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	52602	11	Sachverständige, Ausgaben für Mitglieder von Fachbeiräten und ähnlichen Ausschüssen	ja	12	100		
+1	Bundespräsident und Bundespräsidialamt	A		111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	54501	11	Konferenzen, Tagungen, Messen und Ausstellungen	ja	12	1600		
+1	Bundespräsident und Bundespräsidialamt	A		111	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	63403	11	Zuweisungen an den Versorgungsfonds	ja	12	550		
+1	Bundespräsident und Bundespräsidialamt	E	Verwaltungseinnahmen	112	Bundespräsidialamt	11999	11	Vermischte Einnahmen	 	14	2		
+1	Bundespräsident und Bundespräsidialamt	E	Verwaltungseinnahmen	112	Bundespräsidialamt	12401	11	Einnahmen aus Vermietung, Verpachtung und Nutzung	 	14	0		
+1	Bundespräsident und Bundespräsidialamt	E	Verwaltungseinnahmen	112	Bundespräsidialamt	13201	11	Erlöse aus der Veräußerung von beweglichen Sachen	 	14	1		
+1	Bundespräsident und Bundespräsidialamt	E	Übrige Einnahmen	112	Bundespräsidialamt	38103	890	Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7	 	14	0		
+1	Bundespräsident und Bundespräsidialamt	A	Zuweisungen und Zuschüsse (ohne Investitionen)	112	Bundespräsidialamt	68501	165	Forschungsprojekt: Das Bundespräsidialamt und der Nationalsozialismus	nein	14	350		
+1	Bundespräsident und Bundespräsidialamt	A	Besondere Finanzierungsausgaben	112	Bundespräsidialamt	98103	890	Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7	nein	14	0		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	42201	11	Bezüge und Nebenleistungen der planmäßigen Beamtinnen und Beamten	ja	15	8481		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	42202	11	Bezüge und Nebenleistungen der beamteten Hilfskräfte	ja	15	0		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	42709	11	Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige	ja	15	582		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	42801	11	Entgelte der Arbeitnehmerinnen und Arbeitnehmer	ja	15	7551		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	45301	11	Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen	ja	15	50		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	51101	11	Geschäftsbedarf und Kommunikation sowie Geräte, Ausstattungs- und Ausrüstungsgegenstände, sonstige Gebrauchsgegenstände, Software, Wartung	ja	15	1175		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	51401	11	Verbrauchsmittel, Haltung von Fahrzeugen und dgl.	ja	15	177		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	51701	11	Bewirtschaftung der Grundstücke, Gebäude und Räume	ja	15	2436		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	51801	11	Mieten und Pachten	ja	15	324		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	51901	11	Unterhaltung der Grundstücke und baulichen Anlagen	ja	15	1700		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	52501	11	Aus- und Fortbildung	ja	15	150		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	52604	11	Kosten der Kommission unabhängiger Sachverständiger gemäß § 18 Abs. 6 Parteiengesetz	ja	16	0		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	52701	11	Dienstreisen	ja	16	300		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	53201	11	Aufträge und Dienstleistungen im Bereich Informationstechnik	ja	16	432		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	53204	11	Kosten aus Anlass von Staatsbesuchen und Reisen des Bundespräsidenten im Ausland	ja	16	1600		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	53205	11	Kosten für Orden und Ehrenzeichen	ja	16	150		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	53999	11	Vermischte Verwaltungsausgaben	ja	16	121		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	71101	11	Kleine Neu-﻿, Um- und Erweiterungsbauten	ja	16	600		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	71201	11	Baumaßnahmen von mehr als 6 000 000 € im Einzelfall	ja	16	0		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	81101	11	Erwerb von Fahrzeugen	ja	16	0		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	81201	11	Erwerb von Geräten, Ausstattungs- und Ausrüstungsgegenständen für Verwaltungszwecke (ohne IT)	ja	16	350		
+1	Bundespräsident und Bundespräsidialamt	A		112	Bundespräsidialamt	81202	11	Erwerb von Anlagen, Geräten, Ausstattungs- und Ausrüstungsgegenständen sowie Software im Bereich Informationstechnik	ja	16	811		
+1	Bundespräsident und Bundespräsidialamt	E	Verwaltungseinnahmen	113	Büro der Gemeinsamen Wissenschaftskonferenz	11999	11	Vermischte Einnahmen	 	18	0		
+1	Bundespräsident und Bundespräsidialamt	E	Verwaltungseinnahmen	113	Büro der Gemeinsamen Wissenschaftskonferenz	13201	11	Erlöse aus der Veräußerung von beweglichen Sachen	 	18	0		
+1	Bundespräsident und Bundespräsidialamt	E	Übrige Einnahmen	113	Büro der Gemeinsamen Wissenschaftskonferenz	28209	11	Einnahmen aus Sponsoring, Spenden und ähnlichen freiwilligen Geldleistungen	 	18	0		
+1	Bundespräsident und Bundespräsidialamt	E	Übrige Einnahmen	113	Büro der Gemeinsamen Wissenschaftskonferenz	38103	890	Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7	 	18	0		
+1	Bundespräsident und Bundespräsidialamt	A	Sächliche Verwaltungsausgaben	113	Büro der Gemeinsamen Wissenschaftskonferenz	52901	11	Außergewöhnlicher Aufwand aus dienstlicher Veranlassung in besonderen Fällen	nein	18	4		
+1	Bundespräsident und Bundespräsidialamt	A	Sächliche Verwaltungsausgaben	113	Büro der Gemeinsamen Wissenschaftskonferenz	54709	11	Ausgaben für Vorhaben, die aus Spenden, Sponsoring und ähnlichen freiwilligen Geldleistungen finanziert werden	nein	18	0		
+1	Bundespräsident und Bundespräsidialamt	A	Besondere Finanzierungsausgaben	113	Büro der Gemeinsamen Wissenschaftskonferenz	98101	890	Leistungen an Bundesbehörden zur Durchführung von Aufträgen	nein	19	0		
+1	Bundespräsident und Bundespräsidialamt	A	Besondere Finanzierungsausgaben	113	Büro der Gemeinsamen Wissenschaftskonferenz	98103	890	Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7	nein	19	0		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	42201	11	Bezüge und Nebenleistungen der planmäßigen Beamtinnen und Beamten	ja	19	619		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	42709	11	Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige	ja	19	30		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	42801	11	Entgelte der Arbeitnehmerinnen und Arbeitnehmer	ja	19	933		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	44101	840	Beihilfen aufgrund der Beihilfevorschriften	ja	19	22		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	44301	840	Fürsorgeleistungen und Unterstützungen einschließlich Inanspruchnahme von besonderen Fachdiensten/-kräften	ja	19	1		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	45202	223	Unfallversicherung Bund und Bahn	ja	19	2		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	45301	11	Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen	ja	19	0		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	51101	11	Geschäftsbedarf und Kommunikation sowie Geräte, Ausstattungs- und Ausrüstungsgegenstände, sonstige Gebrauchsgegenstände, Software, Wartung	ja	19	247		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	51801	11	Mieten und Pachten	ja	20	571		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	53201	11	Aufträge und Dienstleistungen im Bereich Informationstechnik	ja	20	58		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	53999	11	Vermischte Verwaltungsausgaben	ja	20	417		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	63403	11	Zuweisungen an den Versorgungsfonds	ja	20	104		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	71101	11	Kleine Neu-﻿, Um- und Erweiterungsbauten	ja	20	0		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	81101	11	Erwerb von Fahrzeugen	ja	20	0		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	81201	11	Erwerb von Geräten, Ausstattungs- und Ausrüstungsgegenständen für Verwaltungszwecke (ohne IT)	ja	20	0		
+1	Bundespräsident und Bundespräsidialamt	A		113	Büro der Gemeinsamen Wissenschaftskonferenz	81202	11	Erwerb von Anlagen, Geräten, Ausstattungs- und Ausrüstungsgegenständen sowie Software im Bereich Informationstechnik	ja	20	120		
+2	Deutscher Bundestag	E	Übrige Einnahmen	211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	28209	11	Einnahmen aus Sponsoring, Spenden und ähnlichen freiwilligen Geldleistungen	 	6	0		
+2	Deutscher Bundestag	E	Übrige Einnahmen	211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	38101	890	Leistungen von Bundesbehörden zur Durchführung von Aufträgen	 	6	0		
+2	Deutscher Bundestag	E	Übrige Einnahmen	211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	11957	18	Vermischte Einnahmen	 	6	0	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+2	Deutscher Bundestag	E	Übrige Einnahmen	211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	23257	18	Beteiligung an den Versorgungslasten des Bundes	 	6	0	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+2	Deutscher Bundestag	A	Sächliche Verwaltungsausgaben	211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	52901	11	Außergewöhnlicher Aufwand aus dienstlicher Veranlassung in besonderen Fällen	nein	6	560		
+2	Deutscher Bundestag	A	Sächliche Verwaltungsausgaben	211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	54201	13	Öffentlichkeitsarbeit	nein	7	12240		
+2	Deutscher Bundestag	A	Sächliche Verwaltungsausgaben	211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	54709	11	Ausgaben für Vorhaben, die aus Spenden, Sponsoring und ähnlichen freiwilligen Geldleistungen finanziert werden	nein	8	0		
+2	Deutscher Bundestag	A	Sächliche Verwaltungsausgaben	211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	43157	18	Versorgungsbezüge sonstiger Amtsträger und deren Hinterbliebenen	nein	8	350	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+2	Deutscher Bundestag	A	Sächliche Verwaltungsausgaben	211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	43257	18	Versorgungsbezüge	nein	8	28600	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+2	Deutscher Bundestag	A	Sächliche Verwaltungsausgaben	211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	43457	18	Zuführung an die Versorgungsrücklage	nein	9	1260	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+2	Deutscher Bundestag	A	Sächliche Verwaltungsausgaben	211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	44357	18	Fürsorgeleistungen und Unterstützungen einschließlich Inanspruchnahme von besonderen Fachdiensten/-kräften	nein	9	10	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+2	Deutscher Bundestag	A	Sächliche Verwaltungsausgaben	211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	44657	18	Beihilfen aufgrund der Beihilfevorschriften	nein	9	6500	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+2	Deutscher Bundestag	A	Sächliche Verwaltungsausgaben	211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	63257	18	Erstattungen des Bundes für Versorgungslasten	nein	9	620	57	Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter
+2	Deutscher Bundestag	A		211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	42401	11	Zuführung an die Versorgungsrücklage	ja	9	1823		
+2	Deutscher Bundestag	A		211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	44101	840	Beihilfen aufgrund der Beihilfevorschriften	ja	9	3500		
+2	Deutscher Bundestag	A		211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	44301	840	Fürsorgeleistungen und Unterstützungen einschließlich Inanspruchnahme von besonderen Fachdiensten/-kräften	ja	9	158		
+2	Deutscher Bundestag	A		211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	45202	223	Unfallversicherung Bund und Bahn	ja	9	300		
+2	Deutscher Bundestag	A		211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	52601	11	Gerichts- und ähnliche Kosten	ja	9	335		
+2	Deutscher Bundestag	A		211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	52602	11	Sachverständige, Ausgaben für Mitglieder von Fachbeiräten und ähnlichen Ausschüssen	ja	10	2422		
+2	Deutscher Bundestag	A		211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	52703	11	Reisen in Angelegenheiten der Personalvertretungen und der Gleichstellungsbeauftragten sowie in Vertretung der Interessen schwerbehinderter Menschen	ja	10	8		
+2	Deutscher Bundestag	A		211	Zentral veranschlagte Verwaltungseinnahmen und -ausgaben	63403	11	Zuweisungen an den Versorgungsfonds	ja	10	10834		
+2	Deutscher Bundestag	E	Verwaltungseinnahmen	212	Deutscher Bundestag	11101	11	Gebühren, sonstige Entgelte	 	12	364		
+2	Deutscher Bundestag	E	Verwaltungseinnahmen	212	Deutscher Bundestag	11901	11	Einnahmen aus Veröffentlichungen	 	12	0		
+2	Deutscher Bundestag	E	Verwaltungseinnahmen	212	Deutscher Bundestag	11999	11	Vermischte Einnahmen	 	12	83		
+2	Deutscher Bundestag	E	Verwaltungseinnahmen	212	Deutscher Bundestag	12401	11	Einnahmen aus Vermietung, Verpachtung und Nutzung	 	12	1257		
+2	Deutscher Bundestag	E	Verwaltungseinnahmen	212	Deutscher Bundestag	13201	11	Erlöse aus der Veräußerung von beweglichen Sachen	 	13	70		
+2	Deutscher Bundestag	E	Übrige Einnahmen	212	Deutscher Bundestag	38103	890	Verrechnungseinnahmen gemäß § 61 BHO außerhalb der Tit. 381 .1 und 381 .7	 	13	0		
+2	Deutscher Bundestag	A	Personalausgaben	212	Deutscher Bundestag	41101	11	Entschädigungen und Amtszulagen nach § 11 Abgeordnetengesetz	nein	13	85048		
+2	Deutscher Bundestag	A	Personalausgaben	212	Deutscher Bundestag	41102	11	Aufwandsentschädigungen nach § 12 Abs. 2 und 5 Abgeordnetengesetz	nein	14	39744		
+2	Deutscher Bundestag	A	Personalausgaben	212	Deutscher Bundestag	41103	11	Aufwendungen für die Beschäftigung von Mitarbeitern nach § 12 Abs. 3 Abgeordnetengesetz	nein	14	261120		
+2	Deutscher Bundestag	A	Personalausgaben	212	Deutscher Bundestag	41104	11	Zuschuss zu den Kosten in Krankheits-﻿, Pflege- und Geburtsfällen sowie Unterstützungen nach §§ 27 und 28 Abgeordnetengesetz	nein	15	9110		
+2	Deutscher Bundestag	A	Personalausgaben	212	Deutscher Bundestag	41105	11	Übergangsgeld für ausgeschiedene Mitglieder des Deutschen Bundestages nach § 18  Abgeordnetengesetz	nein	15	4800		
+2	Deutscher Bundestag	A	Personalausgaben	212	Deutscher Bundestag	41111	11	Überbrückungsgeld/Sterbegeld an Hinterbliebene sowie Versicherungen nach §§ 24, 26, 35a, 35b, 37, 38 und 41 Abgeordnetengesetz	nein	15	750		
+2	Deutscher Bundestag	A	Personalausgaben	212	Deutscher Bundestag	41112	11	Altersentschädigung an ausgeschiedene Mitglieder des Deutschen Bundestages sowie Hinterbliebenenversorgung nach §§ 19 bis 22, 25, 26, 35, 35a, 35b, 35c, 37 und 38 Abgeordnetengesetz	nein	15	51100		
+2	Deutscher Bundestag	A	Personalausgaben	212	Deutscher Bundestag	41113	11	Versorgungsabfindung nach §§ 23 und 40 Abgeordnetengesetz	nein	15	120		
+2	Deutscher Bundestag	A	Personalausgaben	212	Deutscher Bundestag	41116	11	Inlandsdienst- und Mandatsreisen der Abgeordneten nach §§ 16 und 17 Abgeordnetengesetz	nein	15	8496		
+2	Deutscher Bundestag	A	Personalausgaben	212	Deutscher Bundestag	41117	11	Auslandsdienstreisen der Abgeordneten nach § 17  Abgeordnetengesetz, ohne Reisen zu internationalen parlamentarischen Versammlungen	nein	15	5200		
+2	Deutscher Bundestag	A	Personalausgaben	212	Deutscher Bundestag	41118	11	Reisen zu internationalen parlamentarischen Versammlungen	nein	16	1194		
+2	Deutscher Bundestag	A	Personalausgaben	212	Deutscher Bundestag	41119	11	Aufwendungen zur Nutzung des gemeinsamen Informations- und Kommunikationssystems des Deutschen Bundestages sowie für Geschäftsbedarf nach § 12  Abs. 4 Nrn. 1 und 4 Abgeordnetengesetz	nein	16	8599		
+2	Deutscher Bundestag	A	Personalausgaben	212	Deutscher Bundestag	41120	11	Kostenerstattung für die Benutzung der Verkehrsmittel der Deutschen Bahn und der Berliner Verkehrsbetriebe durch die Mitglieder des Deutschen Bundestages	nein	16	2486		
+2	Deutscher Bundestag	A	Zuweisungen und Zuschüsse (ohne Investitionen)	212	Deutscher Bundestag	68401	11	Geldleistungen an die Fraktionen des Deutschen Bundestages	nein	16	121474		
+2	Deutscher Bundestag	A	Zuweisungen und Zuschüsse (ohne Investitionen)	212	Deutscher Bundestag	68501	11	Zuschuss an Institute zur Technikfolgenabschätzung	nein	16	2635		
+2	Deutscher Bundestag	A	Zuweisungen und Zuschüsse (ohne Investitionen)	212	Deutscher Bundestag	68502	11	Förderung des Deutschen Instituts für Menschenrechte	nein	16	3115		
+2	Deutscher Bundestag	A	Zuweisungen und Zuschüsse (ohne Investitionen)	212	Deutscher Bundestag	68512	11	Förderung von Einrichtungen für parlamentarische Zwecke	nein	17	4203		
+2	Deutscher Bundestag	A	Zuweisungen und Zuschüsse (ohne Investitionen)	212	Deutscher Bundestag	68701	11	Leistungen an internationale Organisationen/Leistungen im Zusammenhang mit internationalen Mitgliedschaften	nein	17	1436		
+2	Deutscher Bundestag	A	Zuweisungen und Zuschüsse (ohne Investitionen)	212	Deutscher Bundestag	68702	144	Förderung des deutsch-amerikanischen Jugendaustausches	nein	18	5820		
+2	Deutscher Bundestag	A	Besondere Finanzierungsausgaben	212	Deutscher Bundestag	98103	890	Verrechnungsausgaben gemäß § 61 BHO außerhalb der Tit. 981 .1 und 981 .7	nein	18	0		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	42201	11	Bezüge und Nebenleistungen der planmäßigen Beamtinnen und Beamten	ja	18	74691		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	42202	11	Bezüge und Nebenleistungen der beamteten Hilfskräfte	ja	18	380		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	42203	11	Bezüge der Anwärterinnen und Anwärter sowie Nebenleistungen der Beamtinnen und Beamten auf Widerruf im Vorbereitungsdienst	ja	18	312		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	42709	11	Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige	ja	18	10371		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	42801	11	Entgelte der Arbeitnehmerinnen und Arbeitnehmer	ja	19	88976		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	42902	11	Aufwendungen der Präsidentin oder des Präsidenten des Deutschen Bundestages für das Personal in ihrer/seiner Amtswohnung	ja	19	0		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	45301	11	Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen	ja	19	870		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	45909	11	Vermischte Personalausgaben	ja	19	10		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	51101	11	Geschäftsbedarf und Kommunikation sowie Geräte, Ausstattungs- und Ausrüstungsgegenstände, sonstige Gebrauchsgegenstände, Software, Wartung	ja	19	10568		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	51401	11	Verbrauchsmittel, Haltung von Fahrzeugen und dgl.	ja	19	783		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	51701	11	Bewirtschaftung der Grundstücke, Gebäude und Räume	ja	20	63034		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	51801	11	Mieten und Pachten	ja	20	21569		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	51901	11	Unterhaltung der Grundstücke und baulichen Anlagen	ja	20	14865		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	52501	11	Aus- und Fortbildung	ja	21	1252		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	52603	11	Ausgaben für parlamentarische Gremien	ja	21	1569		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	52701	11	Dienstreisen	ja	21	1350		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	53102	11	Besucherdienst	ja	21	8181		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	53105	11	Ausgaben für die historische Ausstellung und weitere Ausstellungen	ja	21	675		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	53106	11	Ausgaben für Veranstaltungen im Parlamentsviertel	ja	21	1381		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	53201	11	Aufträge und Dienstleistungen im Bereich Informationstechnik	ja	21	3714		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	53204	11	Ausgaben für außeramtliche Übersetzungs- und Dolmetschertätigkeit	ja	22	1360		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	53205	11	Ausgaben für das zeitgeschichtliche Archiv des Deutschen Bundestages	ja	22	1310		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	53206	11	Ausgaben zur Förderung der zwischenstaatlichen Zusammenarbeit	ja	22	3389		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	53999	11	Vermischte Verwaltungsausgaben	ja	22	2044		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	71101	11	Kleine Neu-﻿, Um- und Erweiterungsbauten	ja	22	1995		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	71201	11	Baumaßnahmen von mehr als 6 000 000 € im Einzelfall	ja	23	0		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	81101	11	Erwerb von Fahrzeugen	ja	23	205		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	81201	11	Erwerb von Geräten, Ausstattungs- und Ausrüstungsgegenständen für Verwaltungszwecke (ohne IT)	ja	23	2016		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	81202	11	Erwerb von Anlagen, Geräten, Ausstattungs- und Ausrüstungsgegenständen sowie Software im Bereich Informationstechnik	ja	23	3227		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	81203	11	Erwerb von Geräten, Ausstattungs- und Ausrüstungsgegenständen zur Verbesserung der Arbeitsmöglichkeiten für Abgeordnete und Gremien des Deutschen Bundestages	ja	24	7162		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	81204	11	Erwerb zeitgenössischer Kunstwerke	ja	24	275		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	81206	11	Beschaffung und Einrichtung von Fernmeldeanlagen u. Ä. für Abgeordnete, die Wehrbeauftragte des Deutschen Bundestages sowie den Ständigen Bevollmächtigten des Parlamentarischen Kontrollgremiums	ja	24	650		
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	42891	11	Entgelte der Arbeitnehmerinnen und Arbeitnehmer	ja	24	1688	9	Kosten der Kindertagesstätte
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	51791	11	Bewirtschaftung der Grundstücke, Gebäude und Räume	ja	24	186	9	Kosten der Kindertagesstätte
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	51991	11	Unterhaltung der Grundstücke und baulichen Anlagen	ja	25	70	9	Kosten der Kindertagesstätte
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	54791	11	Nicht aufteilbare sächliche Verwaltungsausgaben	ja	25	260	9	Kosten der Kindertagesstätte
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	42759	11	Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige	ja	25	211	56	Ausgaben für die Informationstechnik der Mitglieder des Deutschen Bundestages
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	51156	11	Geschäftsbedarf und Datenübertragung sowie Geräte, Ausstattungs- und Ausrüstungsgegenstände, Software, Wartung	ja	25	4441	56	Ausgaben für die Informationstechnik der Mitglieder des Deutschen Bundestages
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	51856	11	Miete für Datenverarbeitungsanlagen, Geräte, Ausstattungs- und Ausrüstungsgegenstände, Maschinen, Software	ja	25	0	56	Ausgaben für die Informationstechnik der Mitglieder des Deutschen Bundestages
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	52556	11	Aus- und Fortbildung	ja	25	250	56	Ausgaben für die Informationstechnik der Mitglieder des Deutschen Bundestages
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	53251	11	Aufträge und Dienstleistungen im Bereich Informationstechnik	ja	25	15167	56	Ausgaben für die Informationstechnik der Mitglieder des Deutschen Bundestages
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	71156	11	Kleine Neu-﻿, Um- und Erweiterungsbauten	ja	25	328	56	Ausgaben für die Informationstechnik der Mitglieder des Deutschen Bundestages
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	71256	11	Baumaßnahmen von mehr als 6 000 000 € im Einzelfall	ja	26	0	56	Ausgaben für die Informationstechnik der Mitglieder des Deutschen Bundestages
+2	Deutscher Bundestag	A		212	Deutscher Bundestag	81252	11	Erwerb von Anlagen, Geräten, Ausstattungs- und Ausrüstungsgegenständen sowie Software im Bereich Informationstechnik	ja	26	7547	56	Ausgaben für die Informationstechnik der Mitglieder des Deutschen Bundestages
+2	Deutscher Bundestag	E	Verwaltungseinnahmen	213	Die Wehrbeauftragte des Deutschen Bundestages	11999	11	Vermischte Einnahmen	 	29	1		
+2	Deutscher Bundestag	E	Verwaltungseinnahmen	213	Die Wehrbeauftragte des Deutschen Bundestages	13201	11	Erlöse aus der Veräußerung von beweglichen Sachen	 	29	0		
+2	Deutscher Bundestag	A		213	Die Wehrbeauftragte des Deutschen Bundestages	42101	11	Bezüge der Wehrbeauftragten	ja	29	194		
+2	Deutscher Bundestag	A		213	Die Wehrbeauftragte des Deutschen Bundestages	42201	11	Bezüge und Nebenleistungen der planmäßigen Beamtinnen und Beamten	ja	29	2120		
+2	Deutscher Bundestag	A		213	Die Wehrbeauftragte des Deutschen Bundestages	42202	11	Bezüge und Nebenleistungen der beamteten Hilfskräfte	ja	29	59		
+2	Deutscher Bundestag	A		213	Die Wehrbeauftragte des Deutschen Bundestages	42709	11	Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige	ja	29	0		
+2	Deutscher Bundestag	A		213	Die Wehrbeauftragte des Deutschen Bundestages	42801	11	Entgelte der Arbeitnehmerinnen und Arbeitnehmer	ja	29	1709		
+2	Deutscher Bundestag	A		213	Die Wehrbeauftragte des Deutschen Bundestages	45301	11	Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen	ja	29	2		
+2	Deutscher Bundestag	A		213	Die Wehrbeauftragte des Deutschen Bundestages	51701	11	Bewirtschaftung der Grundstücke, Gebäude und Räume	ja	29	223		
+2	Deutscher Bundestag	A		213	Die Wehrbeauftragte des Deutschen Bundestages	51901	11	Unterhaltung der Grundstücke und baulichen Anlagen	ja	29	38		
+2	Deutscher Bundestag	A		213	Die Wehrbeauftragte des Deutschen Bundestages	52701	11	Dienstreisen	ja	29	150		
+2	Deutscher Bundestag	A		213	Die Wehrbeauftragte des Deutschen Bundestages	53999	11	Vermischte Verwaltungsausgaben	ja	29	85		
+2	Deutscher Bundestag	A		213	Die Wehrbeauftragte des Deutschen Bundestages	54501	11	Konferenzen, Tagungen, Messen und Ausstellungen	ja	30	15		
+2	Deutscher Bundestag	A		213	Die Wehrbeauftragte des Deutschen Bundestages	81101	11	Erwerb von Fahrzeugen	ja	30	0		
+2	Deutscher Bundestag	A		213	Die Wehrbeauftragte des Deutschen Bundestages	81201	11	Erwerb von Geräten, Ausstattungs- und Ausrüstungsgegenständen für Verwaltungszwecke (ohne IT)	ja	30	5		
+2	Deutscher Bundestag	A	Personalausgaben	214	Bundesversammlung	41101	11	Entschädigung der Mitglieder der Bundesversammlung gem. § 12 des Gesetzes über die Wahl des Bundespräsidenten vom 25. April 1959	nein	32	0		
+2	Deutscher Bundestag	A	Personalausgaben	214	Bundesversammlung	42709	11	Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige	nein	32	0		
+2	Deutscher Bundestag	A	Sächliche Verwaltungsausgaben	214	Bundesversammlung	53999	11	Vermischte Verwaltungsausgaben	nein	32	0		
+2	Deutscher Bundestag	A	Sächliche Verwaltungsausgaben	214	Bundesversammlung	54201	13	Öffentlichkeitsarbeit	nein	32	0		
+2	Deutscher Bundestag	A	Personalausgaben	215	Mitglieder des Europäischen Parlaments	41101	11	Entschädigung nach § 9 Europaabgeordnetengesetz	nein	34	490		
+2	Deutscher Bundestag	A	Personalausgaben	215	Mitglieder des Europäischen Parlaments	41104	11	Zuschuss zu den Kosten in Krankheits-﻿, Pflege- und Geburtsfällen sowie Unterstützungen nach § 11 Europaabgeordnetengesetz	nein	34	359		
+2	Deutscher Bundestag	A	Personalausgaben	215	Mitglieder des Europäischen Parlaments	41105	11	Übergangsgeld für ausgeschiedene Mitglieder des Europäischen Parlaments nach § 10 b Europaabgeordnetengesetz	nein	34	100		
+2	Deutscher Bundestag	A	Personalausgaben	215	Mitglieder des Europäischen Parlaments	41111	11	Überbrückungsgeld/Sterbegeld an Hinterbliebene nach § 10 b Europaabgeordnetengesetz	nein	34	10		
+2	Deutscher Bundestag	A	Personalausgaben	215	Mitglieder des Europäischen Parlaments	41112	11	Altersentschädigung an ausgeschiedene Mitglieder des Europäischen Parlaments sowie Hinterbliebenenversorgung nach § 10 b Europaabgeordnetengesetz	nein	34	5660		
+2	Deutscher Bundestag	A	Personalausgaben	215	Mitglieder des Europäischen Parlaments	41113	11	Versorgungsabfindung nach § 10 b Europaabgeordnetengesetz	nein	34	50		
+2	Deutscher Bundestag	A	Personalausgaben	215	Mitglieder des Europäischen Parlaments	41116	11	Reisekostenvergütungen für Mandatsreisen nach § 10 Europaabgeordnetengesetz	nein	35	10		
+2	Deutscher Bundestag	A	Personalausgaben	215	Mitglieder des Europäischen Parlaments	41117	11	Inanspruchnahme von Leistungen des Deutschen Bundestages nach § 10 a Europaabgeordnetengesetz	nein	35	100		
+2	Deutscher Bundestag	A	Personalausgaben	215	Mitglieder des Europäischen Parlaments	41120	11	Kostenerstattung an die Deutsche Bahn für die Benutzung ihrer Verkehrsmittel durch die deutschen Mitglieder des Europäischen Parlaments	nein	35	325		
+2	Deutscher Bundestag	E	Verwaltungseinnahmen	216	Parlamentarische Kontrolle der Nachrichtendienste	11999	11	Vermischte Einnahmen	 	37	1		
+2	Deutscher Bundestag	E	Verwaltungseinnahmen	216	Parlamentarische Kontrolle der Nachrichtendienste	13201	11	Erlöse aus der Veräußerung von beweglichen Sachen	 	37	1		
+2	Deutscher Bundestag	A		216	Parlamentarische Kontrolle der Nachrichtendienste	42101	51	Bezüge der/des Ständigen Bevollmächtigten des Parlamentarischen Kontrollgremiums	ja	37	0		
+2	Deutscher Bundestag	A		216	Parlamentarische Kontrolle der Nachrichtendienste	42201	11	Bezüge und Nebenleistungen der planmäßigen Beamtinnen und Beamten	ja	37	1722		
+2	Deutscher Bundestag	A		216	Parlamentarische Kontrolle der Nachrichtendienste	42202	11	Bezüge und Nebenleistungen der beamteten Hilfskräfte	ja	37	173		
+2	Deutscher Bundestag	A		216	Parlamentarische Kontrolle der Nachrichtendienste	42709	11	Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige	ja	37	0		
+2	Deutscher Bundestag	A		216	Parlamentarische Kontrolle der Nachrichtendienste	42801	11	Entgelte der Arbeitnehmerinnen und Arbeitnehmer	ja	37	563		
+2	Deutscher Bundestag	A		216	Parlamentarische Kontrolle der Nachrichtendienste	45301	11	Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen	ja	37	100		
+2	Deutscher Bundestag	A		216	Parlamentarische Kontrolle der Nachrichtendienste	51701	11	Bewirtschaftung der Grundstücke, Gebäude und Räume	ja	37	118		
+2	Deutscher Bundestag	A		216	Parlamentarische Kontrolle der Nachrichtendienste	52605	11	Ausgaben für die Kommission nach Art. 10 des Grundgesetzes und das Parlamentarische Kontrollgremium	ja	38	264		
+2	Deutscher Bundestag	A		216	Parlamentarische Kontrolle der Nachrichtendienste	52701	11	Dienstreisen	ja	38	100		
+2	Deutscher Bundestag	A		216	Parlamentarische Kontrolle der Nachrichtendienste	53999	11	Vermischte Verwaltungsausgaben	ja	38	49		
+2	Deutscher Bundestag	A		216	Parlamentarische Kontrolle der Nachrichtendienste	71101	11	Kleine Neu-﻿, Um- und Erweiterungsbauten	ja	38	60		
+2	Deutscher Bundestag	A		216	Parlamentarische Kontrolle der Nachrichtendienste	71201	11	Baumaßnahmen von mehr als 6 000 000 € im Einzelfall	ja	38	0		
+2	Deutscher Bundestag	A		216	Parlamentarische Kontrolle der Nachrichtendienste	81201	11	Erwerb von Geräten, Ausstattungs- und Ausrüstungsgegenständen für Verwaltungszwecke (ohne IT)	ja	38	10		
+2	Deutscher Bundestag	E	Verwaltungseinnahmen	217	Die/der Bundesbeauftragte für die Opfer der SED-Diktatur beim Deutschen Bundestag	11999	11	Vermischte Einnahmen	 	40	1		
+2	Deutscher Bundestag	E	Verwaltungseinnahmen	217	Die/der Bundesbeauftragte für die Opfer der SED-Diktatur beim Deutschen Bundestag	13201	11	Erlöse aus der Veräußerung von beweglichen Sachen	 	40	1		
+2	Deutscher Bundestag	A		217	Die/der Bundesbeauftragte für die Opfer der SED-Diktatur beim Deutschen Bundestag	42101	51	Bezüge der/des Bundesbeauftragten für die Opfer des SED-Diktatur beim Deutschen Bundestag	ja	40	98		
+2	Deutscher Bundestag	A		217	Die/der Bundesbeauftragte für die Opfer der SED-Diktatur beim Deutschen Bundestag	42201	11	Bezüge und Nebenleistungen der planmäßigen Beamtinnen und Beamten	ja	40	238		
+2	Deutscher Bundestag	A		217	Die/der Bundesbeauftragte für die Opfer der SED-Diktatur beim Deutschen Bundestag	42202	11	Bezüge und Nebenleistungen der beamteten Hilfskräfte	ja	40	0		
+2	Deutscher Bundestag	A		217	Die/der Bundesbeauftragte für die Opfer der SED-Diktatur beim Deutschen Bundestag	42709	11	Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige	ja	40	0		
+2	Deutscher Bundestag	A		217	Die/der Bundesbeauftragte für die Opfer der SED-Diktatur beim Deutschen Bundestag	42801	11	Entgelte der Arbeitnehmerinnen und Arbeitnehmer	ja	40	54		
+2	Deutscher Bundestag	A		217	Die/der Bundesbeauftragte für die Opfer der SED-Diktatur beim Deutschen Bundestag	45301	11	Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen	ja	40	50		
+2	Deutscher Bundestag	A		217	Die/der Bundesbeauftragte für die Opfer der SED-Diktatur beim Deutschen Bundestag	51701	11	Bewirtschaftung der Grundstücke, Gebäude und Räume	ja	40	50		
+2	Deutscher Bundestag	A		217	Die/der Bundesbeauftragte für die Opfer der SED-Diktatur beim Deutschen Bundestag	52701	11	Dienstreisen	ja	40	20		
+2	Deutscher Bundestag	A		217	Die/der Bundesbeauftragte für die Opfer der SED-Diktatur beim Deutschen Bundestag	53999	11	Vermischte Verwaltungsausgaben	ja	41	50		
+2	Deutscher Bundestag	A		217	Die/der Bundesbeauftragte für die Opfer der SED-Diktatur beim Deutschen Bundestag	71101	11	Kleine Neu-﻿, Um- und Erweiterungsbauten	ja	41	10		
+2	Deutscher Bundestag	A		217	Die/der Bundesbeauftragte für die Opfer der SED-Diktatur beim Deutschen Bundestag	71201	11	Baumaßnahmen von mehr als 6 000 000 € im Einzelfall	ja	41	0		
+2	Deutscher Bundestag	A		217	Die/der Bundesbeauftragte für die Opfer der SED-Diktatur beim Deutschen Bundestag	81201	11	Erwerb von Geräten, Ausstattungs- und Ausrüstungsgegenständen für Verwaltungszwecke (ohne IT)	ja	41	20		

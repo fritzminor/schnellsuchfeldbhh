@@ -1,9 +1,7 @@
 import { UserName } from "../navigation/UsersTypes";
 import { HHSt } from "../store/HHStType";
 import Papa from "papaparse";
-import {
-  emptyBaseData
-} from "../store/AppState";
+import { emptyBaseData } from "../store/AppState";
 import { Store } from "../store/Store";
 
 type CsvRow = {
@@ -24,22 +22,23 @@ type CsvRow = {
  * https://www.bundeshaushalt.de/download
  */
 export function importBHH_CSV(
-  file: File,
+  file: File | NodeJS.ReadableStream,
   setCurrentUser: (newCurrentUser: UserName) => void,
   setLocalData: Store["setLocalData"],
   setModalInfo: (modalInfo: string) => void
 ): void {
   const importedData = { ...emptyBaseData };
   const { eplMap, kapMap, tgMap, hhsts } = importedData;
-
-  const regExFileName = /hh_(\d{4})_.*csv$/.exec(file.name);
+  const fileName =
+    file instanceof File
+      ? file.name
+      : ((file as unknown) as { path: string }).path;
+  const regExFileName = /hh_(\d{4})_.*csv$/.exec(fileName);
   if (!regExFileName)
-    throw new Error(
-      `Dateinamen ${file.name} nicht erkannt`
-    );
+    throw new Error(`Dateinamen ${fileName} nicht erkannt`);
   importedData.firstYear = parseInt(regExFileName[1], 10);
 
-  let rowNr = 0;
+  // let rowNr = 0;
   let errMessage: string | null = null;
 
   const parseRow = (
@@ -49,18 +48,20 @@ export function importBHH_CSV(
     try {
       if (row.errors.length > 0) {
         throw new Error(
-          `Fehler beim Lesen von ${
-            file.name
-          }. ${JSON.stringify(row.errors)}`
+          `Fehler beim Lesen von ${fileName}. ${JSON.stringify(
+            row.errors
+          )}`
         );
       }
-      if (rowNr < 3) console.log(row);
+
+      //      if (rowNr < 3) console.log(row);
+
       const data = (row.data as unknown) as CsvRow;
       if (!data) {
         throw new Error(
-          `Fehler beim Lesen von ${
-            file.name
-          }: ${JSON.stringify(row)}`
+          `Fehler beim Lesen von ${fileName}: ${JSON.stringify(
+            row
+          )}`
         );
       }
       const epl = data.einzelplan.padStart(2, "0");
@@ -72,7 +73,7 @@ export function importBHH_CSV(
       const kapitel = data.kapitel.padStart(4, "0");
       if (kapitel.substr(0, 2) !== epl)
         throw new Error(
-          `Fehler beim Lesen von ${file.name}: Kapitelnummer ${kapitel} passt nicht zu Einzelplan ${epl}. `
+          `Fehler beim Lesen von ${fileName}: Kapitelnummer ${kapitel} passt nicht zu Einzelplan ${epl}. `
         );
       const kap = kapitel.substr(2);
       kapMap[kapitel] = {
@@ -87,7 +88,9 @@ export function importBHH_CSV(
       const sollJahr1 = parseInt(data.soll, 10);
       const zweck = data["titel-text"];
 
-      const tgNr = data["titelgruppe"]?data["titelgruppe"].padStart(2, "0"):"";
+      const tgNr = data["titelgruppe"]
+        ? data["titelgruppe"].padStart(2, "0")
+        : "";
       const tgKey = tgNr
         ? `${epl}${kap}TG${tgNr}`
         : undefined;
@@ -114,7 +117,7 @@ export function importBHH_CSV(
         sollJahr1
       };
       hhsts.push(hhst);
-      rowNr++;
+      // rowNr++;
     } catch (reason) {
       errMessage = reason.message;
       parser.abort();
@@ -125,11 +128,11 @@ export function importBHH_CSV(
     step: parseRow,
     header: true,
     skipEmptyLines: "greedy",
-    error: (error, file) => {
+    error: (error) => {
       setModalInfo(
-        `Fehler beim Laden der Datei ${
-          (file && file.name) || "(?)"
-        }: ${JSON.stringify(error)}`
+        `importBHH: Fehler beim Parsen der Datei ${
+          fileName || "(?)"
+        }: ${JSON.stringify(error, undefined, "  ")}`
       );
     },
     complete: (results) => {

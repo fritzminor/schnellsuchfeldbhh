@@ -218,24 +218,28 @@ export function getFilteredHhstArray(
       const hhstTgKey = hhst.tgKey;
       const newTg = hhstTgKey && hhstTgKey !== currTG.name;
       if (withBlocks) {
+        // ---- end of block TG ------------
         if (
           (hhstTgKey || currTG.name) &&
           hhstTgKey !== currTG.name
         ) {
           if (currTG.name)
-            // end of currEpl
+            // end of currTG
             pushTgTotals();
           else currTG = { ...emptyBlockDesc };
           currTG.name = hhstTgKey || "";
         }
+
+        // ----------- end of block Kap --------
         const hhstKap4 = hhst.epl + hhst.kap;
         if (hhstKap4 !== currKap.name) {
           if (currKap.name)
-            // end of currEpl
+            // end of currKap
             pushKapTotals();
           currKap.name = hhstKap4;
         }
 
+        // ---------- end of block Epl --------
         if (hhst.epl !== currEpl.name) {
           if (currEpl.name)
             // end of currEpl
@@ -244,6 +248,7 @@ export function getFilteredHhstArray(
         }
       }
 
+      // ---------- start of block TG ------
       if (withBlocks && newTg) {
         const tgStart: HHStBlockLimiter = {
           type: "block",
@@ -259,6 +264,8 @@ export function getFilteredHhstArray(
 
         filteredHhstArray.push(tgStart);
       }
+
+      // -------- current hhst -------
       filteredHhstArray.push(hhst);
 
       if (hhst.expense) {
@@ -278,9 +285,14 @@ export function getFilteredHhstArray(
   });
 
   if (withBlocks) {
+    // ----- end of last block TG -----
     if (currTG.name) pushTgTotals();
+    // ----- end of last block Kap -----
     if (currKap.name) pushKapTotals();
+    // ----- end of last block Epl -----
     if (currEpl.name) pushEplTotals();
+
+    // ------- totals -------------
     const totalRevenues: HHStBlockLimiter = {
       type: "block",
       blockstart: false,

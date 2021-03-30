@@ -286,6 +286,21 @@ function _parseLeftFirst(
       };
       return searchNode;
     }
+//TODO: 0111TG57 bringt eine ganze Menge falscher Positive!
+    const eplKapTGRegEx = /^(\d\d)(\d\d)TG(\d{1,2})$/i;
+    const eplKapTGMatch = eplKapTGRegEx.exec(content);
+    if (eplKapTGMatch) {
+      const searchNode: SearchNode = {
+        type: "pseudonumeric",
+        subtype: "equal",
+        columnName: "tgKey",
+        keyword: "TG",
+        value: `${eplKapTGMatch[1]}${
+          eplKapTGMatch[2]
+        }TG${eplKapTGMatch[3].padStart(2, "0")}`
+      };
+      return searchNode;
+    }
 
     // else: fulltext
     const searchNode: SearchNode = {
@@ -306,7 +321,7 @@ function _parseLeftFirst(
     if (!colonToken || colonToken.content !== ":")
       throw new SearchParserException(
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
-        `Doppelpunkt hinter "${token0.content}" fehlt.`, 
+        `Doppelpunkt hinter "${token0.content}" fehlt.`,
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         token0.pos + token0.content.length,
         tokens
@@ -314,14 +329,14 @@ function _parseLeftFirst(
     const token2 = tokens.singleTokens[currentToken];
 
     if (!token2 || !token2.content)
-    throw new SearchParserException(
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      `Angabe hinter "${token0.content}:" fehlt.`, 
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      token0.pos + token0.content.length,
-      tokens
-    );
-  
+      throw new SearchParserException(
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        `Angabe hinter "${token0.content}:" fehlt.`,
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        token0.pos + token0.content.length,
+        tokens
+      );
+
     if (columnName === "Volltext")
       return {
         type: "text",
@@ -353,8 +368,11 @@ function _parseLeftFirst(
     );
 
     function numberedTokenContent(token: Token): string {
-      return (pseudonumeric && minDigits && token.content.length < minDigits) ?
-        token.content.padStart(minDigits, "0") : token.content;
+      return pseudonumeric &&
+        minDigits &&
+        token.content.length < minDigits
+        ? token.content.padStart(minDigits, "0")
+        : token.content;
     }
 
     currentToken += 2;
@@ -375,15 +393,19 @@ function _parseLeftFirst(
       : token2;
 
     // makes Epl:1 to Epl:01
-    const numberTokenContent = numberedTokenContent(numberToken);
+    const numberTokenContent = numberedTokenContent(
+      numberToken
+    );
 
     const number = numberToken
       ? valueRegex.exec(numberTokenContent)
       : null;
     if (!number)
       throw new SearchParserException(
-        `${minDigits || 0}-${maxDigits || "10"
-        } Ziffern hinter ${token0.content}:${smaller ? "-" : ""
+        `${minDigits || 0}-${
+          maxDigits || "10"
+        } Ziffern hinter ${token0.content}:${
+          smaller ? "-" : ""
         } erwartet`,
         tokens.singleTokens[currentToken - 1].pos + 1,
         tokens
@@ -392,17 +414,17 @@ function _parseLeftFirst(
     const greater =
       !smaller &&
       tokens.singleTokens[currentToken + 1]?.content ===
-      "-";
+        "-";
 
     if (greater) {
       currentToken++;
 
-
-
       const number2 = tokens.singleTokens[currentToken + 1]
         ? valueRegex.exec(
-          numberedTokenContent(tokens.singleTokens[currentToken + 1])
-        )
+            numberedTokenContent(
+              tokens.singleTokens[currentToken + 1]
+            )
+          )
         : null;
 
       if (number2) {
@@ -543,30 +565,34 @@ function _parseLeftFirst(
 
     //TODO: check other keywords
     case "-":
-      currentToken++;
-      const negatedResult = _parseLeftFirst( // eslint-disable-line no-case-declarations
-        null,
-        tokens,
-        currentToken,
-        currentDepth
-      );
+      {
+        currentToken++;
+        const negatedResult = _parseLeftFirst(
+          null,
+          tokens,
+          currentToken,
+          currentDepth
+        );
 
-      parsedNode = {
-        type: "logical",
-        subtype: "not",
-        node: negatedResult.searchNode
-      };
-      currentToken = negatedResult.nextToken - 1;
+        parsedNode = {
+          type: "logical",
+          subtype: "not",
+          node: negatedResult.searchNode
+        };
+        currentToken = negatedResult.nextToken - 1;
+      }
       break;
     case "(":
-      currentToken++;
-      const parsedBrackets = _parserLoop( // eslint-disable-line no-case-declarations
-        tokens,
-        currentToken,
-        currentDepth + 1
-      );
-      parsedNode = parsedBrackets.searchNode;
-      currentToken = parsedBrackets.nextToken - 1;
+      {
+        currentToken++;
+        const parsedBrackets = _parserLoop(
+          tokens,
+          currentToken,
+          currentDepth + 1
+        );
+        parsedNode = parsedBrackets.searchNode;
+        currentToken = parsedBrackets.nextToken - 1;
+      }
       break;
     case ")":
       if (currentDepth > 0) {

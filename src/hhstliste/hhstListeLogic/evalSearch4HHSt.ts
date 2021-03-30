@@ -74,9 +74,14 @@ function isSearchedPseudonumeric(
   hhst: HHSt,
   searchTree: SearchNodePseudoNumeric
 ): boolean {
-  const columnValue: string = hhst[
+  const colValue = hhst[
     searchTree.columnName
-  ] as string;
+  ];
+  if(!colValue)
+    return false;
+
+  const columnValue: string = colValue as string;
+
   switch (searchTree.subtype) {
     case "equal":
       return (

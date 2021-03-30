@@ -1,6 +1,6 @@
 = Universalsuchfeld - Hinweise zur Entwicklung
 :relfileprefix: ../
-:toc: preamble
+:toc: right
 :toc-title: Übersicht
 :toclevels: 10
 
@@ -108,6 +108,20 @@ Ein ToDo ist noch den Parser für die Liste der Haushaltsstellen mit dem für di
 Universalsuchfeld - xref:src/eingabehilfe/EingabehilfeLogic.ts[]) zusammen zu bringen. Hier scheint 
 teilweise der Quellcode redundant.
 
+==== Hinzufügen eines Suchkriteriums im Universalsuchfeld
+
+Durch die Verteilung der <<Unterordner nach Funktionalitäten, Aufgaben nach Funktionalitäten>> muss man beim Hinzufügen eines Suchkriteriums an 
+verschiedenen Stellen im Quellcode ansetzen.
+
+Nehmen Sie das Beispiel der Endziffern (EZ:). Das sind die letzten beiden Ziffern der Titelnummer. Diese müssen eingeführt werden:
+
+- im Parser für das <<docs/anleitung.doc#Universalsuchfeld, Universalsuchfeld>>
+- in den Tests
+- im <<docs/anleitung.doc#Vorschlägebereich, Vorschlägebereich>>
+- ggf. im Suchalgorithmus für die Liste der Haushaltsstellen
+- ggf. in der Kreisauswahl (clickSelect)
+
+
 
 === Datenhaltung 
 
@@ -135,7 +149,7 @@ damit die Anwendung immer sofort auf Benutzereingaben reagieren kann. WebWorker 
 Nebenläufigkeit von Programmcode zu ermöglichen.
 
 Bisher scheint es aber selbst bei großen Haushaltsplänen (z.B. der gesamte Bundeshaushalt) kaum sprürbare 
-Verzögerungen zu geben, so dass man jedenfalls für den Prototyp auf WebWorker verzichten kann.
+Verzögerungen zu geben, so dass man jedenfalls für den Prototyp auf WebWorker verzichten kann. Die Performanz ist auf einem üblichen Desktoprechner gut.
 
 === Tests
 

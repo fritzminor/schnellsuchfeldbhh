@@ -186,7 +186,6 @@ export function eingabehilfen({
     items.push(
       ...keywords.map(mapKeyword2EingabeHilfeItem)
     );
-    console.log("items", items.length);
     const exampleProposal =
       proposalsForEmptyField[
         Math.floor(
@@ -429,22 +428,18 @@ export function replaceToken(
   newToken: string,
   additional?: boolean
 ): string {
-  console.log("cursorPos", cursorPos);
   const { curToken: oldToken } = getCurrentTokenAtPos(
     searchexpression,
     cursorPos
   );
-  console.log("old", oldToken);
   const beforeToken = searchexpression.substr(
     0,
     cursorPos - (additional ? 0 : oldToken.length)
   );
-  console.log("before", beforeToken);
   const afterToken = searchexpression.substr(
     cursorPos,
     searchexpression.length
   );
-  console.log("after", afterToken);
   return beforeToken + newToken + afterToken;
 }
 

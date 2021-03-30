@@ -5,6 +5,7 @@ import {
   Tag
 } from "./EingabeHilfeTypes";
 
+/** Kennzeichen (Kzn) */
 export const tags: Tag[] = [
   {
     name: "gesetzlLand",
@@ -217,6 +218,12 @@ export const regExMatchers: RegExMatcher[] = [
     convertStr: "Kap:$1$2 Titelnr:$3$4",
     descriptionStr:
       "Suche im Kapitel $1 $2 nach Titelnummer $3 $4"
+  },
+  {
+    regEx: /^(\d{2})(\d{2})TG(\d{1,2})$/,
+    convertStr: "Epl:$1 Kap:$2 TG:$3",
+    descriptionStr:
+      "Suche in Einzelplan $1 Kapitel $2 nach Titelgruppe $3"
   }
 ];
 
@@ -246,6 +253,10 @@ export const proposalsForEmptyField: EingabeHilfeItem[] = [
     proposal: "Grp:4-8",
     description: `Hauptgruppen 4 bis 8`
   },
+  { 
+    proposal: "0203TG55",
+    description: "Epl 02 Kap 03 Titelgruppe 55"
+  }
 ];
 
 /** Diese Vorschläge werden bei entsprechenden Suchausdrücken gezeigt.
