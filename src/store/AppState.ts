@@ -258,6 +258,7 @@ export function getFilteredHhstArray(
           gruppe: `TG ${currTG.name.substr(6, 2)}`,
           suffix: "",
           fkz: "",
+          expense: hhst.expense,
           zweck: getTGDesc(tgMap, currTG),
           sollJahr1: currTG.totalRevenues
         };
