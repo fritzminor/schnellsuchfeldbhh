@@ -18,7 +18,10 @@ export type Totals = {
 /** Epl, Kapitel oder Titelgruppen Beschreibung */
 export type SectionMap = {
   /** eplKey, kapKey, tgKey, e.g.
-   * "0102TG60" for TG 60 in Epl 01 Kap 02 or
+   * "0102TG60A" for expense TG 60 in Epl 01 Kap 02,
+   * "0102TG60E" for revenue TG 60 in Epl 01 Kap 02,
+   * TODO: E/A suffix not yet implemented in hhstlist, importBHH, material, importSN_XLSX
+   * or
    * "0304" for Kap 04 in Epl 03 */
   [index: string]: {
     /** e.g. "60" for TG 60 or

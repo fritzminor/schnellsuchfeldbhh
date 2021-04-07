@@ -101,7 +101,9 @@ Das folgende sind Ideen. Da es sich aber nur um einen Prototyp handelt, kann es 
 
 ## Weiterentwicklung
 
-Der Prototyp kann frei unter der MIT-Lizenz genutzt werden. Verbesserungen sind willkommen. Feedback bitte via https://github.com/fritzminor/schnellsuchfeldbhh/issues[GitHub-Issue].
+Der Prototyp kann frei unter der MIT-Lizenz genutzt werden. Verbesserungen sind willkommen, insbesondere via Pull Requests. Ein paar Hinweise zum Code finden sich  in https://github.com/fritzminor/schnellsuchfeldbhh/blob/main/docs/entwicklung.adoc .
+
+Feedback bitte via https://github.com/fritzminor/schnellsuchfeldbhh/issues[GitHub-Issue].
 
 
 Viel Spaß und Erfolg!

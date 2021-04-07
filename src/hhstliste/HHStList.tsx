@@ -50,24 +50,8 @@ export function HHStList({
         }
       />
     ));
-    console.log("---Keys----");
-    let x: React.Key | null = null;
-    hhstRows.forEach((elem) => {
-      if (x === elem.key) console.log("SAME AS LAST:" + x);
-      x = elem.key;
-      console.log(elem.key);
-    });
-    console.log("---Doubled Keys----");
-    const mymap: { [key: string]: boolean } = {};
-    hhstRows.forEach((row) => {
-      const key = row.key;
-      if (key) {
-        if (mymap[key]) {
-          console.log("Already there: ", row);
-        } else mymap[key] = true;
-      } else throw new Error("NO KEY" + row);
-    });
-
+    
+    
     return (
       <>
         <div className="container box hhstListContainer">

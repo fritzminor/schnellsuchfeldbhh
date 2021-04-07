@@ -2,10 +2,9 @@ import { Workbook } from "exceljs";
 import { UserName } from "../navigation/UsersTypes";
 import { AppState } from "../store/AppState";
 import { BaseData } from "../store/AppState";
-import {
-  AnalyzeResults
-} from "./importAnalyseSheet";
+import { AnalyzeResults } from "./importAnalyseSheet";
 import { importBHH_CSV } from "./importBHH";
+import { importHOLTitGr } from "./importHOLTitGr";
 import { importHOLXSLX } from "./importHOLXSLX";
 import { importSN_XSLX } from "./importSN_XLSX";
 
@@ -13,7 +12,7 @@ export const loadFile = (
   evt: React.ChangeEvent<HTMLInputElement>,
   appState: AppState,
   setCurrentUser: (newCurrentUser: UserName) => void,
-  setLocalData: (localData:BaseData) => void,
+  setLocalData: (localData: BaseData) => void,
   setModalInfo: (
     modalInfo: string | AnalyzeResults | null
   ) => void,
@@ -22,10 +21,10 @@ export const loadFile = (
   const files = evt.target.files;
   if (files) {
     const file = files[0];
-    
-    // this is necessary, because Chrome/Chromium/Edge does not fire 
+
+    // this is necessary, because Chrome/Chromium/Edge does not fire
     // onchange, if the same file is selected again.
-    evt.target.value="";
+    evt.target.value = "";
 
     console.log("filesSelected", files[0]);
     const r = new FileReader();
@@ -43,28 +42,44 @@ export const loadFile = (
               evt.target.result
             );
             try {
-              importHOLXSLX(
-                file,
-                workbook,
-                setCurrentUser,
-                setLocalData
-              );
-            } catch (reasonHOLXLSX) {
+              try {
+                importHOLXSLX(
+                  file,
+                  workbook,
+                  setCurrentUser,
+                  setLocalData
+                );
+              } catch (reasonHOLXLSX) {
+                console.log(
+                  "Kein Format für importHOLXSLX.",
+                  reasonHOLXLSX,
+                  file
+                );
+                importSN_XSLX(
+                  file,
+                  workbook,
+                  setCurrentUser,
+                  setLocalData
+                );
+              }
+            } catch (reasonSN_XLSX) {
               console.log(
-                "Kein Format für importHOLXSLX.",
-                reasonHOLXLSX,
+                "Kein Format für importSN_XLSX.",
+                reasonSN_XLSX,
                 file
               );
-              importSN_XSLX(
+              importHOLTitGr(
                 file,
                 workbook,
                 setCurrentUser,
-                setLocalData
+                setLocalData,
+                appState
               );
+            
             }
           } catch (xlsxReason) {
             console.log("Trying to read CSV ...");
-            
+
             importBHH_CSV(
               file,
               setCurrentUser,

@@ -103,11 +103,14 @@ export default function App(): JSX.Element {
           </a>{" "}
         </div>
       </footer>
-      {process.env.NODE_ENV === "development" ? (
+      
+      {/* --------- show internal basedata for development purposes -----------
+       process.env.NODE_ENV === "development" ? (
         <pre>{JSON.stringify(state.derived.baseData, undefined, "  ")}</pre>
       ) : (
         <></>
-      )}
+      ) */
+      }
       <ModalInfo
         modalInfo={state.modalInfo}
         hideUserMessage={store.hideUserMessage}
