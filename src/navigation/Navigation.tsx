@@ -47,6 +47,12 @@ export function Navigation({
     );
   }
 
+  /** has to be called after login has finished. */
+  function finishUserLogin() {
+    setUsersSelectable(false);
+    setBurgerActiveClassName("");
+  }
+
   return (
     <nav
       className="navbar has-background-info is-fixed-top"
@@ -56,10 +62,7 @@ export function Navigation({
         <div className="navbar-item has-text-light">
           <div className="media">
             <div className="media-left">
-              <a
-                className="button is-info "
-                href="#"
-              >
+              <a className="button is-info " href="#">
                 <CertificateCheck32 />
               </a>
             </div>
@@ -90,15 +93,16 @@ export function Navigation({
         className={`navbar-menu  ${burgerActiveClassName}`}
       >
         <div className="navbar-end">
+          <div className="navbar-item">
+            <DocReferrer>Anleitung</DocReferrer>
+          </div>
+
           <ShareMenu
             appState={appState}
             showUserMessage={showUserMessage}
             setModalInfo={store.setModalInfo}
           />
 
-          <div className="navbar-item">
-            <DocReferrer>Anleitung</DocReferrer>
-          </div>
           {/* ------------ user selection ------------------*/}
           <div className="navbar-item">
             <div
