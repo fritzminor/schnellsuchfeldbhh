@@ -54,10 +54,7 @@ export function ImportButton({
               setLocalData,
               setModalInfo,
               showError,
-              () => {
-                if (loadFileFinished) loadFileFinished();
-                setModalInfo(null);
-              }
+              loadFileFinished
             );
           }}
         />

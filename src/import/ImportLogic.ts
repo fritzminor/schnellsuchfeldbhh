@@ -91,6 +91,7 @@ export const loadFile = (
               setModalInfo
             );
           }
+          setModalInfo(null); // clear ModalInfo, if no error occured.
         } catch (reason) {
           showError(
             "Fehler beim Laden der Datei: " + reason,
