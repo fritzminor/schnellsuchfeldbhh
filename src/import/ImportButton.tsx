@@ -8,10 +8,15 @@ import { AppState } from "../store/AppState";
 export type ImportButtonProps = {
   store: Store;
   appState: AppState;
+  /** will be called after loading finished,
+   * even if an error occured.
+   */
+  loadFileFinished?: () => void;
 };
 
 export function ImportButton({
   store,
+  loadFileFinished,
   appState
 }: ImportButtonProps): JSX.Element {
   const {
@@ -20,6 +25,7 @@ export function ImportButton({
     showUserMessage,
     setModalInfo
   } = store;
+
   function showError(msg: string, error: string) {
     console.log("Showing error ", msg, error);
     showUserMessage(msg);
@@ -33,13 +39,25 @@ export function ImportButton({
           type="file"
           name="resume"
           onChange={(evt) => {
+            setModalInfo(
+              `Lade ${
+                evt.target.files
+                  ? evt.target.files[0].name
+                  : ""
+              } ...`
+            );
+
             loadFile(
               evt,
               appState,
               setCurrentUser,
               setLocalData,
               setModalInfo,
-              showError
+              showError,
+              () => {
+                if (loadFileFinished) loadFileFinished();
+                setModalInfo(null);
+              }
             );
           }}
         />

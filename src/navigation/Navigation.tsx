@@ -93,10 +93,12 @@ export function Navigation({
         className={`navbar-menu  ${burgerActiveClassName}`}
       >
         <div className="navbar-end">
+          {/*----------  Manual ------------*/}
           <div className="navbar-item">
             <DocReferrer>Anleitung</DocReferrer>
           </div>
 
+          {/*----------  Share-Dropdown ------------*/}
           <ShareMenu
             appState={appState}
             showUserMessage={showUserMessage}
@@ -131,6 +133,7 @@ export function Navigation({
                   </span>
                 </button>
               </div>
+
               <div
                 className="dropdown-menu"
                 id="dropdown-menu"
@@ -159,6 +162,7 @@ export function Navigation({
                     );
                   })}
                   <hr className="dropdown-divider" />
+
                   <div className="dropdown-item is-flex is-flex-direction-row">
                     <ImportButton
                       store={{
@@ -170,6 +174,7 @@ export function Navigation({
                           setUsersSelectable(false);
                         }
                       }}
+                      loadFileFinished={finishUserLogin}
                       appState={appState}
                     />
                     <DocReferrer topic="Lokale Daten" />

@@ -16,7 +16,11 @@ export const loadFile = (
   setModalInfo: (
     modalInfo: string | AnalyzeResults | null
   ) => void,
-  showError: (msg: string, error: string) => void
+  showError: (msg: string, error: string) => void,
+  /** this callback is called at the end of 
+   * the loading process, even if an error occurred.
+   */
+  loadingFinished?:()=>void
 ): void => {
   const files = evt.target.files;
   if (files) {
@@ -93,6 +97,8 @@ export const loadFile = (
             file.name
           );
         }
+        if(loadingFinished)
+           loadingFinished();
       }
     };
     r.readAsArrayBuffer(file);
