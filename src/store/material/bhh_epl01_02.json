@@ -140,7 +140,7 @@
       "gruppe": "119",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0111TG57",
+      "tgKey": "0111TG57E",
       "zweck": "Vermischte Einnahmen",
       "expense": false,
       "sollJahr1": 0
@@ -152,7 +152,7 @@
       "gruppe": "232",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0111TG57",
+      "tgKey": "0111TG57E",
       "zweck": "Beteiligung an den Versorgungslasten des Bundes",
       "expense": false,
       "sollJahr1": 190
@@ -197,7 +197,7 @@
       "gruppe": "431",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0111TG57",
+      "tgKey": "0111TG57A",
       "zweck": "Versorgungsbezüge der Bundespräsidenten und deren Hinterbliebenen",
       "expense": true,
       "sollJahr1": 1163
@@ -209,7 +209,7 @@
       "gruppe": "432",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0111TG57",
+      "tgKey": "0111TG57A",
       "zweck": "Versorgungsbezüge",
       "expense": true,
       "sollJahr1": 3810
@@ -221,7 +221,7 @@
       "gruppe": "434",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0111TG57",
+      "tgKey": "0111TG57A",
       "zweck": "Zuführung an die Versorgungsrücklage",
       "expense": true,
       "sollJahr1": 212
@@ -233,7 +233,7 @@
       "gruppe": "443",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0111TG57",
+      "tgKey": "0111TG57A",
       "zweck": "Fürsorgeleistungen und Unterstützungen einschließlich Inanspruchnahme von besonderen Fachdiensten/-kräften",
       "expense": true,
       "sollJahr1": 0
@@ -245,7 +245,7 @@
       "gruppe": "446",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0111TG57",
+      "tgKey": "0111TG57A",
       "zweck": "Beihilfen aufgrund der Beihilfevorschriften",
       "expense": true,
       "sollJahr1": 1094
@@ -257,7 +257,7 @@
       "gruppe": "453",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0111TG57",
+      "tgKey": "0111TG57A",
       "zweck": "Trennungsgeld, Fahrtkostenzuschüsse sowie Umzugskostenvergütungen",
       "expense": true,
       "sollJahr1": 0
@@ -269,7 +269,7 @@
       "gruppe": "632",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0111TG57",
+      "tgKey": "0111TG57A",
       "zweck": "Erstattungen des Bundes für Versorgungslasten",
       "expense": true,
       "sollJahr1": 0
@@ -963,7 +963,7 @@
       "gruppe": "119",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0211TG57",
+      "tgKey": "0211TG57E",
       "zweck": "Vermischte Einnahmen",
       "expense": false,
       "sollJahr1": 0
@@ -975,7 +975,7 @@
       "gruppe": "232",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0211TG57",
+      "tgKey": "0211TG57E",
       "zweck": "Beteiligung an den Versorgungslasten des Bundes",
       "expense": false,
       "sollJahr1": 0
@@ -1020,7 +1020,7 @@
       "gruppe": "431",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0211TG57",
+      "tgKey": "0211TG57A",
       "zweck": "Versorgungsbezüge sonstiger Amtsträger und deren Hinterbliebenen",
       "expense": true,
       "sollJahr1": 350
@@ -1032,7 +1032,7 @@
       "gruppe": "432",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0211TG57",
+      "tgKey": "0211TG57A",
       "zweck": "Versorgungsbezüge",
       "expense": true,
       "sollJahr1": 28600
@@ -1044,7 +1044,7 @@
       "gruppe": "434",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0211TG57",
+      "tgKey": "0211TG57A",
       "zweck": "Zuführung an die Versorgungsrücklage",
       "expense": true,
       "sollJahr1": 1260
@@ -1056,7 +1056,7 @@
       "gruppe": "443",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0211TG57",
+      "tgKey": "0211TG57A",
       "zweck": "Fürsorgeleistungen und Unterstützungen einschließlich Inanspruchnahme von besonderen Fachdiensten/-kräften",
       "expense": true,
       "sollJahr1": 10
@@ -1068,7 +1068,7 @@
       "gruppe": "446",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0211TG57",
+      "tgKey": "0211TG57A",
       "zweck": "Beihilfen aufgrund der Beihilfevorschriften",
       "expense": true,
       "sollJahr1": 6500
@@ -1080,7 +1080,7 @@
       "gruppe": "632",
       "suffix": "57",
       "fkz": "018",
-      "tgKey": "0211TG57",
+      "tgKey": "0211TG57A",
       "zweck": "Erstattungen des Bundes für Versorgungslasten",
       "expense": true,
       "sollJahr1": 620
@@ -1818,7 +1818,7 @@
       "gruppe": "428",
       "suffix": "91",
       "fkz": "011",
-      "tgKey": "0212TG09",
+      "tgKey": "0212TG09A",
       "zweck": "Entgelte der Arbeitnehmerinnen und Arbeitnehmer",
       "expense": true,
       "sollJahr1": 1688
@@ -1830,7 +1830,7 @@
       "gruppe": "517",
       "suffix": "91",
       "fkz": "011",
-      "tgKey": "0212TG09",
+      "tgKey": "0212TG09A",
       "zweck": "Bewirtschaftung der Grundstücke, Gebäude und Räume",
       "expense": true,
       "sollJahr1": 186
@@ -1842,7 +1842,7 @@
       "gruppe": "519",
       "suffix": "91",
       "fkz": "011",
-      "tgKey": "0212TG09",
+      "tgKey": "0212TG09A",
       "zweck": "Unterhaltung der Grundstücke und baulichen Anlagen",
       "expense": true,
       "sollJahr1": 70
@@ -1854,7 +1854,7 @@
       "gruppe": "547",
       "suffix": "91",
       "fkz": "011",
-      "tgKey": "0212TG09",
+      "tgKey": "0212TG09A",
       "zweck": "Nicht aufteilbare sächliche Verwaltungsausgaben",
       "expense": true,
       "sollJahr1": 260
@@ -1866,7 +1866,7 @@
       "gruppe": "427",
       "suffix": "59",
       "fkz": "011",
-      "tgKey": "0212TG56",
+      "tgKey": "0212TG56A",
       "zweck": "Entgelte für Arbeitskräfte mit befristeten Verträgen, sonstige Beschäftigungsentgelte (auch für Auszubildende) sowie Aufwendungen für nebenberuflich und nebenamtlich Tätige",
       "expense": true,
       "sollJahr1": 211
@@ -1878,7 +1878,7 @@
       "gruppe": "511",
       "suffix": "56",
       "fkz": "011",
-      "tgKey": "0212TG56",
+      "tgKey": "0212TG56A",
       "zweck": "Geschäftsbedarf und Datenübertragung sowie Geräte, Ausstattungs- und Ausrüstungsgegenstände, Software, Wartung",
       "expense": true,
       "sollJahr1": 4441
@@ -1890,7 +1890,7 @@
       "gruppe": "518",
       "suffix": "56",
       "fkz": "011",
-      "tgKey": "0212TG56",
+      "tgKey": "0212TG56A",
       "zweck": "Miete für Datenverarbeitungsanlagen, Geräte, Ausstattungs- und Ausrüstungsgegenstände, Maschinen, Software",
       "expense": true,
       "sollJahr1": 0
@@ -1902,7 +1902,7 @@
       "gruppe": "525",
       "suffix": "56",
       "fkz": "011",
-      "tgKey": "0212TG56",
+      "tgKey": "0212TG56A",
       "zweck": "Aus- und Fortbildung",
       "expense": true,
       "sollJahr1": 250
@@ -1914,7 +1914,7 @@
       "gruppe": "532",
       "suffix": "51",
       "fkz": "011",
-      "tgKey": "0212TG56",
+      "tgKey": "0212TG56A",
       "zweck": "Aufträge und Dienstleistungen im Bereich Informationstechnik",
       "expense": true,
       "sollJahr1": 15167
@@ -1926,7 +1926,7 @@
       "gruppe": "711",
       "suffix": "56",
       "fkz": "011",
-      "tgKey": "0212TG56",
+      "tgKey": "0212TG56A",
       "zweck": "Kleine Neu-﻿, Um- und Erweiterungsbauten",
       "expense": true,
       "sollJahr1": 328
@@ -1938,7 +1938,7 @@
       "gruppe": "712",
       "suffix": "56",
       "fkz": "011",
-      "tgKey": "0212TG56",
+      "tgKey": "0212TG56A",
       "zweck": "Baumaßnahmen von mehr als 6 000 000 € im Einzelfall",
       "expense": true,
       "sollJahr1": 0
@@ -1950,7 +1950,7 @@
       "gruppe": "812",
       "suffix": "52",
       "fkz": "011",
-      "tgKey": "0212TG56",
+      "tgKey": "0212TG56A",
       "zweck": "Erwerb von Anlagen, Geräten, Ausstattungs- und Ausrüstungsgegenständen sowie Software im Bereich Informationstechnik",
       "expense": true,
       "sollJahr1": 7547
@@ -2640,19 +2640,27 @@
     }
   },
   "tgMap": {
-    "0111TG57": {
+    "0111TG57E": {
       "short": "57",
       "name": "Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter"
     },
-    "0211TG57": {
+    "0111TG57A": {
       "short": "57",
       "name": "Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter"
     },
-    "0212TG09": {
+    "0211TG57E": {
+      "short": "57",
+      "name": "Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter"
+    },
+    "0211TG57A": {
+      "short": "57",
+      "name": "Versorgung der Beamtinnen und Beamten sowie der Richterinnen und Richter"
+    },
+    "0212TG09A": {
       "short": "09",
       "name": "Kosten der Kindertagesstätte"
     },
-    "0212TG56": {
+    "0212TG56A": {
       "short": "56",
       "name": "Ausgaben für die Informationstechnik der Mitglieder des Deutschen Bundestages"
     }

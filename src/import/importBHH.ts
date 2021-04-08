@@ -88,11 +88,13 @@ export function importBHH_CSV(
       const sollJahr1 = parseInt(data.soll, 10);
       const zweck = data["titel-text"];
 
+      
+      const expense = gruppe.charAt(0) >= "4";
       const tgNr = data["titelgruppe"]
         ? data["titelgruppe"].padStart(2, "0")
         : "";
       const tgKey = tgNr
-        ? `${epl}${kap}TG${tgNr}`
+        ? `${epl}${kap}TG${tgNr}${expense?'A':'E'}`
         : undefined;
       if (tgKey) {
         if (!tgMap[tgKey]) {
@@ -113,7 +115,7 @@ export function importBHH_CSV(
         fkz,
         tgKey,
         zweck,
-        expense: gruppe.charAt(0) >= "4",
+        expense,
         sollJahr1
       };
       hhsts.push(hhst);

@@ -69,19 +69,6 @@ export function importSN_XSLX(
           }
           const kap = kapArray[2];
 
-          const tgNr = row.getCell(6).text;
-          const tgKey = tgNr
-            ? `${epl}${kap}TG${tgNr}`
-            : undefined;
-          if (tgKey) {
-            if (!tgMap[tgKey]) {
-              const tgName = row.getCell(7).text;
-              tgMap[tgKey] = {
-                short: tgNr,
-                name: tgName
-              };
-            }
-          }
 
           const titel = row.getCell(8).text;
           const titelArray = /^(\d\d\d)(\d\d)$/.exec(titel);
@@ -101,6 +88,23 @@ export function importSN_XSLX(
             );
           }
 
+          const expense= gruppe.charAt(0) >= "4";
+            
+          const tgNr = row.getCell(6).text;
+          const tgKey = tgNr
+            ? `${epl}${kap}TG${tgNr}${expense?'A':'E'}`
+            : undefined;
+          if (tgKey) {
+            if (!tgMap[tgKey]) {
+              const tgName = row.getCell(7).text;
+              tgMap[tgKey] = {
+                short: tgNr,
+                name: tgName
+              };
+            }
+          }
+
+
           const sollJahr1CellValue = row.getCell(12).value;
           const sollJahr1 = sollJahr1CellValue
             ? sollJahr1CellValue.valueOf()
@@ -115,7 +119,7 @@ export function importSN_XSLX(
             suffix: titelArray[2],
             fkz,
             zweck: row.getCell(11).text,
-            expense: gruppe.charAt(0) >= "4",
+            expense,
             sollJahr1:
               typeof sollJahr1 === "number" ? sollJahr1 : 0
           };

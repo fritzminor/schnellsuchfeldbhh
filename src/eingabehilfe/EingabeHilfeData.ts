@@ -228,7 +228,7 @@ export const regExMatchers: RegExMatcher[] = [
       "Suche im Kapitel $1 $2 nach Titelnummer $3 $4"
   },
   {
-    regEx: /^(\d{2})(\d{2})TG(\d{1,2})$/,
+    regEx: /^(\d{2})(\d{2})TG(\d{1,2})$/i,
     convertStr: "Epl:$1 Kap:$2 TG:$3",
     descriptionStr:
       "Suche in Einzelplan $1 Kapitel $2 nach Titelgruppe $3"
