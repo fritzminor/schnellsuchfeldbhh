@@ -9,13 +9,18 @@ import {
   Tokens
 } from "./searchTreeTypes";
 
-export function tokenizer(query: string): Tokens {
-  const regExResult = query.match(
+/** This function cuts the searchexpression into parseable tokens.
+ * @see parser()
+ */
+export function tokenizer(
+  searchexpression: string
+): Tokens {
+  const regExResult = searchexpression.match(
     /([^,\s():-]+|[\s]+|:|\(|\)|-|,)/g
   );
   const result: Tokens = {
     singleTokens: [],
-    origQuery: query
+    origSearchExpression: searchexpression
   };
 
   if (regExResult) {
@@ -54,6 +59,15 @@ function _isBoundary(token: Token): boolean {
   return true;
 }
 
+/**
+ * The main parser function.
+ * 
+ * The parser loop is somehow complicated because the search term is evaluated 
+ * in order to prefer left terms before right terms.
+ *  
+ * @param tokens - returned by tokenizer()
+
+ */
 export function parser(tokens: Tokens): SearchNode {
   let parsedTree: SearchNode | null = null;
   let nToken = 0;
@@ -113,7 +127,7 @@ function startsWithWhitespace(value: string) {
   return value && value.charAt(0) === " ";
 }
 
-/** internal function: is called by #parser().
+/** internal function: is called by #_parserLoop().
  * It parses only a single expression and returns early.
  * creates a tree, in which left operands are in deeper position. i.e. left operands
  * will be evaluated first.
@@ -241,6 +255,7 @@ function _parseLeftFirst(
       return searchNode;
     }
 
+    /* ---------- search for 0102/53201 ---------*/
     const titelRegEx = /^(\d\d)(\d\d)\/?(\d{1,3})(\d{1,2})$/;
     const titelMatch = titelRegEx.exec(content);
     if (titelMatch) {
@@ -279,14 +294,15 @@ function _parseLeftFirst(
             type: "pseudonumeric",
             subtype: "equal",
             columnName: "suffix",
-            keyword: "TG",
+            keyword: "EZ",
             value: titelMatch[4]
           }
         }
       };
       return searchNode;
     }
-//TODO: 0111TG57 bringt eine ganze Menge falscher Positive!
+
+    /* --------- search for 1304TG51 -------*/
     const eplKapTGRegEx = /^(\d\d)(\d\d)TG(\d{1,2})$/i;
     const eplKapTGMatch = eplKapTGRegEx.exec(content);
     if (eplKapTGMatch) {
@@ -353,6 +369,9 @@ function _parseLeftFirst(
       };
   }
 
+  /** parses numeric and pseudonumeric terms
+   * such as "Grp:532" or "Soll1:1000-"
+   */
   function parseNumericValue(
     keyword: string,
     columnName: keyof HHSt,
@@ -518,11 +537,13 @@ function _parseLeftFirst(
       break;
 
     case "SUFFIX":
-    case "TG":
+    case "TG": // TODO: make extra search criterion for Titelgruppe
+    case "ENDZIFFER":
+    case "EZ":
       parsedNode = parseNumericValue(
-        "TG",
+        "EZ",
         "suffix",
-        1,
+        2,
         2,
         true
       );

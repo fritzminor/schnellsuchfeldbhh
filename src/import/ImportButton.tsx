@@ -44,7 +44,7 @@ export function ImportButton({
                 evt.target.files
                   ? evt.target.files[0].name
                   : ""
-              } ...`
+              } in den Browser ...`
             );
 
             loadFile(

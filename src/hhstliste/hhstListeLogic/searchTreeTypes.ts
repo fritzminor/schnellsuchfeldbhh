@@ -6,12 +6,12 @@ export type Token = {
 };
 export type Tokens = {
   singleTokens: Token[];
-  origQuery: string;
+  origSearchExpression: string;
 };
 
 export class SearchParserException extends Error {
   constructor(public cause: string, public pos: number, public tokens: Tokens) {
-    super(`${cause}\nFehler an Position ${pos} in '${tokens.origQuery}'.`);
+    super(`${cause}\nFehler an Position ${pos} in '${tokens.origSearchExpression}'.`);
   }
 }
 

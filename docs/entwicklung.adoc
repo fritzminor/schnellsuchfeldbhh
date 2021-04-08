@@ -115,11 +115,12 @@ verschiedenen Stellen im Quellcode ansetzen.
 
 Nehmen Sie das Beispiel der Endziffern (EZ:). Das sind die letzten beiden Ziffern der Titelnummer. Diese müssen eingeführt werden:
 
-- im Parser für das <<docs/anleitung.doc#Universalsuchfeld, Universalsuchfeld>>
+- im Parser für das <<docs/anleitung.doc#Universalsuchfeld, Universalsuchfeld>> (xref:src/hhstliste/searchParserImpl.ts[])
 - in den Tests
 - im <<docs/anleitung.doc#Vorschlägebereich, Vorschlägebereich>>
 - ggf. im Suchalgorithmus für die Liste der Haushaltsstellen
 - ggf. in der Kreisauswahl (clickSelect)
+- ggf. in den Suchfeldern (xref:src/eingabehilfe/searchfields/SearchFieldsData.ts[])
 
 
 

@@ -109,7 +109,14 @@ export const keywords: Keyword[] = [
 
   {
     name: "TG",
-    description: `Haushaltsstellen in Titelgruppen, z.B. TG:98`,
+    description: `Haushaltsstellen in Titelgruppen, z.B. TG:98 - TODO: Prototyp arbeitet noch nicht korrekt`,
+    minDigits: 2,
+    maxDigits: 2
+  },
+
+  {
+    name: "EZ",
+    description: `Haushaltsstellen mit Titelnummern, die mit diesen beiden Endziffern enden, z.B. EZ:01 für Titel wie 0202/23201 oder 1303/52901`,
     minDigits: 2,
     maxDigits: 2
   },
@@ -168,6 +175,7 @@ export const keywords: Keyword[] = [
   }
 ];
 
+//TODO: Diese Matcher sollten auch von src/hhstlist/hhstListeLogic/seachParserImpl.ts genutzt werden
 export const regExMatchers: RegExMatcher[] = [
   {
     regEx: /^(\d{2})$/,
