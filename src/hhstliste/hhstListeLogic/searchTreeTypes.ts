@@ -1,5 +1,5 @@
 import { SectionMapName } from "../../store/AppState";
-import { HHStFieldName } from "../../store/HHStType";
+import { HHStFieldName, HHStSectionKeyField } from "../../store/HHStType";
 
 export type Token = {
   pos: number;
@@ -102,14 +102,17 @@ export type SearchNodeTextFullText = {
   subtype: "fulltext";
 };
 
+export type SearchNodePropertyColumnSectionMap = 
+{  colType: "sectionMap";
+  sectionMap: SectionMapName;
+  sectionKeyField: HHStSectionKeyField;
+  
+};
+
 export type SearchNodePropertyColumn = {keyword: string;} & ({
   colType: "field";
   columnName: HHStFieldName;
   
-} | {
-  colType: "sectionMap";
-  sectionMap: SectionMapName;
-  
-});
+} | SearchNodePropertyColumnSectionMap);
 
 export type SearchNodePropertyValue = { value: string };

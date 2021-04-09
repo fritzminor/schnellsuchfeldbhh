@@ -1,5 +1,5 @@
 import { BaseData } from "../../store/AppState";
-import { HHSt } from "../../store/HHStType";
+import { HHSt, HHStSectionKeyField } from "../../store/HHStType";
 import {
   SearchNode,
   SearchNodeLogical,
@@ -87,13 +87,17 @@ export function isSearched(
     hhst: HHSt,
     searchNode: SearchNodePseudoNumeric
   ): boolean {
-    if (searchNode.colType !== "field")
-      //TODO
-      throw new Error(
-        "Im Prototyp noch nicht implementiert: Suche nach Titelgruppenbezeichnungen, -nummern etc"
-      );
-
-    const colValue = hhst[searchNode.columnName];
+    let colValue;
+    if(searchNode.colType === "field") {
+      colValue= hhst[searchNode.columnName]
+    } else {
+      const sectionKeyField:HHStSectionKeyField=searchNode.sectionKeyField;
+      const sectionKey=hhst[sectionKeyField];
+      if(!sectionKey) // no TG for this HHSt?
+        return false;
+      else 
+        colValue=baseData[searchNode.sectionMap][sectionKey].short;
+    }
     if (!colValue) return false;
 
     const columnValue: string = colValue as string;

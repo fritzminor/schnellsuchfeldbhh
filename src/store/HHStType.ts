@@ -24,6 +24,10 @@ export type HHSt = {
 };
 
 export type HHStFieldName = keyof Omit<HHSt, "type" | "expense">;
+/**
+ * TODO: add kapKey, eplKey
+ */
+export type HHStSectionKeyField = "tgKey"; 
 
 
 export type HHStBlockStart = {

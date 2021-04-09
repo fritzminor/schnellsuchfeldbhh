@@ -3,6 +3,8 @@ import {
   SearchNode,
   SearchNodeLogicalAnd,
   SearchNodeLogicalOr,
+  SearchNodePropertyColumn,
+  SearchNodePropertyColumnSectionMap,
   SearchNodeText,
   SearchParserException,
   Token,
@@ -331,7 +333,7 @@ function _parseLeftFirst(
       return {
         type: "text",
         subtype: "single",
-        colType:"field",
+        colType: "field",
         columnName,
         keyword,
         value: token2.content
@@ -343,11 +345,22 @@ function _parseLeftFirst(
    */
   function parseNumericValue(
     keyword: string,
-    columnName: HHStFieldName,
+    column:
+      | HHStFieldName
+      | SearchNodePropertyColumnSectionMap,
     minDigits: number | "",
     maxDigits: number | "",
     pseudonumeric: boolean
   ): SearchNode {
+    const columnData: SearchNodePropertyColumn =
+      typeof column === "string"
+        ? {
+            keyword,
+            colType: "field",
+            columnName: column
+          }
+        : { keyword, ...column };
+
     const nodeType = pseudonumeric
       ? "pseudonumeric"
       : "numeric";
@@ -423,9 +436,7 @@ function _parseLeftFirst(
           subtype: "range",
           value1: number[0],
           value2: number2[0],
-          colType: "field",
-          columnName,
-          keyword
+          ...columnData
         };
         return parsedNode;
       } else {
@@ -434,9 +445,7 @@ function _parseLeftFirst(
           type: nodeType,
           subtype: "greater",
           value: number[0],
-          colType: "field",
-          columnName,
-          keyword
+          ...columnData
         };
         return parsedNode;
       }
@@ -445,9 +454,7 @@ function _parseLeftFirst(
         type: nodeType,
         subtype: smaller ? "smaller" : "equal",
         value: number[0],
-        colType:"field",
-        columnName,
-        keyword
+        ...columnData
       };
       return parsedNode;
     }
@@ -509,7 +516,6 @@ function _parseLeftFirst(
       break;
 
     case "SUFFIX":
-    case "TG": // TODO: make extra search criterion for Titelgruppe
     case "ENDZIFFER":
     case "EZ":
       parsedNode = parseNumericValue(
@@ -531,6 +537,20 @@ function _parseLeftFirst(
       );
       break;
 
+    case "TITELGRUPPE":
+    case "TG":
+      parsedNode = parseNumericValue(
+        "TG",
+        {
+          colType: "sectionMap",
+          sectionMap: "tgMap",
+          sectionKeyField: "tgKey"
+        },
+        2,
+        2,
+        true
+      );
+      break;
     case "SOLL_ERSTJAHR":
     case "SOLL1":
     case "S1":
