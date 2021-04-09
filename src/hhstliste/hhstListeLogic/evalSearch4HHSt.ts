@@ -1,4 +1,3 @@
-
 import { HHSt } from "../../store/HHStType";
 import {
   SearchNode,
@@ -36,18 +35,24 @@ function includesIgnoreCase(text: string, snippet: string) {
 
 function isSearchedText(
   hhst: HHSt,
-  searchTree: SearchNodeText
+  searchNode: SearchNodeText
 ): boolean {
-  switch (searchTree.subtype) {
+  switch (searchNode.subtype) {
     case "fulltext":
       return includesIgnoreCase(
         hhst.zweck + hhst.sollJahr1,
-        searchTree.value
+        searchNode.value
       );
     case "single":
+      if (searchNode.colType !== "field")
+      //TODO
+      throw new Error(
+        "Im Prototyp noch nicht implementiert: Suche nach Titelgruppenbezeichnungen, -nummern etc"
+      );
+  
       return includesIgnoreCase(
-        hhst[searchTree.columnName] as string,
-        searchTree.value
+        hhst[searchNode.columnName] as string,
+        searchNode.value
       );
   }
 }
@@ -72,59 +77,68 @@ export function isSearched(
 
 function isSearchedPseudonumeric(
   hhst: HHSt,
-  searchTree: SearchNodePseudoNumeric
+  searchNode: SearchNodePseudoNumeric
 ): boolean {
-  const colValue = hhst[
-    searchTree.columnName
-  ];
-  if(!colValue)
-    return false;
+  if (searchNode.colType !== "field")
+    //TODO
+    throw new Error(
+      "Im Prototyp noch nicht implementiert: Suche nach Titelgruppenbezeichnungen, -nummern etc"
+    );
+
+  const colValue = hhst[searchNode.columnName];
+  if (!colValue) return false;
 
   const columnValue: string = colValue as string;
 
-  switch (searchTree.subtype) {
+  switch (searchNode.subtype) {
     case "equal":
       return (
-        searchTree.value ===
-        columnValue.substr(0, searchTree.value.length)
+        searchNode.value ===
+        columnValue.substr(0, searchNode.value.length)
       );
     case "greater":
       return (
         columnValue >=
-        searchTree.value.substr(0, columnValue.length)
+        searchNode.value.substr(0, columnValue.length)
       );
     case "smaller":
       return (
-        columnValue.substr(0, searchTree.value.length) <=
-        searchTree.value
+        columnValue.substr(0, searchNode.value.length) <=
+        searchNode.value
       );
     case "range":
       return (
-        columnValue.substr(0, searchTree.value1.length) >=
-          searchTree.value1 &&
-        columnValue.substr(0, searchTree.value2.length) <=
-          searchTree.value2
+        columnValue.substr(0, searchNode.value1.length) >=
+          searchNode.value1 &&
+        columnValue.substr(0, searchNode.value2.length) <=
+          searchNode.value2
       );
   }
 }
 
 function isSearchedNumeric(
   hhst: HHSt,
-  searchTree: SearchNodeNumeric
+  searchNode: SearchNodeNumeric
 ): boolean {
-  const columnVal = hhst[searchTree.columnName] as string;
+  if (searchNode.colType !== "field")
+  //TODO
+  throw new Error(
+    "Im Prototyp noch nicht implementiert: Suche nach Titelgruppenbezeichnungen, -nummern etc"
+  );
+
+  const columnVal = hhst[searchNode.columnName] as string;
   const columnValue = parseInt(columnVal, 10);
-  switch (searchTree.subtype) {
+  switch (searchNode.subtype) {
     case "equal":
-      return parseInt(searchTree.value,10) === columnValue;
+      return parseInt(searchNode.value, 10) === columnValue;
     case "greater":
-      return columnValue >= parseInt(searchTree.value, 10);
+      return columnValue >= parseInt(searchNode.value, 10);
     case "smaller":
-      return columnValue <= parseInt(searchTree.value,10 );
+      return columnValue <= parseInt(searchNode.value, 10);
     case "range":
       return (
-        columnValue >= parseInt(searchTree.value1, 10) &&
-        columnValue <= parseInt(searchTree.value2, 10)
+        columnValue >= parseInt(searchNode.value1, 10) &&
+        columnValue <= parseInt(searchNode.value2, 10)
       );
   }
 }

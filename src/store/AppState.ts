@@ -9,7 +9,6 @@ import {
 import { getSearchTree } from "../hhstliste/hhstListeLogic/searchParser";
 import { isSearched } from "../hhstliste/hhstListeLogic/evalSearch4HHSt";
 
-
 export type Totals = {
   revenues: number;
   expenses: number;
@@ -40,6 +39,15 @@ export type BaseData = {
   kapMap: SectionMap;
   tgMap: SectionMap;
 };
+
+/**
+ * following keys of #BaseData "eplMap" | "kapMap" | "tgMap"
+ * @see #SectionMap
+ */
+export type SectionMapName = keyof Omit<
+  BaseData,
+  "firstYear" | "hhsts"
+>;
 
 export const emptyBaseData: BaseData = {
   firstYear: 0,

@@ -1,4 +1,4 @@
-import {  HHStFieldName } from "../../store/HHStType";
+import { HHStFieldName } from "../../store/HHStType";
 import {
   SearchNode,
   SearchNodeLogicalAnd,
@@ -160,41 +160,29 @@ function _parseLeftFirst(
       content += tokens.singleTokens[currentToken].content;
     }
 
+    const createPseudoNumericEqualsNode = (
+      columnName: HHStFieldName,
+      keyword: string,
+      value = content
+    ): SearchNode => ({
+      type: "pseudonumeric",
+      subtype: "equal",
+      colType: "field",
+      columnName,
+      keyword,
+      value
+    });
     const hgrRegEx = /^\d$/;
-    if (hgrRegEx.test(content)) {
-      const searchNode: SearchNode = {
-        type: "pseudonumeric",
-        subtype: "equal",
-        columnName: "gruppe",
-        keyword: "Grp",
-        value: content
-      };
-      return searchNode;
-    }
+    if (hgrRegEx.test(content))
+      return createPseudoNumericEqualsNode("gruppe", "Grp");
 
     const eplRegEx = /^\d\d$/;
-    if (eplRegEx.test(content)) {
-      const searchNode: SearchNode = {
-        type: "pseudonumeric",
-        subtype: "equal",
-        columnName: "epl",
-        keyword: "Epl",
-        value: content
-      };
-      return searchNode;
-    }
+    if (eplRegEx.test(content))
+      return createPseudoNumericEqualsNode("epl", "Epl");
 
     const gruppeRegEx = /^\d\d\d$/;
-    if (gruppeRegEx.test(content)) {
-      const searchNode: SearchNode = {
-        type: "pseudonumeric",
-        subtype: "equal",
-        columnName: "gruppe",
-        keyword: "Grp",
-        value: content
-      };
-      return searchNode;
-    }
+    if (gruppeRegEx.test(content))
+      return createPseudoNumericEqualsNode("gruppe", "Grp");
 
     const eplKapRegEx = /^(\d\d)(\d\d)\/?$/;
     const eplKapMatch = eplKapRegEx.exec(content);
@@ -202,20 +190,16 @@ function _parseLeftFirst(
       const searchNode: SearchNode = {
         type: "logical",
         subtype: "and",
-        node1: {
-          type: "pseudonumeric",
-          subtype: "equal",
-          columnName: "epl",
-          keyword: "Epl",
-          value: eplKapMatch[1]
-        },
-        node2: {
-          type: "pseudonumeric",
-          subtype: "equal",
-          columnName: "kap",
-          keyword: "Kap",
-          value: eplKapMatch[2]
-        }
+        node1: createPseudoNumericEqualsNode(
+          "epl",
+          "Epl",
+          eplKapMatch[1]
+        ),
+        node2: createPseudoNumericEqualsNode(
+          "kap",
+          "Kap",
+          eplKapMatch[2]
+        )
       };
       return searchNode;
     }
@@ -226,30 +210,24 @@ function _parseLeftFirst(
       const searchNode: SearchNode = {
         type: "logical",
         subtype: "and",
-        node1: {
-          type: "pseudonumeric",
-          subtype: "equal",
-          columnName: "epl",
-          keyword: "Epl",
-          value: eplKapGrpMatch[1]
-        },
+        node1: createPseudoNumericEqualsNode(
+          "epl",
+          "Epl",
+          eplKapGrpMatch[1]
+        ),
         node2: {
           type: "logical",
           subtype: "and",
-          node2: {
-            type: "pseudonumeric",
-            subtype: "equal",
-            columnName: "gruppe",
-            keyword: "Grp",
-            value: eplKapGrpMatch[3]
-          },
-          node1: {
-            type: "pseudonumeric",
-            subtype: "equal",
-            columnName: "kap",
-            keyword: "Kap",
-            value: eplKapGrpMatch[2]
-          }
+          node2: createPseudoNumericEqualsNode(
+            "gruppe",
+            "Grp",
+            eplKapGrpMatch[3]
+          ),
+          node1: createPseudoNumericEqualsNode(
+            "kap",
+            "Kap",
+            eplKapGrpMatch[2]
+          )
         }
       };
       return searchNode;
@@ -265,38 +243,30 @@ function _parseLeftFirst(
         node1: {
           type: "logical",
           subtype: "and",
-          node1: {
-            type: "pseudonumeric",
-            subtype: "equal",
-            columnName: "epl",
-            keyword: "Epl",
-            value: titelMatch[1]
-          },
-          node2: {
-            type: "pseudonumeric",
-            subtype: "equal",
-            columnName: "kap",
-            keyword: "Kap",
-            value: titelMatch[2]
-          }
+          node1: createPseudoNumericEqualsNode(
+            "epl",
+            "Epl",
+            titelMatch[1]
+          ),
+          node2: createPseudoNumericEqualsNode(
+            "kap",
+            "Kap",
+            titelMatch[2]
+          )
         },
         node2: {
           type: "logical",
           subtype: "and",
-          node1: {
-            type: "pseudonumeric",
-            subtype: "equal",
-            columnName: "gruppe",
-            keyword: "Grp",
-            value: titelMatch[3]
-          },
-          node2: {
-            type: "pseudonumeric",
-            subtype: "equal",
-            columnName: "suffix",
-            keyword: "EZ",
-            value: titelMatch[4]
-          }
+          node1: createPseudoNumericEqualsNode(
+            "gruppe",
+            "Grp",
+            titelMatch[3]
+          ),
+          node2: createPseudoNumericEqualsNode(
+            "suffix",
+            "EZ",
+            titelMatch[4]
+          )
         }
       };
       return searchNode;
@@ -306,15 +276,13 @@ function _parseLeftFirst(
     const eplKapTGRegEx = /^(\d\d)(\d\d)TG(\d{1,2})$/i;
     const eplKapTGMatch = eplKapTGRegEx.exec(content);
     if (eplKapTGMatch) {
-      const searchNode: SearchNode = {
-        type: "pseudonumeric",
-        subtype: "equal",
-        columnName: "tgKey",
-        keyword: "TG",
-        value: `${eplKapTGMatch[1]}${
+      const searchNode: SearchNode = createPseudoNumericEqualsNode(
+        "tgKey",
+        "TG", //TODO: implement /TG:\d{4}TG\d{1,2}/i
+        `${eplKapTGMatch[1]}${
           eplKapTGMatch[2]
         }TG${eplKapTGMatch[3].padStart(2, "0")}`
-      };
+      );
       return searchNode;
     }
 
@@ -363,6 +331,7 @@ function _parseLeftFirst(
       return {
         type: "text",
         subtype: "single",
+        colType:"field",
         columnName,
         keyword,
         value: token2.content
@@ -454,6 +423,7 @@ function _parseLeftFirst(
           subtype: "range",
           value1: number[0],
           value2: number2[0],
+          colType: "field",
           columnName,
           keyword
         };
@@ -464,6 +434,7 @@ function _parseLeftFirst(
           type: nodeType,
           subtype: "greater",
           value: number[0],
+          colType: "field",
           columnName,
           keyword
         };
@@ -474,6 +445,7 @@ function _parseLeftFirst(
         type: nodeType,
         subtype: smaller ? "smaller" : "equal",
         value: number[0],
+        colType:"field",
         columnName,
         keyword
       };

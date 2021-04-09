@@ -1,3 +1,4 @@
+import { SectionMapName } from "../../store/AppState";
 import { HHStFieldName } from "../../store/HHStType";
 
 export type Token = {
@@ -101,9 +102,14 @@ export type SearchNodeTextFullText = {
   subtype: "fulltext";
 };
 
-export type SearchNodePropertyColumn = {
+export type SearchNodePropertyColumn = {keyword: string;} & ({
+  colType: "field";
   columnName: HHStFieldName;
-  keyword: string;
-};
+  
+} | {
+  colType: "sectionMap";
+  sectionMap: SectionMapName;
+  
+});
 
 export type SearchNodePropertyValue = { value: string };
