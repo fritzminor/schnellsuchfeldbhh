@@ -111,8 +111,7 @@ function getTGDesc(
 
 /** helper method to get filteredHhstList from given searchexpression */
 export function getFilteredHhstArray(
-  hhstArray: HHSt[],
-  tgMap: SectionMap,
+  baseData: BaseData,
   searchexpression: string,
   withBlocks = false
 ): {
@@ -120,6 +119,8 @@ export function getFilteredHhstArray(
   filteredHhstArray: HHStOrBlock[];
   totals: Totals;
 } {
+  const { hhsts: hhstArray, tgMap }=baseData;
+
   const totals: Totals = {
     revenues: 0,
     expenses: 0
@@ -225,7 +226,7 @@ export function getFilteredHhstArray(
   };
 
   hhstArray.forEach((hhst) => {
-    if (isSearched(hhst, searchTree)) {
+    if (isSearched(hhst, searchTree,baseData)) {
       const hhstTgKey = hhst.tgKey;
       const newTg = hhstTgKey && hhstTgKey !== currTG.name;
       if (withBlocks) {

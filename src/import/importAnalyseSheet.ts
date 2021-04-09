@@ -65,8 +65,7 @@ export async function importAnalyzeSheet(
                 {
                   try {
                     const { totals } = getFilteredHhstArray(
-                      baseData.hhsts,
-                      baseData.tgMap,
+                      baseData,
                       regExArr[2]
                     );
                     if (upperCharacter == "A")
