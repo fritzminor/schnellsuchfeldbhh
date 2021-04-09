@@ -98,6 +98,28 @@ xref:src/hhstliste/hhstListeLogic/humanReadableSearchTerm.ts[] ist ähnlich aufg
 In einem produktiven System könnten mit einer ähnlichen Funktion aus dem Suchbaum eine SQL-WHERE-Klausel aufgebaut 
 werden.
 
+===== SearchNode ist keine Klasse
+
+Der Suchbaum ist aus verknüpften _SearchNodes_ aufgebaut (siehe xref:src/hhstliste/hhstListeLogic/searchTreeTypes.ts[]). 
+Davon gibt es unterschiedliche Arten, z.B. _pseudonumeric_ für Gruppen-, Einzelpläne-, FKZ-Nummern, _text_ für Suche nach 
+Zweckbestimmungen, Erläuterungen (noch nicht implentiert) etc., _logical_ für die Bildung von Schnitt-, Vereinigungs- oder 
+Ausschlussmengen. Davon gibt es auch wieder Unterarten.
+
+In einer objektorientierten Programmierweise würde es nahe liegen, diese verschiedenen Arten als Vererbungen der 
+Basisklasse "SearchNode" darzustellen. Eine solche Herangehensweise erlaubt auch <<TypeScript>>.
+
+Der Nachteil einer solchen Darstellung ist, dass die verschiedenen Blickwinkel auf den Suchbaum auseinandergerissen werden. 
+Man würde beispielsweise nicht mehr auf einen Blick sehen, wie der xref:src/hhstliste/hhstListeLogic/searchParserImpl.ts[Parser]
+funktioniert, wie die xref:src/hhstliste/hhstListeLogic/humanReadableSearchTerm.ts[vom Nutzer lesbare Zeichenkette] 
+aufgebaut wird und wie die xref:src/hhstliste/hhstListeLogic/evalSearch4HHSt.ts[Auswertung einer Haushaltsstelle]
+geht. Außerdem müssten zusätzliche neue Funktionalitäten wie der Aufbau einer SQL-WHERE-Klausel in unzählige Klassen
+eingreifen.
+
+Daher wurde SearchNode nicht als Klasse, sondern als Vereinigungs-Typ der Arten und Unterarten implementiert.
+
+Bei weiterem Fortschritt des Projekts kann diese aktuelle Design-Entscheidung aber auch überprüft werden.
+
+
 ==== Parser
 
 Der Parser findet sich in xref:src/hhstliste/hhstListeLogic/searchParserImpl.ts[]. Er arbeitet in zwei Schritten:

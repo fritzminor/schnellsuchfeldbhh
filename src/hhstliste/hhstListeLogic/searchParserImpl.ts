@@ -1,4 +1,4 @@
-import { HHSt } from "../../store/HHStType";
+import {  HHStFieldName } from "../../store/HHStType";
 import {
   SearchNode,
   SearchNodeLogicalAnd,
@@ -329,7 +329,7 @@ function _parseLeftFirst(
 
   function parseTextValue(
     keyword: string,
-    columnName: keyof HHSt | "Volltext"
+    columnName: HHStFieldName | "Volltext"
   ): SearchNodeText {
     currentToken += 2;
     const colonToken =
@@ -374,7 +374,7 @@ function _parseLeftFirst(
    */
   function parseNumericValue(
     keyword: string,
-    columnName: keyof HHSt,
+    columnName: HHStFieldName,
     minDigits: number | "",
     maxDigits: number | "",
     pseudonumeric: boolean

@@ -1,4 +1,4 @@
-import { HHSt } from "../../store/HHStType";
+import { HHStFieldName } from "../../store/HHStType";
 
 export type Token = {
   pos: number;
@@ -15,6 +15,9 @@ export class SearchParserException extends Error {
   }
 }
 
+/** The "base class" for the search tree
+ * 
+ */
 export type SearchNode =
   | SearchNodeLogical
   | SearchNodeNumeric
@@ -99,7 +102,7 @@ export type SearchNodeTextFullText = {
 };
 
 export type SearchNodePropertyColumn = {
-  columnName: keyof HHSt;
+  columnName: HHStFieldName;
   keyword: string;
 };
 

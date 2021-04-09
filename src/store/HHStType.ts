@@ -23,7 +23,7 @@ export type HHSt = {
   sollJahr1: number;
 };
 
-export type HHStFieldName = keyof HHSt;
+export type HHStFieldName = keyof Omit<HHSt, "type">;
 
 
 export type HHStBlockStart = {
