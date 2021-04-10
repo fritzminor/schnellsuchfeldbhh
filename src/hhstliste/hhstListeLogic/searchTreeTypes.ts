@@ -1,5 +1,8 @@
 import { SectionMapName } from "../../store/AppState";
-import { HHStFieldName, HHStSectionKeyField } from "../../store/HHStType";
+import {
+  HHStFieldName,
+  HHStSectionKeyField
+} from "../../store/HHStType";
 
 export type Token = {
   pos: number;
@@ -10,14 +13,27 @@ export type Tokens = {
   origSearchExpression: string;
 };
 
+export enum SearchParserExceptionNumber {
+  Unknown,
+  NoColon,
+  NoRange
+}
+
 export class SearchParserException extends Error {
-  constructor(public cause: string, public pos: number, public tokens: Tokens) {
-    super(`${cause}\nFehler an Position ${pos} in '${tokens.origSearchExpression}'.`);
+  constructor(
+    public cause: string,
+    public pos: number,
+    public tokens: Tokens,
+    public nr: SearchParserExceptionNumber = SearchParserExceptionNumber.Unknown
+  ) {
+    super(
+      `${cause}\nFehler an Position ${pos} in '${tokens.origSearchExpression}'.`
+    );
   }
 }
 
 /** The "base class" for the search tree
- * 
+ *
  */
 export type SearchNode =
   | SearchNodeLogical
@@ -57,7 +73,9 @@ export type SearchLogicalTrue = { subtype: "true" };
  * bei PseudoNumeric nur die Anzahl Zeichen verglichen, die auch im Suchausdruck enthalten sind.
  * Z.B. ergibt ein GRP:0 auch eine Haushaltsstelle mit Gruppe 011 (nur das erste Zeichen wird verglichen).
  */
-export type SearchNodePseudoNumeric = { type: "pseudonumeric" } & (
+export type SearchNodePseudoNumeric = {
+  type: "pseudonumeric";
+} & (
   | SearchNodeNumericEqual
   | SearchNodeNumericGreater
   | SearchNodeNumericSmaller
@@ -102,17 +120,20 @@ export type SearchNodeTextFullText = {
   subtype: "fulltext";
 };
 
-export type SearchNodePropertyColumnSectionMap = 
-{  colType: "sectionMap";
+export type SearchNodePropertyColumnSectionMap = {
+  colType: "sectionMap";
   sectionMap: SectionMapName;
   sectionKeyField: HHStSectionKeyField;
-  
 };
 
-export type SearchNodePropertyColumn = {keyword: string;} & ({
-  colType: "field";
-  columnName: HHStFieldName;
-  
-} | SearchNodePropertyColumnSectionMap);
+export type SearchNodePropertyColumn = {
+  keyword: string;
+} & (
+  | {
+      colType: "field";
+      columnName: HHStFieldName;
+    }
+  | SearchNodePropertyColumnSectionMap
+);
 
 export type SearchNodePropertyValue = { value: string };

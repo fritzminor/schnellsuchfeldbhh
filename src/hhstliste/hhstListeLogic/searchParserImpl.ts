@@ -7,6 +7,7 @@ import {
   SearchNodePropertyColumnSectionMap,
   SearchNodeText,
   SearchParserException,
+  SearchParserExceptionNumber,
   Token,
   Tokens
 } from "./searchTreeTypes";
@@ -299,7 +300,10 @@ function _parseLeftFirst(
 
   function parseTextValue(
     keyword: string,
-    columnName: HHStFieldName | "Volltext"
+    columnName:
+      | HHStFieldName
+      | SearchNodePropertyColumnSectionMap
+      | "Volltext"
   ): SearchNodeText {
     currentToken += 2;
     const colonToken =
@@ -329,15 +333,22 @@ function _parseLeftFirst(
         subtype: "fulltext",
         value: token2.content
       };
-    else
+    else {
+      const columnData: SearchNodePropertyColumn =
+        typeof columnName === "string"
+          ? {
+              keyword,
+              colType: "field",
+              columnName
+            }
+          : { keyword, ...columnName };
       return {
         type: "text",
         subtype: "single",
-        colType: "field",
-        columnName,
-        keyword,
+        ...columnData,
         value: token2.content
       };
+    }
   }
 
   /** parses numeric and pseudonumeric terms
@@ -383,7 +394,8 @@ function _parseLeftFirst(
       throw new SearchParserException(
         `Doppelpunkt hinter ${token0.content} fehlt.`,
         token0.pos + token0.content.length,
-        tokens
+        tokens,
+        SearchParserExceptionNumber.NoColon
       );
     const token2 = tokens.singleTokens[currentToken];
     const smaller = token2?.content === "-";
@@ -409,7 +421,8 @@ function _parseLeftFirst(
           smaller ? "-" : ""
         } erwartet`,
         tokens.singleTokens[currentToken - 1].pos + 1,
-        tokens
+        tokens,
+        SearchParserExceptionNumber.NoRange
       );
 
     const greater =
@@ -539,17 +552,41 @@ function _parseLeftFirst(
 
     case "TITELGRUPPE":
     case "TG":
-      parsedNode = parseNumericValue(
-        "TG",
-        {
-          colType: "sectionMap",
-          sectionMap: "tgMap",
-          sectionKeyField: "tgKey"
-        },
-        2,
-        2,
-        true
-      );
+      {
+        const tokenPosBefore = currentToken;
+        try {
+          // check TG:nr-expression
+          parsedNode = parseNumericValue(
+            "TG",
+            {
+              colType: "sectionMap",
+              sectionMap: "tgMap",
+              sectionKeyField: "tgKey"
+            },
+            2,
+            2,
+            true
+          );
+        } catch (numericParseErr) {
+          // check wether TG:Text-expression succeeds
+          if (
+            numericParseErr instanceof SearchParserException
+          ) {
+            switch (numericParseErr.nr) {
+              case SearchParserExceptionNumber.NoRange:
+                currentToken = tokenPosBefore;
+                parsedNode = parseTextValue("TG", {
+                  colType: "sectionMap",
+                  sectionMap: "tgMap",
+                  sectionKeyField: "tgKey"
+                });
+                break;
+              default:
+                throw numericParseErr;
+            }
+          } else throw numericParseErr;
+        }
+      }
       break;
     case "SOLL_ERSTJAHR":
     case "SOLL1":

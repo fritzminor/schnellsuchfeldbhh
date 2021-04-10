@@ -37,13 +37,12 @@ test("import BHH Epl 01 und 02 works without errors", (done) => {
   importBHH_CSV(
     readableStream,
     (usr) => {
-      console.log("setUsr");
+      
       expect(usr).toEqual("LokaleDaten");
       readableStream.close();
       done();
     },
     (importedData) => {
-      console.log("setLocl");
       expect(importedData.hhsts.length).toEqual(232);
       expect(
         importedData.hhsts.filter(
