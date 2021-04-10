@@ -1,11 +1,15 @@
 import { BaseData } from "../../store/AppState";
-import { HHSt, HHStSectionKeyField } from "../../store/HHStType";
+import {
+  HHSt,
+  HHStSectionKeyField
+} from "../../store/HHStType";
 import {
   SearchNode,
   SearchNodeLogical,
   SearchNodeNumeric,
   SearchNodePseudoNumeric,
-  SearchNodeText
+  SearchNodeText,
+  SearchNodeTextSingleColumn
 } from "./searchTreeTypes";
 
 /** checks whether hhst is matched by searchTree
@@ -64,22 +68,26 @@ export function isSearched(
     searchNode: SearchNodeText
   ): boolean {
     switch (searchNode.subtype) {
-      case "fulltext":
+      case "fulltext": {
+        let hhstFulltext = hhst.zweck + hhst.sollJahr1;
+        if (hhst.tgKey)
+          hhstFulltext += baseData.tgMap[hhst.tgKey].name;
         return includesIgnoreCase(
-          hhst.zweck + hhst.sollJahr1,
+          hhstFulltext,
           searchNode.value
         );
-      case "single":
-        if (searchNode.colType !== "field")
-          //TODO
-          throw new Error(
-            "Im Prototyp noch nicht implementiert: Suche nach Titelgruppenbezeichnungen, -nummern etc"
-          );
+      }
+      case "single": {
+        const columnValue: string | false = _getColValue(
+          searchNode,"name"
+        );
+        if (!columnValue) return false;
 
         return includesIgnoreCase(
-          hhst[searchNode.columnName] as string,
+          columnValue,
           searchNode.value
         );
+      }
     }
   }
 
@@ -87,20 +95,10 @@ export function isSearched(
     hhst: HHSt,
     searchNode: SearchNodePseudoNumeric
   ): boolean {
-    let colValue;
-    if(searchNode.colType === "field") {
-      colValue= hhst[searchNode.columnName]
-    } else {
-      const sectionKeyField:HHStSectionKeyField=searchNode.sectionKeyField;
-      const sectionKey=hhst[sectionKeyField];
-      if(!sectionKey) // no TG for this HHSt?
-        return false;
-      else 
-        colValue=baseData[searchNode.sectionMap][sectionKey].short;
-    }
-    if (!colValue) return false;
-
-    const columnValue: string = colValue as string;
+    const columnValue: string | false = _getColValue(
+      searchNode
+    );
+    if (!columnValue) return false;
 
     switch (searchNode.subtype) {
       case "equal":
@@ -159,6 +157,38 @@ export function isSearched(
           columnValue <= parseInt(searchNode.value2, 10)
         );
     }
+  }
+
+  /** returns value from field in hhst or from SectionMap, e.g. for
+   * tgMap for numbers or names from Titelgruppen
+   * 
+   * @param searchNode 
+   * @param shortOrName if section field: "name" for description, 
+   *   "short" for TG number (default)
+   */
+  function _getColValue(
+    searchNode:
+      | SearchNodeNumeric
+      | SearchNodePseudoNumeric
+      | SearchNodeTextSingleColumn,
+      shortOrName:"name"|"short"="short"
+  ): false | string {
+    let colValue;
+    if (searchNode.colType === "field") {
+      colValue = hhst[searchNode.columnName];
+    } else {
+      const sectionKeyField: HHStSectionKeyField =
+        searchNode.sectionKeyField;
+      const sectionKey = hhst[sectionKeyField];
+      if (!sectionKey)
+        // no TG for this HHSt?
+        return false;
+      else
+        colValue =
+          baseData[searchNode.sectionMap][sectionKey][shortOrName];
+    }
+    if (colValue) return colValue as string;
+    else return false;
   }
 
   // That's the only statement in isSearched().

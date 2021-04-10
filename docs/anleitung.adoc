@@ -36,7 +36,7 @@ Das Suchfeld Kapitel funktioniert analog dem <<Suchfeld Einzelplan>>.
 
 ### Suchfeld Volltextsuche
 
-Das Suchfeld Volltextsuche ist wahrscheinlich das einfachste. Man gibt ein Wort oder ein Wortteil ein und die angezeigten Haushaltsstellen werden auf diejenigen beschränkt, die dieses Wort oder diesen Teil in Zweckbestimmung, Erläuterung, Kapitelüberschrift oder Einzelplanüberschrift enthalten - in Theorie. Denn im Prototyp ist die Suche noch auf die Zweckbestimmung begrenzt. Aber das ist ja auch schon etwas.
+Das Suchfeld Volltextsuche ist wahrscheinlich das einfachste. Man gibt ein Wort oder ein Wortteil ein und die angezeigten Haushaltsstellen werden auf diejenigen beschränkt, die dieses Wort oder diesen Teil in Zweckbestimmung, Erläuterung, Kapitelüberschrift oder Einzelplanüberschrift enthalten - in Theorie. Denn im Prototyp ist die Suche noch auf Zweckbestimmung, Sollansatz und Titelgruppen-Bezeichnung begrenzt. Aber das ist ja auch schon etwas.
 
 Will man Haushaltsstellen finden, die das Wort nicht enthalten, muss man zu den <<Ohne-Suchfelder,Ohne-Suchfeldern>> gehen.
 
@@ -97,7 +97,7 @@ Ein Suchbereich wird mit einem Bindestrich gekennzeichnet:
 
 ### Volltextsuche
 
-Für die Volltextsuche gibt man die zu suchenden Begriffe (oder Wortteile) in das Universalsuchfeld ein.
+Für die <<Suchfeld Volltextsuche,Volltextsuche>> gibt man die zu suchenden Begriffe (oder Wortteile) in das Universalsuchfeld ein.
 
 Man kann aber auch das <<Schlüsselworte,Schlüsselwort>> _Volltext:_ voranstellen:
 
