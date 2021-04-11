@@ -24,10 +24,10 @@ export function getCurrentTokenAtPos(
 } {
   let tokenEndFromPos = searchexpression
     .substr(cursorPos)
-    .search(/[ ,()]/);
+    .search(/[\s,()]/);
   if (tokenEndFromPos === -1)
     // not found?
-    tokenEndFromPos = 0; // then: set to 0
+    tokenEndFromPos = searchexpression.length-cursorPos; // then: set to rest of expression
 
   const res = /([^ ,()-]+-?[^ ,()-]*)$/.exec(
     searchexpression.substr(0, cursorPos + tokenEndFromPos)

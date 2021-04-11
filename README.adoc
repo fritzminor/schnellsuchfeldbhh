@@ -91,7 +91,7 @@ https://githubbox.com/fritzminor/schnellsuchfeldbhh .
 
 Das folgende sind Ideen. Da es sich aber nur um einen Prototyp handelt, kann es gut sein, dass es beim Ideenstand bleibt.
 
-- Ausfüllen einer Excel-Datei: Die Zellen mit Universalsuchausdrücken werden durch die jeweiligen Einnahmen bzw. Ausgaben ersetzt.
+- TG:text wird bisher im Vorschlägebereich weder erläutert noch vorgeschlagen, Anleitung muss angepasst werden.
 - Bei fullTextMatch sollte Token hervorgehoben werden (notfalls nur im helptext etwa so "'Epl:13' in 'Grp:5 Epl:13' führt zu Suche nach ...", wobei "Epl:13" beides Mal unterstrichen wird)
 - Weitere Suchvorschläge, wenn Grp:\d, nämlich Grp:$1\d und Grp:$1\d\d
 - A und E als Schnelleingrenzung auf Ausgaben oder Einnahmen
