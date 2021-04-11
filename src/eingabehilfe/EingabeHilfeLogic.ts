@@ -27,7 +27,7 @@ export function getCurrentTokenAtPos(
     .search(/[\s,()]/);
   if (tokenEndFromPos === -1)
     // not found?
-    tokenEndFromPos = searchexpression.length-cursorPos; // then: set to rest of expression
+    tokenEndFromPos =  searchexpression.length-cursorPos; // then: set to rest of expression
 
   const res = /([^ ,()-]+-?[^ ,()-]*)$/.exec(
     searchexpression.substr(0, cursorPos + tokenEndFromPos)
@@ -36,7 +36,7 @@ export function getCurrentTokenAtPos(
     return {
       curToken: "",
       curTokenLen: 0,
-      curTokenStart: 0
+      curTokenStart: cursorPos
     };
   else {
     const curTokenLen = res[1].length;
@@ -419,7 +419,7 @@ export function eingabehilfen({
 
 /* ------------- Helper methods ------------------ */
 
-/** replaces current token before curPos in the searchexpression.
+/** replaces current token at curPos in the searchexpression.
  *
  */
 export function replaceToken(
@@ -428,17 +428,19 @@ export function replaceToken(
   newToken: string,
   additional?: boolean
 ): string {
-  const { curToken: oldToken } = getCurrentTokenAtPos(
+  const {  curTokenStart, curTokenLen } = getCurrentTokenAtPos(
     searchexpression,
     cursorPos
   );
+  const startPos=additional?cursorPos:curTokenStart;
+  const replaceLen=additional?0:curTokenLen
   const beforeToken = searchexpression.substr(
     0,
-    cursorPos - (additional ? 0 : oldToken.length)
+    startPos
   );
   const afterToken = searchexpression.substr(
-    cursorPos,
-    searchexpression.length
+    startPos+replaceLen,
+    searchexpression.length-startPos-replaceLen
   );
   return beforeToken + newToken + afterToken;
 }

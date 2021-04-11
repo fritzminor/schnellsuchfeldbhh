@@ -41,9 +41,11 @@
   "scripts": {
     "clear": "rimraf build/",
     "start": "react-scripts start",
+    "prebuild": "npm run test:nowatch",
     "build": "npm run clear && npm run build:docs && react-scripts build",
     "build:docs": "asciidoctor -D public/docs docs/anleitung.adoc",
     "test": "react-scripts test --env=jsdom",
+    "test:nowatch": "react-scripts test --env=jsdom --watchAll=false",
     "eject": "react-scripts eject"
   },
   "browserslist": [
