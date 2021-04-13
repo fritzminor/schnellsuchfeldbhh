@@ -57,48 +57,53 @@ export function getClickSelectData(
   // fill items
 
   appState.derived.filteredHhstArray.forEach((hhst) => {
-    categories.forEach((category) => {
-      const catMeta = csCategoryMetaMap[category];
-      if (!catMeta) {
-        throw new Error(
-          "FATAL:  " + category + " is missing meta!!!"
-        );
-      }
-      const hhstFieldName = catMeta.hhstKey;
-      const itemLong = hhst[hhstFieldName];
-      const categoryData = data[category];
-      if (!categoryData) {
-        throw new Error(
-          "FATAL:  " +
-            category +
-            " is missing data field!!!"
-        );
-      }
-      if (typeof itemLong !== "string")
-        throw new Error(
-          "FATAL: " +
-            hhstFieldName +
-            " is not of type string!!!"
-        );
-      else {
-        const itemKey = itemLong.substr(0, catMeta.digits);
-        const itemData = categoryData.itemsMeta[itemKey];
-        if (!itemData) {
-          // new item
-          categoryData.itemsSorted.push(itemKey);
-          categoryData.itemsMeta[itemKey] = {
-            name: itemKey,
-            count: 1,
-            expAmount: hhst.expense ? hhst.sollJahr1 : 0,
-            revAmount: hhst.expense ? 0 : hhst.sollJahr1
-          };
-        } else {
-          if (hhst.expense)
-            itemData.expAmount += hhst.sollJahr1;
-          else itemData.revAmount += hhst.sollJahr1;
+    if (hhst.type === "hhst") {
+      categories.forEach((category) => {
+        const catMeta = csCategoryMetaMap[category];
+        if (!catMeta) {
+          throw new Error(
+            "FATAL:  " + category + " is missing meta!!!"
+          );
         }
-      }
-    });
+        const hhstFieldName = catMeta.hhstKey;
+        const itemLong = hhst[hhstFieldName];
+        const categoryData = data[category];
+        if (!categoryData) {
+          throw new Error(
+            "FATAL:  " +
+              category +
+              " is missing data field!!!"
+          );
+        }
+        if (typeof itemLong !== "string")
+          throw new Error(
+            "FATAL: " +
+              hhstFieldName +
+              " is not of type string!!!"
+          );
+        else {
+          const itemKey = itemLong.substr(
+            0,
+            catMeta.digits
+          );
+          const itemData = categoryData.itemsMeta[itemKey];
+          if (!itemData) {
+            // new item
+            categoryData.itemsSorted.push(itemKey);
+            categoryData.itemsMeta[itemKey] = {
+              name: itemKey,
+              count: 1,
+              expAmount: hhst.expense ? hhst.sollJahr1 : 0,
+              revAmount: hhst.expense ? 0 : hhst.sollJahr1
+            };
+          } else {
+            if (hhst.expense)
+              itemData.expAmount += hhst.sollJahr1;
+            else itemData.revAmount += hhst.sollJahr1;
+          }
+        }
+      });
+    }
   });
 
   // remove categories
