@@ -100,6 +100,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
 }
 
 export type Store = ReturnType<typeof createStore>;
+export type SetModalInfo = Store["setModalInfo"];
 
 function getDerivedFrom(
   searchexpression: string,
