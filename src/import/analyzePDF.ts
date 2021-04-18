@@ -1,4 +1,3 @@
-
 import * as PDFJS from "pdfjs-dist";
 
 /* You have to install pdfjs-dist:
@@ -20,12 +19,15 @@ export function openFile(
   analyze: (
     data: ArrayBuffer,
     fileName: string,
-    setTabularContent: SetTabularContent,
     showError: ShowError
-  ) => void,
-  setTabularContent: SetTabularContent,
+  ) => Promise<TabularContent>,
   showError: ShowError
-) {
+): Promise<TabularContent> {
+  return new Promise<TabularContent>((resolve, reject) => {
+    const _showError: ShowError = (msg) => {
+      showError(msg);
+      reject(new Error(msg));
+    };
     const r = new FileReader();
     r.onload = async (evt) => {
       if (
@@ -33,15 +35,13 @@ export function openFile(
         evt.target.result &&
         evt.target.result instanceof ArrayBuffer
       ) {
-        analyze(
-          evt.target.result,
-          file.name,
-          setTabularContent,
-          showError
-        );
-      } else showError(`kein ArrayBuffer`);
+        analyze(evt.target.result, file.name, _showError)
+          .then(resolve)
+          .catch(reject);
+      } else _showError(`kein ArrayBuffer`);
     };
     r.readAsArrayBuffer(file);
+  });
 }
 
 // ------- Phase 1 - Struktur --------
@@ -88,37 +88,37 @@ function coord2key(coord: number): string {
 
 /**
  * analyzes a PDF document and calls setTabularContent with the result.
- * Requirements: 
+ * Requirements:
  *   - package: pdfjs-dist
  *   - package: worker-loader
  *   - pdf.worker.min.js in /public/src
- * @param data 
- * @param fileName 
- * @param setTabularContent 
- * @param showError 
+ * @param data
+ * @param fileName
+ * @param setTabularContent
+ * @param showError
  */
 export async function analyzePDF(
   data: ArrayBuffer,
   fileName: string,
-  setTabularContent: SetTabularContent,
   showError: ShowError
-) {
+): Promise<TabularContent> {
   const result: TabularContent = { pages: [] };
 
   try {
-    PDFJS.GlobalWorkerOptions.workerSrc =
-      "${process.env.PUBLIC_URL}/lib/pdf.worker.min.js";
+    PDFJS.GlobalWorkerOptions.workerSrc = "/lib/pdf.worker.js"; // `//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.js`;
+    // "${process.env.PUBLIC_URL}/lib/pdf.worker.js";
+    console.log(
+      "Loading worker from ",
+      PDFJS.GlobalWorkerOptions.workerSrc
+    );
+
     const loadingTask = PDFJS.getDocument(
       new Uint8Array(data)
     );
     const pdf = await loadingTask.promise;
-    console.log(pdf);
+    
 
-    for (
-      let pagenr = 1;
-      pagenr <= pdf.numPages;
-      pagenr++
-    ) {
+    for (let pagenr = 1; pagenr <= pdf.numPages; pagenr++) {
       const page = await pdf.getPage(pagenr);
 
       const textItems = await page.getTextContent();
@@ -131,8 +131,7 @@ export async function analyzePDF(
       } = {};
 
       textItems.items.forEach((textItem) => {
-
-        const y = textItem.transform[5];
+        const y = Math.round(textItem.transform[5]);
         const rowKey = coord2key(y);
 
         let row = intermediateTable[rowKey];
@@ -140,12 +139,12 @@ export async function analyzePDF(
           row = {};
           intermediateTable[rowKey] = row;
           rowDescs[rowKey] = {
-            coord: textItem.transform[5],
+            coord: y,
             key: rowKey
           };
         }
 
-        const x = textItem.transform[4];
+        const x =  Math.round( textItem.transform[4]);
         const colKey = coord2key(x);
 
         let cell = row[colKey];
@@ -157,23 +156,20 @@ export async function analyzePDF(
           };
           row[colKey] = cell;
           colDescs[colKey] = {
-            coord: textItem.transform[4],
+            coord: x,
             key: colKey
           };
         }
       });
 
       const colDescsArray: RowColDesc[] = [];
-      for (let colKey in colDescs)
+      for (const colKey in colDescs)
         colDescsArray.push(colDescs[colKey]);
-      colDescsArray.sort(
-        (a, b) => a.coord - b.coord
-      );
+      colDescsArray.sort((a, b) => a.coord - b.coord);
 
       const rows: TabularRow[] = [];
-      for (let interRowKey in intermediateTable) {
-        const interRow =
-          intermediateTable[interRowKey];
+      for (const interRowKey in intermediateTable) {
+        const interRow = intermediateTable[interRowKey];
         const cells: TabularCell[] = [];
 
         // iterate over all columns, not only those from current row
@@ -202,9 +198,10 @@ export async function analyzePDF(
       });
     }
 
-    setTabularContent(result);
+    return result;
   } catch (e) {
     showError("Loading failed: " + e);
     console.error(e);
+    return Promise.reject(e);
   }
 }

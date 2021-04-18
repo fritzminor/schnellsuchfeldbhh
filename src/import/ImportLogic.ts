@@ -5,7 +5,7 @@ import { BaseData } from "../store/AppState";
 import { SetModalInfo } from "../store/Store";
 import { AnalyzeResults } from "./importAnalyseSheet";
 import { importBHH_CSV } from "./importBHH";
-import { importHOLTitGr } from "./importHOLTitGr";
+import { importHOLTitGr_PDF } from "./importHOLTitGr";
 import { importHOLXSLX } from "./importHOLXSLX";
 import { importSN_XSLX } from "./importSN_XLSX";
 
@@ -31,7 +31,11 @@ const xlsxImporters: XlsxImporter[] = [
 ];
 
 /** Import methods */
-const importers: Importer[] = [importXLSX, importBHH_CSV];
+const importers: Importer[] = [
+  importXLSX,
+  importBHH_CSV,
+  importHOLTitGr_PDF
+];
 
 async function importFile(
   file: File,
@@ -42,6 +46,7 @@ async function importFile(
 ): Promise<void> {
   for (const importer of importers) {
     try {
+      
       await importer(
         file,
         setCurrentUser,
@@ -69,6 +74,8 @@ function importXLSX(
   appState: AppState
 ): Promise<void> {
   return new Promise<void>((resolve, reject) => {
+    setModalInfo(`Lade ${file.name} in den Browser (importXLSX) ... `);
+    
     const r = new FileReader();
     r.onload = async (evt) => {
       if (
@@ -85,6 +92,8 @@ function importXLSX(
           for (const importer of xlsxImporters) {
             if (!finished) {
               try {
+                setModalInfo(`Lade ${file.name} in den Browser (${importer.name}) ... `);
+    
                 importer(
                   file,
                   workbook,
@@ -143,6 +152,7 @@ export const loadFile = (
     // onchange, if the same file is selected again.
     evt.target.value = "";
 
+    setModalInfo(`Lade ${file.name} in den Browser ...`);
     console.log("file", file);
 
     importFile(
