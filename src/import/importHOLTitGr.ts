@@ -21,6 +21,7 @@ export async function importHOLTitGr_PDF(
     const oldHhsts: HHSt[] =
       appState.derived.baseData.hhsts;
     const tgMap: SectionMap = {};
+
     const subTgKeys2TgKeys: {
       [subTgKey: string]: string;
     } = {};
@@ -37,7 +38,8 @@ export async function importHOLTitGr_PDF(
       setModalInfo
     );
 
-    console.log("tabularContent",tabularContent);
+    console.log("tabularContent", tabularContent);
+    let lastTg: SectionMap["any"] | null = null;
     tabularContent.pages.forEach((page) => {
       let status = 1; // 0 started is not relevant
 
@@ -51,13 +53,15 @@ export async function importHOLTitGr_PDF(
           case 1:
             if (
               !(
-                row.cells[1].text === "Kapitel" &&
-                ((row.cells[3].text === "TglNr" &&
+                (
+                  row.cells[1].text === "Kapitel" &&
+                  row.cells[3].text === "TglNr" &&
                   row.cells[5].text === "E/A" &&
-                  row.cells[7].text === "Titelgruppe") /*||
+                  row.cells[7].text === "Titelgruppe"
+                ) /*||
                   (row.cells[4].text === "TglNr" &&
                     row.cells[6].text === "E/A" &&
-                    row.cells[8].text === "Titelgruppe")*/)
+                    row.cells[8].text === "Titelgruppe")*/
               )
             ) {
               console.log(
@@ -75,12 +79,18 @@ export async function importHOLTitGr_PDF(
               4,
               "0"
             );
+            /**
+             *  Die Untertitelnummer, bei der Titelgruppe 65-67 kann die
+             *  Untertitelnummer 65, 66 oder 67 sein; die Titelgruppennummer
+             *  ist immer 65.
+             */
             const subTgNr = row.cells[4].text;
+            const expenseChr = row.cells[6].text; // E for revenue or A for expense
+            const tgNr = row.cells[8].text;
+            const tgText = row.cells[10].text;
+
             if (subTgNr) {
               //
-              const expenseChr = row.cells[6].text; // E for revenue or A for expense
-              const tgNr = row.cells[8].text;
-              const tgText = row.cells[10].text;
 
               const subTgKey = `${kapitel}TG${subTgNr}${expenseChr}`;
               const tgKey = `${kapitel}TG${
@@ -102,21 +112,52 @@ export async function importHOLTitGr_PDF(
                     Text für Titelgruppe ${tgKey} (${subTgKey}) unterschiedlich: ${tgText} anstatt ${tgMap[tgKey].name}.`);
                   }
                 } else {
-                 // if (tgNr)
-                    tgMap[tgKey] = {
+                  // if (tgNr)
+                  if (lastTg && !lastTg.name)
+                    throw new Error(`Fehler in ${file.name} Arbeitsblatt ${page.pagenr} bei TG ${lastTg.short}: 
+                       Keine Titelgruppennummer.`);
+                  else {
+                    lastTg = {
                       short: tgNr || subTgNr,
                       name: tgText
                     };
-                /*  else
+
+                    tgMap[tgKey] = lastTg;
+                    /*  else
                     throw new Error(`Fehler in ${file.name} Arbeitsblatt ${page.pagenr} bei tgKey ${tgKey}: 
                        Keine Titelgruppennummer.`);*/
+                  }
                 }
-              } else if (!tgMap[tgKey])
-                throw new Error(`Fehler in ${file.name} Arbeitsblatt ${page.pagenr}: 
-                  Kein Text für Titelgruppe für ${tgKey}.`);
+              } else {  // no text, but tgNr or subTgNr
+                if (!tgMap[tgKey]) {
+                  if (lastTg && !lastTg.name)
+                    throw new Error(`Fehler in ${file.name} Arbeitsblatt ${page.pagenr} bei TG ${lastTg.short}: 
+                       Keine Titelgruppennummer.`);
+                  else {
+                    lastTg = {
+                      short: tgNr || subTgNr,
+                      name: ""
+                    };
+
+                    tgMap[tgKey] = lastTg;
+                  }
+                }
+                /*throw new Error(`Fehler in ${file.name} Arbeitsblatt ${page.pagenr}: 
+                  Kein Text für Titelgruppe für ${tgKey}.`); */
+              }
             }
             // empty line or only page count
-            else status = 4; // skip remaining rows
+            else if (
+              lastTg &&
+              !kapitel &&
+              !expenseChr &&
+              !tgNr &&
+              tgText
+            ) {
+              // lastTg available and
+              // empty line, but text
+              lastTg.name += tgText;
+            } else status = 4; // skip remaining rows
           }
         }
       }); // rows.forEach
@@ -132,7 +173,7 @@ export async function importHOLTitGr_PDF(
         ]
     }));
 
-    console.log("tgMap",tgMap)
+    console.log("tgMap", tgMap);
 
     setLocalData({
       ...appState.derived.baseData,
@@ -141,7 +182,6 @@ export async function importHOLTitGr_PDF(
     });
     setCurrentUser("LokaleDaten");
     return Promise.resolve();
-
   } catch (e) {
     return Promise.reject(e);
   }

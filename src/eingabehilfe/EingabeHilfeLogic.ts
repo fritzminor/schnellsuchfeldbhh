@@ -207,7 +207,7 @@ export function eingabehilfen({
 
   /*           Beginnt Token mit Schlüsselwort-Name? */
   /*     oder                                           */
-  /*           Ist Token in Schlüsselwort-Beschreibung? */
+  /*           Ist Token in Schlüsselwort-Beschreibung (erst ab zwei Zeichen)? */
   const items: EingabeHilfeItem[] = keywords
     .filter(
       (keyword) =>
@@ -420,7 +420,7 @@ export function eingabehilfen({
 /* ------------- Helper methods ------------------ */
 
 /** replaces current token at curPos in the searchexpression.
- *
+ * @see #getCurrentTokenAtPos()
  */
 export function replaceToken(
   searchexpression: string,

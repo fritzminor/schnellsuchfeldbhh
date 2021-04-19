@@ -85,7 +85,7 @@ export const keywords: Keyword[] = [
       const regExRes = /^Kap:(\d{1,2})(\d{1,2})?$/i.exec(
         curToken
       );
-      if (!regExRes) return null; //TODO: handle minus sign
+      if (!regExRes) return null;
       if (regExRes && regExRes[2])
         return `Suche in Einzelplan ${regExRes[1]
           } Kapitel ${regExRes && regExRes[2].length === 1
@@ -109,7 +109,7 @@ export const keywords: Keyword[] = [
 
   {
     name: "TG",
-    description: `Haushaltsstellen in Titelgruppen, z.B. TG:98 - TODO: Prototyp arbeitet noch nicht korrekt`,
+    description: `Haushaltsstellen in Titelgruppen, z.B. TG:98`,
     minDigits: 2,
     maxDigits: 2
   },
@@ -232,6 +232,12 @@ export const regExMatchers: RegExMatcher[] = [
     convertStr: "Epl:$1 Kap:$2 TG:$3",
     descriptionStr:
       "Suche in Einzelplan $1 Kapitel $2 nach Titelgruppe $3"
+  },
+  {
+    regEx: /^TG:([\D][^\s]*)$/i,
+    convertStr: "TG:$1",
+    descriptionStr:
+      "Suche nach Titelgruppe mit einer Bezeichnung, die $1 enthält"
   }
 ];
 

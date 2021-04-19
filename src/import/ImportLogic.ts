@@ -46,6 +46,7 @@ async function importFile(
 ): Promise<void> {
   for (const importer of importers) {
     try {
+      setModalInfo(`Lade ${file.name} in den Browser (${importer.name}) ... `);
       
       await importer(
         file,
