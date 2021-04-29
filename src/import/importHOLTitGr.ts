@@ -128,7 +128,8 @@ export async function importHOLTitGr_PDF(
                        Keine Titelgruppennummer.`);*/
                   }
                 }
-              } else {  // no text, but tgNr or subTgNr
+              } else {
+                // no text, but tgNr or subTgNr
                 if (!tgMap[tgKey]) {
                   if (lastTg && !lastTg.name)
                     throw new Error(`Fehler in ${file.name} Arbeitsblatt ${page.pagenr} bei TG ${lastTg.short}: 
@@ -175,6 +176,8 @@ export async function importHOLTitGr_PDF(
 
     console.log("tgMap", tgMap);
 
+    hhsts.sort(compareHHSt);
+
     setLocalData({
       ...appState.derived.baseData,
       tgMap,
@@ -185,4 +188,41 @@ export async function importHOLTitGr_PDF(
   } catch (e) {
     return Promise.reject(e);
   }
+}
+
+function compareHHSt(a: HHSt, b: HHSt): number {
+  const cmpEplKap = (a.epl + a.kap).localeCompare(
+    b.epl + b.kap
+  );
+  if (cmpEplKap) return cmpEplKap;
+
+  if(a.expense) {
+    if(!b.expense)
+      return 1; // a comes after b
+  } else { // a is revenue
+    if(b.expense)
+      return -1; // a comes before b
+  }
+  
+  if (a.tgKey) {
+    if (b.tgKey) {
+      const cmpTgKey = a.tgKey.localeCompare(b.tgKey);
+      if (cmpTgKey) return cmpTgKey;
+    } else {
+      // a has tgKey, b has not.
+      return 1; // a comes after b
+    }
+  } else {
+    // a.tgKey is undefined
+    if (b.tgKey) {
+      // a has got no tgKey, b has got one.
+      return -1; // b comes after a
+    }
+  }
+
+  const cmpTitelNr=(a.gruppe+a.suffix).localeCompare(b.gruppe+b.suffix);
+  if(cmpTitelNr===0) {
+    console.log("Equal:",a,b);
+  }
+  return cmpTitelNr;
 }
