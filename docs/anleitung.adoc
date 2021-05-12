@@ -1,6 +1,6 @@
 # Universalsuchfeld - Prototyp - Anleitung
-:toc: preamble
-:toc-title: Übersicht
+:toc: right
+:toc-title: Anleitung Universalsuchfeld-Prototyp
 
 Der Prototyp ist nicht für produktive Zwecke gedacht, sondern ermöglicht Feedback von künftigen Anwendern der Suche in einem http://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Oeffentliche_Finanzen/Bundeshaushalt/Haushaltsrecht_und_Haushaltssystematik/das-system-der-oeffentlichen-haushalte-anl.pdf?__blob=publicationFile&v=3[kameralen Haushaltsplan].
 
