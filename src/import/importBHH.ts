@@ -3,6 +3,7 @@ import { HHSt } from "../store/HHStType";
 import Papa from "papaparse";
 import { emptyBaseData } from "../store/AppState";
 import { Store } from "../store/Store";
+import { errorMessage } from "../utils/errorMessage";
 
 type CsvRow = {
   einzelplan: string;
@@ -129,7 +130,7 @@ export function importBHH_CSV(
           hhsts.push(hhst);
           // rowNr++;
         } catch (reason) {
-          errMessage = reason.message;
+          errMessage = errorMessage(reason);
           parser.abort();
         }
       };

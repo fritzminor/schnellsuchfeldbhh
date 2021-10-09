@@ -3,6 +3,7 @@ import {
   AppState,
   getFilteredHhstArray
 } from "../store/AppState";
+import { errorMessage } from "../utils/errorMessage";
 
 export type SingleAnalyze = {
   worksheetId: number;
@@ -73,7 +74,7 @@ export async function importAnalyzeSheet(
                     else pushResult(totals.revenues);
                   } catch (err) {
                     console.log(err);
-                    pushResult(err.message);
+                    pushResult(errorMessage(err));
                   }
                 }
                 break;

@@ -1,4 +1,5 @@
 import * as PDFJS from "pdfjs-dist";
+import { jsoning } from "../utils/jsoning";
 
 /* You have to install pdfjs-dist:
      npm install --save pdfjs-dist
@@ -105,7 +106,8 @@ export async function analyzePDF(
   const result: TabularContent = { pages: [] };
 
   try {
-    PDFJS.GlobalWorkerOptions.workerSrc = "/lib/pdf.worker.js"; // `//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.js`;
+    PDFJS.GlobalWorkerOptions.workerSrc =
+      "/lib/pdf.worker.js"; // `//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.js`;
     // "${process.env.PUBLIC_URL}/lib/pdf.worker.js";
     console.log(
       "Loading worker from ",
@@ -116,7 +118,6 @@ export async function analyzePDF(
       new Uint8Array(data)
     );
     const pdf = await loadingTask.promise;
-    
 
     for (let pagenr = 1; pagenr <= pdf.numPages; pagenr++) {
       const page = await pdf.getPage(pagenr);
@@ -131,35 +132,42 @@ export async function analyzePDF(
       } = {};
 
       textItems.items.forEach((textItem) => {
-        const y = Math.round(textItem.transform[5]);
-        const rowKey = coord2key(y);
+        if ("transform" in textItem) {
+          const y = Math.round(textItem.transform[5]);
+          const rowKey = coord2key(y);
 
-        let row = intermediateTable[rowKey];
-        if (!row) {
-          row = {};
-          intermediateTable[rowKey] = row;
-          rowDescs[rowKey] = {
-            coord: y,
-            key: rowKey
-          };
-        }
+          let row = intermediateTable[rowKey];
+          if (!row) {
+            row = {};
+            intermediateTable[rowKey] = row;
+            rowDescs[rowKey] = {
+              coord: y,
+              key: rowKey
+            };
+          }
 
-        const x =  Math.round( textItem.transform[4]);
-        const colKey = coord2key(x);
+          const x = Math.round(textItem.transform[4]);
+          const colKey = coord2key(x);
 
-        let cell = row[colKey];
-        if (!cell) {
-          cell = {
-            x,
-            y,
-            text: textItem.str
-          };
-          row[colKey] = cell;
-          colDescs[colKey] = {
-            coord: x,
-            key: colKey
-          };
-        }
+          let cell = row[colKey];
+          if (!cell) {
+            cell = {
+              x,
+              y,
+              text: textItem.str
+            };
+            row[colKey] = cell;
+            colDescs[colKey] = {
+              coord: x,
+              key: colKey
+            };
+          }
+        } else
+          throw new Error(
+            `TextItem ${jsoning(
+              textItem
+            )} is not of type TextItem!!!`
+          );
       });
 
       const colDescsArray: RowColDesc[] = [];

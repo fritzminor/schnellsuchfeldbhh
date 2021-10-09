@@ -4,6 +4,7 @@ import { HHStRow } from "./HHStRow";
 import { HHSt } from "../store/HHStType";
 import { AppState } from "../store/AppState";
 import { MoreLessButton } from "../othercomponents/MoreLessButton";
+import { errorMessage } from "../utils/errorMessage";
 
 const rowHeadings: HHSt = {
   type: "hhst",
@@ -23,9 +24,8 @@ export function HHStList({
   appState: AppState;
 }>): JSX.Element {
   try {
-    const [limited, setLimited] = React.useState<boolean>(
-      true
-    );
+    const [limited, setLimited] =
+      React.useState<boolean>(true);
     const hhstLimit = 500;
     const baseData = appState.derived.baseData;
     rowHeadings.sollJahr1 = baseData.firstYear;
@@ -50,8 +50,7 @@ export function HHStList({
         }
       />
     ));
-    
-    
+
     return (
       <>
         <div className="container box hhstListContainer">
@@ -84,8 +83,13 @@ export function HHStList({
         <div className="subtitle">
           Diesen Suchausdruck kann der Prototyp noch nicht.
         </div>
-        <div>{excptn.message}</div>
-        <pre> {excptn.stack}</pre>
+        <div>{errorMessage(excptn)}</div>
+        <pre>
+          {" "}
+          {excptn instanceof Error
+            ? JSON.stringify(excptn.stack, undefined, "  ")
+            : "n/a"}
+        </pre>
       </div>
     );
   }

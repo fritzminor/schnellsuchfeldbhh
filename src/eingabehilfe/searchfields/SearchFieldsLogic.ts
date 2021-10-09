@@ -3,8 +3,12 @@ import {
   initialFieldsData,
   parserKeywords2FieldKeys
 } from "./SearchFieldsData";
-import { SearchFieldDataPseudoNumeric, SearchFieldsData } from "./SearchFieldsTypes";
+import {
+  SearchFieldDataPseudoNumeric,
+  SearchFieldsData
+} from "./SearchFieldsTypes";
 import { SearchNode } from "../../hhstliste/hhstListeLogic/searchTreeTypes";
+import { errorMessage } from "../../utils/errorMessage";
 
 export function getSearchExpression(
   searchFieldsData: SearchFieldsData
@@ -32,9 +36,15 @@ function addItems(
 
   fieldsPseudoNumeric.forEach((key) => {
     const fieldData = searchFieldsData[posNegKey][key];
-    if(!fieldData) {
-      console.log("No field data for key",key,searchFieldsData);
-      throw new Error(`FATAL: no field data for key ${key}`);
+    if (!fieldData) {
+      console.log(
+        "No field data for key",
+        key,
+        searchFieldsData
+      );
+      throw new Error(
+        `FATAL: no field data for key ${key}`
+      );
     }
 
     if (fieldData.type === "pseudonumeric") {
@@ -43,7 +53,8 @@ function addItems(
 
       const addItemPseudoNumericEqual = () => {
         items.push(
-          `${minusSign}${fieldData.keyword
+          `${minusSign}${
+            fieldData.keyword
           }:${valueFrom.padStart(fieldData.minDigits, "0")}`
         );
       };
@@ -70,12 +81,15 @@ function addItems(
       else if (valueFrom || valueTo) {
         const addItemPseudoNumericRangeOrSmaller = () => {
           items.push(
-            `${minusSign}${fieldData.keyword}:${valueFrom
-              ? valueFrom.padStart(
-                (fieldData as SearchFieldDataPseudoNumeric).minDigits,
-                "0"
-              )
-              : ""
+            `${minusSign}${fieldData.keyword}:${
+              valueFrom
+                ? valueFrom.padStart(
+                    (
+                      fieldData as SearchFieldDataPseudoNumeric
+                    ).minDigits,
+                    "0"
+                  )
+                : ""
             }-${valueTo.padStart(fieldData.minDigits, "0")}`
           );
         };
@@ -86,7 +100,7 @@ function addItems(
               (!valueTo || valueTo.length === 4) &&
               valueFrom &&
               valueFrom.substr(0, 2) ===
-              valueTo.substr(0, 2)
+                valueTo.substr(0, 2)
             ) {
               items.push(
                 `${minusSign}(Epl:${valueFrom.substr(
@@ -107,9 +121,8 @@ function addItems(
     }
   });
   if (searchFieldsData[posNegKey].fulltext.value) {
-    const fieldText = searchFieldsData[
-      posNegKey
-    ].fulltext.value.trim();
+    const fieldText =
+      searchFieldsData[posNegKey].fulltext.value.trim();
     const snippets = fieldText.split(" ");
     snippets.forEach((snippet) =>
       items.push(`${minusSign}Volltext:${snippet}`)
@@ -120,7 +133,8 @@ function addItems(
 export function getSearchFieldsData(
   searchTree: SearchNode | null
 ): SearchFieldsData {
-  const searchFieldsData: SearchFieldsData = initialFieldsData();
+  const searchFieldsData: SearchFieldsData =
+    initialFieldsData();
   try {
     if (searchTree)
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -132,7 +146,9 @@ export function getSearchFieldsData(
     return searchFieldsData;
   } catch (e) {
     console.log(
-      `Universalsuchfeldausdruck kann nicht in Suchfeldern dargestellt werden. ${e.message}`
+      `Universalsuchfeldausdruck kann nicht in Suchfeldern dargestellt werden. ${errorMessage(
+        e
+      )}`
     );
     console.log(searchTree);
     return initialFieldsData();
@@ -173,7 +189,6 @@ function fillSearchFieldsData(
           );
           break;
         case "true":
-
           if (negated)
             throw new Error(
               "Suchfelder können ein Ohne Alles nicht abbilden."
@@ -234,10 +249,8 @@ function fillSearchFieldsData(
     case "text":
       switch (searchTree.subtype) {
         case "fulltext":
-          searchFieldsData[
-            posNegKey
-          ].fulltext.value = searchFieldsData[posNegKey]
-            .fulltext.value
+          searchFieldsData[posNegKey].fulltext.value =
+            searchFieldsData[posNegKey].fulltext.value
               ? `${searchFieldsData[posNegKey].fulltext.value} ${searchTree.value}`
               : searchTree.value;
           break;

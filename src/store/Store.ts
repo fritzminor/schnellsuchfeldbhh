@@ -13,6 +13,7 @@ import { HHStOrBlock } from "./HHStType";
 import hhstDataBHH from "./material/bhh_long.json";
 import hhstData01_02 from "./material/bhh_epl01_02.json";
 import { AnalyzeResults } from "../import/importAnalyseSheet";
+import { errorMessage } from "../utils/errorMessage";
 
 const baseDataArrays: { [index in UserName]: BaseData } = {
   BearbeiterGesamtBHH: hhstDataBHH as BaseData,
@@ -129,7 +130,7 @@ function getDerivedFrom(
   } catch (err) {
     console.log(err);
     searchTree = null;
-    searchParseErrMessage = err.message;
+    searchParseErrMessage = errorMessage(err);
     filteredHhstArray = [];
     totals = { revenues: 0, expenses: 0 };
   }

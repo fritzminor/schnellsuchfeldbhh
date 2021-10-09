@@ -1,7 +1,14 @@
 import * as React from "react";
 
-import { SearchFieldDataPseudoNumeric, SearchFieldsData } from "./SearchFieldsTypes";
-import { fieldsExtended, fieldsLimited, initialFieldsData } from "./SearchFieldsData";
+import {
+  SearchFieldDataPseudoNumeric,
+  SearchFieldsData
+} from "./SearchFieldsTypes";
+import {
+  fieldsExtended,
+  fieldsLimited,
+  initialFieldsData
+} from "./SearchFieldsData";
 import {
   getSearchExpression,
   getSearchFieldsData
@@ -10,6 +17,7 @@ import { AppState } from "../../store/AppState";
 import { DocReferrer } from "../../othercomponents/DocReferrer";
 import { RealInputField } from "../../othercomponents/RealInputField";
 import { MoreLessButton } from "../../othercomponents/MoreLessButton";
+import { errorMessage } from "../../utils/errorMessage";
 
 type SearchFieldsContainerProps = {
   setSearchExpression: (searchexpression: string) => void;
@@ -17,144 +25,167 @@ type SearchFieldsContainerProps = {
   searchExpressionSetBySearchFields: boolean;
 };
 
-
-// This method may not be made as an inner method of posNegBlock(), because React can't 
+// This method may not be made as an inner method of posNegBlock(), because React can't
 // handle it; input would lose the focus after each key press.
-function SingleInputField(
-  { from, posNeg, fieldKey, searchFieldsData, setSearchFieldsData,
-    setSearchExpression, fieldData }: {
-      from: boolean;
-      posNeg: "positive" | "negative";
-      fieldKey: keyof SearchFieldsData["positive"];
-      searchFieldsData: SearchFieldsData,
-      setSearchFieldsData: React.Dispatch<React.SetStateAction<SearchFieldsData>>,
-      setSearchExpression: (searchexpression: string) => void;
-      fieldData: SearchFieldDataPseudoNumeric;
-    }
-) {
+function SingleInputField({
+  from,
+  posNeg,
+  fieldKey,
+  searchFieldsData,
+  setSearchFieldsData,
+  setSearchExpression,
+  fieldData
+}: {
+  from: boolean;
+  posNeg: "positive" | "negative";
+  fieldKey: keyof SearchFieldsData["positive"];
+  searchFieldsData: SearchFieldsData;
+  setSearchFieldsData: React.Dispatch<
+    React.SetStateAction<SearchFieldsData>
+  >;
+  setSearchExpression: (searchexpression: string) => void;
+  fieldData: SearchFieldDataPseudoNumeric;
+}) {
   const fromTo = from ? "valueFrom" : "valueTo";
 
-
-  return <>
-    <div className="heading"
-      key={"prefix" + posNeg + fieldKey + fromTo}
-    >{from ? "von" : "bis"}</div>
-    <RealInputField
-      className="input fromTo"
-      type="number"
-      key={"input" + posNeg + fieldKey + fromTo}
-      min={from ? "0"
-        : fieldData.valueFrom
-          ? Math.max(
-            0,
-            parseInt(
-              fieldData.valueFrom,
-              10
-            )
-          )
-          : 0
-      }
-      step="1"
-      placeholder={from ? "01" : "02"}
-      value={fieldData[fromTo]}
-      onChange={(ev) => {
-        const newFieldsData: SearchFieldsData = {
-          ...searchFieldsData,
-          [posNeg]: {
-            ...searchFieldsData[posNeg],
-            [fieldKey]: {
-              ...searchFieldsData[posNeg][
-              fieldKey
-              ],
-              [fromTo]: ev.target.value
+  return (
+    <>
+      <div
+        className="heading"
+        key={"prefix" + posNeg + fieldKey + fromTo}
+      >
+        {from ? "von" : "bis"}
+      </div>
+      <RealInputField
+        className="input fromTo"
+        type="number"
+        key={"input" + posNeg + fieldKey + fromTo}
+        min={
+          from
+            ? "0"
+            : fieldData.valueFrom
+            ? Math.max(0, parseInt(fieldData.valueFrom, 10))
+            : 0
+        }
+        step="1"
+        placeholder={from ? "01" : "02"}
+        value={fieldData[fromTo]}
+        onChange={(ev) => {
+          const newFieldsData: SearchFieldsData = {
+            ...searchFieldsData,
+            [posNeg]: {
+              ...searchFieldsData[posNeg],
+              [fieldKey]: {
+                ...searchFieldsData[posNeg][fieldKey],
+                [fromTo]: ev.target.value
+              }
             }
-          }
-        };
+          };
 
-        setSearchFieldsData(() => newFieldsData);
-        setSearchExpression(
-          getSearchExpression(newFieldsData)
-        );
-      }
-      }
-    />
-  </>;
+          setSearchFieldsData(() => newFieldsData);
+          setSearchExpression(
+            getSearchExpression(newFieldsData)
+          );
+        }}
+      />
+    </>
+  );
 } // end of function SingleInputField
 
 type PosNegBlockProps = {
-  posNeg: "positive" | "negative", searchFieldsData: SearchFieldsData;
-  setSearchFieldsData: React.Dispatch<React.SetStateAction<SearchFieldsData>>;
+  posNeg: "positive" | "negative";
+  searchFieldsData: SearchFieldsData;
+  setSearchFieldsData: React.Dispatch<
+    React.SetStateAction<SearchFieldsData>
+  >;
   setSearchExpression: (searchexpression: string) => void;
   limited: boolean;
 };
 
 const PosNegBlock: React.FC<PosNegBlockProps> = ({
-  posNeg, searchFieldsData,
+  posNeg,
+  searchFieldsData,
   setSearchFieldsData,
   setSearchExpression,
   limited
-}: PosNegBlockProps
-) => {
-
+}: PosNegBlockProps) => {
   const fieldClassName = "field box";
 
-  const fieldKeys: (keyof SearchFieldsData["positive"])[] = limited
-    ? fieldsLimited
-    : fieldsExtended;
+  const fieldKeys: (keyof SearchFieldsData["positive"])[] =
+    limited ? fieldsLimited : fieldsExtended;
 
-  return <>
-    <div className="tile is-ancestor">
-      <div className="tile is-parent">
-        {
-          // pseudonumeric fields
-          fieldKeys.map((key) => {
-            const fieldData = searchFieldsData[posNeg][key];
-            if (fieldData) {
-              if (fieldData.type === "pseudonumeric") { // pseudonumeric field
+  return (
+    <>
+      <div className="tile is-ancestor">
+        <div className="tile is-parent">
+          {
+            // pseudonumeric fields
+            fieldKeys.map((key) => {
+              const fieldData =
+                searchFieldsData[posNeg][key];
+              if (fieldData) {
+                if (fieldData.type === "pseudonumeric") {
+                  // pseudonumeric field
 
-
-                return (
-                  <div key={"childtile" + posNeg + key} className="tile is-child">
-                    <div className={fieldClassName}
-                      key={"fieldbox" + posNeg + key}
+                  return (
+                    <div
+                      key={"childtile" + posNeg + key}
+                      className="tile is-child"
                     >
-
-                      <label className="label">
-                        {fieldData.label}
-                      </label>
-                      <div className="control" key={"control" + posNeg + key}
+                      <div
+                        className={fieldClassName}
+                        key={"fieldbox" + posNeg + key}
                       >
-                        <SingleInputField key={"from" + posNeg + key} from
-                          fieldData={fieldData}
-                          setSearchExpression={setSearchExpression}
-                          setSearchFieldsData={setSearchFieldsData}
-                          fieldKey={key}
-                          posNeg={posNeg}
-                          searchFieldsData={searchFieldsData}
-                        />
-                        <SingleInputField key={"to" + posNeg + key} from={false}
-                          fieldData={fieldData}
-                          setSearchExpression={setSearchExpression}
-                          setSearchFieldsData={setSearchFieldsData}
-                          fieldKey={key}
-                          posNeg={posNeg}
-                          searchFieldsData={searchFieldsData}
-                        />
+                        <label className="label">
+                          {fieldData.label}
+                        </label>
+                        <div
+                          className="control"
+                          key={"control" + posNeg + key}
+                        >
+                          <SingleInputField
+                            key={"from" + posNeg + key}
+                            from
+                            fieldData={fieldData}
+                            setSearchExpression={
+                              setSearchExpression
+                            }
+                            setSearchFieldsData={
+                              setSearchFieldsData
+                            }
+                            fieldKey={key}
+                            posNeg={posNeg}
+                            searchFieldsData={
+                              searchFieldsData
+                            }
+                          />
+                          <SingleInputField
+                            key={"to" + posNeg + key}
+                            from={false}
+                            fieldData={fieldData}
+                            setSearchExpression={
+                              setSearchExpression
+                            }
+                            setSearchFieldsData={
+                              setSearchFieldsData
+                            }
+                            fieldKey={key}
+                            posNeg={posNeg}
+                            searchFieldsData={
+                              searchFieldsData
+                            }
+                          />
+                        </div>
                       </div>
-
                     </div>
-                  </div>
-                );
-              }
-            } else return <></>;
+                  );
+                }
+              } else return <></>;
+            })
           }
-          )
-
-        }
+        </div>
       </div>
-    </div>
-    {
-      fieldKeys.map((key) => {
+      {fieldKeys.map((key) => {
         const fieldData = searchFieldsData[posNeg][key];
         if (fieldData) {
           if (fieldData.type === "single")
@@ -162,10 +193,11 @@ const PosNegBlock: React.FC<PosNegBlockProps> = ({
               <div className={fieldClassName} key={key}>
                 <label className="label">
                   {fieldData.label}
-                  {key === "fulltext" ?
+                  {key === "fulltext" ? (
                     <DocReferrer topic="Suchfeld Volltextsuche" />
-                    : <></>
-                  }
+                  ) : (
+                    <></>
+                  )}
                 </label>
                 <div className="control">
                   <input
@@ -174,17 +206,18 @@ const PosNegBlock: React.FC<PosNegBlockProps> = ({
                     placeholder="Suchwort"
                     value={fieldData.value}
                     onChange={(ev) => {
-                      const newFieldsData: SearchFieldsData = {
-                        ...searchFieldsData,
-                        [posNeg]: {
-                          ...searchFieldsData[posNeg],
-                          fulltext: {
-                            ...searchFieldsData[posNeg]
-                              .fulltext,
-                            value: ev.target.value
+                      const newFieldsData: SearchFieldsData =
+                        {
+                          ...searchFieldsData,
+                          [posNeg]: {
+                            ...searchFieldsData[posNeg],
+                            fulltext: {
+                              ...searchFieldsData[posNeg]
+                                .fulltext,
+                              value: ev.target.value
+                            }
                           }
-                        }
-                      };
+                        };
                       setSearchFieldsData(newFieldsData);
                       setSearchExpression(
                         getSearchExpression(newFieldsData)
@@ -192,25 +225,23 @@ const PosNegBlock: React.FC<PosNegBlockProps> = ({
                     }}
                   />
                 </div>
-
               </div>
             );
         } else return <></>;
-      }
-      )
-    }
-  </>;
-};  // end of function posNegBlock
-
+      })}
+    </>
+  );
+}; // end of function posNegBlock
 
 export function SearchFieldsContainer({
   setSearchExpression,
   appState,
   searchExpressionSetBySearchFields
 }: //eslint-disable-next-line no-undef
-  SearchFieldsContainerProps): JSX.Element {
-
-  const fieldsDataArray = React.useState<SearchFieldsData>(initialFieldsData());
+SearchFieldsContainerProps): JSX.Element {
+  const fieldsDataArray = React.useState<SearchFieldsData>(
+    initialFieldsData()
+  );
   let searchFieldsData = fieldsDataArray[0];
   const setSearchFieldsData = fieldsDataArray[1];
 
@@ -226,7 +257,9 @@ export function SearchFieldsContainer({
     } catch (e) {
       searchFieldsData = initialFieldsData();
       console.log(
-        `Unversalausdruck "${appState.searchexpression}" kann nicht ausgewertet werden.${e.message}`
+        `Unversalausdruck "${
+          appState.searchexpression
+        }" kann nicht ausgewertet werden.${errorMessage(e)}`
       );
     }
   }
@@ -234,32 +267,37 @@ export function SearchFieldsContainer({
   return (
     <div className="container searchfields">
       {/* ------ positive block --------*/}
-      <PosNegBlock posNeg="positive"
+      <PosNegBlock
+        posNeg="positive"
         searchFieldsData={searchFieldsData}
         setSearchFieldsData={setSearchFieldsData}
         setSearchExpression={setSearchExpression}
-        limited={limited} />
+        limited={limited}
+      />
 
       {limited ? (
         <></>
       ) : (
-          /* -- negative block (Ohne) --------------- */
-          <div className="panel">
-            <div className="panel-heading">Ohne:
-              <DocReferrer topic="Ohne-Suchfelder" />
-            </div>
-
-            <PosNegBlock
-              posNeg="negative"
-              searchFieldsData={searchFieldsData}
-              setSearchFieldsData={setSearchFieldsData}
-              setSearchExpression={setSearchExpression}
-              limited={limited}
-            />
-
+        /* -- negative block (Ohne) --------------- */
+        <div className="panel">
+          <div className="panel-heading">
+            Ohne:
+            <DocReferrer topic="Ohne-Suchfelder" />
           </div>
-        )}
-        <MoreLessButton limited={limited} setLimited={setLimited} />
+
+          <PosNegBlock
+            posNeg="negative"
+            searchFieldsData={searchFieldsData}
+            setSearchFieldsData={setSearchFieldsData}
+            setSearchExpression={setSearchExpression}
+            limited={limited}
+          />
+        </div>
+      )}
+      <MoreLessButton
+        limited={limited}
+        setLimited={setLimited}
+      />
     </div>
   );
 }
