@@ -184,8 +184,11 @@ export function isSearched(
         // no TG for this HHSt?
         return false;
       else
+      { 
+        const sectMap=baseData[searchNode.sectionMap];
         colValue =
-          baseData[searchNode.sectionMap][sectionKey][shortOrName];
+          sectMap[sectionKey][shortOrName];
+      }
     }
     if (colValue) return colValue as string;
     else return false;

@@ -15,6 +15,7 @@ import { useState } from "react";
 import { Navigation } from "./navigation/Navigation";
 import { HHStOverview } from "./hhstliste/HHStOverview";
 import { ModalInfo } from "./modal/ModalInfo";
+import { HHBreadcrumbs } from "./breadcrumb/HHBreadCrumbs";
 
 // Check for https://medium.com/@svsh227/create-your-own-type-ahead-dropdown-in-react-599c96bebfa
 //           https://github.com/fmoo/react-typeahead
@@ -67,7 +68,10 @@ export default function App(): JSX.Element {
       <section className="section">
         <HHStOverview appState={state} />
       </section>
-      <section className="section" id="hhstList">
+      <section className="section mb-1 py-1" id="hh_breadcrumb">
+        <HHBreadcrumbs versionDesc={state.derived.baseData.versionDesc} />
+      </section>
+      <section className="section pt-1" id="hhstList">
         <HHStList appState={state}>
           {!state.derived.searchTree &&
           state.searchexpression ? (

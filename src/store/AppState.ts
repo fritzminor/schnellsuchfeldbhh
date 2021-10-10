@@ -32,7 +32,25 @@ export type SectionMap = {
   };
 };
 
+export type VersionDescriptor = {
+  /** e.g. "Bundeshaushalt" */
+  orgBudgetName: string;
+  /** e.g. "BHH 2021"
+   *
+   */
+  budgetName: string;
+  /** A container can gather different modStates. It has at least one modState. */
+  containerName: string;
+  /** Modification state. Each change or each bundle of changes results in a modification state. */
+  modStateName: string;
+};
+
 export type BaseData = {
+  versionDesc?: VersionDescriptor;
+  /** First year of the budget plan.
+   * {@link HHSt.sollJahr1} refers to such year.
+   * }
+   */
   firstYear: number;
   hhsts: HHSt[];
   eplMap: SectionMap;
@@ -46,7 +64,7 @@ export type BaseData = {
  */
 export type SectionMapName = keyof Omit<
   BaseData,
-  "firstYear" | "hhsts"
+  "firstYear" | "hhsts" | "versionDesc"
 >;
 
 export const emptyBaseData: BaseData = {
@@ -119,7 +137,7 @@ export function getFilteredHhstArray(
   filteredHhstArray: HHStOrBlock[];
   totals: Totals;
 } {
-  const { hhsts: hhstArray, tgMap }=baseData;
+  const { hhsts: hhstArray, tgMap } = baseData;
 
   const totals: Totals = {
     revenues: 0,
@@ -226,7 +244,7 @@ export function getFilteredHhstArray(
   };
 
   hhstArray.forEach((hhst) => {
-    if (isSearched(hhst, searchTree,baseData)) {
+    if (isSearched(hhst, searchTree, baseData)) {
       const hhstTgKey = hhst.tgKey;
       const newTg = hhstTgKey && hhstTgKey !== currTG.name;
       if (withBlocks) {

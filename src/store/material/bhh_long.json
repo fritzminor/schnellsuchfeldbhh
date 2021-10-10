@@ -1,4 +1,10 @@
 {
+  "versionDesc": {
+    "orgBudgetName": "Bundeshaushalt",
+    "budgetName": "BHH2021",
+    "containerName": "BGBl",
+    "modStateName": "vom 21.12.2021"
+  },
   "firstYear": 2021,
   "hhsts": [
     {
