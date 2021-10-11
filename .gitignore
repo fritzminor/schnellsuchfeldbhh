@@ -3,4 +3,5 @@ node_modules/
 build/
 public/docs/anleitung.html
 public/lib/
+public/testmaterial/*link.pdf
 **/.~lock.*

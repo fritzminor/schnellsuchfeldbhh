@@ -6,6 +6,8 @@ import { jsoning } from "../utils/jsoning";
     and for create-react-apps you have to move 
     node_modules/pdfjs-dist/.../pdf.worker.js in 
     /public - folder.
+
+    @see postinstall-script in package.json
    */
 
 export type ShowError = (msg: string) => void;
@@ -101,18 +103,19 @@ function coord2key(coord: number): string {
 export async function analyzePDF(
   data: ArrayBuffer,
   fileName: string,
-  showError: ShowError
+  showError: ShowError, pdfWorkerFileName?:string
 ): Promise<TabularContent> {
   const result: TabularContent = { pages: [] };
 
   try {
-    PDFJS.GlobalWorkerOptions.workerSrc =
+    PDFJS.GlobalWorkerOptions.workerSrc = pdfWorkerFileName
       "/lib/pdf.worker.js"; // `//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.js`;
     // "${process.env.PUBLIC_URL}/lib/pdf.worker.js";
-    console.log(
-      "Loading worker from ",
-      PDFJS.GlobalWorkerOptions.workerSrc
-    );
+    
+    // console.log(
+    //   "Loading worker from ",
+    //   PDFJS.GlobalWorkerOptions.workerSrc
+    // );
 
     const loadingTask = PDFJS.getDocument(
       new Uint8Array(data)
