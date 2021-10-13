@@ -90,28 +90,29 @@ function coord2key(coord: number): string {
 }
 
 /**
- * analyzes a PDF document and calls setTabularContent with the result.
+ * analyzes a PDF document and returns a Promise with TabularContent .
+ * The TabularContent contains pages with rows that have all the same number of colums.
  * Requirements:
  *   - package: pdfjs-dist
  *   - package: worker-loader
- *   - pdf.worker.min.js in /public/src
+ *   - pdf.worker.js in /public/lib
  * @param data
  * @param fileName
- * @param setTabularContent
  * @param showError
  */
 export async function analyzePDF(
   data: ArrayBuffer,
   fileName: string,
-  showError: ShowError, pdfWorkerFileName?:string
+  showError: ShowError,
+  pdfWorkerFileName?: string
 ): Promise<TabularContent> {
   const result: TabularContent = { pages: [] };
 
   try {
-    PDFJS.GlobalWorkerOptions.workerSrc = pdfWorkerFileName
-      "/lib/pdf.worker.js"; // `//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.js`;
+    PDFJS.GlobalWorkerOptions.workerSrc =
+      pdfWorkerFileName || "/lib/pdf.worker.js"; // `//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.js`;
     // "${process.env.PUBLIC_URL}/lib/pdf.worker.js";
-    
+
     // console.log(
     //   "Loading worker from ",
     //   PDFJS.GlobalWorkerOptions.workerSrc
@@ -136,34 +137,38 @@ export async function analyzePDF(
 
       textItems.items.forEach((textItem) => {
         if ("transform" in textItem) {
-          const y = Math.round(textItem.transform[5]);
-          const rowKey = coord2key(y);
+          if (textItem.str && textItem.str.trim()) {
+            // only if textItem contains a non-empty string
 
-          let row = intermediateTable[rowKey];
-          if (!row) {
-            row = {};
-            intermediateTable[rowKey] = row;
-            rowDescs[rowKey] = {
-              coord: y,
-              key: rowKey
-            };
-          }
+            const y = Math.round(textItem.transform[5]);
+            const rowKey = coord2key(y);
 
-          const x = Math.round(textItem.transform[4]);
-          const colKey = coord2key(x);
+            let row = intermediateTable[rowKey];
+            if (!row) {
+              row = {};
+              intermediateTable[rowKey] = row;
+              rowDescs[rowKey] = {
+                coord: y,
+                key: rowKey
+              };
+            }
 
-          let cell = row[colKey];
-          if (!cell) {
-            cell = {
-              x,
-              y,
-              text: textItem.str
-            };
-            row[colKey] = cell;
-            colDescs[colKey] = {
-              coord: x,
-              key: colKey
-            };
+            const x = Math.round(textItem.transform[4]);
+            const colKey = coord2key(x);
+
+            let cell = row[colKey];
+            if (!cell) {
+              cell = {
+                x,
+                y,
+                text: textItem.str
+              };
+              row[colKey] = cell;
+              colDescs[colKey] = {
+                coord: x,
+                key: colKey
+              };
+            }
           }
         } else
           throw new Error(
@@ -211,7 +216,7 @@ export async function analyzePDF(
 
     return result;
   } catch (e) {
-    showError("Loading failed: " + e);
+    showError(`Loading file ${fileName} failed: ` + e);
     console.error(e);
     return Promise.reject(e);
   }
