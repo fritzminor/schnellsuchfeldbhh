@@ -1,4 +1,4 @@
-import { analyzePDF } from "./analyzePDF";
+import { analyzePDF, TabularContent } from "./analyzePDF";
 import {
   readFileSync,
   access,
@@ -7,6 +7,7 @@ import {
 } from "fs";
 import { reject } from "lodash";
 import { analyzeTabContent } from "./importHOLTitGr";
+import { Workbook } from "exceljs";
 
 function existsPromise(filename: string): Promise<void> {
   return new Promise<void>((resolve, reject) => {
@@ -15,6 +16,30 @@ function existsPromise(filename: string): Promise<void> {
       else resolve();
     });
   });
+}
+
+function createExcel(data: TabularContent) {
+  const workbook = new Workbook();
+  // Force workbook calculation on load
+  workbook.calcProperties.fullCalcOnLoad = true;
+  const sheet = workbook.addWorksheet("TabularContent");
+  sheet.addRow(["p#", "Seite", "Row#", "y", "Cell#"]);
+  data.pages.forEach((page, index) => {
+    sheet.addRow([index, page.pagenr]);
+    page.rows.forEach((row, rowNo) => {
+      const rowArr: (string | number)[] = [
+        index,
+        page.pagenr,
+        rowNo,
+        row.y
+      ];
+      row.cells.forEach((cell, cellNo) => {
+        rowArr.push(cellNo, cell.x, cell.text || "null");
+      });
+      sheet.addRow(rowArr);
+    });
+  });
+  return workbook;
 }
 
 describe("importHOLTitGr", () => {
@@ -49,14 +74,15 @@ describe("importHOLTitGr", () => {
     }
   });
 
+
   // This test is skipped, if titGrTest.link.pdf is missing
   test("analyzePDF plus analyzeTabContent - titGrPDF", async () => {
-    const pdfFileName =
-      "public/testmaterial/titGrTest.link.pdf";
+    const pdfFileName = //"/tmp/p27-28.pdf";
+          "public/testmaterial/titGrTest.link.pdf";
     try {
       await existsPromise(pdfFileName);
 
-      expect.assertions(2);
+      expect.assertions(8);
       const pdfData = readFileSync(pdfFileName);
       const pdfWorkerFileName = realpathSync(
         "node_modules/pdfjs-dist/legacy/build/pdf.worker.js"
@@ -68,21 +94,38 @@ describe("importHOLTitGr", () => {
         pdfWorkerFileName
       );
 
-      const firstRow = tabContent.pages[0].rows[0];
-      console.log(firstRow);
-      const secondRow = tabContent.pages[0].rows[1];
-      console.log(secondRow);
-      const thirdRow = tabContent.pages[0].rows[2];
-      console.log(thirdRow);
-      const fourthRow = tabContent.pages[0].rows[3];
-      console.log(fourthRow);
-      expect(firstRow.cells[1].text).toEqual("Kapitel");
-      expect(secondRow.cells[2].text).toEqual("0101");
+      /* For debugging purposes:
+      const tabContentFile = "/tmp/tabContent.xlsx";
+      const workbook = createExcel(tabContent);
+      await workbook.xlsx.writeFile(tabContentFile);
+      */
 
-      const tgInfo=analyzeTabContent(tabContent,pdfFileName);
-      expect(tgInfo).toEqual("viele Tgs");
+      const firstRow = tabContent.pages[0].rows[0];
+      const secondRow = tabContent.pages[0].rows[1];
+
+      //console.log("second row: ", secondRow);
+
+      expect(firstRow.cells[1].text).toEqual("Kapitel");
+
+      const tgInfo = analyzeTabContent(
+        tabContent,
+        pdfFileName
+      );
+      expect(tgInfo.subTgKeys2TgKeys["1503TG81A"]).toEqual(
+        "1503TG80A"
+      );
+      expect(tgInfo.tgMap["1277TG98A"].name.substr(0,2)).toEqual ("98"
+      );
+
+      expect(tgInfo.subTgKeys2TgKeys["1506TG79A"]).toEqual(
+        "1506TG79A"
+      );
+      expect(tgInfo.tgMap["1505TG94A"].short).toEqual("94");
+      expect(tgInfo.tgMap["1506TG78A"].short).toEqual("78");
+      expect(tgInfo.tgMap["1506TG80A"].name.length).toBeGreaterThan(30);
+      expect(tgInfo.tgMap["1506TG79A"].name.length).toBeGreaterThan(100);
     } catch (e) {
-      if (e.errno && e.path) {
+      if (e && (e as any).errno && (e as any).path) {
         console.log(
           `Could not find file ${pdfFileName}. Skipping test.`
         );

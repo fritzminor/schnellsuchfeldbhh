@@ -82,7 +82,7 @@ export function analyzeTabContent(
   const subTgKeys2TgKeys: {
     [subTgKey: string]: string;
   } = {};
-  console.log("tabularContent", tabularContent);
+  // console.log("tabularContent", tabularContent);
   let lastTg: SectionMap["any"] | null = null;
   tabularContent.pages.forEach((page) => {
     let status = 1; // 0 started is not relevant
@@ -93,17 +93,19 @@ export function analyzeTabContent(
     // 4 skip the rest
 
     let textColNo = 0;
+    let tgColNo = 0;
 
+    //console.log("page begin ",lastTg);
     page.rows.forEach((row) => {
       switch (status) {
         case 1:
-          console.log(
-            "status 1 p",
-            page.pagenr,
-            "no ",
-            textColNo,
-            row
-          );
+          // console.log(
+          //   "status 1 p",
+          //   page.pagenr,
+          //   "no ",
+          //   textColNo,
+          //   row
+          // );
           if (
             !(
               (
@@ -126,21 +128,26 @@ export function analyzeTabContent(
           if (
             row.cells[8]?.text &&
             row.cells[8].text === "Text"
-          )
+          ){
+            // probably this page does not have any tgNr
+            tgColNo=7; 
             textColNo = 8;
+          }
           if (
             row.cells[9]?.text &&
             row.cells[9].text === "Text"
           )
+          {
+            tgColNo = 8;
             textColNo = 9;
+          }
           //console.log("cells[10] missing", row, page);
-          console.log("check", row);
+          // console.log("check", row);
           if (textColNo) status = 3;
           else status = 4; // skip the rest
           break;
 
         case 3: {
-          
           const kapitel = row.cells[2].text?.padStart(
             4,
             "0"
@@ -149,16 +156,22 @@ export function analyzeTabContent(
            *  Die Untertitelnummer, bei der Titelgruppe 65-67 kann die
            *  Untertitelnummer 65, 66 oder 67 sein; die Titelgruppennummer
            *  ist immer 65.
+           *
+           *  Im PDF erscheint immer eine Untertitelnummer. Die zugehörige
+           *  Titelnummer erscheint dagegen nur, wenn es zu einer
+           *  Titelgruppe mehrere Untertitelnummern gibt.
            */
           const subTgNr = row.cells[4].text;
           const expenseChr = row.cells[6].text; // E for revenue or A for expense
-          const tgNr = row.cells[8].text;
+          const tgNr = row.cells[tgColNo].text;
           const tgText = row.cells[textColNo].text;
 
           if (subTgNr) {
-            //
-
             const subTgKey = `${kapitel}TG${subTgNr}${expenseChr}`;
+
+            /** tgKey, z.B. 1303TG71A. Sie wird aus der tgNr, hilfsweise der
+             *  subTgNr erstellt.
+             */
             const tgKey = `${kapitel}TG${
               tgNr ? tgNr : subTgNr
             }${expenseChr}`;
@@ -170,25 +183,32 @@ export function analyzeTabContent(
                 throw new Error(`Fehler in ${fileName} Seite ${page.pagenr}: 
                 Unterschiedliche Titelgruppe für ${subTgKey}: ${matchingTgKey} statt ${tgKey}.`);
               }
-            } else subTgKeys2TgKeys[subTgKey] = tgKey;
+            } else if (
+              expenseChr !== "A" &&
+              expenseChr !== "E"
+            )
+              throw new Error(`Fehler in ${fileName} Seite ${page.pagenr}: 
+              Keine Ausgaben/Einnahmen-Kennzeichnung für ${tgKey}.`);
+            else subTgKeys2TgKeys[subTgKey] = tgKey;
+
             if (tgText) {
               if (tgMap[tgKey]) {
+                // check that different subTgNumbers of one tgNumber have the same tgText
+                //    (if any, usually there is only one tgText for multiple subTgNumbers)
                 if (tgMap[tgKey].name !== tgText) {
-                  console.log(`Warnung für ${fileName} Seite ${page.pagenr}: 
+                  console.warn(`Warnung für ${fileName} Seite ${page.pagenr}: 
                   Text für Titelgruppe ${tgKey} (${subTgKey}) unterschiedlich: ${tgText} anstatt ${tgMap[tgKey].name}.`);
                 }
               } else {
-                // if (tgNr)
-                if (lastTg && !lastTg.name)
-                {
-                  //console.log("tgMap", tgMap);
-                  console.log("tgKey",tgKey);
-                  console.log("lastTG",lastTg)
-                  console.error("Row: ",row)
-                  throw new Error(`Fehler in ${fileName} Arbeitsblatt ${page.pagenr} bei TG ${lastTg.short}: 
-                     Keine Titelgruppennummer.`);
-                }
-                else {
+                // subTgNr and tgText available, first occurence of tgKey
+                if (lastTg && !lastTg.name) {
+                  // is lastTG incomplete?
+                  console.error("tgKey", tgKey);
+                  console.error("lastTG", lastTg);
+                  console.error("Row: ", row);
+                  throw new Error(`Fehler in ${fileName} Seite ${page.pagenr} bei TG ${lastTg.short}: 
+                     Kein Titelgruppentext.`);
+                } else {
                   lastTg = {
                     short: tgNr || subTgNr,
                     name: tgText
@@ -203,16 +223,16 @@ export function analyzeTabContent(
             } else {
               // no text, but tgNr or subTgNr
               if (!tgMap[tgKey]) {
+                // first occurence of tgKey
+
                 if (lastTg && !lastTg.name)
-                  throw new Error(`Fehler in ${fileName} Arbeitsblatt ${page.pagenr} bei TG ${lastTg.short}: 
+                  throw new Error(`Fehler in ${fileName} Seite ${page.pagenr} bei TG ${lastTg.short}: 
                      Keine Titelgruppennummer.`);
                 else {
                   lastTg = {
                     short: tgNr || subTgNr,
                     name: ""
                   };
-                  console.log("Setting lastTG with empty name ", row);
-
                   tgMap[tgKey] = lastTg;
                 }
               }
@@ -230,10 +250,13 @@ export function analyzeTabContent(
           ) {
             // lastTg available and
             // empty line, but text
-            lastTg.name += tgText;
+            //
+            // The text description of the TG has a second line.
+            lastTg.name += (lastTg.name?" ":"")+tgText;
           } else status = 4; // skip remaining rows
-        }
-      }
+
+        } // case status===3
+      } // switch status
     }); // rows.forEach
   });
   return {
