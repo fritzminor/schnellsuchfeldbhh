@@ -107,10 +107,15 @@ describe("importHOLTitGr", () => {
 
       expect(firstRow.cells[1].text).toEqual("Kapitel");
 
+      const warnings: String[]=[]
       const tgInfo = analyzeTabContent(
         tabContent,
-        pdfFileName
+        pdfFileName,
+        (msg)=>{warnings.push(msg)}
       );
+      if(warnings.length)
+        console.warn(`Warnings while importing ${pdfFileName}:`,warnings);
+        
       expect(tgInfo.subTgKeys2TgKeys["1503TG81A"]).toEqual(
         "1503TG80A"
       );

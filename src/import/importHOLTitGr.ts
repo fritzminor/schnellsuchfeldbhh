@@ -39,7 +39,8 @@ export async function importHOLTitGr_PDF(
 
     const { tgMap, subTgKeys2TgKeys } = analyzeTabContent(
       tabularContent,
-      file.name
+      file.name,
+      console.warn
     );
 
     const hhsts: HHSt[] = oldHhsts.map((hhst) => ({
@@ -68,9 +69,16 @@ export async function importHOLTitGr_PDF(
   }
 }
 
+/** analyzes PDF content in table form
+ * 
+ * @param tabularContent 
+ * @param fileName 
+ * @param importWarning - is called with a warning (not an error) when importing
+ * @returns tgMap and map of subTgKeys to tgKeys
+ */
 export function analyzeTabContent(
   tabularContent: TabularContent,
-  fileName: string
+  fileName: string, importWarning: (msg:string) => void
 ): {
   tgMap: SectionMap;
   subTgKeys2TgKeys: {
@@ -196,7 +204,7 @@ export function analyzeTabContent(
                 // check that different subTgNumbers of one tgNumber have the same tgText
                 //    (if any, usually there is only one tgText for multiple subTgNumbers)
                 if (tgMap[tgKey].name !== tgText) {
-                  console.warn(`Warnung für ${fileName} Seite ${page.pagenr}: 
+                  importWarning(`Warnung für ${fileName} Seite ${page.pagenr}: 
                   Text für Titelgruppe ${tgKey} (${subTgKey}) unterschiedlich: ${tgText} anstatt ${tgMap[tgKey].name}.`);
                 }
               } else {
