@@ -1,8 +1,6 @@
 import { Workbook } from "exceljs";
-import { UserName } from "../navigation/UsersTypes";
 import { AppState } from "../store/AppState";
-import { BaseData } from "../store/AppState";
-import { SetModalInfo, Store } from "../store/Store";
+import { Store } from "../store/Store";
 import { importBHH_CSV } from "./importBHH";
 import { importHOLTitGr_PDF } from "./importHOLTitGr";
 import { importHOLXSLX } from "./importHOLXSLX";
@@ -10,17 +8,14 @@ import { importSN_XSLX } from "./importSN_XLSX";
 
 type Importer = (
   file: File,
-  setCurrentUser: (newCurrentUser: UserName) => void,
-  setLocalData: (localData: BaseData) => void,
-  setModalInfo: SetModalInfo,
+  store: Store,
   appState: AppState
 ) => Promise<void>;
 
 type XlsxImporter = (
   file: File,
   workbook: Workbook,
-  setCurrentUser: (newCurrentUser: UserName) => void,
-  setLocalData: (localData: BaseData) => void,
+  store: Store,
   appState: AppState
 ) => void;
 
@@ -38,24 +33,16 @@ const importers: Importer[] = [
 
 async function importFile(
   file: File,
-  setCurrentUser: (newCurrentUser: UserName) => void,
-  setLocalData: (localData: BaseData) => void,
-  setModalInfo: SetModalInfo,
+  store: Store,
   appState: AppState
 ): Promise<void> {
   for (const importer of importers) {
     try {
-      setModalInfo(
+      store.setModalInfo(
         `Lade ${file.name} in den Browser (${importer.name}) ... `
       );
 
-      await importer(
-        file,
-        setCurrentUser,
-        setLocalData,
-        setModalInfo,
-        appState
-      );
+      await importer(file, store, appState);
       return Promise.resolve(); //success
     } catch (e) {
       console.log(e);
@@ -70,13 +57,11 @@ async function importFile(
 
 function importXLSX(
   file: File,
-  setCurrentUser: (newCurrentUser: UserName) => void,
-  setLocalData: (localData: BaseData) => void,
-  setModalInfo: SetModalInfo,
+  store: Store,
   appState: AppState
 ): Promise<void> {
   return new Promise<void>((resolve, reject) => {
-    setModalInfo(
+    store.setModalInfo(
       `Lade ${file.name} in den Browser (importXLSX) ... `
     );
 
@@ -96,17 +81,11 @@ function importXLSX(
           for (const importer of xlsxImporters) {
             if (!finished) {
               try {
-                setModalInfo(
+                store.setModalInfo(
                   `Lade ${file.name} in den Browser (${importer.name}) ... `
                 );
 
-                importer(
-                  file,
-                  workbook,
-                  setCurrentUser,
-                  setLocalData,
-                  appState
-                );
+                importer(file, workbook, store, appState);
                 finished = true;
                 resolve(); //success
                 return;
@@ -146,8 +125,6 @@ export const loadFile = (
   loadingFinished?: () => void
 ): void => {
   const {
-    setCurrentUser,
-    setLocalData,
     setModalInfo,
     showError
   } = store;
@@ -164,9 +141,7 @@ export const loadFile = (
 
     importFile(
       file,
-      setCurrentUser,
-      setLocalData,
-      setModalInfo,
+      store,
       appState
     )
       .then(() => {

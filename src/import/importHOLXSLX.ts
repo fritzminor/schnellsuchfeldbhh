@@ -1,5 +1,4 @@
 import { Workbook } from "exceljs";
-import { UserName } from "../navigation/UsersTypes";
 import { emptyBaseData } from "../store/AppState";
 import { HHSt } from "../store/HHStType";
 import { Store } from "../store/Store";
@@ -7,10 +6,9 @@ import { Store } from "../store/Store";
 export function importHOLXSLX(
   file: File,
   workbook: Workbook,
-  setCurrentUser: (newCurrentUser: UserName) => void,
-  setLocalData: Store["setLocalData"]
+  {setLocalData,setCurrentUser}:Store
 ): void {
-  console.log("Loaded", workbook);
+  
   const worksheet = workbook.worksheets[0];
   if (worksheet) {
     const hhsts: HHSt[] = [];

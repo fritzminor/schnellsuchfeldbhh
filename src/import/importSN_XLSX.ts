@@ -1,5 +1,4 @@
 import { Workbook } from "exceljs";
-import { UserName } from "../navigation/UsersTypes";
 import {
   emptyBaseData,
   SectionMap
@@ -14,8 +13,7 @@ import { Store } from "../store/Store";
 export function importSN_XSLX(
   file: File,
   workbook: Workbook,
-  setCurrentUser: (newCurrentUser: UserName) => void,
-  setLocalData: Store["setLocalData"]
+  {setLocalData,setCurrentUser}:Store
 ): void {
   console.log("Loaded", workbook);
   const worksheet = workbook.worksheets[0];

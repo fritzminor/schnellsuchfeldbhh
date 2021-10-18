@@ -1,4 +1,3 @@
-import { UserName } from "../navigation/UsersTypes";
 import { HHSt } from "../store/HHStType";
 import Papa from "papaparse";
 import { emptyBaseData } from "../store/AppState";
@@ -24,9 +23,7 @@ type CsvRow = {
  */
 export function importBHH_CSV(
   file: File | NodeJS.ReadableStream,
-  setCurrentUser: (newCurrentUser: UserName) => void,
-  setLocalData: Store["setLocalData"],
-  setModalInfo: (modalInfo: string) => void
+  {setCurrentUser,setLocalData,setModalInfo}:Store, 
 ): Promise<void> {
   return new Promise<void>((resolve, reject) => {
     const importedData = { ...emptyBaseData };

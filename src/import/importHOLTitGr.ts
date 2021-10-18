@@ -1,7 +1,6 @@
-import { UserName } from "../navigation/UsersTypes";
 import { AppState, SectionMap } from "../store/AppState";
 import { HHSt } from "../store/HHStType";
-import { SetModalInfo, Store } from "../store/Store";
+import { Store } from "../store/Store";
 import {
   analyzePDF,
   openFile,
@@ -16,9 +15,7 @@ import {
  */
 export async function importHOLTitGr_PDF(
   file: File,
-  setCurrentUser: (newCurrentUser: UserName) => void,
-  setLocalData: Store["setLocalData"],
-  setModalInfo: SetModalInfo,
+  {setCurrentUser,setLocalData,setModalInfo}:Store, 
   appState: AppState
 ): Promise<void> {
   try {
