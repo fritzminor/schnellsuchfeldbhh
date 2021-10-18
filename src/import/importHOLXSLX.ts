@@ -1,14 +1,16 @@
 import { Workbook } from "exceljs";
-import { emptyBaseData } from "../store/AppState";
+import {
+  emptyBaseData,
+  VersionDescriptor
+} from "../store/AppState";
 import { HHSt } from "../store/HHStType";
 import { Store } from "../store/Store";
 
 export function importHOLXSLX(
   file: File,
   workbook: Workbook,
-  {setLocalData,setCurrentUser}:Store
+  { setLocalData, setCurrentUser }: Store
 ): void {
-  
   const worksheet = workbook.worksheets[0];
   if (worksheet) {
     const hhsts: HHSt[] = [];
@@ -59,9 +61,10 @@ export function importHOLXSLX(
             ? sollJahr1CellValue.valueOf()
             : 0;
 
-          const haushaltsstelleArray = /^(\d\d) (\d\d)\/(\d\d\d) (\d\d)( apl\.( AR)?)?$/.exec(
-            haushaltsstelle
-          );
+          const haushaltsstelleArray =
+            /^(\d\d) (\d\d)\/(\d\d\d) (\d\d)( apl\.( AR)?)?$/.exec(
+              haushaltsstelle
+            );
           if (!haushaltsstelleArray)
             throw new Error(
               `Fehler in Zeile ${row.number}: Haushaltsstelle "${haushaltsstelle}" nicht erkannt.`
@@ -88,7 +91,22 @@ export function importHOLXSLX(
         }
       }
     });
-    setLocalData({ ...emptyBaseData, hhsts, firstYear });
+
+    const versionDesc: VersionDescriptor = {
+      orgBudgetName: "Staatshaushalt",
+      budgetName: `HH ${firstYear}`,
+      lineName: `Arbeitsstand`,
+      modStateName: `geändert am ${new Date(
+        file.lastModified
+      ).toLocaleString()}`,
+      timestamp: file.lastModified
+    };
+    setLocalData({
+      ...emptyBaseData,
+      versionDesc,
+      hhsts,
+      firstYear
+    });
     setCurrentUser("LokaleDaten");
   } else
     throw new Error(

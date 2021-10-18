@@ -22,7 +22,7 @@ export const HHBreadcrumbs:FC<HHBreadcrumbsProps>= ({versionDesc,firstYear}) => 
             <a href="#">{versionDesc?.budgetName || firstYear || "Haushaltsplan"}</a>
           </li>
           <li>
-            <a href="#">{versionDesc?.containerName || "a/b/c-Linie"}</a>
+            <a href="#">{versionDesc?.lineName || "a/b/c-Linie"}</a>
           </li>
           <li>
             <a href="#">{versionDesc?.modStateName || `Stand: ${  new Date().toLocaleString() }` }</a>

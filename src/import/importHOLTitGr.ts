@@ -1,4 +1,4 @@
-import { AppState, SectionMap } from "../store/AppState";
+import { AppState, SectionMap, VersionDescriptor } from "../store/AppState";
 import { HHSt } from "../store/HHStType";
 import { Store } from "../store/Store";
 import {
@@ -54,8 +54,21 @@ export async function importHOLTitGr_PDF(
 
     hhsts.sort(compareHHSt);
 
+    const oldBaseData=appState.derived.baseData;
+
+    const versionDesc: VersionDescriptor = {
+      orgBudgetName: "Staatshaushalt",
+      budgetName: `HH ${oldBaseData.firstYear}`,
+      lineName: `Arbeitsstand`,
+      modStateName: `geändert am ${new Date(
+        file.lastModified
+      ).toLocaleString()}`,
+      timestamp: file.lastModified
+    };
+
     setLocalData({
-      ...appState.derived.baseData,
+      ...oldBaseData,
+      versionDesc,
       tgMap,
       hhsts
     });

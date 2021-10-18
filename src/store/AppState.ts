@@ -35,14 +35,26 @@ export type SectionMap = {
 export type VersionDescriptor = {
   /** e.g. "Bundeshaushalt" */
   orgBudgetName: string;
-  /** e.g. "BHH 2021"
+  /** e.g. "BHH 2021", "Nachtrag 2021"
    *
    */
   budgetName: string;
-  /** A container can gather different modStates. It has at least one modState. */
-  containerName: string;
-  /** Modification state. Each change or each bundle of changes results in a modification state. */
+  /** A line has one or many modStates.
+   * e.g. "FM-Ziel", "Ressortforderung", "Regierungsentwurf"
+    */
+  lineName: string;
+
+  /** Modification state. Each change or each bundle of changes results in a modification state.
+   * e.g. "uploaded at 2021-12-13", "Änderungen lt. Regierungsbeschluss v. 13.12.2021", 
+   *      "Haushaltsberatungen UM/FM am 10.10.2021"
+   */
   modStateName: string;
+
+  /** milliseconds since UNIX epoch (January 1, 1970). 
+   * used for sorting. 
+   *  @see Date.getTime()
+   */
+  timestamp: number;
 };
 
 export type BaseData = {
