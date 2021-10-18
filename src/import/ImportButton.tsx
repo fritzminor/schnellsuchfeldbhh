@@ -19,17 +19,7 @@ export function ImportButton({
   loadFileFinished,
   appState
 }: ImportButtonProps): JSX.Element {
-  const {
-    setCurrentUser,
-    setLocalData,
-    showUserMessage,
-    setModalInfo
-  } = store;
-
-  function showError(msg: string, error: string) {
-    console.log("Showing error ", msg, error);
-    showUserMessage(msg);
-  }
+  const { setModalInfo } = store;
 
   return (
     <div className="file is-info">
@@ -50,10 +40,7 @@ export function ImportButton({
             loadFile(
               evt,
               appState,
-              setCurrentUser,
-              setLocalData,
-              setModalInfo,
-              showError,
+              store,
               loadFileFinished
             );
           }}

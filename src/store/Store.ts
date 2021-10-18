@@ -46,6 +46,26 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
     setModalInfo(null);
   };
 
+  /** shows a user message for a given time.
+   * @param userMessage - message to be shown in a modal dialog
+   * @param timeout  - timeout in ms, default: 15000
+   */
+  function showUserMessage(
+    userMessage: string,
+    timeout = 15000
+  ) {
+    setModalInfo(userMessage);
+    setTimeout(() => {
+      hideUserMessage();
+    }, timeout);
+  }
+
+  function showError(msg: string, error: string) {
+    console.log("Showing error ", msg, error);
+    showUserMessage(msg);
+  }
+
+
   return {
     setSearchExpression(
       searchexpression: string,
@@ -86,17 +106,8 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
     setModalInfo,
     /** hides user message */
     hideUserMessage,
-
-    /** shows a user message for a given time.
-     * @param userMessage - message to be shown in a modal dialog
-     * @param timeout  - timeout in ms, default: 15000
-     */
-    showUserMessage(userMessage: string, timeout = 15000) {
-      setModalInfo(userMessage);
-      setTimeout(() => {
-        hideUserMessage();
-      }, timeout);
-    }
+    showUserMessage,
+    showError
   };
 }
 

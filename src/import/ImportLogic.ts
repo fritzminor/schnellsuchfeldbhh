@@ -2,8 +2,7 @@ import { Workbook } from "exceljs";
 import { UserName } from "../navigation/UsersTypes";
 import { AppState } from "../store/AppState";
 import { BaseData } from "../store/AppState";
-import { SetModalInfo } from "../store/Store";
-import { AnalyzeResults } from "./importAnalyseSheet";
+import { SetModalInfo, Store } from "../store/Store";
 import { importBHH_CSV } from "./importBHH";
 import { importHOLTitGr_PDF } from "./importHOLTitGr";
 import { importHOLXSLX } from "./importHOLXSLX";
@@ -46,8 +45,10 @@ async function importFile(
 ): Promise<void> {
   for (const importer of importers) {
     try {
-      setModalInfo(`Lade ${file.name} in den Browser (${importer.name}) ... `);
-      
+      setModalInfo(
+        `Lade ${file.name} in den Browser (${importer.name}) ... `
+      );
+
       await importer(
         file,
         setCurrentUser,
@@ -75,8 +76,10 @@ function importXLSX(
   appState: AppState
 ): Promise<void> {
   return new Promise<void>((resolve, reject) => {
-    setModalInfo(`Lade ${file.name} in den Browser (importXLSX) ... `);
-    
+    setModalInfo(
+      `Lade ${file.name} in den Browser (importXLSX) ... `
+    );
+
     const r = new FileReader();
     r.onload = async (evt) => {
       if (
@@ -93,8 +96,10 @@ function importXLSX(
           for (const importer of xlsxImporters) {
             if (!finished) {
               try {
-                setModalInfo(`Lade ${file.name} in den Browser (${importer.name}) ... `);
-    
+                setModalInfo(
+                  `Lade ${file.name} in den Browser (${importer.name}) ... `
+                );
+
                 importer(
                   file,
                   workbook,
@@ -134,17 +139,18 @@ function importXLSX(
 export const loadFile = (
   evt: React.ChangeEvent<HTMLInputElement>,
   appState: AppState,
-  setCurrentUser: (newCurrentUser: UserName) => void,
-  setLocalData: (localData: BaseData) => void,
-  setModalInfo: (
-    modalInfo: string | AnalyzeResults | null
-  ) => void,
-  showError: (msg: string, error: string) => void,
+  store: Store,
   /** this callback is called at the end of
    * the loading process, even if an error occurred.
    */
   loadingFinished?: () => void
 ): void => {
+  const {
+    setCurrentUser,
+    setLocalData,
+    setModalInfo,
+    showError
+  } = store;
   const files = evt.target.files;
   if (files) {
     const file = files[0];
