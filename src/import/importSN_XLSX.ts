@@ -14,7 +14,7 @@ import { Store } from "../store/Store";
 export function importSN_XSLX(
   file: File,
   workbook: Workbook,
-  { setLocalData, setCurrentUser }: Store
+  { addImportData, setCurrentUser }: Store
 ): void {
   console.log("Loaded", workbook);
   const worksheet = workbook.worksheets[0];
@@ -138,7 +138,7 @@ export function importSN_XSLX(
       timestamp: file.lastModified
     };
 
-    setLocalData({
+    addImportData({
       ...emptyBaseData,
       versionDesc,
       hhsts,

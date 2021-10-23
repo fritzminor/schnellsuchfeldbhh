@@ -1,8 +1,12 @@
 import { HHSt } from "../store/HHStType";
 import Papa from "papaparse";
-import { emptyBaseData } from "../store/AppState";
+import {
+  emptyBaseData,
+  VersionDescriptor
+} from "../store/AppState";
 import { Store } from "../store/Store";
 import { errorMessage } from "../utils/errorMessage";
+import { hasOwnProperty } from "../utils/hasOwnProperty";
 
 type CsvRow = {
   einzelplan: string;
@@ -23,7 +27,7 @@ type CsvRow = {
  */
 export function importBHH_CSV(
   file: File | NodeJS.ReadableStream,
-  {setCurrentUser,setLocalData,setModalInfo}:Store, 
+  { setCurrentUser, addImportData, setModalInfo }: Store
 ): Promise<void> {
   return new Promise<void>((resolve, reject) => {
     const importedData = { ...emptyBaseData };
@@ -31,17 +35,16 @@ export function importBHH_CSV(
     const fileName =
       file instanceof File
         ? file.name
-        : ((file as unknown) as { path: string }).path;
-    const regExFileName = /hh_(\d{4})_.*csv$/.exec(
-      fileName
-    );
+        : (file as unknown as { path: string }).path;
+    const regExFileName =
+      /(hh|haushalt)_(\d{4})_?.*csv$/.exec(fileName);
     if (!regExFileName)
       reject(
         new Error(`Dateinamen ${fileName} nicht erkannt`)
       );
     else {
       importedData.firstYear = parseInt(
-        regExFileName[1],
+        regExFileName[2],
         10
       );
 
@@ -63,7 +66,7 @@ export function importBHH_CSV(
 
           //      if (rowNr < 3) console.log(row);
 
-          const data = (row.data as unknown) as CsvRow;
+          const data = row.data as unknown as CsvRow;
           if (!data) {
             throw new Error(
               `Fehler beim Lesen von ${fileName}: ${JSON.stringify(
@@ -137,7 +140,6 @@ export function importBHH_CSV(
         header: true,
         skipEmptyLines: "greedy",
         error: (error) => {
-          
           setModalInfo(
             `importBHH: Fehler beim Parsen der Datei ${
               fileName || "(?)"
@@ -146,15 +148,29 @@ export function importBHH_CSV(
           reject(error);
         },
         complete: (results) => {
-          if (results.meta.aborted){
-            const msg=errMessage || "FEHLER: Ursache unbekannt."
-            setModalInfo(
-              msg
-            );
+          if (results.meta.aborted) {
+            const msg =
+              errMessage || "FEHLER: Ursache unbekannt.";
+            setModalInfo(msg);
             reject(new Error(msg));
-          }
-          else {
-            setLocalData(importedData);
+          } else {
+            const lastModified = hasOwnProperty(
+              file,
+              "lastModified"
+            )
+              ? (file as File).lastModified
+              : new Date().getTime();
+            const versionDesc: VersionDescriptor = {
+              orgBudgetName: "Bundeshaushalt",
+              budgetName: `HH ${importedData.firstYear}`,
+              lineName: `Arbeitsstand`,
+              modStateName: `geändert am ${new Date(
+                lastModified
+              ).toLocaleString()}`,
+              timestamp: lastModified
+            };
+            importedData.versionDesc = versionDesc;
+            addImportData(importedData);
             setCurrentUser("LokaleDaten");
             resolve();
           }
@@ -163,3 +179,5 @@ export function importBHH_CSV(
     }
   });
 }
+
+

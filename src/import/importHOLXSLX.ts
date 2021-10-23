@@ -9,7 +9,7 @@ import { Store } from "../store/Store";
 export function importHOLXSLX(
   file: File,
   workbook: Workbook,
-  { setLocalData, setCurrentUser }: Store
+  { addImportData, setCurrentUser }: Store
 ): void {
   const worksheet = workbook.worksheets[0];
   if (worksheet) {
@@ -101,7 +101,7 @@ export function importHOLXSLX(
       ).toLocaleString()}`,
       timestamp: file.lastModified
     };
-    setLocalData({
+    addImportData({
       ...emptyBaseData,
       versionDesc,
       hhsts,

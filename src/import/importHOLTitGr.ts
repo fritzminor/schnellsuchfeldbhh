@@ -15,7 +15,7 @@ import {
  */
 export async function importHOLTitGr_PDF(
   file: File,
-  {setCurrentUser,setLocalData,setModalInfo}:Store, 
+  {setCurrentUser,addImportData,setModalInfo}:Store, 
   appState: AppState
 ): Promise<void> {
   try {
@@ -66,7 +66,7 @@ export async function importHOLTitGr_PDF(
       timestamp: file.lastModified
     };
 
-    setLocalData({
+    addImportData({
       ...oldBaseData,
       versionDesc,
       tgMap,

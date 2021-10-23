@@ -205,12 +205,12 @@ In einer produktiven Anwendung müsste an dieser Stelle ein Login-Dialog aufgehe
 
 Statt die Testdaten zu nutzen, kann man auch eigene Daten in den Browser hochladen. Die Daten bleiben dabei rein lokal im Browser auf dem eigenen Rechner, sie werden auf keinen Server hochgeladen. 
 
-Z.B. kann man die Daten, die der *Freistaat Sachsen* als Excel-Daten auf https://www.finanzen.sachsen.de/entwurf-doppelhaushalt-2021-2022-6436.html zur Verfügung stellt (ganz unten auf der Seite bei "maschinenlesbare Daten"), in den Prototyp importieren. Oder man nimmt die Daten vom *Bundeshaushalt* auf https://www.bundeshaushalt.de/download . Zu beachten ist bei Letzterem, dass man die mit "UTF8-CSV" gekennzeichneten Dateien nutzt.
+Z.B. kann man die Daten, die der *Freistaat Sachsen* als Excel-Daten auf https://www.finanzen.sachsen.de/doppelhaushalt-2021-2022-6436.html zur Verfügung stellt (ganz unten auf der Seite bei "maschinenlesbare Daten"), in den Prototyp importieren. Oder man nimmt die Daten vom *Bundeshaushalt* auf https://www.bundeshaushalt.de/download . Zu beachten ist bei Letzterem, dass man die mit "UTF8-CSV" gekennzeichneten Dateien nutzt.
 
 Um die Daten hochzuladen, klickt man rechts oben auf das Bearbeiter-Menü, wo _BearbeiterEpl01und02_ steht. 
 Im aufgehenden Dropdown-Menü wählt man _Daten-Import_. Dann wird man gebeten, die entsprechende Datei 
 auszuwählen. Diese sollte man zuvor z.B. 
-von https://www.finanzen.sachsen.de/entwurf-doppelhaushalt-2021-2022-6436.html[sachsen.de] oder https://www.bundeshaushalt.de/download[Bundeshaushalt.de] heruntergeladen haben.
+von https://www.finanzen.sachsen.de/doppelhaushalt-2021-2022-6436.html[sachsen.de] oder https://www.bundeshaushalt.de/download[Bundeshaushalt.de] heruntergeladen haben.
 
 Man kann auch andere Daten hochladen, wenn sie im selben Format vorliegen. Bei anderen Formaten hilft evtl. ein <<Entwicklung,Issue>> auf https://github.com/fritzminor/schnellsuchfeldbhh/issues[github] einzustellen. Der Author ist ja an Feedback interessiert.
 

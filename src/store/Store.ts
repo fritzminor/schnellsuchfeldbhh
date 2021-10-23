@@ -99,7 +99,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
       }));
     },
 
-    setLocalData(localData: BaseData) {
+    addImportData(localData: BaseData) {
       baseDataArrays.LokaleDaten = localData;
     },
 
