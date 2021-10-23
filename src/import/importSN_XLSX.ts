@@ -1,7 +1,8 @@
 import { Workbook } from "exceljs";
 import {
   emptyBaseData,
-  SectionMap
+  SectionMap,
+  VersionDescriptor
 } from "../store/AppState";
 import { HHSt } from "../store/HHStType";
 import { Store } from "../store/Store";
@@ -13,7 +14,7 @@ import { Store } from "../store/Store";
 export function importSN_XSLX(
   file: File,
   workbook: Workbook,
-  {setLocalData,setCurrentUser}:Store
+  { setLocalData, setCurrentUser }: Store
 ): void {
   console.log("Loaded", workbook);
   const worksheet = workbook.worksheets[0];
@@ -36,13 +37,15 @@ export function importSN_XSLX(
               row.getCell(2).text === "Bezeichnung" &&
               row.getCell(3).text === "Kapitel" &&
               row.getCell(4).text === "Bezeichnung" &&
-              row.getCell(6).text === "Titelgruppe" &&
+              (row.getCell(6).text === "Titelgruppe" ||
+                row.getCell(6).text === "TG") &&
               row.getCell(7).text === "Bezeichnung" &&
               row.getCell(8).text === "Titel" &&
-              row.getCell(9).text ===
-                "Funktionenkennzahl" &&
-              row.getCell(10).text ===
-                "Bezeichnung Funktionenkennzahl" &&
+              (row.getCell(9).text ===
+                "Funktionenkennzahl" || row.getCell(9).text === "FKZ") &&
+              (row.getCell(10).text ===
+                "Bezeichnung Funktionenkennzahl" || row.getCell(10).text ===
+                "Bezeichnung FKZ" ) &&
               row.getCell(11).text === "Zweckbestimmung" &&
               row.getCell(12).text.startsWith("Ansatz ")
             )
@@ -55,7 +58,8 @@ export function importSN_XSLX(
           );
           status = 3;
           break;
-        case 3: { // 3 - actual HHSt rows
+        case 3: {
+          // 3 - actual HHSt rows
           const epl = row.getCell(1).text;
           const kapitel = row.getCell(3).text;
           const kapArray = /^(\d\d)(\d\d)$/.exec(kapitel);
@@ -66,7 +70,6 @@ export function importSN_XSLX(
             );
           }
           const kap = kapArray[2];
-
 
           const titel = row.getCell(8).text;
           const titelArray = /^(\d\d\d)(\d\d)$/.exec(titel);
@@ -86,11 +89,11 @@ export function importSN_XSLX(
             );
           }
 
-          const expense= gruppe.charAt(0) >= "4";
-            
+          const expense = gruppe.charAt(0) >= "4";
+
           const tgNr = row.getCell(6).text;
           const tgKey = tgNr
-            ? `${epl}${kap}TG${tgNr}${expense?'A':'E'}`
+            ? `${epl}${kap}TG${tgNr}${expense ? "A" : "E"}`
             : undefined;
           if (tgKey) {
             if (!tgMap[tgKey]) {
@@ -101,7 +104,6 @@ export function importSN_XSLX(
               };
             }
           }
-
 
           const sollJahr1CellValue = row.getCell(12).value;
           const sollJahr1 = sollJahr1CellValue
@@ -125,7 +127,24 @@ export function importSN_XSLX(
         }
       }
     });
-    setLocalData({ ...emptyBaseData, hhsts, tgMap, firstYear });
+
+    const versionDesc: VersionDescriptor = {
+      orgBudgetName: "Staatshaushalt",
+      budgetName: `DHH ${firstYear}/${firstYear + 1}`,
+      lineName: `Stand`,
+      modStateName: `geändert am ${new Date(
+        file.lastModified
+      ).toLocaleString()}`,
+      timestamp: file.lastModified
+    };
+
+    setLocalData({
+      ...emptyBaseData,
+      versionDesc,
+      hhsts,
+      tgMap,
+      firstYear
+    });
     setCurrentUser("LokaleDaten");
   } else
     throw new Error(
