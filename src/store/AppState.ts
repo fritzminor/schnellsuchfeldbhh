@@ -97,7 +97,7 @@ export type AppState = {
     searchTree: SearchNode | null;
     searchParseErrMessage?: string;
 
-    baseData: BaseData;
+    currentBaseData: BaseData;
 
     /** contains all HHSt of the given user (not restricted to searchexpression / searchTree) 
     hhstArray: HHSt[];

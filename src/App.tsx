@@ -69,7 +69,7 @@ export default function App(): JSX.Element {
         <HHStOverview appState={state} />
       </section>
       <section className="section mb-1 py-1" id="hh_breadcrumb">
-        <HHBreadcrumbs versionDesc={state.derived.baseData.versionDesc} />
+        <HHBreadcrumbs versionDesc={state.derived.currentBaseData.versionDesc} />
       </section>
       <section className="section pt-1" id="hhstList">
         <HHStList appState={state}>

@@ -21,13 +21,18 @@ type CsvRow = {
   "tgr-text": string;
 };
 
+export type ImportBHH_CSV_StorePart = Pick< Store, "setCurrentUser" | "addImportData" | "setModalInfo">;
+
 /** imports data from files following the format of
  * the "UTF8-CSV"-files at
  * https://www.bundeshaushalt.de/download
+ * 
+ * @param file
+ * @param store - subset of {@link Store }
  */
 export function importBHH_CSV(
   file: File | NodeJS.ReadableStream,
-  { setCurrentUser, addImportData, setModalInfo }: Store
+  { setCurrentUser, addImportData, setModalInfo }: ImportBHH_CSV_StorePart
 ): Promise<void> {
   return new Promise<void>((resolve, reject) => {
     const importedData = { ...emptyBaseData };

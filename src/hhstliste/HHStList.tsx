@@ -27,7 +27,7 @@ export function HHStList({
     const [limited, setLimited] =
       React.useState<boolean>(true);
     const hhstLimit = 500;
-    const baseData = appState.derived.baseData;
+    const baseData = appState.derived.currentBaseData;
     rowHeadings.sollJahr1 = baseData.firstYear;
     const hhsts = limited
       ? appState.derived.filteredHhstArray.slice(

@@ -148,7 +148,7 @@ function getDerivedFrom(
   return {
     searchParseErrMessage,
     searchTree,
-    baseData,
+    currentBaseData: baseData,
     filteredHhstArray,
     totals
   };

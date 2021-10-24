@@ -29,7 +29,7 @@ export async function importAnalyzeSheet(
   workbook: Workbook,
   appState: AppState
 ): Promise<AnalyzeResults> {
-  const baseData=appState.derived.baseData;
+  const baseData=appState.derived.currentBaseData;
   let foundExpression = false;
   const analysis: SingleAnalyze[] = [];
   const analyzeRegEx = /^([aAbBeElLzZ])=(.*)$/;

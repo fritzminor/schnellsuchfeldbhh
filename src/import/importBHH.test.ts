@@ -1,6 +1,6 @@
 import { existsSync, createReadStream } from "fs";
 import Papa from "papaparse";
-import { importBHH_CSV } from "./importBHH";
+import { importBHH_CSV, ImportBHH_CSV_StorePart } from "./importBHH";
 
 const bhh0102csv =
   "public/testmaterial/hh_2021_n2_utf8_bpbt.csv";
@@ -33,15 +33,14 @@ test("import BHH Epl 01 und 02 works without errors", (done) => {
   const file = bhh0102csv;
   const readableStream = createReadStream(file);
 
-  importBHH_CSV(
-    readableStream,
-    (usr) => {
+  const store:ImportBHH_CSV_StorePart= {
+    setCurrentUser: (usr) => {
       
       expect(usr).toEqual("LokaleDaten");
       readableStream.close();
       done();
     },
-    (importedData) => {
+    addImportData: (importedData) => {
       expect(importedData.hhsts.length).toEqual(232);
       expect(
         importedData.hhsts.filter(
@@ -50,10 +49,14 @@ test("import BHH Epl 01 und 02 works without errors", (done) => {
         ).length
       ).toEqual(2);
     },
-    (modalInfo) => {
+    setModalInfo: (modalInfo) => {
       console.log("setMdl");
       expect(modalInfo).toEqual(false); // should not occur
     }
+  }
+  importBHH_CSV(
+    readableStream,
+    store
   );
 
   expect(true).toBeTruthy();

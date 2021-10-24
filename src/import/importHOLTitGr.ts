@@ -20,7 +20,7 @@ export async function importHOLTitGr_PDF(
 ): Promise<void> {
   try {
     const oldHhsts: HHSt[] =
-      appState.derived.baseData.hhsts;
+      appState.derived.currentBaseData.hhsts;
 
     // TODO: possibly move to a position, where file format has already been checked
     if (appState.currentUser !== "LokaleDaten")
@@ -54,7 +54,7 @@ export async function importHOLTitGr_PDF(
 
     hhsts.sort(compareHHSt);
 
-    const oldBaseData=appState.derived.baseData;
+    const oldBaseData=appState.derived.currentBaseData;
 
     const versionDesc: VersionDescriptor = {
       orgBudgetName: "Staatshaushalt",
