@@ -14,6 +14,7 @@ import hhstDataBHH from "./material/bhh_long.json";
 import hhstData01_02 from "./material/bhh_epl01_02.json";
 import { AnalyzeResults } from "../import/importAnalyseSheet";
 import { errorMessage } from "../utils/errorMessage";
+import { addVersion, versionsStore } from "./VersionsStore";
 
 const baseDataArrays: { [index in UserName]: BaseData } = {
   BearbeiterGesamtBHH: hhstDataBHH as BaseData,
@@ -65,7 +66,6 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
     showUserMessage(msg);
   }
 
-
   return {
     setSearchExpression(
       searchexpression: string,
@@ -100,6 +100,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
     },
 
     addImportData(localData: BaseData) {
+      addVersion(localData);
       baseDataArrays.LokaleDaten = localData;
     },
 
@@ -159,10 +160,16 @@ export function getStateFrom(
   searchexpression: string,
   currentUser: UserName
 ): AppState {
+  const derived = getDerivedFrom(
+    searchexpression,
+    currentUser
+  );
+  
   return {
+    versionsTree:versionsStore,
     searchexpression,
     currentUser,
     modalInfo: null,
-    derived: getDerivedFrom(searchexpression, currentUser)
+    derived
   };
 }

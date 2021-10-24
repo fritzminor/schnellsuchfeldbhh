@@ -6,7 +6,6 @@ import {
 } from "../store/AppState";
 import { Store } from "../store/Store";
 import { errorMessage } from "../utils/errorMessage";
-import { hasOwnProperty } from "../utils/hasOwnProperty";
 
 type CsvRow = {
   einzelplan: string;
@@ -21,18 +20,25 @@ type CsvRow = {
   "tgr-text": string;
 };
 
-export type ImportBHH_CSV_StorePart = Pick< Store, "setCurrentUser" | "addImportData" | "setModalInfo">;
+export type ImportBHH_CSV_StorePart = Pick<
+  Store,
+  "setCurrentUser" | "addImportData" | "setModalInfo"
+>;
 
 /** imports data from files following the format of
  * the "UTF8-CSV"-files at
  * https://www.bundeshaushalt.de/download
- * 
+ *
  * @param file
  * @param store - subset of {@link Store }
  */
 export function importBHH_CSV(
   file: File | NodeJS.ReadableStream,
-  { setCurrentUser, addImportData, setModalInfo }: ImportBHH_CSV_StorePart
+  {
+    setCurrentUser,
+    addImportData,
+    setModalInfo
+  }: ImportBHH_CSV_StorePart
 ): Promise<void> {
   return new Promise<void>((resolve, reject) => {
     const importedData = { ...emptyBaseData };
@@ -159,12 +165,10 @@ export function importBHH_CSV(
             setModalInfo(msg);
             reject(new Error(msg));
           } else {
-            const lastModified = hasOwnProperty(
-              file,
-              "lastModified"
-            )
-              ? (file as File).lastModified
-              : new Date().getTime();
+            const lastModified =
+              "lastModified" in file
+                ? (file as File).lastModified
+                : new Date().getTime();
             const versionDesc: VersionDescriptor = {
               orgBudgetName: "Bundeshaushalt",
               budgetName: `HH ${importedData.firstYear}`,
@@ -184,5 +188,3 @@ export function importBHH_CSV(
     }
   });
 }
-
-
