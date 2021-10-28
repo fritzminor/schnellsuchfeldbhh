@@ -36,10 +36,8 @@ export default function App(): JSX.Element {
   const store: Store = createStore(setState);
   const { setSearchExpression } = store;
 
-  const [
-    historyListened,
-    setHistoryListened
-  ] = useState<boolean>(false);
+  const [historyListened, setHistoryListened] =
+    useState<boolean>(false);
   if (!historyListened) {
     setHistoryListened(true);
     window.onpopstate = () => {
@@ -68,8 +66,16 @@ export default function App(): JSX.Element {
       <section className="section">
         <HHStOverview appState={state} />
       </section>
-      <section className="section mb-1 py-1" id="hh_breadcrumb">
-        <HHBreadcrumbs versionDesc={state.derived.currentBaseData.versionDesc} />
+      <section
+        className="section mb-1 py-1"
+        id="hh_breadcrumb"
+      >
+        <HHBreadcrumbs
+          versionDesc={
+            state.derived.currentBaseData.versionDesc
+          }
+          versionsTree={state.versionsTree}
+        />
       </section>
       <section className="section pt-1" id="hhstList">
         <HHStList appState={state}>
@@ -107,14 +113,13 @@ export default function App(): JSX.Element {
           </a>{" "}
         </div>
       </footer>
-      
+
       {/* --------- show internal basedata for development purposes -----------
        process.env.NODE_ENV === "development" ? (
         <pre>{JSON.stringify(state.derived.baseData, undefined, "  ")}</pre>
       ) : (
         <></>
-      ) */
-      }
+      ) */}
       <ModalInfo
         modalInfo={state.modalInfo}
         hideUserMessage={store.hideUserMessage}
