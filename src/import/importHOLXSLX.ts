@@ -10,7 +10,7 @@ import { VersionDescriptor } from "../store/VersionsTypes";
 export function importHOLXSLX(
   file: File,
   workbook: Workbook,
-  { addImportData, setCurrentUser }: Store
+  { addImportData }: Store
 ): void {
   const worksheet = workbook.worksheets[0];
   if (worksheet) {
@@ -108,7 +108,6 @@ export function importHOLXSLX(
       hhsts,
       firstYear
     });
-    setCurrentUser("LokaleDaten");
   } else
     throw new Error(
       `Konnte erstes Arbeitblatt in ${file.name} nicht finden.`

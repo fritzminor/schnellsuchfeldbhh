@@ -15,7 +15,7 @@ import { VersionDescriptor } from "../store/VersionsTypes";
 export function importSN_XSLX(
   file: File,
   workbook: Workbook,
-  { addImportData, setCurrentUser }: Store
+  { addImportData }: Store
 ): void {
   console.log("Loaded", workbook);
   const worksheet = workbook.worksheets[0];
@@ -146,7 +146,6 @@ export function importSN_XSLX(
       tgMap,
       firstYear
     });
-    setCurrentUser("LokaleDaten");
   } else
     throw new Error(
       `Konnte erstes Arbeitblatt in ${file.name} nicht finden.`

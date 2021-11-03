@@ -13,6 +13,7 @@ import {
   VersionDescriptor,
   VersionsTree
 } from "./VersionsTypes";
+import { VersionProperties } from "../modal/versionproperties/VersionProperties";
 
 export type Totals = {
   revenues: number;
@@ -81,7 +82,7 @@ export type AppState = {
   searchexpression: string;
   currentUser: UserName;
 
-  modalInfo: string | AnalyzeResults | null;
+  modalInfo: string | AnalyzeResults | VersionProperties | null;
 
   versionsTree: VersionsTree;
 

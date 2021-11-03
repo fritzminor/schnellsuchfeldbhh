@@ -12,7 +12,6 @@ import { HHStOrBlock } from "./HHStType";
 
 import hhstDataBHH from "./material/bhh_long.json";
 import hhstData01_02 from "./material/bhh_epl01_02.json";
-import { AnalyzeResults } from "../import/importAnalyseSheet";
 import { errorMessage } from "../utils/errorMessage";
 import {
   addVersion,
@@ -23,6 +22,7 @@ import {
 import { VersionDescriptor } from "./VersionsTypes";
 import { jsoning } from "../utils/jsoning";
 import { cloneDeep } from "lodash";
+import { VersionProperties } from "../modal/versionproperties/VersionProperties";
 
 const baseDataArrays: { [index in UserName]: BaseData } = {
   BearbeiterGesamtBHH: hhstDataBHH as BaseData,
@@ -43,7 +43,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
     }
   };
   const setModalInfo = (
-    modalInfo: string | AnalyzeResults | null
+    modalInfo: AppState["modalInfo"]
   ): void => {
     setState((prevState: AppState) => ({
       ...prevState,
@@ -77,10 +77,10 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
   /** The version should be made available via VersionsStore#addVersion before
    *  calling this method.
    */
-  function setVersion(versionDesc:VersionDescriptor) {
-    const baseData=getBaseData(versionDesc);
-    if(baseData) {
-      baseDataArrays.LokaleDaten=baseData;
+  function setVersion(versionDesc: VersionDescriptor) {
+    const baseData = getBaseData(versionDesc);
+    if (baseData) {
+      baseDataArrays.LokaleDaten = baseData;
       console.log("setVersion", baseData.versionDesc);
       setState((prevState) => ({
         ...prevState,
@@ -91,7 +91,45 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
         )
       }));
     } else
-      showUserMessage(`Keine Daten für diese Version: ${jsoning(versionDesc)}`)
+      showUserMessage(
+        `Keine Daten für diese Version: ${jsoning(
+          versionDesc
+        )}`
+      );
+  }
+
+  function setCurrentUser(newCurrentUser: UserName) {
+    setState((prevState) => ({
+      ...prevState,
+      currentUser: newCurrentUser,
+      derived: getDerivedFrom(
+        prevState.searchexpression,
+        newCurrentUser
+      )
+    }));
+  }
+
+  /** TODO: should ask user, if
+   * proposed version is correct.
+   */
+  function addImportData(
+    importData: BaseData,
+    askUser = true
+  ) {
+    if (askUser) {
+      const versionProps: VersionProperties = {
+        type: "VersionProperties",
+        basedata: importData,
+        fileName: "", //TODO
+        addImportData
+      };
+      setModalInfo(versionProps);
+    } else {
+      addVersion(importData);
+      baseDataArrays.LokaleDaten = importData;
+      setCurrentUser("LokaleDaten");
+      setModalInfo(null);
+    }
   }
 
   return {
@@ -116,21 +154,8 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
       }));
     },
 
-    setCurrentUser(newCurrentUser: UserName) {
-      setState((prevState) => ({
-        ...prevState,
-        currentUser: newCurrentUser,
-        derived: getDerivedFrom(
-          prevState.searchexpression,
-          newCurrentUser
-        )
-      }));
-    },
-
-    addImportData(localData: BaseData) {
-      addVersion(localData);
-      baseDataArrays.LokaleDaten = localData;
-    },
+    setCurrentUser,
+    addImportData,
 
     setVersion,
 
@@ -145,6 +170,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
 export type Store = ReturnType<typeof createStore>;
 export type SetModalInfo = Store["setModalInfo"];
 export type SetVersion = Store["setVersion"];
+export type AddImportData = Store["addImportData"];
 
 function getDerivedFrom(
   searchexpression: string,

@@ -1,8 +1,6 @@
 import { HHSt } from "../store/HHStType";
 import Papa from "papaparse";
-import {
-  emptyBaseData
-} from "../store/AppState";
+import { emptyBaseData } from "../store/AppState";
 import { Store } from "../store/Store";
 import { errorMessage } from "../utils/errorMessage";
 import { VersionDescriptor } from "../store/VersionsTypes";
@@ -35,11 +33,7 @@ export type ImportBHH_CSV_StorePart = Pick<
  */
 export function importBHH_CSV(
   file: File | NodeJS.ReadableStream,
-  {
-    setCurrentUser,
-    addImportData,
-    setModalInfo
-  }: ImportBHH_CSV_StorePart
+  { addImportData, setModalInfo }: ImportBHH_CSV_StorePart
 ): Promise<void> {
   return new Promise<void>((resolve, reject) => {
     const importedData = cloneDeep(emptyBaseData);
@@ -181,7 +175,6 @@ export function importBHH_CSV(
             };
             importedData.versionDesc = versionDesc;
             addImportData(importedData);
-            setCurrentUser("LokaleDaten");
             resolve();
           }
         }

@@ -100,7 +100,7 @@ function sortModStates(
   if (!aBaseData || !bBaseData)
     throw new Error("No basedata for sorting");
   if (!aBaseData.versionDesc || !bBaseData.versionDesc)
-    throw new Error("No version descriptor for soting.");
+    throw new Error("No version descriptor for sorting.");
   return (
     aBaseData.versionDesc.timestamp -
     bBaseData.versionDesc.timestamp

@@ -145,7 +145,7 @@ export const loadFile = (
       appState
     )
       .then(() => {
-        setModalInfo(null);
+        //setModalInfo(null);
         if (loadingFinished) loadingFinished();
       }) // clear ModalInfo, if no error occured.
       .catch((reason) => {

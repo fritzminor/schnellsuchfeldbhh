@@ -4,7 +4,7 @@ import { AnalyzeResults } from "../import/importAnalyseSheet";
 
 export type ModalAnalysisProps = {
 
-  /** should reset active to false, thus hiding the modal dialog */
+  /** should  hide the modal dialog */
   hideModal: () => void;
 
   modalInfo: AnalyzeResults;

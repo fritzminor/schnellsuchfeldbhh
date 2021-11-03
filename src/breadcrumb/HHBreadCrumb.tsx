@@ -48,10 +48,12 @@ export const HHBreadcrumb: FC<HHBreadcrumbProps> = ({
             {possibilities.map(
               (name2VersionDesc, index) => {
                 return (
-                  <div className="dropdown-item m-0 p-0">
+                  <div
+                    className="dropdown-item m-0 p-0"
+                    key={`versionKey${index}`}
+                  >
                     <button
                       className="button is-small is-link is-inverted"
-                      key={`versionKey${index}`}
                       onClick={() => {
                         setVersion(
                           name2VersionDesc.versionDesc
