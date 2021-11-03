@@ -51,6 +51,17 @@ export function addVersion(baseData: BaseData): void {
 }
 
 /** possibly returns undefined */
+export function getBaseData(
+  versionDesc: VersionDescriptor
+): BaseData | undefined {
+  return versionsStore
+    .get(versionDesc.orgBudgetName)
+    ?.get(versionDesc.budgetName)
+    ?.get(versionDesc.lineName)
+    ?.get(versionDesc.modStateName)?.baseData;
+}
+
+/** possibly returns undefined */
 function getModStatesMap(versionDesc: VersionDescriptor) {
   return versionsStore
     .get(versionDesc.orgBudgetName)
@@ -106,16 +117,20 @@ export function getVersionsSelectionFor(
     // TODO: check why do we have to make an explicit type cast for values().next() ????
     const modStatesMap = linesMap.values().next()
       .value as ModStatesMap; // modStates of first line
-    const baseData = modStatesMap.values().next().value as
+    const baseData = modStatesMap.values().next().value.baseData as
       | BaseData
       | undefined;
 
-    if (!baseData)
+    if (!baseData || !baseData.versionDesc) {
+      console.error("modStatesMap", modStatesMap);
+      console.error("baseData", baseData);
+      console.error("versionDesc", baseData?.versionDesc);
       throw new Error(
         `No base data for orgBudget: ${jsoning(
           versionDesc
         )}`
       );
+    }
     orgBudgets.push({
       name: orgBudget,
       versionDesc: baseData.versionDesc
@@ -129,8 +144,9 @@ export function getVersionsSelectionFor(
       const modStatesMap = linesMap.values().next()
         .value as ModStatesMap; // modStates of first line
       // TODO: check why do we have to make an explicit type cast for values().next() ????
-      const baseData = modStatesMap.values().next()
-        .value as BaseData | undefined;
+      const baseData = modStatesMap.values().next().value.baseData as
+      | BaseData
+      | undefined;
 
       if (!baseData)
         throw new Error(
@@ -147,8 +163,9 @@ export function getVersionsSelectionFor(
   if (linesMap)
     linesMap.forEach((modStatesMap, line) => {
       // TODO: check why do we have to make an explicit type cast for values().next() ????
-      const baseData = modStatesMap.values().next()
-        .value as BaseData | undefined;
+      const baseData = modStatesMap.values().next().value.baseData as
+      | BaseData
+      | undefined;
 
       if (!baseData)
         throw new Error(

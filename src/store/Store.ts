@@ -16,10 +16,12 @@ import { AnalyzeResults } from "../import/importAnalyseSheet";
 import { errorMessage } from "../utils/errorMessage";
 import {
   addVersion,
+  getBaseData,
   getVersionsSelectionFor,
   versionsStore
 } from "./VersionsStore";
 import { VersionDescriptor } from "./VersionsTypes";
+import { jsoning } from "../utils/jsoning";
 
 const baseDataArrays: { [index in UserName]: BaseData } = {
   BearbeiterGesamtBHH: hhstDataBHH as BaseData,
@@ -71,6 +73,26 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
     showUserMessage(msg);
   }
 
+  /** The version should be made available via VersionsStore#addVersion before
+   *  calling this method.
+   */
+  function setVersion(versionDesc:VersionDescriptor) {
+    const baseData=getBaseData(versionDesc);
+    if(baseData) {
+      baseDataArrays.LokaleDaten=baseData;
+      console.log("setVersion", baseData.versionDesc);
+      setState((prevState) => ({
+        ...prevState,
+        currentUser: "LokaleDaten",
+        derived: getDerivedFrom(
+          prevState.searchexpression,
+          "LokaleDaten"
+        )
+      }));
+    } else
+      showUserMessage(`Keine Daten für diese Version: ${jsoning(versionDesc)}`)
+  }
+
   return {
     setSearchExpression(
       searchexpression: string,
@@ -109,6 +131,8 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
       baseDataArrays.LokaleDaten = localData;
     },
 
+    setVersion,
+
     setModalInfo,
     /** hides user message */
     hideUserMessage,
@@ -119,6 +143,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
 
 export type Store = ReturnType<typeof createStore>;
 export type SetModalInfo = Store["setModalInfo"];
+export type SetVersion = Store["setVersion"];
 
 function getDerivedFrom(
   searchexpression: string,

@@ -1,15 +1,16 @@
 import { FC, useState } from "react";
-import {
-  Name2VersionDesc
-} from "../store/VersionsTypes";
+import { SetVersion } from "../store/Store";
+import { Name2VersionDesc } from "../store/VersionsTypes";
 
 export type HHBreadcrumbProps = {
   chosen: string;
   possibilities: Name2VersionDesc[];
+  setVersion: SetVersion;
 };
 export const HHBreadcrumb: FC<HHBreadcrumbProps> = ({
   chosen,
-  possibilities
+  possibilities,
+  setVersion
 }) => {
   const [collapsed, setCollapsed] = useState<boolean>(true);
   return (
@@ -44,13 +45,25 @@ export const HHBreadcrumb: FC<HHBreadcrumbProps> = ({
           role="menu"
         >
           <div className="dropdown-content">
-            {possibilities.map((name2VersionDesc,index) => {
-              return (
-                <a href="#" className="dropdown-item" key={`versionKey${index}`}>
-                  {name2VersionDesc.name}
-                </a>
-              );
-            })}
+            {possibilities.map(
+              (name2VersionDesc, index) => {
+                return (
+                  <div className="dropdown-item m-0 p-0">
+                    <button
+                      className="button is-small is-link is-inverted"
+                      key={`versionKey${index}`}
+                      onClick={() => {
+                        setVersion(
+                          name2VersionDesc.versionDesc
+                        );
+                      }}
+                    >
+                      {name2VersionDesc.name}
+                    </button>
+                  </div>
+                );
+              }
+            )}
           </div>
         </div>
       </div>
