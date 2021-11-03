@@ -1,4 +1,5 @@
 import { Workbook } from "exceljs";
+import { cloneDeep } from "lodash";
 import {
   emptyBaseData,
   SectionMap
@@ -139,7 +140,7 @@ export function importSN_XSLX(
     };
 
     addImportData({
-      ...emptyBaseData,
+      ...cloneDeep(emptyBaseData),
       versionDesc,
       hhsts,
       tgMap,

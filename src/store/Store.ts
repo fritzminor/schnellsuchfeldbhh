@@ -22,11 +22,12 @@ import {
 } from "./VersionsStore";
 import { VersionDescriptor } from "./VersionsTypes";
 import { jsoning } from "../utils/jsoning";
+import { cloneDeep } from "lodash";
 
 const baseDataArrays: { [index in UserName]: BaseData } = {
   BearbeiterGesamtBHH: hhstDataBHH as BaseData,
   BearbeiterEpl01und02: hhstData01_02 as BaseData,
-  LokaleDaten: { ...emptyBaseData }
+  LokaleDaten: cloneDeep(emptyBaseData)
 };
 
 export function createStore( // eslint-disable-line  @typescript-eslint/explicit-module-boundary-types

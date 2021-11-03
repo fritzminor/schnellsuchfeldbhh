@@ -1,4 +1,5 @@
 import { Workbook } from "exceljs";
+import { cloneDeep } from "lodash";
 import {
   emptyBaseData
 } from "../store/AppState";
@@ -102,7 +103,7 @@ export function importHOLXSLX(
       timestamp: file.lastModified
     };
     addImportData({
-      ...emptyBaseData,
+      ...cloneDeep(emptyBaseData),
       versionDesc,
       hhsts,
       firstYear

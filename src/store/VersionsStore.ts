@@ -16,6 +16,7 @@ export const versionsStore: VersionsTree = new Map();
 addVersion(bhhBaseData);
 
 export function addVersion(baseData: BaseData): void {
+  console.log("addVersion", baseData);
   const versionDesc = baseData.versionDesc;
   if (!versionDesc)
     throw new Error("FATAL: Version descriptor missing.");
@@ -117,9 +118,8 @@ export function getVersionsSelectionFor(
     // TODO: check why do we have to make an explicit type cast for values().next() ????
     const modStatesMap = linesMap.values().next()
       .value as ModStatesMap; // modStates of first line
-    const baseData = modStatesMap.values().next().value.baseData as
-      | BaseData
-      | undefined;
+    const baseData = modStatesMap.values().next().value
+      .baseData as BaseData | undefined;
 
     if (!baseData || !baseData.versionDesc) {
       console.error("modStatesMap", modStatesMap);
@@ -144,9 +144,8 @@ export function getVersionsSelectionFor(
       const modStatesMap = linesMap.values().next()
         .value as ModStatesMap; // modStates of first line
       // TODO: check why do we have to make an explicit type cast for values().next() ????
-      const baseData = modStatesMap.values().next().value.baseData as
-      | BaseData
-      | undefined;
+      const baseData = modStatesMap.values().next().value
+        .baseData as BaseData | undefined;
 
       if (!baseData)
         throw new Error(
@@ -163,9 +162,8 @@ export function getVersionsSelectionFor(
   if (linesMap)
     linesMap.forEach((modStatesMap, line) => {
       // TODO: check why do we have to make an explicit type cast for values().next() ????
-      const baseData = modStatesMap.values().next().value.baseData as
-      | BaseData
-      | undefined;
+      const baseData = modStatesMap.values().next().value
+        .baseData as BaseData | undefined;
 
       if (!baseData)
         throw new Error(

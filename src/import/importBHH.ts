@@ -6,6 +6,7 @@ import {
 import { Store } from "../store/Store";
 import { errorMessage } from "../utils/errorMessage";
 import { VersionDescriptor } from "../store/VersionsTypes";
+import { cloneDeep } from "lodash";
 
 type CsvRow = {
   einzelplan: string;
@@ -41,7 +42,7 @@ export function importBHH_CSV(
   }: ImportBHH_CSV_StorePart
 ): Promise<void> {
   return new Promise<void>((resolve, reject) => {
-    const importedData = { ...emptyBaseData };
+    const importedData = cloneDeep(emptyBaseData);
     const { eplMap, kapMap, tgMap, hhsts } = importedData;
     const fileName =
       file instanceof File
