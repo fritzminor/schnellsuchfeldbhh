@@ -1,9 +1,11 @@
 import { FC, useState } from "react";
-import { VersionDescriptor } from "../store/AppState";
+import {
+  Name2VersionDesc
+} from "../store/VersionsTypes";
 
 export type HHBreadcrumbProps = {
   chosen: string;
-  possibilities: Map<string, VersionDescriptor>;
+  possibilities: Name2VersionDesc[];
 };
 export const HHBreadcrumb: FC<HHBreadcrumbProps> = ({
   chosen,
@@ -15,7 +17,7 @@ export const HHBreadcrumb: FC<HHBreadcrumbProps> = ({
       <div
         className={
           "dropdown is-hoverable" +
-          (collapsed ? "": " is-active" )
+          (collapsed ? "" : " is-active")
         }
       >
         <div className="dropdown-trigger">
@@ -42,22 +44,13 @@ export const HHBreadcrumb: FC<HHBreadcrumbProps> = ({
           role="menu"
         >
           <div className="dropdown-content">
-            <a href="#" className="dropdown-item">
-              Dropdown item
-            </a>
-            <a className="dropdown-item">
-              Other dropdown item
-            </a>
-            <a href="#" className="dropdown-item is-active">
-              Active dropdown item
-            </a>
-            <a href="#" className="dropdown-item">
-              Other dropdown item
-            </a>
-            <hr className="dropdown-divider" />
-            <a href="#" className="dropdown-item">
-              With a divider
-            </a>
+            {possibilities.map((name2VersionDesc,index) => {
+              return (
+                <a href="#" className="dropdown-item" key={`versionKey${index}`}>
+                  {name2VersionDesc.name}
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>

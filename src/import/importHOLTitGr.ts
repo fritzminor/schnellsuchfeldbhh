@@ -1,6 +1,7 @@
-import { AppState, SectionMap, VersionDescriptor } from "../store/AppState";
+import { AppState, SectionMap } from "../store/AppState";
 import { HHSt } from "../store/HHStType";
 import { Store } from "../store/Store";
+import { VersionDescriptor } from "../store/VersionsTypes";
 import {
   analyzePDF,
   openFile,

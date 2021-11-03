@@ -1,11 +1,11 @@
 import { HHSt } from "../store/HHStType";
 import Papa from "papaparse";
 import {
-  emptyBaseData,
-  VersionDescriptor
+  emptyBaseData
 } from "../store/AppState";
 import { Store } from "../store/Store";
 import { errorMessage } from "../utils/errorMessage";
+import { VersionDescriptor } from "../store/VersionsTypes";
 
 type CsvRow = {
   einzelplan: string;

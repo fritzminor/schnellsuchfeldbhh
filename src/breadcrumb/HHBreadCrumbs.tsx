@@ -1,19 +1,23 @@
 import { Home32 } from "@carbon/icons-react";
 import { FC } from "react";
+import { versionsStore } from "../store/VersionsStore";
 import {
   VersionDescriptor,
-  VersionsTree
-} from "../store/AppState";
+  VersionsSelection
+} from "../store/VersionsTypes";
 import { HHBreadcrumb } from "./HHBreadCrumb";
 
 export type HHBreadcrumbsProps = {
-  versionsTree: VersionsTree;
+  versionsSelection: VersionsSelection;
   versionDesc?: VersionDescriptor;
 };
 
 export const HHBreadcrumbs: FC<HHBreadcrumbsProps> = ({
-  versionDesc
+  versionDesc,
+  versionsSelection
 }) => {
+  console.log("versionsSelection ", versionsSelection);
+  console.log("versionsTree", versionsStore);
   return (
     <div className="container my-0">
       <nav className="breadcrumb has-arrow-separator">
@@ -21,20 +25,20 @@ export const HHBreadcrumbs: FC<HHBreadcrumbsProps> = ({
           <ul>
             <HHBreadcrumb
               chosen={versionDesc.orgBudgetName}
-              possibilities={new Map()}
+              possibilities={versionsSelection.orgBudgets}
             />
             <HHBreadcrumb
               chosen={versionDesc.budgetName}
-              possibilities={new Map()}
+              possibilities={versionsSelection.budgets}
             />
 
             <HHBreadcrumb
               chosen={versionDesc.lineName}
-              possibilities={new Map()}
+              possibilities={versionsSelection.lines}
             />
             <HHBreadcrumb
               chosen={versionDesc.modStateName}
-              possibilities={new Map()}
+              possibilities={versionsSelection.modStates}
             />
           </ul>
         ) : (

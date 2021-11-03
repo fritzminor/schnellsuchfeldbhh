@@ -74,7 +74,7 @@ export default function App(): JSX.Element {
           versionDesc={
             state.derived.currentBaseData.versionDesc
           }
-          versionsTree={state.versionsTree}
+          versionsSelection={state.derived.versionsSelection}
         />
       </section>
       <section className="section pt-1" id="hhstList">

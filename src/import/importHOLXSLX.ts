@@ -1,10 +1,10 @@
 import { Workbook } from "exceljs";
 import {
-  emptyBaseData,
-  VersionDescriptor
+  emptyBaseData
 } from "../store/AppState";
 import { HHSt } from "../store/HHStType";
 import { Store } from "../store/Store";
+import { VersionDescriptor } from "../store/VersionsTypes";
 
 export function importHOLXSLX(
   file: File,

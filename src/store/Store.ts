@@ -14,7 +14,12 @@ import hhstDataBHH from "./material/bhh_long.json";
 import hhstData01_02 from "./material/bhh_epl01_02.json";
 import { AnalyzeResults } from "../import/importAnalyseSheet";
 import { errorMessage } from "../utils/errorMessage";
-import { addVersion, versionsStore } from "./VersionsStore";
+import {
+  addVersion,
+  getVersionsSelectionFor,
+  versionsStore
+} from "./VersionsStore";
+import { VersionDescriptor } from "./VersionsTypes";
 
 const baseDataArrays: { [index in UserName]: BaseData } = {
   BearbeiterGesamtBHH: hhstDataBHH as BaseData,
@@ -122,7 +127,9 @@ function getDerivedFrom(
   let searchTree: SearchNode | null;
   let searchParseErrMessage: string | undefined;
   const baseData = baseDataArrays[currentUser];
-
+  const versionsSelection = getVersionsSelectionFor(
+    baseData.versionDesc
+  );
   let filteredHhstArray: HHStOrBlock[];
   let totals: Totals;
 
@@ -146,12 +153,14 @@ function getDerivedFrom(
     filteredHhstArray = [];
     totals = { revenues: 0, expenses: 0 };
   }
+
   return {
     searchParseErrMessage,
     searchTree,
     currentBaseData: baseData,
     filteredHhstArray,
-    totals
+    totals,
+    versionsSelection
   };
 }
 
@@ -164,9 +173,9 @@ export function getStateFrom(
     searchexpression,
     currentUser
   );
-  
+
   return {
-    versionsTree:versionsStore,
+    versionsTree: versionsStore,
     searchexpression,
     currentUser,
     modalInfo: null,
