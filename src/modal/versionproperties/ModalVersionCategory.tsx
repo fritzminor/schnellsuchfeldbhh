@@ -26,7 +26,7 @@ export const ModalVersionCategory: FC<ModalVersionCategoryProps> =
         </div>
         <div className="m-2">
           {name2versions.map(({ name }, index) => {
-            const checked:boolean=name === currName;
+            const checked: boolean = name === currName;
             console.log(
               "ModalCategory checkkk",
               name,
@@ -34,19 +34,13 @@ export const ModalVersionCategory: FC<ModalVersionCategoryProps> =
               checked
             );
             return (
-              <div className="control" key={`name${index}`}>
-                <label className="radio">
-                  <input
-                    type="radio"
-                    name="answer"
-                    checked={
-                      checked //TODO: check why this works only sometimes???
-                    }
-                    onChange={() => setCurrName(name)}
-                  />
-                  {name}
-                </label>
-              </div>
+              <button
+                className= {"button is-small"+(checked?" is-primary":"")}
+                key={`name${index}`}
+                onClick={() => setCurrName(name)}
+              >
+                {name}
+              </button>
             );
           })}
         </div>
