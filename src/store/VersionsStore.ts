@@ -161,6 +161,7 @@ export function getVersionsSelectionFor(
   const linesMap = getLinesMap(versionDesc);
   if (linesMap)
     linesMap.forEach((modStatesMap, line) => {
+      console.log("line", line);
       // TODO: check why do we have to make an explicit type cast for values().next() ????
       const baseData = modStatesMap.values().next().value
         .baseData as BaseData | undefined;
