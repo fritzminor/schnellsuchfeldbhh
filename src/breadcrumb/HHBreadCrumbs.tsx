@@ -1,11 +1,11 @@
 import { Home32 } from "@carbon/icons-react";
 import { FC } from "react";
 import { SetVersion } from "../store/Store";
-import { versionsStore } from "../store/VersionsStore";
+import { versionsStore } from "../store/versions/VersionsStore";
 import {
   VersionDescriptor,
   VersionsSelection
-} from "../store/VersionsTypes";
+} from "../store/versions/VersionsTypes";
 import { HHBreadcrumb } from "./HHBreadCrumb";
 
 export type HHBreadcrumbsProps = {

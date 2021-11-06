@@ -1,4 +1,4 @@
-import { BaseData } from "./AppState";
+import { BaseData } from "../AppState";
 import {
   BudgetsMap,
   LinesMap,
@@ -8,8 +8,8 @@ import {
   VersionsSelection,
   VersionsTree
 } from "./VersionsTypes";
-import hhstDataBHH from "./material/bhh_long.json";
-import { jsoning } from "../utils/jsoning";
+import hhstDataBHH from "../material/bhh_long.json";
+import { jsoning } from "../../utils/jsoning";
 
 const bhhBaseData = hhstDataBHH as BaseData;
 export const versionsStore: VersionsTree = new Map();

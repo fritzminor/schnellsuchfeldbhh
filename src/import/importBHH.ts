@@ -3,7 +3,7 @@ import Papa from "papaparse";
 import { emptyBaseData } from "../store/AppState";
 import { Store } from "../store/Store";
 import { errorMessage } from "../utils/errorMessage";
-import { VersionDescriptor } from "../store/VersionsTypes";
+import { VersionDescriptor } from "../store/versions/VersionsTypes";
 import { cloneDeep } from "lodash";
 
 type CsvRow = {

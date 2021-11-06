@@ -12,7 +12,7 @@ import {
   VersionsSelection as VersionsSelection,
   VersionDescriptor,
   VersionsTree
-} from "./VersionsTypes";
+} from "./versions/VersionsTypes";
 import { VersionProperties } from "../modal/versionproperties/VersionProperties";
 
 export type Totals = {

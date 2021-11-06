@@ -18,8 +18,8 @@ import {
   getBaseData,
   getVersionsSelectionFor,
   versionsStore
-} from "./VersionsStore";
-import { VersionDescriptor } from "./VersionsTypes";
+} from "./versions/VersionsStore";
+import { VersionDescriptor } from "./versions/VersionsTypes";
 import { jsoning } from "../utils/jsoning";
 import { cloneDeep } from "lodash";
 import { VersionProperties } from "../modal/versionproperties/VersionProperties";

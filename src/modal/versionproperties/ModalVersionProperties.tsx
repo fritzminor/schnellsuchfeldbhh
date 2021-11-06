@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
-import { getVersionsSelectionFor } from "../../store/VersionsStore";
-import { VersionDescriptor } from "../../store/VersionsTypes";
+import { getVersionsSelectionFor } from "../../store/versions/VersionsStore";
+import { VersionDescriptor } from "../../store/versions/VersionsTypes";
 import { ModalVersionCategory } from "./ModalVersionCategory";
 import { VersionProperties } from "./VersionProperties";
 

@@ -6,7 +6,7 @@
  *
  */
 
-import { BaseData } from "./AppState";
+import { BaseData } from "../AppState";
 
 export type VersionsTree =
   // orgs

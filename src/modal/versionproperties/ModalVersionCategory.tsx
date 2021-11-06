@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Name2VersionDesc } from "../../store/VersionsTypes";
+import { Name2VersionDesc } from "../../store/versions/VersionsTypes";
 
 export type ModalVersionCategoryProps = {
   catName: string;

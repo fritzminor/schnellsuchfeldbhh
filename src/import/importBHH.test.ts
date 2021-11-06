@@ -34,12 +34,7 @@ test("import BHH Epl 01 und 02 works without errors", (done) => {
   const readableStream = createReadStream(file);
 
   const store:ImportBHH_CSV_StorePart= {
-    setCurrentUser: (usr) => {
-      
-      expect(usr).toEqual("LokaleDaten");
-      readableStream.close();
-      done();
-    },
+    setCurrentUser:jest.fn(),
     addImportData: (importedData) => {
       expect(importedData.hhsts.length).toEqual(232);
       expect(
@@ -48,16 +43,15 @@ test("import BHH Epl 01 und 02 works without errors", (done) => {
             hhst.gruppe === "119" && hhst.suffix === "57"
         ).length
       ).toEqual(2);
+      done();
     },
-    setModalInfo: (modalInfo) => {
-      console.log("setMdl");
-      expect(modalInfo).toEqual(false); // should not occur
-    }
+    setModalInfo: jest.fn()
   }
   importBHH_CSV(
     readableStream,
     store
   );
 
-  expect(true).toBeTruthy();
+  expect(store.setCurrentUser).not.toHaveBeenCalled();
+  expect(store.setModalInfo).not.toHaveBeenCalled();
 });

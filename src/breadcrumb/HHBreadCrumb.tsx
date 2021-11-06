@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { SetVersion } from "../store/Store";
-import { Name2VersionDesc } from "../store/VersionsTypes";
+import { Name2VersionDesc } from "../store/versions/VersionsTypes";
 
 export type HHBreadcrumbProps = {
   chosen: string;

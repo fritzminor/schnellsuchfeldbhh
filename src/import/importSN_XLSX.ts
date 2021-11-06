@@ -6,7 +6,7 @@ import {
 } from "../store/AppState";
 import { HHSt } from "../store/HHStType";
 import { Store } from "../store/Store";
-import { VersionDescriptor } from "../store/VersionsTypes";
+import { VersionDescriptor } from "../store/versions/VersionsTypes";
 
 /** imports data from files following the format of
  * the "Maschinenlesbare Daten"-XLSX-files at
