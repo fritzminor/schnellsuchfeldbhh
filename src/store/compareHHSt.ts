@@ -52,8 +52,5 @@ export function compareHHSt(a: HHSt, b: HHSt): number {
   const cmpTitelNr = (a.gruppe + a.suffix).localeCompare(
     b.gruppe + b.suffix
   );
-  if (cmpTitelNr === 0) {
-    console.log("Equal:", a, b);
-  }
-  return cmpTitelNr;
+ return cmpTitelNr;
 }
