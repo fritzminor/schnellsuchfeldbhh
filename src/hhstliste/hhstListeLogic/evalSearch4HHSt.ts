@@ -177,6 +177,7 @@ export function isSearched(
     if (searchNode.colType === "field") {
       colValue = hhst[searchNode.columnName];
     } else {
+      // searchNode.colType === "sectionMap"
       const sectionKeyField: HHStSectionKeyField =
         searchNode.sectionKeyField;
       const sectionKey = hhst[sectionKeyField];

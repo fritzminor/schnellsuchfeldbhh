@@ -43,6 +43,14 @@ export type BaseData = {
    * TODO: mark the versionDesc as required
    */
   versionDesc: VersionDescriptor;
+
+  /** filter expression.
+   * The same syntax as for AppState#searchexpression; undefined or empty string means no filter.
+   * This is used, if basedata is created by a user with restricted permissions.
+   * TODO: currently unused in prototype
+   */
+  filteredBy?: string;
+
   /** First year of the budget plan.
    * {@link HHSt.sollJahr1} refers to such year.
    * }
@@ -60,7 +68,7 @@ export type BaseData = {
  */
 export type SectionMapName = keyof Omit<
   BaseData,
-  "firstYear" | "hhsts" | "versionDesc"
+  "firstYear" | "hhsts" | "versionDesc" | "filteredBy"
 >;
 
 export const emptyBaseData: BaseData = {
