@@ -26,7 +26,8 @@ export const ModalVersionProperties: FC<ModalVersionPropertiesProps> =
       versionProps.basedata.versionDesc.modStateName
     );
 
-    const [importAsChanges, setImportAsChanges]=useState(false);
+    const [importAsChanges, setImportAsChanges] =
+      useState(false);
 
     const versionDesc: VersionDescriptor = {
       orgBudgetName,
@@ -81,11 +82,26 @@ export const ModalVersionProperties: FC<ModalVersionPropertiesProps> =
               setCurrName={setModStateName}
               name2versions={versionSelection.modStates}
             />
-            <label className="checkbox">
-              <input type="checkbox" checked={importAsChanges} onChange={(ev)=>setImportAsChanges(ev.target.checked)} />
-              Importiere als Änderungen zur aktuellen
-              Version
-            </label>
+            <div className="field">
+              <label className="label">
+                Aufbau auf aktuelle Version?
+              </label>
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  checked={importAsChanges}
+                  onChange={(ev) =>
+                    setImportAsChanges(ev.target.checked)
+                  }
+                />
+                Importiere als Änderungen zur aktuellen
+                Version
+                <p className="help">
+                  Z.B. wenn Nachtragshaushalte nur die
+                  geänderten Haushaltsstellen enthalten.
+                </p>
+              </label>
+            </div>
           </section>
 
           <footer className="modal-card-foot">
@@ -96,7 +112,8 @@ export const ModalVersionProperties: FC<ModalVersionPropertiesProps> =
                   versionDesc;
                 versionProps.addImportData(
                   versionProps.basedata,
-                  false, importAsChanges
+                  false,
+                  importAsChanges
                 );
               }}
             >
