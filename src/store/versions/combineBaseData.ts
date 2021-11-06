@@ -16,21 +16,22 @@ export function applyChanges(
   origin: BaseData,
   changes: BaseData
 ): BaseData {
+  // TODO: handle deleted items
   const result: BaseData = cloneDeep(emptyBaseData);
   result.versionDesc = cloneDeep(changes.versionDesc);
   result.eplMap = cloneDeep(origin.eplMap); // TODO: apply changes to eplMap correctly
-  for(let k in changes.eplMap){
+  for(const k in changes.eplMap){
     result.eplMap[k]=changes.eplMap[k];
   }
   result.kapMap = cloneDeep(origin.kapMap); // TODO: apply changes to kapMap correctly
-  for(let k in changes.kapMap){
+  for(const k in changes.kapMap){
     result.kapMap[k]=changes.kapMap[k];
   }
   result.tgMap = cloneDeep(origin.tgMap); // TODO: apply changes to tgMap  correctly
-  for(let k in changes.tgMap){
+  for(const k in changes.tgMap){
     result.tgMap[k]=changes.tgMap[k];
   }
-  
+
   result.firstYear = (changes.firstYear)? changes.firstYear: origin.firstYear;
   
   const rHhsts = result.hhsts;

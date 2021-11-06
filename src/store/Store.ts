@@ -23,6 +23,7 @@ import { VersionDescriptor } from "./versions/VersionsTypes";
 import { jsoning } from "../utils/jsoning";
 import { cloneDeep } from "lodash";
 import { VersionProperties } from "../modal/versionproperties/VersionProperties";
+import { applyChanges } from "./versions/combineBaseData";
 
 const baseDataArrays: { [index in UserName]: BaseData } = {
   BearbeiterGesamtBHH: hhstDataBHH as BaseData,
@@ -111,10 +112,19 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
 
   /** TODO: should ask user, if
    * proposed version is correct.
+   * @param askUser - usually a two-step-process:
+   *   - the import/import*-functions call this function with true
+   *   - the ModalVersionProperties dialog calls this function
+   *     with true
+   * @param importAsChanges - if only some changes are imported
+   *    (e.g. Nachtragshaushalt), this parameter should be set
+   *    to true. In this case the basedata of the currently
+   *    used version is combined with the imported changes.
    */
   function addImportData(
     importData: BaseData,
-    askUser = true
+    askUser = true,
+    importAsChanges = false
   ) {
     if (askUser) {
       const versionProps: VersionProperties = {
@@ -125,10 +135,24 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
       };
       setModalInfo(versionProps);
     } else {
-      addVersion(importData);
-      baseDataArrays.LokaleDaten = importData;
-      setCurrentUser("LokaleDaten");
-      setModalInfo(null);
+      setState((prevState) => {
+        if (importAsChanges) {
+          const origin = prevState.derived.currentBaseData;
+          importData = applyChanges(origin, importData);
+        }
+        addVersion(importData); // add version to versionsStore
+
+        baseDataArrays.LokaleDaten = importData;
+
+        return {
+          ...prevState,
+          modalInfo: null,
+          derived: getDerivedFrom(
+            prevState.searchexpression,
+            "LokaleDaten"
+          )
+        };
+      });
     }
   }
 

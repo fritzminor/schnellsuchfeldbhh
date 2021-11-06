@@ -5,6 +5,7 @@ import { Store } from "../store/Store";
 import { errorMessage } from "../utils/errorMessage";
 import { VersionDescriptor } from "../store/versions/VersionsTypes";
 import { cloneDeep } from "lodash";
+import { compareHHSt } from "../store/compareHHSt";
 
 type CsvRow = {
   einzelplan: string;
@@ -134,7 +135,6 @@ export function importBHH_CSV(
             sollJahr1
           };
           hhsts.push(hhst);
-          // rowNr++;
         } catch (reason) {
           errMessage = errorMessage(reason);
           parser.abort();
@@ -174,6 +174,7 @@ export function importBHH_CSV(
               timestamp: lastModified
             };
             importedData.versionDesc = versionDesc;
+            importedData.hhsts.sort(compareHHSt);
             addImportData(importedData);
             resolve();
           }

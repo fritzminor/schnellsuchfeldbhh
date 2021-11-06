@@ -26,6 +26,8 @@ export const ModalVersionProperties: FC<ModalVersionPropertiesProps> =
       versionProps.basedata.versionDesc.modStateName
     );
 
+    const [importAsChanges, setImportAsChanges]=useState(false);
+
     const versionDesc: VersionDescriptor = {
       orgBudgetName,
       budgetName,
@@ -79,7 +81,13 @@ export const ModalVersionProperties: FC<ModalVersionPropertiesProps> =
               setCurrName={setModStateName}
               name2versions={versionSelection.modStates}
             />
+            <label className="checkbox">
+              <input type="checkbox" checked={importAsChanges} onChange={(ev)=>setImportAsChanges(ev.target.checked)} />
+              Importiere als Änderungen zur aktuellen
+              Version
+            </label>
           </section>
+
           <footer className="modal-card-foot">
             <button
               className="button is-success"
@@ -88,7 +96,7 @@ export const ModalVersionProperties: FC<ModalVersionPropertiesProps> =
                   versionDesc;
                 versionProps.addImportData(
                   versionProps.basedata,
-                  false
+                  false, importAsChanges
                 );
               }}
             >
