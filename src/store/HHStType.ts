@@ -1,5 +1,4 @@
-export type HHSt = {
-  type: "hhst";
+export type HHStKey = {
   /** two digits Einzelplan */
   epl: string;
   /** two digits Kapitel */
@@ -10,10 +9,12 @@ export type HHSt = {
   /** two digits suffix/Titelgruppe */
   suffix: string;
 
+  expense?: boolean;
+};
+
+export type HHStValue = {
   /** Titelgruppe 8 characters key, e.g. "0102TG60" for Titelgruppe 60 in Epl 01 Kap 02 */
   tgKey?: string;
-
-  expense?: boolean;
   /** three digits Funktionskennziffer */
   fkz: string;
   /** Zweckbestimmung  */
@@ -23,12 +24,19 @@ export type HHSt = {
   sollJahr1: number;
 };
 
-export type HHStFieldName = keyof Omit<HHSt, "type" | "expense">;
+export type HHSt = {
+  type: "hhst";
+} & HHStKey &
+  HHStValue;
+
+export type HHStFieldName = keyof Omit<
+  HHSt,
+  "type" | "expense"
+>;
 /**
  * TODO: add kapKey, eplKey
  */
-export type HHStSectionKeyField = "tgKey"; 
-
+export type HHStSectionKeyField = "tgKey";
 
 export type HHStBlockStart = {
   blockstart: true;

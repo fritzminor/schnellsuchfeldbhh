@@ -186,6 +186,12 @@ entsprechende Tests programmiert werden.
 Die einzelnen Teile könnten auch im Code zueinander finden. Die Funktionalität "Kennzeichen" beispielsweise 
 sollte nicht über viele Ordner verteilt sein.
 
+=== Weniger Vulnerabilities
+
+npm audit zeigt eine Menge möglicher Sicherheitslücken. Diese müssen noch geschlossen werden. Bei
+Sicherheitslücken in tieferen Abhängigkeiten kann das Paket https://www.npmjs.com/package/npm-force-resolutions[npm-force-resolutions]
+helfen.
+
 === Viele Fehler und Unvollständigkeiten
 
 Der Prototyp wird immer Fehler und Unvollständigkeiten enthalten. Aber mit der Zeit könnten es ja weniger werden.
