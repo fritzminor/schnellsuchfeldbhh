@@ -147,6 +147,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
         return {
           ...prevState,
           modalInfo: null,
+          currentUser: "LokaleDaten",
           derived: getDerivedFrom(
             prevState.searchexpression,
             "LokaleDaten"
