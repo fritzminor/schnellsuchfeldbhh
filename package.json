@@ -51,8 +51,9 @@
   "scripts": {
     "clear": "rimraf build/",
     "start": "react-scripts start",
-    "postinstall": "fse copy  node_modules/pdfjs-dist/build/pdf.worker.js public/lib/pdf.worker.js",
-    "prebuild": "npm run test:nowatch",
+    "postinstall": "npm run copy:pdfjs-dist-worker",
+    "copy:pdfjs-dist-worker": "fse copy  node_modules/pdfjs-dist/build/pdf.worker.js public/lib/pdf.worker.js",
+    "prebuild": "npm run copy:pdfjs-dist-worker && npm run test:nowatch",
     "build": "npm run clear && npm run build:docs && react-scripts build",
     "build:docs": "asciidoctor -D public/docs docs/anleitung.adoc",
     "test": "react-scripts test --env=jsdom",
