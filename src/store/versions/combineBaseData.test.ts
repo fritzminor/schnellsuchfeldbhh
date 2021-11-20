@@ -35,7 +35,7 @@ describe("tests for combineBaseData", () => {
     const result = applyChanges(origin, changes);
     expect(result).toEqual(b1);
   });
-  
+
   test("apply single change to hhst (sollJahr1) ", () => {
     const origin: BaseData = cloneDeep(b1);
     const changes: BaseData = cloneDeep(b2);
@@ -44,6 +44,7 @@ describe("tests for combineBaseData", () => {
     expect(result.hhsts[0]).toEqual(b2.hhsts[0]);
     // otherwise the same as before
     result.hhsts[0] = b1.hhsts[0];
+    result.versionDesc=b1.versionDesc;
     expect(result).toEqual(b1);
   });
 });

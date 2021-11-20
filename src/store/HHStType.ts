@@ -22,6 +22,9 @@ export type HHStValue = {
 
   /** Soll-Betrag */
   sollJahr1: number;
+
+  /** if set to true, this HHSt is deleted, i.e. does regularly not appear on HHSt-list */
+  deleted?:true;
 };
 
 export type HHSt = {
