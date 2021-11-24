@@ -11,7 +11,12 @@ import { HHSt } from "./HHStType";
  *  - suffix
  * 
  * Otherwise the hhst is considered equal, i.e. even if zweck or 
- * sollJahr1 differ, the function returns 0
+ * sollJahr1 differ, the function returns 0.
+ * 
+ * 
+ * The difference to {@link compareHHStKey} is that this method 
+ * takes care of tgKey
+ * 
  * @param a 
  * @param b 
  * @returns 
@@ -52,5 +57,27 @@ export function compareHHSt(a: HHSt, b: HHSt): number {
   const cmpTitelNr = (a.gruppe + a.suffix).localeCompare(
     b.gruppe + b.suffix
   );
- return cmpTitelNr;
+  return cmpTitelNr;
+}
+
+/**
+ * compares two hhst keyss.
+ * the sorted hhsts are ordered by
+ *  - epl
+ *  - kap
+ *  - revenues before expenses
+ *  - gruppe
+ *  - suffix
+ * 
+ * Otherwise the hhst is considered equal, i.e. even if zweck or 
+ * sollJahr1 differ, the function returns 0
+ * 
+ * The difference to {@link compareHHSt} is that this method 
+ * does not take care of tgKey
+ * @param a 
+ * @param b 
+ * @returns 
+ */
+export function compareHHStKey(a: HHSt, b: HHSt): number {
+  return (compareHHSt({ ...a, tgKey: undefined }, { ...b, tgKey: undefined }));
 }

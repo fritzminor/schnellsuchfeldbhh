@@ -55,3 +55,9 @@ export type HHStBlockLimiter = {
 } & (HHStBlockEnd | HHStBlockStart);
 
 export type HHStOrBlock = HHStBlockLimiter | HHSt;
+
+
+/** reduces hhst to its value part. */
+export function getHHStValue(hhst: HHSt): HHStValue {
+  return { zweck: hhst.zweck, sollJahr1: hhst.sollJahr1, fkz: hhst.fkz, tgKey: hhst.tgKey, deleted: hhst.deleted };
+}
