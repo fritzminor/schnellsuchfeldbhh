@@ -1,3 +1,6 @@
+
+import { BaseData } from "../AppState";
+
 /** A tree containing all data in the leafs.
  *  You can get to the leafs via orgBudgetName-> budgetName->lineName -> modStateName.
  *  BaseData is not necessarily available; possibly, it has to be fetched from local or remote storage.
@@ -5,9 +8,6 @@
  * {@see VersionDescriptor}
  *
  */
-
-import { BaseData } from "../AppState";
-
 export type VersionsTree =
   // orgs
   Map<

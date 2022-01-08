@@ -12,17 +12,18 @@ export type HHBreadcrumbsProps = {
   versionsSelection: VersionsSelection;
   versionDesc?: VersionDescriptor;
   setVersion: SetVersion;
+  additionalClassNames?: string;
 };
 
 export const HHBreadcrumbs: FC<HHBreadcrumbsProps> = ({
   versionDesc,
   versionsSelection,
-  setVersion
+  setVersion,
+  additionalClassNames
 }) => {
   console.log("versionsSelection ", versionsSelection);
   console.log("versionsTree", versionsStore);
   return (
-    <div className="container my-0">
       <nav className="breadcrumb has-arrow-separator">
         {versionDesc ? (
           <ul>
@@ -30,22 +31,26 @@ export const HHBreadcrumbs: FC<HHBreadcrumbsProps> = ({
               chosen={versionDesc.orgBudgetName}
               possibilities={versionsSelection.orgBudgets}
               setVersion={setVersion}
+              additionalClassNames={additionalClassNames}
             />
             <HHBreadcrumb
               chosen={versionDesc.budgetName}
               possibilities={versionsSelection.budgets}
               setVersion={setVersion}
+              additionalClassNames={additionalClassNames}
             />
 
             <HHBreadcrumb
               chosen={versionDesc.lineName}
               possibilities={versionsSelection.lines}
               setVersion={setVersion}
+              additionalClassNames={additionalClassNames}
             />
             <HHBreadcrumb
               chosen={versionDesc.modStateName}
               possibilities={versionsSelection.modStates}
               setVersion={setVersion}
+              additionalClassNames={additionalClassNames}
             />
           </ul>
         ) : (
@@ -56,6 +61,6 @@ export const HHBreadcrumbs: FC<HHBreadcrumbsProps> = ({
           </ul>
         )}
       </nav>
-    </div>
+    
   );
 };

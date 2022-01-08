@@ -6,11 +6,13 @@ export type HHBreadcrumbProps = {
   chosen: string;
   possibilities: Name2VersionDesc[];
   setVersion: SetVersion;
+
+  additionalClassNames?: string;
 };
 export const HHBreadcrumb: FC<HHBreadcrumbProps> = ({
   chosen,
   possibilities,
-  setVersion
+  setVersion, additionalClassNames
 }) => {
   const [collapsed, setCollapsed] = useState<boolean>(true);
   return (
@@ -23,7 +25,7 @@ export const HHBreadcrumb: FC<HHBreadcrumbProps> = ({
       >
         <div className="dropdown-trigger">
           <button
-            className="button"
+            className={"button "+additionalClassNames}
             aria-haspopup="true"
             aria-controls="dropdown-menu"
             onClick={() => {
