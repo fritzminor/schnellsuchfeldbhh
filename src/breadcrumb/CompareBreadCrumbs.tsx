@@ -1,4 +1,3 @@
-import { Compare32 } from "@carbon/icons-react";
 import { FC } from "react";
 import {
   HHBreadcrumbs,

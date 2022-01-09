@@ -1,16 +1,33 @@
 import { Compare32 } from "@carbon/icons-react";
 import { FC, useState } from "react";
+import { SetVersion } from "../store/Store";
+import {
+  VersionDescriptor,
+  VersionsSelection
+} from "../store/versions/VersionsTypes";
 import { CompareBreadcrumbs } from "./CompareBreadCrumbs";
 import {
   HHBreadcrumbs,
   HHBreadcrumbsProps
 } from "./HHBreadCrumbs";
 
-export type BreadcrumbsSectionProps = HHBreadcrumbsProps;
+export type BreadcrumbsSectionProps = HHBreadcrumbsProps & {
+  setChangedFromVersion: SetVersion;
+  changedFromVersion: Readonly<VersionDescriptor> | null;
+  changedFromVersionsSelection: Readonly<VersionsSelection>;
+};
 
 export const BreadcrumbsSection: FC<
   BreadcrumbsSectionProps
-> = ({ versionDesc, versionsSelection, setVersion }) => {
+> = ({
+  versionDesc,
+  versionsSelection,
+  setVersion,
+  setChangedFromVersion,
+  changedFromVersion,
+  changedFromVersionsSelection
+}) => {
+  // TODO: replace with changedFromVersion!=null
   const [compare, setCompare] = useState<boolean>(false);
   return (
     <>
@@ -28,7 +45,7 @@ export const BreadcrumbsSection: FC<
               />
             </div>
             <div className="column is-one-fifth">
-              {compare ? (
+              {compare && changedFromVersion ? (
                 <></>
               ) : (
                 <button
@@ -44,7 +61,7 @@ export const BreadcrumbsSection: FC<
           </div>
         </div>
       </section>
-      {compare ? (
+      {compare  ? (
         <section
           className="section mb-1 py-1"
           id="compare_breadcrumbs"
@@ -53,9 +70,9 @@ export const BreadcrumbsSection: FC<
             <div className="columns">
               <div className="column is-four-fifth">
                 <CompareBreadcrumbs
-                  versionDesc={versionDesc}
-                  versionsSelection={versionsSelection}
-                  setVersion={setVersion}
+                  versionDesc={changedFromVersion || versionDesc}
+                  versionsSelection={changedFromVersionsSelection}
+                  setVersion={setChangedFromVersion}
                 />
               </div>
               <div className="column is-one-fifth">

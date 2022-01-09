@@ -86,7 +86,11 @@ export const emptyBaseData: BaseData = {
   }
 };
 
-export type AppState = {
+/** This core contains all the AppState that cannot be derived from itself.
+ * @see AppState
+ * @see getDerivedFrom
+ */
+export type CoreAppState = {
   searchexpression: string;
   currentUser: UserName;
 
@@ -98,6 +102,14 @@ export type AppState = {
   /** the currently chosen version */
   versionDesc: VersionDescriptor;
 
+  /** the version to compare with.
+   * It is null, if no comparision should be made.
+   */
+  changedFromVersion: VersionDescriptor|null;
+}
+
+export type AppState = CoreAppState & {
+  
   derived: {
     searchTree: SearchNode | null;
     searchParseErrMessage?: string;
@@ -111,7 +123,13 @@ export type AppState = {
 
     totals: Totals;
 
+    /** versions that can be selected starting off the current selected version. */
     versionsSelection: VersionsSelection;
+    
+    /** versions that can be selected starting off the current selected comparision version. 
+     * If changedFromVersion==null this property equals versionsSelection.
+    */
+    changedFromVersionsSelection: VersionsSelection;
   };
 };
 

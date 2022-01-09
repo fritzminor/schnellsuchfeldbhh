@@ -6,7 +6,8 @@ import {
   getFilteredHhstArray,
   BaseData,
   Totals,
-  emptyBaseData
+  emptyBaseData,
+  CoreAppState
 } from "./AppState";
 import { HHStOrBlock } from "./HHStType";
 
@@ -77,21 +78,28 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
 
   /** The version should be made available via VersionsStore#addVersion before
    *  calling this method.
+   *
+   * @see addImportData
+   * @see addVersion
    */
-  function setVersion(versionDesc: Readonly<VersionDescriptor>) {
+  function setVersion(
+    versionDesc: Readonly<VersionDescriptor>
+  ) {
     const baseData = getBaseData(versionDesc);
     if (baseData) {
       baseDataArrays.LokaleDaten = baseData;
       console.log("setVersion", baseData.versionDesc);
-      setState((prevState) => ({
-        ...prevState,
-        currentUser: "LokaleDaten",
-        versionDesc: versionDesc,
-        derived: getDerivedFrom(
-          prevState.searchexpression,
-          "LokaleDaten"
-        )
-      }));
+      setState((prevState) => {
+        const coreAppState: CoreAppState = {
+          ...prevState,
+          currentUser: "LokaleDaten",
+          versionDesc: versionDesc
+        };
+        return {
+          ...coreAppState,
+          derived: getDerivedFrom(coreAppState)
+        };
+      });
     } else
       showUserMessage(
         `Keine Daten für diese Version: ${jsoning(
@@ -100,16 +108,38 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
       );
   }
 
+  /** Sets the version that the current version should be compared with.
+   *
+   * The version should be made available via VersionsStore#addVersion before
+   *  calling this method.
+   *
+   * @see setVersion
+   */
+  function setChangedFromVersion(
+    changedFromVersionDesc: Readonly<VersionDescriptor> | null
+  ) {
+    console.warn("UNIMPLEMENTED setChangedFromVersion");
+    setState((prevState) => {
+      const coreAppState: CoreAppState = {
+        ...prevState,
+        changedFromVersion: changedFromVersionDesc
+      };
+      return {
+        ...coreAppState,
+        derived: getDerivedFrom(coreAppState)
+      };
+    });
+  }
+
   function setCurrentUser(newCurrentUser: UserName) {
-    setState((prevState) => ({
-      ...prevState,
-      currentUser: newCurrentUser,
-      versionDesc: baseDataArrays[newCurrentUser].versionDesc,
-      derived: getDerivedFrom(
-        prevState.searchexpression,
-        newCurrentUser
-      )
-    }));
+    setState((prevState) =>
+      getDerivedAppState({
+        ...prevState,
+        currentUser: newCurrentUser,
+        versionDesc:
+          baseDataArrays[newCurrentUser].versionDesc
+      })
+    );
   }
 
   /** TODO: should ask user, if
@@ -146,16 +176,12 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
 
         baseDataArrays.LokaleDaten = importData;
 
-        return {
+        return getDerivedAppState({
           ...prevState,
           modalInfo: null,
           currentUser: "LokaleDaten",
-          versionDesc: importData.versionDesc,
-          derived: getDerivedFrom(
-            prevState.searchexpression,
-            "LokaleDaten"
-          )
-        };
+          versionDesc: importData.versionDesc
+        });
       });
     }
   }
@@ -172,20 +198,19 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
             : ""
         });
 
-      setState((prevState: AppState) => ({
-        ...prevState,
-        searchexpression,
-        derived: getDerivedFrom(
-          searchexpression,
-          prevState.currentUser
-        )
-      }));
+      setState((prevState: AppState) =>
+        getDerivedAppState({
+          ...prevState,
+          searchexpression
+        })
+      );
     },
 
     setCurrentUser,
     addImportData,
 
     setVersion,
+    setChangedFromVersion,
 
     setModalInfo,
     /** hides user message */
@@ -200,16 +225,35 @@ export type SetModalInfo = Store["setModalInfo"];
 export type SetVersion = Store["setVersion"];
 export type AddImportData = Store["addImportData"];
 
+/** returns an AppState including the derived state.
+ * @see getDerivedFrom
+ */
+function getDerivedAppState(
+  coreAppState: Readonly<CoreAppState>
+): AppState {
+  return {
+    ...coreAppState,
+    derived: getDerivedFrom(coreAppState)
+  };
+}
+
 function getDerivedFrom(
-  searchexpression: string,
-  currentUser: UserName
+  coreAppState: CoreAppState
 ): AppState["derived"] {
+  const {
+    searchexpression,
+    currentUser,
+    changedFromVersion
+  } = coreAppState;
   let searchTree: SearchNode | null;
   let searchParseErrMessage: string | undefined;
   const baseData = baseDataArrays[currentUser];
   const versionsSelection = getVersionsSelectionFor(
     baseData.versionDesc
   );
+  const changedFromVersionsSelection = changedFromVersion
+    ? getVersionsSelectionFor(changedFromVersion)
+    : versionsSelection;
   let filteredHhstArray: HHStOrBlock[];
   let totals: Totals;
 
@@ -240,7 +284,8 @@ function getDerivedFrom(
     currentBaseData: baseData,
     filteredHhstArray,
     totals,
-    versionsSelection
+    versionsSelection,
+    changedFromVersionsSelection
   };
 }
 
@@ -249,17 +294,15 @@ export function getStateFrom(
   searchexpression: string,
   currentUser: UserName
 ): AppState {
-  const derived = getDerivedFrom(
-    searchexpression,
-    currentUser
-  );
-
-  return {
+  const coreAppState: CoreAppState = {
     versionsTree: versionsStore,
-    versionDesc: derived.currentBaseData.versionDesc,
+    versionDesc: baseDataArrays[currentUser].versionDesc,
+    changedFromVersion: null, // default: no comparision
     searchexpression,
     currentUser,
-    modalInfo: null,
-    derived
+    modalInfo: null
   };
+  const derived = getDerivedFrom(coreAppState);
+
+  return { ...coreAppState, derived };
 }
