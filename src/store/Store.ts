@@ -78,7 +78,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
   /** The version should be made available via VersionsStore#addVersion before
    *  calling this method.
    */
-  function setVersion(versionDesc: VersionDescriptor) {
+  function setVersion(versionDesc: Readonly<VersionDescriptor>) {
     const baseData = getBaseData(versionDesc);
     if (baseData) {
       baseDataArrays.LokaleDaten = baseData;
@@ -86,6 +86,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
       setState((prevState) => ({
         ...prevState,
         currentUser: "LokaleDaten",
+        versionDesc: versionDesc,
         derived: getDerivedFrom(
           prevState.searchexpression,
           "LokaleDaten"
@@ -103,6 +104,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
     setState((prevState) => ({
       ...prevState,
       currentUser: newCurrentUser,
+      versionDesc: baseDataArrays[newCurrentUser].versionDesc,
       derived: getDerivedFrom(
         prevState.searchexpression,
         newCurrentUser
@@ -115,7 +117,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
    * @param askUser - usually a two-step-process:
    *   - the import/import*-functions call this function with true
    *   - the ModalVersionProperties dialog calls this function
-   *     with true
+   *     with false
    * @param importAsChanges - if only some changes are imported
    *    (e.g. Nachtragshaushalt), this parameter should be set
    *    to true. In this case the basedata of the currently
@@ -148,6 +150,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
           ...prevState,
           modalInfo: null,
           currentUser: "LokaleDaten",
+          versionDesc: importData.versionDesc,
           derived: getDerivedFrom(
             prevState.searchexpression,
             "LokaleDaten"
@@ -253,6 +256,7 @@ export function getStateFrom(
 
   return {
     versionsTree: versionsStore,
+    versionDesc: derived.currentBaseData.versionDesc,
     searchexpression,
     currentUser,
     modalInfo: null,

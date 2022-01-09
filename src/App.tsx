@@ -67,7 +67,7 @@ export default function App(): JSX.Element {
       </section>
       <BreadcrumbsSection
         versionDesc={
-          state.derived.currentBaseData.versionDesc
+          state.versionDesc
         }
         versionsSelection={state.derived.versionsSelection}
         setVersion={store.setVersion}

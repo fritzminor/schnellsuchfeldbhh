@@ -92,19 +92,19 @@ export type AppState = {
 
   modalInfo: string | AnalyzeResults | VersionProperties | null;
 
+  /** The available versions in a tree structure */
   versionsTree: VersionsTree;
+
+  /** the currently chosen version */
+  versionDesc: VersionDescriptor;
 
   derived: {
     searchTree: SearchNode | null;
     searchParseErrMessage?: string;
 
+    /** The current basedata. Its versionDesc property corresponds to AppState.versionsDesc */
     currentBaseData: BaseData;
 
-    /** contains all HHSt of the given user (not restricted to searchexpression / searchTree) 
-    hhstArray: HHSt[];
-
-    /** contains the tg-descriptions 
-    tgMap: SectionMap;
 
     /** contains the HHSts filtered by searchTree plus block elements for (sub-)totals. */
     filteredHhstArray: HHStOrBlock[];
