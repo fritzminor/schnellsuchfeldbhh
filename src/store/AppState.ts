@@ -14,6 +14,7 @@ import {
   VersionsTree
 } from "./versions/VersionsTypes";
 import { VersionProperties } from "../modal/versionproperties/VersionProperties";
+import { BaseDataWithDiffs } from "./versions/DiffTypes";
 
 export type Totals = {
   revenues: number;
@@ -115,7 +116,7 @@ export type AppState = CoreAppState & {
     searchParseErrMessage?: string;
 
     /** The current basedata. Its versionDesc property corresponds to AppState.versionsDesc */
-    currentBaseData: BaseData;
+    currentBaseData: BaseDataWithDiffs;
 
 
     /** contains the HHSts filtered by searchTree plus block elements for (sub-)totals. */

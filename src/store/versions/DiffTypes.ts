@@ -22,6 +22,10 @@ export type HHStWithDiff = HHSt & {
 
 
 export type BaseDataWithDiffs = BaseData & {
-  changedFrom:VersionDescriptor;
+  /** changedFrom points to the version, the current
+   * version has been compared to. 
+   * If it is not set, no comparision has been done.
+   */
+  changedFrom?:VersionDescriptor;
   hhsts:HHStWithDiff[];
 }
