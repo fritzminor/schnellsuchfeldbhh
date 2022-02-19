@@ -64,6 +64,9 @@ export type Name2VersionDesc = {
   versionDesc: VersionDescriptor;
 };
 
+/** Instances of VersionsSelection provides alternatives 
+ * for each level of the given version. 
+ */
 export type VersionsSelection = {
   orgBudgets: Name2VersionDesc[];
   budgets: Name2VersionDesc[];

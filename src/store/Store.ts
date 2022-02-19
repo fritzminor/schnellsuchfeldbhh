@@ -35,6 +35,26 @@ const baseDataArrays: { [index in UserName]: BaseData } = {
 export function createStore( // eslint-disable-line  @typescript-eslint/explicit-module-boundary-types
   setState: React.Dispatch<React.SetStateAction<AppState>>
 ) {
+  const getUpdateState = (
+    prevState: CoreAppState,
+    stateUpdaters: Partial<CoreAppState>
+  ): AppState => {
+    const newCoreState: CoreAppState = {
+      ...prevState,
+      ...stateUpdaters
+    };
+    return {
+      ...newCoreState,
+      derived: getDerivedFrom(newCoreState)
+    };
+  };
+
+  const updateState = (updater: Partial<CoreAppState>) => {
+    setState((prevState) => {
+      return getUpdateState(prevState, updater);
+    });
+  };
+
   const history = {
     push: ({ search }: { search: string }) => {
       const location = window.location;
@@ -44,13 +64,13 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
       window.history.pushState(null, "", url.toString());
     }
   };
+
   const setModalInfo = (
     modalInfo: AppState["modalInfo"]
   ): void => {
-    setState((prevState: AppState) => ({
-      ...prevState,
+    updateState({
       modalInfo
-    }));
+    });
   };
 
   const hideUserMessage = () => {
@@ -89,16 +109,9 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
     if (baseData) {
       baseDataArrays.LokaleDaten = baseData;
       console.log("setVersion", baseData.versionDesc);
-      setState((prevState) => {
-        const coreAppState: CoreAppState = {
-          ...prevState,
-          currentUser: "LokaleDaten",
-          versionDesc: versionDesc
-        };
-        return {
-          ...coreAppState,
-          derived: getDerivedFrom(coreAppState)
-        };
+      updateState({
+        currentUser: "LokaleDaten",
+        versionDesc: versionDesc
       });
     } else
       showUserMessage(
@@ -119,27 +132,17 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
     changedFromVersionDesc: Readonly<VersionDescriptor> | null
   ) {
     console.warn("UNIMPLEMENTED setChangedFromVersion");
-    setState((prevState) => {
-      const coreAppState: CoreAppState = {
-        ...prevState,
-        changedFromVersion: changedFromVersionDesc
-      };
-      return {
-        ...coreAppState,
-        derived: getDerivedFrom(coreAppState)
-      };
+    updateState({
+      changedFromVersion: changedFromVersionDesc
     });
   }
 
   function setCurrentUser(newCurrentUser: UserName) {
-    setState((prevState) =>
-      getDerivedAppState({
-        ...prevState,
-        currentUser: newCurrentUser,
-        versionDesc:
-          baseDataArrays[newCurrentUser].versionDesc
-      })
-    );
+    updateState({
+      currentUser: newCurrentUser,
+      versionDesc:
+        baseDataArrays[newCurrentUser].versionDesc
+    });
   }
 
   /** TODO: should ask user, if
@@ -176,8 +179,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
 
         baseDataArrays.LokaleDaten = importData;
 
-        return getDerivedAppState({
-          ...prevState,
+        return getUpdateState(prevState, {
           modalInfo: null,
           currentUser: "LokaleDaten",
           versionDesc: importData.versionDesc
@@ -198,12 +200,9 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
             : ""
         });
 
-      setState((prevState: AppState) =>
-        getDerivedAppState({
-          ...prevState,
-          searchexpression
-        })
-      );
+      updateState({
+        searchexpression
+      });
     },
 
     setCurrentUser,
@@ -224,18 +223,6 @@ export type Store = ReturnType<typeof createStore>;
 export type SetModalInfo = Store["setModalInfo"];
 export type SetVersion = Store["setVersion"];
 export type AddImportData = Store["addImportData"];
-
-/** returns an AppState including the derived state.
- * @see getDerivedFrom
- */
-function getDerivedAppState(
-  coreAppState: Readonly<CoreAppState>
-): AppState {
-  return {
-    ...coreAppState,
-    derived: getDerivedFrom(coreAppState)
-  };
-}
 
 function getDerivedFrom(
   coreAppState: CoreAppState
