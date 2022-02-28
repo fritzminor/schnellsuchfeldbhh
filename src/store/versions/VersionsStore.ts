@@ -10,6 +10,8 @@ import {
 } from "./VersionsTypes";
 import hhstDataBHH from "../material/bhh_long.json";
 import { jsoning } from "../../utils/jsoning";
+import { BaseDataWithDiffs } from "./DiffTypes";
+import { compareBaseData } from "./compareBaseData";
 
 const bhhBaseData = hhstDataBHH as BaseData;
 export const versionsStore: VersionsTree = new Map();
@@ -60,6 +62,32 @@ export function getBaseData(
     ?.get(versionDesc.budgetName)
     ?.get(versionDesc.lineName)
     ?.get(versionDesc.modStateName)?.baseData;
+}
+
+/** returns a single base data or base data that has
+ * been compared to another version.
+ * @param versionDesc - the currently displayed version
+ * @param changedFromVersion - the
+ * @returns the compared data or a single basedata, if
+ *   changedFromVersion is not defined. It is undefined,
+ *   if {@link getBaseData } is undefined
+ */
+export function getBaseDataWithDiffs(
+  versionDesc: VersionDescriptor,
+  changedFromVersion: VersionDescriptor | undefined
+): BaseDataWithDiffs | undefined {
+  if (changedFromVersion) {
+    const current = getBaseData(versionDesc);
+    const changedFrom = getBaseData(changedFromVersion);
+    if (changedFrom && current) {
+      const { targetWithDiffs } = compareBaseData(
+        changedFrom,
+        current
+      );
+      return targetWithDiffs;
+    }
+  }
+  return getBaseData(versionDesc);
 }
 
 /** possibly returns undefined */

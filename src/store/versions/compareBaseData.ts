@@ -1,5 +1,5 @@
 import { cloneDeep, isEqual } from "lodash";
-import { BaseData, emptyBaseData } from "../AppState";
+import { BaseData } from "../AppState";
 import { compareHHSt, compareHHStKey } from "../compareHHSt";
 import { getHHStValue, HHStValue } from "../HHStType";
 import {

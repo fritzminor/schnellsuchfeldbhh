@@ -17,6 +17,7 @@ import { errorMessage } from "../utils/errorMessage";
 import {
   addVersion,
   getBaseData,
+  getBaseDataWithDiffs,
   getVersionsSelectionFor,
   versionsStore
 } from "./versions/VersionsStore";
@@ -234,7 +235,15 @@ function getDerivedFrom(
   } = coreAppState;
   let searchTree: SearchNode | null;
   let searchParseErrMessage: string | undefined;
-  const baseData = baseDataArrays[currentUser];
+  let baseData =
+    currentUser === "LokaleDaten" && coreAppState.changedFromVersion // TODO: check if necessary
+      ? getBaseDataWithDiffs(
+          coreAppState.versionDesc,
+          coreAppState.changedFromVersion
+        )
+      : baseDataArrays[currentUser];
+  if(!baseData)
+    baseData=baseDataArrays[currentUser];
   const versionsSelection = getVersionsSelectionFor(
     baseData.versionDesc
   );
