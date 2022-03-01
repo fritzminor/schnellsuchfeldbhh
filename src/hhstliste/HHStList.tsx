@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { HHStRow } from "./HHStRow";
-import { HHSt } from "../store/HHStType";
+import { HHSt, HHStOrBlock } from "../store/HHStType";
 import { AppState } from "../store/AppState";
 import { MoreLessButton } from "../othercomponents/MoreLessButton";
 import { errorMessage } from "../utils/errorMessage";
@@ -37,18 +37,7 @@ export function HHStList({
       : appState.derived.filteredHhstArray;
 
     const hhstRows = hhsts.map((hhst) => (
-      <HHStRow
-        hhst={hhst}
-        key={
-          hhst.epl +
-          hhst.kap +
-          hhst.gruppe + //.replace(" ", "") +
-          hhst.suffix +
-          (hhst.type == "block"
-            ? "block" + hhst.blockstart + hhst.expense
-            : "hhst")
-        }
-      />
+      <HHStRow hhst={hhst} key={getHhstKey(hhst)} />
     ));
 
     return (
@@ -93,4 +82,18 @@ export function HHStList({
       </div>
     );
   }
+}
+
+/** gets a unique key for given hhst  */
+export function getHhstKey(hhst: Partial<HHStOrBlock>): string {
+  return (
+    ""+
+    hhst.epl +
+    hhst.kap +
+    hhst.gruppe + 
+    hhst.suffix +
+    (hhst.type == "block"
+      ? "block" + hhst.blockstart + hhst.expense
+      : "hhst")
+  );
 }

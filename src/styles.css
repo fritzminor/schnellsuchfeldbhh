@@ -55,11 +55,7 @@ button {
 
   flex-shrink: 0;
 }
-/*
-.hhstRow:first-child {
-background-color: cyan
-}
-*/
+
 .hhstRow .hhstNr {
   width: 7rem;
 }
@@ -81,6 +77,10 @@ background-color: cyan
   margin-left: auto;
   text-align: right;
   width: 14ch;
+}
+
+.hhstDeleted {
+  text-decoration: line-through;
 }
 
 /** ----------Epl-,Kap-, TG-Blocks -------**/

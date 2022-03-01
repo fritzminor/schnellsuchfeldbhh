@@ -18,7 +18,15 @@ export type HHStWithDiff = HHSt & {
   changedFrom?:Partial<HHStValue>| null;
 }
 
+/** returns true if hhst.changedFrom is null */
+export function isNewHhst(hhst:Partial<HHStWithDiff>):boolean {
+  return null===hhst.changedFrom;
+}
 
+/** returns true if hhst.changedFrom has a value */
+export function isModifiedHhst(hhst:Partial<HHStWithDiff>):boolean {
+  return !!hhst.changedFrom;
+}
 
 
 export type BaseDataWithDiffs = BaseData & {

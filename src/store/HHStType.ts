@@ -1,3 +1,5 @@
+import { HHStWithDiff } from "./versions/DiffTypes";
+
 export type HHStKey = {
   /** two digits Einzelplan */
   epl: string;
@@ -54,7 +56,10 @@ export type HHStBlockLimiter = {
   type: "block";
 } & (HHStBlockEnd | HHStBlockStart);
 
-export type HHStOrBlock = HHStBlockLimiter | HHSt;
+export type HHStOrBlock = HHStBlockLimiter | HHStWithDiff;
+
+/** similar to HHStOrBlock, but the HHSt-fields are optional   */
+export type PartialHHStOrBlock = HHStBlockLimiter | Partial<HHStWithDiff>;
 
 
 /** reduces hhst to its value part. */

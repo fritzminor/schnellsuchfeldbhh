@@ -83,7 +83,7 @@ export const emptyBaseData: BaseData = {
     budgetName: "",
     lineName: "",
     modStateName: "",
-    timestamp:0
+    timestamp: 0
   }
 };
 
@@ -95,7 +95,11 @@ export type CoreAppState = {
   searchexpression: string;
   currentUser: UserName;
 
-  modalInfo: string | AnalyzeResults | VersionProperties | null;
+  modalInfo:
+    | string
+    | AnalyzeResults
+    | VersionProperties
+    | null;
 
   /** The available versions in a tree structure */
   versionsTree: VersionsTree;
@@ -106,18 +110,16 @@ export type CoreAppState = {
   /** the version to compare with.
    * It is null, if no comparision should be made.
    */
-  changedFromVersion: VersionDescriptor|null;
-}
+  changedFromVersion: VersionDescriptor | null;
+};
 
 export type AppState = CoreAppState & {
-  
   derived: {
     searchTree: SearchNode | null;
     searchParseErrMessage?: string;
 
     /** The current basedata. Its versionDesc property corresponds to AppState.versionsDesc */
     currentBaseData: BaseDataWithDiffs;
-
 
     /** contains the HHSts filtered by searchTree plus block elements for (sub-)totals. */
     filteredHhstArray: HHStOrBlock[];
@@ -126,10 +128,10 @@ export type AppState = CoreAppState & {
 
     /** versions that can be selected starting off the current selected version. */
     versionsSelection: VersionsSelection;
-    
-    /** versions that can be selected starting off the current selected comparision version. 
+
+    /** versions that can be selected starting off the current selected comparision version.
      * If changedFromVersion==null this property equals versionsSelection.
-    */
+     */
     changedFromVersionsSelection: VersionsSelection;
   };
 };
@@ -383,10 +385,12 @@ export function getFilteredHhstArray(
 /** helper method.
  * returns a number formatted with . as 000 separator and a comma 0
  */
-export function formatBetrag(betrag: number): string {
-  return betrag === 0
-    ? "-"
-    : betrag.toLocaleString("de-DE", {
-        minimumFractionDigits: 1
-      });
+export function formatBetrag(betrag?: number): string {
+  return betrag
+    ? betrag === 0
+      ? "-"
+      : betrag.toLocaleString("de-DE", {
+          minimumFractionDigits: 1
+        })
+    : "";
 }

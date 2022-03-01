@@ -68,9 +68,9 @@ export function getBaseData(
  * been compared to another version.
  * @param versionDesc - the currently displayed version
  * @param changedFromVersion - the
- * @returns the compared data or a single basedata, if
+ * @returns the compared data (currently only changed hhsts - TODO) or a single basedata, if
  *   changedFromVersion is not defined. It is undefined,
- *   if {@link getBaseData } is undefined
+ *   if {@link getBaseData } is undefined. 
  */
 export function getBaseDataWithDiffs(
   versionDesc: VersionDescriptor,
@@ -80,11 +80,11 @@ export function getBaseDataWithDiffs(
     const current = getBaseData(versionDesc);
     const changedFrom = getBaseData(changedFromVersion);
     if (changedFrom && current) {
-      const { targetWithDiffs } = compareBaseData(
+      const { changes } = compareBaseData(
         changedFrom,
         current
       );
-      return targetWithDiffs;
+      return changes;
     }
   }
   return getBaseData(versionDesc);
