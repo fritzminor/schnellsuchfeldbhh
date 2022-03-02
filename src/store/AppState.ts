@@ -14,7 +14,8 @@ import {
   VersionsTree
 } from "./versions/VersionsTypes";
 import { VersionProperties } from "../modal/versionproperties/VersionProperties";
-import { BaseDataWithDiffs } from "./versions/DiffTypes";
+import {
+  BaseDataWithDiffs} from "./versions/DiffTypes";
 
 export type Totals = {
   revenues: number;
@@ -136,6 +137,8 @@ export type AppState = CoreAppState & {
      * If changedFromVersion==null this property equals versionsSelection.
      */
     changedFromVersionsSelection: VersionsSelection;
+
+    changedFromTotals?: Totals;
   };
 };
 
@@ -165,13 +168,14 @@ function getTGDesc(
 
 /** helper method to get filteredHhstList from given searchexpression */
 export function getFilteredHhstArray(
-  baseData: BaseData,
+  baseData: BaseDataWithDiffs,
   searchexpression: string,
   withBlocks = false
 ): {
   searchTree: SearchNode | null;
   filteredHhstArray: HHStOrBlock[];
   totals: Totals;
+  changedFromTotals?: Totals;
 } {
   const { hhsts: hhstArray, tgMap } = baseData;
 
@@ -179,6 +183,12 @@ export function getFilteredHhstArray(
     revenues: 0,
     expenses: 0
   };
+
+  const changedFromTotals: Totals = {
+    revenues: 0,
+    expenses: 0
+  };
+
   const searchTree = getSearchTree(searchexpression);
   const filteredHhstArray: HHStOrBlock[] = [];
 
@@ -335,21 +345,49 @@ export function getFilteredHhstArray(
       // -------- current hhst -------
       filteredHhstArray.push(hhst);
 
+      // --- add to totals
+      // TODO: also calculate TG, Kap and Epl totals for changedFrom
       if (!hhst.deleted) {
+        const takeNewAmount4changedFrom =
+          hhst.changedFrom !== null &&
+          (!hhst.changedFrom || // no changedFrom hhst => thus take the amount of the current (unchanged) hhst
+            (hhst.changedFrom &&
+              hhst.changedFrom.sollJahr1 === undefined && // or no modification of sollJahr1
+              !hhst.changedFrom.deleted)); // under the condition that changedFrom hhst was not marked as deleted
         if (hhst.expense) {
           currTG.totalExpenses += hhst.sollJahr1;
           currTG.anyExpense = true;
           currKap.totalExpenses += hhst.sollJahr1;
           currEpl.totalExpenses += hhst.sollJahr1;
           totals.expenses += hhst.sollJahr1;
+          if (takeNewAmount4changedFrom
+          )
+            changedFromTotals.expenses += hhst.sollJahr1;
         } else {
           currTG.totalRevenues += hhst.sollJahr1;
           currTG.anyRevenue = true;
           currKap.totalRevenues += hhst.sollJahr1;
           currEpl.totalRevenues += hhst.sollJahr1;
           totals.revenues += hhst.sollJahr1;
+
+          if (takeNewAmount4changedFrom)
+            changedFromTotals.revenues += hhst.sollJahr1;
         }
       }
+      if (hhst.changedFrom) {
+        if (
+          hhst.changedFrom.sollJahr1 &&
+          !hhst.changedFrom.deleted
+        ) {
+          if (hhst.expense)
+            changedFromTotals.expenses +=
+              hhst.changedFrom.sollJahr1;
+          else
+            changedFromTotals.revenues +=
+              hhst.changedFrom.sollJahr1;
+        }
+      }
+      // do not touch changeTotals, if isNewHhst(hhst)
     }
   });
 
@@ -384,16 +422,32 @@ export function getFilteredHhstArray(
     };
     filteredHhstArray.push(totalExpenses);
   }
-  return { searchTree, filteredHhstArray, totals };
+  return {
+    searchTree,
+    filteredHhstArray,
+    totals,
+    changedFromTotals: baseData.changedFrom
+      ? changedFromTotals
+      : undefined
+  };
 }
 
 /** helper method.
  * returns a number formatted with . as 000 separator and a comma 0
  */
-export function formatBetrag(betrag?: number): string {
+export function formatBetrag(
+  betrag?: number,
+  withPlusSign?: boolean
+): string {
   return betrag
     ? betrag === 0
       ? "-"
+      : withPlusSign
+      ? betrag
+          .toLocaleString("de-DE", {
+            minimumFractionDigits: 1,signDisplay:"exceptZero"
+          })
+          
       : betrag.toLocaleString("de-DE", {
           minimumFractionDigits: 1
         })

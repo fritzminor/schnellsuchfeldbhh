@@ -192,7 +192,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
     setSearchExpression(
       searchexpression: string,
       noUpdate?: boolean
-    ):void {
+    ): void {
       if (!noUpdate)
         history.push({
           search: searchexpression
@@ -210,8 +210,8 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
 
     setVersion,
     setChangedFromVersion,
-    setShowOnlyChanges(showOnlyChanges:boolean) {
-      updateState({showOnlyChanges})
+    setShowOnlyChanges(showOnlyChanges: boolean) {
+      updateState({ showOnlyChanges });
     },
 
     setModalInfo,
@@ -225,8 +225,10 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
 export type Store = ReturnType<typeof createStore>;
 export type SetModalInfo = Store["setModalInfo"];
 export type SetVersion = Store["setVersion"];
-export type SetChangedFromVersion = Store["setChangedFromVersion"];
-export type SetShowOnlyChanges = Store["setShowOnlyChanges"];
+export type SetChangedFromVersion =
+  Store["setChangedFromVersion"];
+export type SetShowOnlyChanges =
+  Store["setShowOnlyChanges"];
 export type AddImportData = Store["addImportData"];
 
 function getDerivedFrom(
@@ -240,16 +242,17 @@ function getDerivedFrom(
   } = coreAppState;
   let searchTree: SearchNode | null;
   let searchParseErrMessage: string | undefined;
+  let changedFromTotals: Totals | undefined;
   let baseData =
-    currentUser === "LokaleDaten" && coreAppState.changedFromVersion // TODO: check if this check is really necessary
+    currentUser === "LokaleDaten" &&
+    coreAppState.changedFromVersion // TODO: check if this check is really necessary
       ? getBaseDataWithDiffs(
           coreAppState.versionDesc,
           coreAppState.changedFromVersion,
-showOnlyChanges
+          showOnlyChanges
         )
       : baseDataArrays[currentUser];
-  if(!baseData)
-    baseData=baseDataArrays[currentUser];
+  if (!baseData) baseData = baseDataArrays[currentUser];
   const versionsSelection = getVersionsSelectionFor(
     baseData.versionDesc
   );
@@ -263,7 +266,8 @@ showOnlyChanges
     const {
       searchTree: _searchTree,
       filteredHhstArray: _filteredHhstArray,
-      totals: _totals
+      totals: _totals,
+      changedFromTotals: _changedFromTotals
     } = getFilteredHhstArray(
       baseData,
       searchexpression,
@@ -272,6 +276,7 @@ showOnlyChanges
     searchTree = _searchTree;
     filteredHhstArray = _filteredHhstArray;
     totals = _totals;
+    changedFromTotals= _changedFromTotals;
   } catch (err) {
     console.log(err);
     searchTree = null;
@@ -287,7 +292,8 @@ showOnlyChanges
     filteredHhstArray,
     totals,
     versionsSelection,
-    changedFromVersionsSelection
+    changedFromVersionsSelection,
+    changedFromTotals
   };
 }
 

@@ -23,13 +23,13 @@ export function isNewHhst(hhst:Partial<HHStWithDiff>):boolean {
   return null===hhst.changedFrom;
 }
 
-/** returns true if hhst.changedFrom has a value */
+/** returns true if hhst.changedFrom has a value, even if the value is null */
 export function isModifiedHhst(hhst:Partial<HHStWithDiff>):boolean {
-  return !!hhst.changedFrom;
+  return  hhst.changedFrom!==undefined;
 }
 
 
-export type BaseDataWithDiffs = BaseData & {
+export type BaseDataWithDiffs = Omit<BaseData,"hhsts"> & {
   /** changedFrom points to the version, the current
    * version has been compared to. 
    * If it is not set, no comparision has been done.
