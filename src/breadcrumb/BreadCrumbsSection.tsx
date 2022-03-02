@@ -1,6 +1,9 @@
 import { Compare32 } from "@carbon/icons-react";
 import { FC, useState } from "react";
-import { SetChangedFromVersion } from "../store/Store";
+import {
+  SetChangedFromVersion,
+  SetShowOnlyChanges
+} from "../store/Store";
 import {
   VersionDescriptor,
   VersionsSelection
@@ -13,6 +16,8 @@ import {
 
 export type BreadcrumbsSectionProps = HHBreadcrumbsProps & {
   setChangedFromVersion: SetChangedFromVersion;
+  showOnlyChanges: boolean;
+  setShowOnlyChanges: SetShowOnlyChanges;
   changedFromVersion: Readonly<VersionDescriptor> | null;
   changedFromVersionsSelection: Readonly<VersionsSelection>;
 };
@@ -25,7 +30,9 @@ export const BreadcrumbsSection: FC<
   setVersion,
   setChangedFromVersion,
   changedFromVersion,
-  changedFromVersionsSelection
+  changedFromVersionsSelection,
+  showOnlyChanges,
+  setShowOnlyChanges
 }) => {
   /** showCompareDialog is set when user asks for comparision. */
   const [showCompareDialog, setShowCompareDialog] =
@@ -88,10 +95,13 @@ export const BreadcrumbsSection: FC<
               name="onlyChanges"
               type="checkbox"
               className="switch"
-              checked={true}
+              checked={showOnlyChanges}
+              onChange={(event) => {
+                setShowOnlyChanges(event.target.checked);
+              }}
             />
             <label htmlFor="onlyChanges">
-              Zeige nur Änderungen
+              {showOnlyChanges?"Zeige nur Änderungen":"Zeige gesamte Liste mit Änderungen"}
             </label>
           </div>
         </div>

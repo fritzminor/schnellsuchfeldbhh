@@ -111,6 +111,9 @@ export type CoreAppState = {
    * It is null, if no comparision should be made.
    */
   changedFromVersion: VersionDescriptor | null;
+
+  /** when comparing version, show only changes. If false, also the other hhsts of the current version are shown. */
+  showOnlyChanges:boolean;
 };
 
 export type AppState = CoreAppState & {

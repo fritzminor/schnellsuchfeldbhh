@@ -75,6 +75,8 @@ export default function App(): JSX.Element {
         changedFromVersion={state.changedFromVersion}
         setChangedFromVersion={store.setChangedFromVersion}
         changedFromVersionsSelection={state.derived.changedFromVersionsSelection}
+        showOnlyChanges={state.showOnlyChanges}
+        setShowOnlyChanges={store.setShowOnlyChanges}
       />
       <section className="section pt-1" id="hhstList">
         <HHStList appState={state}>

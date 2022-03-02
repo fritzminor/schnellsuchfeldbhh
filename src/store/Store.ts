@@ -192,7 +192,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
     setSearchExpression(
       searchexpression: string,
       noUpdate?: boolean
-    ) {
+    ):void {
       if (!noUpdate)
         history.push({
           search: searchexpression
@@ -210,6 +210,9 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
 
     setVersion,
     setChangedFromVersion,
+    setShowOnlyChanges(showOnlyChanges:boolean) {
+      updateState({showOnlyChanges})
+    },
 
     setModalInfo,
     /** hides user message */
@@ -223,6 +226,7 @@ export type Store = ReturnType<typeof createStore>;
 export type SetModalInfo = Store["setModalInfo"];
 export type SetVersion = Store["setVersion"];
 export type SetChangedFromVersion = Store["setChangedFromVersion"];
+export type SetShowOnlyChanges = Store["setShowOnlyChanges"];
 export type AddImportData = Store["addImportData"];
 
 function getDerivedFrom(
@@ -231,15 +235,17 @@ function getDerivedFrom(
   const {
     searchexpression,
     currentUser,
-    changedFromVersion
+    changedFromVersion,
+    showOnlyChanges
   } = coreAppState;
   let searchTree: SearchNode | null;
   let searchParseErrMessage: string | undefined;
   let baseData =
-    currentUser === "LokaleDaten" && coreAppState.changedFromVersion // TODO: check if necessary
+    currentUser === "LokaleDaten" && coreAppState.changedFromVersion // TODO: check if this check is really necessary
       ? getBaseDataWithDiffs(
           coreAppState.versionDesc,
-          coreAppState.changedFromVersion
+          coreAppState.changedFromVersion,
+showOnlyChanges
         )
       : baseDataArrays[currentUser];
   if(!baseData)
@@ -294,6 +300,7 @@ export function getStateFrom(
     versionsTree: versionsStore,
     versionDesc: baseDataArrays[currentUser].versionDesc,
     changedFromVersion: null, // default: no comparision
+    showOnlyChanges: true, // default: show only changes
     searchexpression,
     currentUser,
     modalInfo: null
