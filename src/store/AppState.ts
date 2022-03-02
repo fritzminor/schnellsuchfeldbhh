@@ -113,7 +113,7 @@ export type CoreAppState = {
   changedFromVersion: VersionDescriptor | null;
 
   /** when comparing version, show only changes. If false, also the other hhsts of the current version are shown. */
-  showOnlyChanges:boolean;
+  showOnlyChanges: boolean;
 };
 
 export type AppState = CoreAppState & {
@@ -335,18 +335,20 @@ export function getFilteredHhstArray(
       // -------- current hhst -------
       filteredHhstArray.push(hhst);
 
-      if (hhst.expense) {
-        currTG.totalExpenses += hhst.sollJahr1;
-        currTG.anyExpense = true;
-        currKap.totalExpenses += hhst.sollJahr1;
-        currEpl.totalExpenses += hhst.sollJahr1;
-        totals.expenses += hhst.sollJahr1;
-      } else {
-        currTG.totalRevenues += hhst.sollJahr1;
-        currTG.anyRevenue = true;
-        currKap.totalRevenues += hhst.sollJahr1;
-        currEpl.totalRevenues += hhst.sollJahr1;
-        totals.revenues += hhst.sollJahr1;
+      if (!hhst.deleted) {
+        if (hhst.expense) {
+          currTG.totalExpenses += hhst.sollJahr1;
+          currTG.anyExpense = true;
+          currKap.totalExpenses += hhst.sollJahr1;
+          currEpl.totalExpenses += hhst.sollJahr1;
+          totals.expenses += hhst.sollJahr1;
+        } else {
+          currTG.totalRevenues += hhst.sollJahr1;
+          currTG.anyRevenue = true;
+          currKap.totalRevenues += hhst.sollJahr1;
+          currEpl.totalRevenues += hhst.sollJahr1;
+          totals.revenues += hhst.sollJahr1;
+        }
       }
     }
   });
