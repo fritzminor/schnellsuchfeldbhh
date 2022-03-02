@@ -132,7 +132,6 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
   function setChangedFromVersion(
     changedFromVersionDesc: Readonly<VersionDescriptor> | null
   ) {
-    console.warn("UNIMPLEMENTED setChangedFromVersion");
     updateState({
       changedFromVersion: changedFromVersionDesc
     });
@@ -223,6 +222,7 @@ export function createStore( // eslint-disable-line  @typescript-eslint/explicit
 export type Store = ReturnType<typeof createStore>;
 export type SetModalInfo = Store["setModalInfo"];
 export type SetVersion = Store["setVersion"];
+export type SetChangedFromVersion = Store["setChangedFromVersion"];
 export type AddImportData = Store["addImportData"];
 
 function getDerivedFrom(

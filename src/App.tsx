@@ -1,4 +1,5 @@
 import "bulma";
+import "bulma-switch";
 
 import "./styles.css";
 import { EingabeHilfeContainer } from "./eingabehilfe/EingabeHilfeContainer";
