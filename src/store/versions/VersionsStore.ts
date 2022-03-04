@@ -1,4 +1,4 @@
-import { BaseData } from "../AppState";
+import { BaseData, emptyBaseData } from "../AppState";
 import {
   BudgetsMap,
   LinesMap,
@@ -12,6 +12,10 @@ import hhstDataBHH from "../material/bhh_long.json";
 import { jsoning } from "../../utils/jsoning";
 import { BaseDataWithDiffs } from "./DiffTypes";
 import { compareBaseData } from "./compareBaseData";
+import {
+  addBaseDataWithDiff2Cache,
+  getCachedBaseDataWithDiffs
+} from "./VersionsDiffCache";
 
 const bhhBaseData = hhstDataBHH as BaseData;
 export const versionsStore: VersionsTree = new Map();
@@ -70,9 +74,7 @@ export function getBaseData(
  * @param changedFromVersion - the
  * @returns the compared data  or a single basedata, if
  *   changedFromVersion is not defined. It is undefined,
- *   if {@link getBaseData } is undefined. 
- * @todo This method should cache the basedata comparisons 
- *   in order to improve performance
+ *   if {@link getBaseData } is undefined.
  */
 export function getBaseDataWithDiffs(
   versionDesc: VersionDescriptor,
@@ -80,17 +82,30 @@ export function getBaseDataWithDiffs(
   onlyChanges: boolean
 ): BaseDataWithDiffs | undefined {
   if (changedFromVersion) {
-    const current = getBaseData(versionDesc);
-    const changedFrom = getBaseData(changedFromVersion);
-    if (changedFrom && current) {
-      const { changes, targetWithDiffs } = compareBaseData(
-        changedFrom,
-        current
+    let diffedBaseDatas = getCachedBaseDataWithDiffs(
+      versionDesc,
+      changedFromVersion
+    );
+    if (!diffedBaseDatas) {
+      // no diff in cache =>
+      // add diff to cache
+      const current = getBaseData(versionDesc);
+      const changedFrom = getBaseData(changedFromVersion);
+
+      diffedBaseDatas = compareBaseData(
+        changedFrom || emptyBaseData,
+        current || emptyBaseData
       );
-      return onlyChanges?changes:targetWithDiffs;
+      addBaseDataWithDiff2Cache(
+        versionDesc,
+        changedFromVersion,
+        diffedBaseDatas
+      );
     }
-  }
-  return getBaseData(versionDesc);
+    return onlyChanges
+      ? diffedBaseDatas.changes
+      : diffedBaseDatas.targetWithDiffs;
+  } else return getBaseData(versionDesc); // just simple version data without differences to any other version
 }
 
 /** possibly returns undefined */
